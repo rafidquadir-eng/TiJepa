@@ -144,6 +144,14 @@ upgrade.
 - [ ] Publish model weights if desired — see `reports/WEIGHTS.md`. They are **not** in
       git and were **not** published.
 
+### One self-inflicted issue, disclosed
+
+`scripts/60_partA_eval.py` began caching Part A embeddings to
+`results/partA/bbbc054_embeddings.npz` (39 MB), which breaches `PLAN.md` §1.3.2
+("committed result files must be < 5 MB each"). It is now untracked and ignored, but the
+blob remains in this branch's history — removing it there would require rewriting history
+and force-pushing, which §1.3.1 forbids. **Squash-merging this PR drops it.**
+
 **Nothing has been posted to bioRxiv, Zenodo, Hugging Face or anywhere else**, per
 `PLAN.md` §1.4.3. No GitHub Release was created. `main` was never pushed to and nothing
 was force-pushed.
