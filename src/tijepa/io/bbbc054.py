@@ -4,8 +4,16 @@ Licence CC BY 3.0 Unported (commercial use allowed), verified on the BBBC054 pag
 Imaging (from the page): Leica DMI 6000, 20x objective, Andor AND-DG-152V-C1E-FI
 camera, Metamorph Premiere, TIFF.
 
-Ground truth CSV columns (verified on the page): index, axis-0 (FOV/image), axis-1 (x),
-axis-2 (y), label in {round, amoeboid, stratified}.
+Ground truth CSV columns: index, axis-0 (FOV/image), axis-1, axis-2, label in
+{round, amoeboid, stratified}.
+
+**Axis convention.** The BBBC054 page says "axis-1 indicates the x-coordinate, and
+axis-2 indicates the y-coordinate". The data contradict that, and the column names are
+numpy-style (axis-0 = image, axis-1 = rows, axis-2 = columns). In Replicate 1 the images
+are 1080 rows x 1280 columns, and across all 47,043 annotations axis-1 spans -4..1080
+while axis-2 spans -6..1284. axis-1 therefore indexes ROWS (y) and axis-2 indexes
+COLUMNS (x). We follow the data, not the page; using the page's wording transposes every
+crop and drives every probe to chance.
 
 FOV -> LPS exposure time: "Each field of view correspond to an exposure time of LPS
 with 30 minute intervals between 0 hours and 30 hours" (verified on the page), so
@@ -44,8 +52,9 @@ def load_annotations(csv_path: Path) -> list[dict]:
                 rows.append({
                     "index": int(float(get("index") or 0)),
                     "fov": int(float(get("axis-0", "axis_0"))),
-                    "x": float(get("axis-1", "axis_1")),
-                    "y": float(get("axis-2", "axis_2")),
+                    # axis-1 = row = y, axis-2 = column = x (see module docstring)
+                    "y": float(get("axis-1", "axis_1")),
+                    "x": float(get("axis-2", "axis_2")),
                     "label": lab,
                 })
             except (TypeError, ValueError):
