@@ -1,0 +1,19 @@
+{
+  "n_cells_total": 150291,
+  "n_source_files": 9,
+  "n_condition_rows": 6787,
+  "n_condition_rows_layout_verified": 105,
+  "layout_verified_files": [
+    "CPGLPSscrep_traces.mat",
+    "PAMIL1first_traces.mat",
+    "PICCPGfirst_traces.mat",
+    "PICTNFscrep_traces.mat",
+    "TNFLPSfirst_traces.mat"
+  ],
+  "layout_unverified_note": "cytokine-block and sepsis deposit files use a different experimental design; their metadata columns do not follow the convention confirmed for the other files, so they are excluded from all analyses",
+  "n_wells_total": 620,
+  "frame_interval_min": 6.0,
+  "trace_length_frames": 126,
+  "column_layout_source": "read from rawtraceprocessing.m in the deposit",
+  "grouping_unit": "source_file | replicate | well (col 130)"
+}

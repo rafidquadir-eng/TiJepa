@@ -156,8 +156,19 @@ def biostudies(acc: str, role: str, max_gb: float, include: str | None = None) -
         return None
 
     lic = find_licence(meta.get("section", {}))
-    listing = get_json(f"{EBI_FILES}/{acc}?pageSize=20000")
-    rows = listing.get("data", [])
+    # The BioStudies files API returns at most a handful of rows per call regardless of
+    # pageSize, so page through it until we have every record.
+    first = get_json(f"{EBI_FILES}/{acc}?page=1&pageSize=100")
+    n_total = int(first.get("recordsFiltered") or 0)
+    rows, page = list(first.get("data", [])), 1
+    while len(rows) < n_total:
+        page += 1
+        chunk = get_json(f"{EBI_FILES}/{acc}?page={page}&pageSize=100").get("data", [])
+        if not chunk:
+            break
+        rows.extend(chunk)
+    print(f"  listed {len(rows)}/{n_total} file records")
+    listing = {"recordsFiltered": n_total}
     if include:
         rows = [r for r in rows if include in r.get("path", "")]
     rows = sorted(rows, key=lambda r: r.get("Size", 0))

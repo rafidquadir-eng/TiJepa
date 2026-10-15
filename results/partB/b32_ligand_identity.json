@@ -1,0 +1,55 @@
+{
+  "task": "first_ligand_identity",
+  "logreg_C_tuned_once": 100.0,
+  "n_classes": 10,
+  "class_codes": [
+    0.0,
+    1.0,
+    2.0,
+    3.0,
+    4.0,
+    5.0,
+    6.0,
+    7.0,
+    17.0,
+    19.0
+  ],
+  "n_cells": 29829,
+  "n_groups": 255,
+  "window": "first stimulus, 40 frames (4 h) from frame 3",
+  "per_seed": [
+    {
+      "balanced_accuracy": 0.33821735632732636,
+      "macro_f1": 0.25840728538913654,
+      "n": 29829,
+      "n_classes": 10,
+      "auroc_ovr_macro": 0.7667803360242724,
+      "seed": 0
+    },
+    {
+      "balanced_accuracy": 0.33821735632732636,
+      "macro_f1": 0.25840728538913654,
+      "n": 29829,
+      "n_classes": 10,
+      "auroc_ovr_macro": 0.7667803360242724,
+      "seed": 1
+    },
+    {
+      "balanced_accuracy": 0.33821735632732636,
+      "macro_f1": 0.25840728538913654,
+      "n": 29829,
+      "n_classes": 10,
+      "auroc_ovr_macro": 0.7667803360242724,
+      "seed": 2
+    }
+  ],
+  "balanced_accuracy_mean": 0.33821735632732636,
+  "balanced_accuracy_sd": 0.0,
+  "cluster_bootstrap_ci_seed0": {
+    "point": 0.33821735632732636,
+    "ci_low": 0.3146675593862685,
+    "ci_high": 0.359810435603136,
+    "n_boot_valid": 2000
+  },
+  "comparison_note": "NOT comparable to the published 72.8% 4-class result: the published task uses a different class set, cell filtering and validation scheme. Reported here only as an internal reference point."
+}
