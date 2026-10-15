@@ -22,6 +22,46 @@ in [`reports/RUN_REPORT.md`](reports/RUN_REPORT.md); the manuscript draft is
 | M6 | BBBC054 probes, S-BIAD2196 tracking, Part C3 |
 | M7 | 7 figures, paper draft, RUN_REPORT, MANUAL_DOWNLOADS, WEIGHTS |
 
+
+## Results
+
+Pretraining: **55,000 steps, 4.43 GPU-hours**, 24.44 effective
+epochs over 288,081 clips; loss 0.400 → 0.312;
+no collapse (effective rank rose from ~3.5 to ~29).
+
+**BBBC054 morphology probe** (FOV-grouped CV, 3 seeds, 2,000-resample cluster bootstrap over FOVs):
+
+| encoder | balanced accuracy [95% CI] | vs E6 random init (paired) | ρ exposure time | FOV-identity (lower better) |
+|---|---|---|---|---|
+| E1_handcrafted_morphology | **0.697** [0.678, 0.715] | -0.076 [-0.094, -0.058] | -0.000 | 0.095 |
+| E2_imagenet_vit_s | **0.755** [0.738, 0.772] | -0.017 [-0.036, +0.002] | +0.197 | 0.234 |
+| E3_dinov2_vit_s | **0.769** [0.755, 0.786] | -0.003 [-0.019, +0.014] | +0.277 | 0.230 |
+| E4_tijepa0 | **0.828** [0.814, 0.843] | +0.056 [+0.045, +0.067] | +0.083 | 0.110 |
+| E5_tijepa0_frame_shuffled | N/A (undefined on static frames) | | | |
+| E6_tijepa0_random_init | **0.772** [0.756, 0.790] | - (reference) | +0.100 | 0.065 |
+
+TiJepa-0 is the best encoder, and the comparison that isolates **pretraining** from
+architecture — E4 against the identical network with random weights — is
+**+0.056 [0.045, 0.067], p < 0.0001**. It also carries *less* FOV identity than the
+ImageNet and DINOv2 baselines, so the gain is not field memorisation. Note that E6 alone
+already matches DINOv2 (d = −0.003, p = 0.73): much of the performance on this task comes
+from the architecture and probe rather than from either pretraining corpus.
+
+**Two negative results, reported rather than buried:**
+
+1. LPS exposure-time regression is weak for every encoder and **worse** for TiJepa-0
+   (ρ 0.083) than for DINOv2 (ρ 0.277); all MAEs sit at or near the mean-predictor's.
+2. Point tracking on held-out S-BIAD2196 — TiJepa-0 **does not beat** the baseline and is
+   indistinguishable from its own frame-shuffled and random-init controls, so the learned
+   temporal structure does not transfer:
+
+| method | ⟨δ⟩ (1–16 µm) | median survival (frames) |
+|---|---|---|
+| baseline_nearest_detection | 0.527 | 17 |
+| E4_tijepa0 | 0.463 | 4 |
+| E5_tijepa0_frame_shuffled | 0.474 | 3 |
+| E6_tijepa0_random_init | 0.436 | 4 |
+
 ## Three things a reviewer should look at first
 
 **1. The planned headline benchmark could not be obtained.** Dryad
