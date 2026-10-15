@@ -14,6 +14,7 @@ we need already exists or must be generated.
 
 | Path | What it is |
 |---|---|
+| [`PLAN.md`](PLAN.md) | Execution plan for TiJepa-0, a computational-only preprint built on existing public data |
 | [`reports/Trained immunity imaging datasets.md`](reports/Trained%20immunity%20imaging%20datasets.md) | The synthesized report (~8.5k words): deposit tables, accession tables, licence constraints, gaps, recommendations |
 | `research_notes/Trained immunity imaging datasets/` | Raw per-stream research notes behind the report |
 
