@@ -5,8 +5,12 @@ time interval 8 s (verified from the record's per-file metadata).
 
 Layout (OME-Zarr v2 inside a zip, one level of nesting):
     <stem>.ome.zarr/0                        raw, (t, y, x) float64
-    <stem>.ome.zarr/labels/Tracked Cells/0   instance IDs, (t, y, x) int32,
+    <stem>.ome.zarr/labels/<name>/0          instance IDs, (t, y, x) int32,
                                              IDs consistent across time
+
+The label group name is NOT consistent across the deposit: four of the five movies use
+"Tracked Cells" and 01_A3 uses "TrackedCells", so it is discovered at read time rather
+than hard-coded.
 This dataset is used for EVALUATION ONLY in this run and is never pretrained on.
 """
 from __future__ import annotations
@@ -29,12 +33,23 @@ def _open(path: Path):
     return zarr.open_group(store, mode="r", path=root, zarr_format=2), root
 
 
+def label_group_name(g) -> str:
+    """The deposit spells this inconsistently ("Tracked Cells" vs "TrackedCells")."""
+    names = list(g["labels"].keys())
+    for n in names:
+        if n.replace(" ", "").lower() == "trackedcells":
+            return n
+    if not names:
+        raise KeyError("no label group found")
+    return names[0]
+
+
 def load_movie(path: Path, max_frames: int | None = None
                ) -> tuple[np.ndarray, np.ndarray]:
     """Return (raw uint8 (T,Y,X), labels int32 (T,Y,X))."""
     g, _ = _open(path)
     raw = g["0"]
-    lab = g["labels"]["Tracked Cells"]["0"]
+    lab = g["labels"][label_group_name(g)]["0"]
     t = raw.shape[0] if max_frames is None else min(max_frames, raw.shape[0])
     r = np.asarray(raw[:t])
     lo, hi = np.percentile(r, [0.5, 99.5])
