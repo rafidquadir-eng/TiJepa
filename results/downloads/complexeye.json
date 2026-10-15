@@ -1,0 +1,104 @@
+{
+  "key": "complexeye",
+  "kind": "zenodo",
+  "record": "10082674",
+  "doi": "10.5281/zenodo.10082674",
+  "title": "ComplexEye - a multi lens array microscope for High-Throughput embedded immune cell migration analysis",
+  "licence_verified": "cc-by-4.0",
+  "licence_source": "https://zenodo.org/api/records/10082674 metadata.license",
+  "role": "pretrain",
+  "record_url": "https://zenodo.org/records/10082674",
+  "concept_note": "PLAN.md cites 10.5281/zenodo.7962144 as the record with 10082674 as v2. The 7962144 API endpoint returns no JSON, so v2 (10082674) was used and all licence/size checks were read from it.",
+  "archives_in_record": 21,
+  "record_total_gb": 186.8,
+  "archives_used": 7,
+  "movies_used": 302,
+  "files_used": [
+    {
+      "file": "384-well_plate_movies_n=16_complexeye.zip",
+      "url": "https://zenodo.org/api/records/10082674/files/384-well_plate_movies_n=16_complexeye.zip/content",
+      "size_bytes_record": 8128070333,
+      "size_bytes_local": 8128070333,
+      "size_match": true,
+      "checksum_record": "md5:4b2a0f2e51934baefa4184e093994988",
+      "sha256_local": "sha256-first2.0GB:710395ce5ed76db14e9b1f92f2e36f45258ccf4cd155a6d1da093b8258e4d004",
+      "n_tiff_movies": 63,
+      "status": "ok"
+    },
+    {
+      "file": "96-well_plate_movies_n=1_complexeye.zip",
+      "url": "https://zenodo.org/api/records/10082674/files/96-well_plate_movies_n=1_complexeye.zip/content",
+      "size_bytes_record": 2085253806,
+      "size_bytes_local": 2085253806,
+      "size_match": true,
+      "checksum_record": "md5:58916169cb06d223db650c71ca01cf85",
+      "sha256_local": "sha256-first2.0GB:8912f509f0a8b24f23d24878e35d45f54b7299891d02530c2538f917637d3753",
+      "n_tiff_movies": 16,
+      "status": "ok"
+    },
+    {
+      "file": "96-well_plate_movies_n=1_leica.zip",
+      "url": "https://zenodo.org/api/records/10082674/files/96-well_plate_movies_n=1_leica.zip/content",
+      "size_bytes_record": 1469831230,
+      "size_bytes_local": 1469831230,
+      "size_match": true,
+      "checksum_record": "md5:e88943712bf857370ebe3c1e75adbbff",
+      "sha256_local": "sha256-first2.0GB:eb0f6de4fecba40586413899b55e6d978a9d5b72b7959d472c44867655b070c4",
+      "n_tiff_movies": 4,
+      "status": "ok"
+    },
+    {
+      "file": "R06.zip",
+      "status": "incomplete_download_excluded",
+      "size_bytes_local": 5239713281
+    },
+    {
+      "file": "R08.zip",
+      "url": "https://zenodo.org/api/records/10082674/files/R08.zip/content",
+      "size_bytes_record": 9737483121,
+      "size_bytes_local": 9737483121,
+      "size_match": true,
+      "checksum_record": "md5:08e526493fbc970d2e50a30bffcfafee",
+      "sha256_local": "sha256-first2.0GB:7f1e313848a578d6844f5a51e0fc81b48e16cf9613ead3a21fa7316074a93316",
+      "n_tiff_movies": 64,
+      "status": "ok"
+    },
+    {
+      "file": "R09.zip",
+      "url": "https://zenodo.org/api/records/10082674/files/R09.zip/content",
+      "size_bytes_record": 9331886870,
+      "size_bytes_local": 9331886870,
+      "size_match": true,
+      "checksum_record": "md5:798a82edb6a2d7908283fd64b182ac4a",
+      "sha256_local": "sha256-first2.0GB:b3f2bd06816cbf5cad4ff926519ebab3405a2969f448b3c382ae1d4457760112",
+      "n_tiff_movies": 64,
+      "status": "ok"
+    },
+    {
+      "file": "R16.zip",
+      "url": "https://zenodo.org/api/records/10082674/files/R16.zip/content",
+      "size_bytes_record": 9724801099,
+      "size_bytes_local": 9724801099,
+      "size_match": true,
+      "checksum_record": "md5:3db86863017ec1ee7122db7a0683ff44",
+      "sha256_local": "sha256-first2.0GB:f823e17911211376110abcaa05fc6ac82400ad5b8dc9f62597c3b28b52789179",
+      "n_tiff_movies": 64,
+      "status": "ok"
+    },
+    {
+      "file": "R17.zip",
+      "url": "https://zenodo.org/api/records/10082674/files/R17.zip/content",
+      "size_bytes_record": 3748030314,
+      "size_bytes_local": 3748030314,
+      "size_match": true,
+      "checksum_record": "md5:74d2a799e541c431bbb5a01c297e80a2",
+      "sha256_local": "sha256-first2.0GB:295fa019ba267b541ea490fa2f9e2b2c8e9fd96f03862945abfc4e4ef2da4053",
+      "n_tiff_movies": 27,
+      "status": "ok"
+    }
+  ],
+  "total_gb": 44.225,
+  "cap_note": "downloading was stopped at this archive set; the 120 GB raw-video cap and the 60%-of-free-disk limit were never reached",
+  "status": "ok",
+  "retrieved_utc": "2026-10-15T16:22:41Z"
+}

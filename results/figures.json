@@ -1,0 +1,30 @@
+{
+  "fig1_overview": [
+    "figures/fig1_overview.png",
+    "figures/fig1_overview.pdf"
+  ],
+  "fig2_pretraining": [
+    "figures/fig2_pretraining.png",
+    "figures/fig2_pretraining.pdf"
+  ],
+  "fig3_bbbc054": [
+    "figures/fig3_bbbc054.png",
+    "figures/fig3_bbbc054.pdf"
+  ],
+  "fig4_tracking": [
+    "figures/fig4_tracking.png",
+    "figures/fig4_tracking.pdf"
+  ],
+  "fig5_partB": [
+    "figures/fig5_partB.png",
+    "figures/fig5_partB.pdf"
+  ],
+  "fig6_partC": [
+    "figures/fig6_partC.png",
+    "figures/fig6_partC.pdf"
+  ],
+  "fig7_landscape": [
+    "figures/fig7_landscape.png",
+    "figures/fig7_landscape.pdf"
+  ]
+}

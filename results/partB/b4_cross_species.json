@@ -1,0 +1,56 @@
+{
+  "status": "ok",
+  "human": {
+    "source": "GSE58310 LPS-tolerised vs 6d RPMI macrophage control",
+    "n_tolerised": 4,
+    "n_control": 4,
+    "paired_donors": [
+      "BC11",
+      "BC12",
+      "BC8",
+      "BC9"
+    ],
+    "test": "paired t-test on donor-matched samples (the design is paired)",
+    "criteria": "BH-FDR < 0.05 and |log2FC| > 1",
+    "n_up": 0,
+    "n_down": 1,
+    "up_examples": [],
+    "n_up_nominal_p01": 34,
+    "n_down_nominal_p01": 59,
+    "n_genes_tested_after_expression_filter": 24655
+  },
+  "mouse": {
+    "source": "Tay-lab logCPM.csv (deposit of GSE260996)",
+    "contrast": "heterologous primed->LPS (n=4) vs media->LPS (n=2); the deposit has no LPS->LPS sample",
+    "n_primed_samples": 4,
+    "n_naive_samples": 2,
+    "n_up": 1,
+    "n_down": 0,
+    "up_examples": [
+      "CHR10.56024510.56025011"
+    ]
+  },
+  "ortholog_source": "MGI HOM_MouseHumanSequence.rpt (downloaded this run)",
+  "n_ortholog_pairs": 20181,
+  "overlap_test": {
+    "universe_size": 15431,
+    "mouse_up_mapped": 0,
+    "human_up_in_universe": 0,
+    "overlap": 0,
+    "odds_ratio": NaN,
+    "p_value": 1.0,
+    "overlapping_genes": [],
+    "test": "one-sided Fisher exact, universe = genes measured in both and having an MGI ortholog"
+  },
+  "overlap_test_nominal_exploratory": {
+    "universe_size": 15431,
+    "mouse_up_mapped": 0,
+    "human_up_in_universe": 18,
+    "overlap": 0,
+    "odds_ratio": NaN,
+    "p_value": 1.0,
+    "overlapping_genes": [],
+    "label": "EXPLORATORY: both gene sets are nominal p<0.01, NOT FDR-controlled; with 4 human donors and 2 mouse replicates the FDR-controlled sets are near-empty, so this test is reported as exploratory only"
+  },
+  "limitation": "the mouse contrast is heterologous priming (CpG or poly(I:C) then LPS), not homologous LPS tolerance, because the deposited RNA-seq has no LPS->LPS sample; the human contrast is homologous LPS tolerance. The two are therefore not the same biological comparison."
+}
