@@ -1,0 +1,29 @@
+{
+  "key": "geo_GSE261647",
+  "kind": "geo",
+  "accession": "GSE261647",
+  "record_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE261647",
+  "title": "Coordinated transcription factor and chromatin dynamics enable innate immune memory in single macrophages",
+  "platform_summary": "GPL24247",
+  "licence_verified": "NCBI GEO public domain data (no licence asserted); cite the originating publication",
+  "licence_source": "GEO is a US-government public-domain repository",
+  "role": "partB_atac_mouse_bmdm_ligand_pairs",
+  "n_samples": 18,
+  "sample_table": "results/omics/GSE261647_samples.csv",
+  "files_used": [
+    {
+      "file": "matrix/GSE261647_series_matrix.txt.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE261nnn/GSE261647/matrix/GSE261647_series_matrix.txt.gz",
+      "size_bytes_local": 3913,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE261647_logCPM.csv.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE261nnn/GSE261647/suppl/GSE261647_logCPM.csv.gz",
+      "size_bytes_local": 6016951,
+      "status": "ok"
+    }
+  ],
+  "status": "ok",
+  "retrieved_utc": "2026-10-15T15:31:56Z"
+}

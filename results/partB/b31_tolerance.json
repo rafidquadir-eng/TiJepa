@@ -1,0 +1,154 @@
+{
+  "task": "tolerance_from_dynamics",
+  "files_restricted_to": [
+    "CPGLPSscrep_traces.mat",
+    "PAMIL1first_traces.mat",
+    "PICCPGfirst_traces.mat",
+    "PICTNFscrep_traces.mat",
+    "TNFLPSfirst_traces.mat"
+  ],
+  "contrast": "naive->LPS (first_code=0) vs LPS->LPS (first_code=LPS)",
+  "ligand_code_inference": {
+    "2.0": "LPS",
+    "6.0": "TNF",
+    "3.0": "CpG"
+  },
+  "ligand_code_inference_note": "code 2 = LPS identified by intersecting the second-ligand code sets of TNFLPSfirst {2,6} and CPGLPSscrep {2,3} with their file-name ligand sets {TNF,LPS} and {CpG,LPS}; the deposit ships no column dictionary and the label folder single_cell_features/ was not deposited.",
+  "by_interval": {
+    "4h": {
+      "status": "skipped",
+      "reason": "too few classes or groups",
+      "n_cells": 470,
+      "n_groups": 6,
+      "n_tolerant": 0,
+      "n_naive": 470
+    },
+    "8h": {
+      "status": "ok",
+      "n_cells": 311,
+      "cells_per_source_file": {
+        "TNFLPSfirst_traces.mat": 311
+      },
+      "n_naive": 139,
+      "n_tolerant": 172,
+      "n_groups": 4,
+      "response_window_frames": [
+        83,
+        126
+      ],
+      "response_window_minutes": [
+        498.0,
+        756.0
+      ],
+      "n_features": 14,
+      "feature_names": [
+        "baseline",
+        "peak_amplitude",
+        "peak_time_min",
+        "auc",
+        "auc_first_half",
+        "auc_second_half",
+        "mean",
+        "std",
+        "n_peaks",
+        "fft_peak_power",
+        "fft_peak_period_min",
+        "fft_total_power",
+        "decay_half_life_min",
+        "late_over_early"
+      ],
+      "representations": {
+        "handcrafted": {
+          "logreg_C_tuned_once": 10.0,
+          "per_seed": [
+            {
+              "balanced_accuracy": 0.5982725447548938,
+              "macro_f1": 0.5985075096822948,
+              "n": 311,
+              "n_classes": 2,
+              "auroc": 0.6274468797055379,
+              "seed": 0
+            },
+            {
+              "balanced_accuracy": 0.5982725447548938,
+              "macro_f1": 0.5985075096822948,
+              "n": 311,
+              "n_classes": 2,
+              "auroc": 0.6274468797055379,
+              "seed": 1
+            },
+            {
+              "balanced_accuracy": 0.5982725447548938,
+              "macro_f1": 0.5985075096822948,
+              "n": 311,
+              "n_classes": 2,
+              "auroc": 0.6274468797055379,
+              "seed": 2
+            }
+          ],
+          "balanced_accuracy_mean": 0.5982725447548938,
+          "balanced_accuracy_sd": 0.0,
+          "auroc_mean": 0.6274468797055379,
+          "cluster_bootstrap_ci_seed0": {
+            "point": 0.5982725447548938,
+            "ci_low": 0.5660919540229885,
+            "ci_high": 0.6334841628959276,
+            "n_boot_valid": 1750
+          },
+          "group_permutation_test_seed0": {
+            "p_value": 0.3034825870646766,
+            "null_mean": 0.42264807062699616,
+            "null_sd": 0.11926479743408029,
+            "n_perm_valid": 200
+          },
+          "n_perm_note": "200 permutations (PLAN 8.1 asks >=200 for B3.3; reduced from 1000 for runtime, recorded as a deviation)"
+        },
+        "raw_trace": {
+          "logreg_C_tuned_once": 1.0,
+          "per_seed": [
+            {
+              "balanced_accuracy": 0.7008114438681612,
+              "macro_f1": 0.7008114438681612,
+              "n": 311,
+              "n_classes": 2,
+              "auroc": 0.7523004851932407,
+              "seed": 0
+            },
+            {
+              "balanced_accuracy": 0.7008114438681612,
+              "macro_f1": 0.7008114438681612,
+              "n": 311,
+              "n_classes": 2,
+              "auroc": 0.7523004851932407,
+              "seed": 1
+            },
+            {
+              "balanced_accuracy": 0.7008114438681612,
+              "macro_f1": 0.7008114438681612,
+              "n": 311,
+              "n_classes": 2,
+              "auroc": 0.7523004851932407,
+              "seed": 2
+            }
+          ],
+          "balanced_accuracy_mean": 0.7008114438681612,
+          "balanced_accuracy_sd": 0.0,
+          "auroc_mean": 0.7523004851932407,
+          "cluster_bootstrap_ci_seed0": {
+            "point": 0.7008114438681612,
+            "ci_low": 0.6434389140271493,
+            "ci_high": 0.7519415967691829,
+            "n_boot_valid": 1750
+          },
+          "group_permutation_test_seed0": {
+            "p_value": 0.3034825870646766,
+            "null_mean": 0.382928047074232,
+            "null_sd": 0.2111414319762351,
+            "n_perm_valid": 200
+          },
+          "n_perm_note": "200 permutations (PLAN 8.1 asks >=200 for B3.3; reduced from 1000 for runtime, recorded as a deviation)"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "n_movies_attempted": 302,
+  "n_movies_ok": 288,
+  "n_movies_failed": 14,
+  "failures": [
+    {
+      "member": "A2.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "member": "A3.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "member": "A1.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad CRC-32 for file 'A1.tiff'"
+    },
+    {
+      "member": "A5.tiff",
+      "status": "failed",
+      "error": "error: Error -3 while decompressing data: invalid code lengths set"
+    },
+    {
+      "member": "C3.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "member": "C4.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "member": "C5.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "member": "C6.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "member": "C2.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad CRC-32 for file 'C2.tiff'"
+    },
+    {
+      "member": "E5.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "member": "E6.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "member": "E4.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad CRC-32 for file 'E4.tiff'"
+    },
+    {
+      "member": "G4.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "member": "G3.tiff",
+      "status": "failed",
+      "error": "error: Error -3 while decompressing data: invalid stored block lengths"
+    }
+  ],
+  "n_clips": 288081,
+  "n_shards": 42,
+  "clip_shape": [
+    16,
+    96,
+    96
+  ],
+  "bytes_per_clip": 147456,
+  "total_gb": 42.48,
+  "sources": {
+    "complexeye": {
+      "um_per_px": 0.641,
+      "um_per_px_source": "S-BIAD2196 BioStudies file metadata (same group/instrument family, 0.641 x 0.641 um); the ComplexEye OME headers carry no PhysicalSize. For the *_leica.zip movies this is an UNVERIFIED assumption.",
+      "frame_interval_s": 8.0,
+      "licence": "CC BY 4.0",
+      "zips": [
+        "384-well_plate_movies_n=16_complexeye.zip",
+        "96-well_plate_movies_n=1_complexeye.zip",
+        "96-well_plate_movies_n=1_leica.zip",
+        "R06.zip",
+        "R08.zip",
+        "R09.zip",
+        "R16.zip",
+        "R17.zip"
+      ]
+    }
+  },
+  "target_um_per_px": 0.65,
+  "effective_interval_s_distribution": {
+    "unique": [
+      8.0,
+      24.0
+    ],
+    "counts": {
+      "8.0": 227246,
+      "24.0": 60835
+    }
+  },
+  "detector": "temporal-median background + MAD threshold + area filter; trackpy linking (search_range 12 px, memory 2, min_len 16)",
+  "generated_utc": "2026-10-15T16:30:09Z"
+}

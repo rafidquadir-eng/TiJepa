@@ -1,0 +1,10 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+The text, figures, and documentation in this repository (paper/, figures/, reports/,
+research_notes/, README.md) are licensed CC BY 4.0.
+Full licence text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Copyright 2026 Rafid Quadir
+
+Note: datasets analysed by this repository carry their own licences, recorded in
+manifests/datasets.yaml. This licence does not apply to third-party data.

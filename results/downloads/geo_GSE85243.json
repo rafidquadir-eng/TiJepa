@@ -1,0 +1,31 @@
+{
+  "key": "geo_GSE85243",
+  "kind": "geo",
+  "accession": "GSE85243",
+  "record_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE85243",
+  "title": "Epigenome maps of time-resolved monocyte to macrophage differentiation and innate immune memory (RNA-Seq)",
+  "platform_summary": "GPL11154",
+  "licence_verified": "NCBI GEO public domain data (no licence asserted); cite the originating publication",
+  "licence_source": "GEO is a US-government public-domain repository",
+  "role": "partBC_human_trained_tolerant_novakovic2016",
+  "n_samples": 94,
+  "sample_table": "results/omics/GSE85243_samples.csv",
+  "files_used": [
+    {
+      "file": "matrix/GSE85243_series_matrix.txt.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE85nnn/GSE85243/matrix/GSE85243_series_matrix.txt.gz",
+      "size_bytes_local": 6840,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE85243_RAW.tar",
+      "status": "skipped_raw_or_filelist"
+    },
+    {
+      "file": "suppl/filelist.txt",
+      "status": "skipped_raw_or_filelist"
+    }
+  ],
+  "status": "ok",
+  "retrieved_utc": "2026-10-15T15:33:28Z"
+}

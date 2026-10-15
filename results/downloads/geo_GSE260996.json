@@ -1,0 +1,31 @@
+{
+  "key": "geo_GSE260996",
+  "kind": "geo",
+  "accession": "GSE260996",
+  "record_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE260996",
+  "title": "Inflammatory memory in macrophages emerges from coordinated transcription factor and chromatin dynamics",
+  "platform_summary": "GPL21626",
+  "licence_verified": "NCBI GEO public domain data (no licence asserted); cite the originating publication",
+  "licence_source": "GEO is a US-government public-domain repository",
+  "role": "partB_rnaseq_mouse_bmdm_ligand_pairs",
+  "n_samples": 33,
+  "sample_table": "results/omics/GSE260996_samples.csv",
+  "files_used": [
+    {
+      "file": "matrix/GSE260996_series_matrix.txt.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260996/matrix/GSE260996_series_matrix.txt.gz",
+      "size_bytes_local": 3278,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE260996_RAW.tar",
+      "status": "skipped_raw_or_filelist"
+    },
+    {
+      "file": "suppl/filelist.txt",
+      "status": "skipped_raw_or_filelist"
+    }
+  ],
+  "status": "ok",
+  "retrieved_utc": "2026-10-15T15:31:26Z"
+}

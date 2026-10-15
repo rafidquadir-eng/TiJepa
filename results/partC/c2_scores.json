@@ -1,0 +1,94 @@
+{
+  "status": "ok",
+  "framing": "HYPOTHESIS-GENERATING: condition-level, cross-study, cross-platform; no sample is paired with any image",
+  "source": "GSE58310 (Saeed et al. 2014) processed GeneExpression.csv",
+  "n_genes_mapped": 38438,
+  "baseline_state": "control (6d RPMI macrophage)",
+  "axes": {
+    "M1_like": "mean of S_LPS and S_IFNg rank scores",
+    "M2_like": "S_IL4 rank score"
+  },
+  "coordinates": {
+    "LPS_tolerised": {
+      "n_samples": 4,
+      "donors": [
+        "BC11",
+        "BC12",
+        "BC8",
+        "BC9"
+      ],
+      "M1_like": 0.0013947076652890966,
+      "M1_like_ci": [
+        -0.00293679170604805,
+        0.005757746974062936
+      ],
+      "M2_like": -0.000977695123609179,
+      "M2_like_ci": [
+        -0.008323626317370741,
+        0.00651718246728292
+      ]
+    },
+    "beta_glucan_trained": {
+      "n_samples": 4,
+      "donors": [
+        "BC11",
+        "BC12",
+        "BC8",
+        "BC9"
+      ],
+      "M1_like": -0.0092060121403994,
+      "M1_like_ci": [
+        -0.013518581009946363,
+        -0.004108907740930209
+      ],
+      "M2_like": -0.004197445180536469,
+      "M2_like_ci": [
+        -0.011920911458027365,
+        0.0036290812127560135
+      ]
+    },
+    "control": {
+      "n_samples": 4,
+      "donors": [
+        "BC11",
+        "BC12",
+        "BC8",
+        "BC9"
+      ],
+      "M1_like": 0.0,
+      "M1_like_ci": [
+        -0.0028462759569926775,
+        0.00326031724693865
+      ],
+      "M2_like": 0.0,
+      "M2_like_ci": [
+        -0.009834438030913661,
+        0.009512945578608073
+      ]
+    },
+    "naive_monocyte": {
+      "n_samples": 4,
+      "donors": [
+        "BC11",
+        "BC12",
+        "BC8",
+        "BC9"
+      ],
+      "M1_like": 0.019138655167057206,
+      "M1_like_ci": [
+        0.011874142506979726,
+        0.025932295976650786
+      ],
+      "M2_like": -0.026875076579124496,
+      "M2_like_ci": [
+        -0.04138545693190043,
+        -0.015157313103576398
+      ]
+    }
+  },
+  "per_sample_csv": "results/partC/c2_scores_per_sample.csv",
+  "replication": {
+    "GSE85243": "NOT USABLE: the GEO series matrix contains no expression table (table_begin immediately followed by table_end) and no processed supplementary matrix is deposited",
+    "GSE172116": "NOT USABLE for gene-level scoring: only bigWig/bedGraph coverage tracks are deposited, no gene-level matrix"
+  }
+}

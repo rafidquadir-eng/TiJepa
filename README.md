@@ -7,70 +7,94 @@ linked to **iMEMORY**, a multi-omic model of immune disease.
 Target states: naive · trained (β-glucan, BCG, oxLDL) · tolerant (LPS pre-exposure) ·
 classically activated / polarized (LPS, IFN-γ, IL-4, M1/M2).
 
-## Current contents
+---
 
-This repo currently holds the landscape review that determines whether the imaging data
-we need already exists or must be generated.
+## The finding this repository is built on
 
-| Path | What it is |
+**No public dataset contains imaging or video of trained, tolerant, or innate-memory
+immune cells.** A systematic survey of the public record is in
+[`reports/Trained immunity imaging datasets.md`](reports/Trained%20immunity%20imaging%20datasets.md):
+a Europe PMC full-text search for `"trained immunity"` combined with any image-repository
+term returns **0 hits**; the BioImage Archive's 59 macrophage/monocyte/neutrophil studies
+include **no** β-glucan, BCG, oxLDL, MDP or LPS-tolerance study; and all 147 IDR projects
+and 105 screens contain no innate-immune training study and no innate-immune time-lapse
+at all.
+
+So the imaging-plus-omics dataset this project needs has to be generated. TiJepa-0 builds
+and honestly evaluates the components such a study would need, using data that exists.
+
+## TiJepa-0 (v0, computational-only)
+
+| Part | Question | Pairing |
+|---|---|---|
+| **A. Video SSL** | Does JEPA-style video pretraining on open innate-immune microscopy capture activation state and support tracking? | real labels |
+| **B. Dynamics → chromatin** | Can single-cell NF-κB dynamics predict features of LPS tolerance? | real, same lab |
+| **C. Bridge** | Where do trained and tolerant states fall on shared activation axes? | **hypothesis only** |
+
+Read the paper draft in [`paper/tijepa.md`](paper/tijepa.md) and the honest account of
+what ran, what failed and every deviation in
+[`reports/RUN_REPORT.md`](reports/RUN_REPORT.md).
+
+### Headline outcomes
+
+- **TiJepa-0** pretrained on ~288k cell-centred clips (~42 GB) from 288 openly licensed
+  (CC BY 4.0) human neutrophil migration movies.
+- **Part A evaluation is static.** The planned headline benchmark (Dryad
+  `doi:10.5061/dryad.m0cfxpp8v`, M0/M1/M2 macrophage movies) sits behind a proof-of-work
+  access control and could not be fetched, so no dataset in this run provides *video* of
+  innate immune cells with activation-state labels — the data gap restated as an
+  experimental limitation. See [`reports/MANUAL_DOWNLOADS.md`](reports/MANUAL_DOWNLOADS.md).
+- **Part B is a reported null.** NF-κB dynamics separate naive→LPS from LPS→LPS above
+  chance, but the contrast rests on 4 wells and is not significant against a
+  well-level permutation null. The dynamics→transcriptome and cross-species analyses are
+  null too.
+- **Part C is hypothesis-generating only** and pairs no image with any molecular sample.
+
+Nothing in this repository claims that trained immunity can be identified from images.
+No trained or tolerant cell was imaged in any dataset used here.
+
+## Reproducing
+
+```bash
+pip install -e ".[dev]"
+bash scripts/run_all.sh        # preflight -> downloads -> Parts B/C -> pretrain -> eval -> paper
+pytest -q && ruff check src/ scripts/ tests/
+```
+
+Stages are independent and resumable; pretraining checkpoints every ~30 minutes and
+resumes in place. Every number in `paper/` is written by
+`scripts/90_make_paper_numbers.py` from `results/*.json` — none is typed by hand, and a
+missing result renders as an explicit "not available" rather than a placeholder number.
+
+## Layout
+
+| Path | Contents |
 |---|---|
-| [`PLAN.md`](PLAN.md) | Execution plan for TiJepa-0, a computational-only preprint built on existing public data |
-| [`reports/Trained immunity imaging datasets.md`](reports/Trained%20immunity%20imaging%20datasets.md) | The synthesized report (~8.5k words): deposit tables, accession tables, licence constraints, gaps, recommendations |
-| `research_notes/Trained immunity imaging datasets/` | Raw per-stream research notes behind the report |
+| `src/tijepa/` | package: `io/`, `preprocess/`, `models/`, `train/`, `eval/`, `omics/`, `viz/` |
+| `scripts/` | one script per stage, `run_all.sh` |
+| `manifests/` | `datasets.yaml`, `models.yaml` — licences read from each record, with sizes and checksums |
+| `results/` | every metric as JSON/CSV, produced by code |
+| `figures/` | all figures (PNG + PDF), produced by code |
+| `paper/` | manuscript template and generated draft |
+| `reports/` | run report, manual downloads, weights, and the landscape review |
+| `research_notes/` | raw notes behind the landscape review |
 
-### Research notes
+## Data licences
 
-| File | Scope |
-|---|---|
-| `imaging_of_trained_cells.md` | Papers/labs imaging trained or tolerant innate cells; deposit status per data-availability statement |
-| `labelfree_qpi_imaging.md` | Brightfield / phase / QPI / holographic / Raman imaging of macrophage activation; repository sweep |
-| `flim_autofluorescence.md` | NAD(P)H / FAD autofluorescence and FLIM metabolic imaging of innate immune activation |
-| `trained_immunity_omics.md` | Public trained-immunity omics accessions (GEO/EGA/PRIDE/Metabolomics Workbench) for target signatures |
-| `timelapse_video_datasets.md` | Downloadable immune time-lapse / video corpora for pretraining and point tracking |
+Pretraining used **only CC BY 4.0** data. Every dataset's licence was read from its own
+record; see `manifests/datasets.yaml`. Datasets excluded on licence grounds
+(Zenodo `16319732` CC BY-NC-ND, DeepCell DynamicNuclearNet, the Cellpose training set,
+CTMC-v1, LIVECell, Cell Tracking Challenge) were never downloaded.
 
-## Headline finding
+## Limitations
 
-**No public imaging or video dataset of trained, tolerant, or innate-memory immune cells
-exists.** The imaging + training/tolerance dataset has to be generated in-house.
+The pretraining corpus is single-source (one cell type, one modality, one lab); no
+activation-labelled video was evaluated; Part B is underpowered and null; Part C is a
+cross-species, cross-platform interpolation between three anchor conditions; no QC
+filtering was applied to pretraining clips; pretraining used a single seed. The full
+list is in `reports/RUN_REPORT.md` §5.
 
-Load-bearing evidence:
+## Licence
 
-- Europe PMC full-text search for `"trained immunity"` × (BioImage Archive / IDR / `S-BIAD` / `idr00`) → **0 hits**
-- BioImage Archive: 59 macrophage/monocyte/neutrophil studies, **none** a β-glucan, BCG, oxLDL, MDP or LPS-tolerance study
-- All **147 IDR projects + 105 screens** enumerated → no innate-immune training study, and no innate-immune time-lapse at all
-
-Two partial exceptions (detailed in the report, not treated as a flat zero):
-
-1. **Carlile et al., *iScience* 2024** (McLoughlin + Monaghan, TCD) — NAD(P)H 2P-FLIM of human
-   MDMs trained with heat-killed *S. aureus*, days 3 and 7. Real training biology, real
-   label-free imaging; data "on request" only, with a self-contradictory availability statement.
-2. **BioImage Archive `S-BIAD829`** — the one deposited image set labelled *trained immunity*
-   (67 files, CC0), but fixed mouse brain immunofluorescence, not live cells under a
-   prime–rest–restimulate design.
-
-What *is* reusable: the trained-immunity omics canon is almost entirely open in GEO on matched
-donors, and ~290 GB of permissively licensed (CC BY 4.0 / MIT) innate-immune video exists for
-self-supervised pretraining.
-
-## Two caveats that shape experimental design
-
-- **Donor variance is the binding constraint, not class separability.** Across every published
-  label-free classifier, ~98% same-donor accuracy collapses to 72–85% multi-donor / multi-class.
-  Budget donors accordingly.
-- **Licence traps.** The only video dataset carrying per-cell activation labels
-  (Zenodo `10.5281/zenodo.16319732`) is CC BY-**ND** — no-derivatives blocks training on it
-  without an author query. DeepCell DynamicNuclearNet and the Cellpose training set are
-  non-commercial and access-gated.
-
-## Caveat on completeness
-
-Several items remain **unverified** behind publisher blocks and are flagged as such in the
-report's gaps section. Highest priority: **Fanucchi et al., *Nature Genetics* 2019**
-(Mhlanga lab, UMLILO immuno-RNA-FISH) — the best remaining candidate for deposited
-trained-immunity microscopy.
-
-Correction carried forward: there is no "Mulder et al. *Cell* 2021 (300BCG)". The 300BCG
-flagship is **Moorlag et al., *Immunity* 2024** (PMID 38198850); Mulder K. et al.,
-*Immunity* 2021 (PMID 34331874) is a separate cross-tissue monocyte/macrophage atlas.
-Also: BioStudies `S-EPMC*` records are PubMed Central literature stubs, **not** image
-deposits — only `S-BIAD*`, `S-BSST*`, `EMPIAR-*` and `idr####` are.
+Apache-2.0 for code ([`LICENSE`](LICENSE)); CC BY 4.0 for text and figures
+([`LICENSE-docs`](LICENSE-docs)). Third-party data keep their own licences.

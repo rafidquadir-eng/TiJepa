@@ -1,0 +1,23 @@
+# Resolved configuration for the Part A evaluation stages.
+bbbc054:
+  n_cells_sampled: 9000
+  stratified_by: [fov, label]
+  crop_px: 96
+  clip_frames: 16          # single frame repeated: BBBC054 is static
+  cv: GroupKFold(5) grouped by FOV
+  probe: StandardScaler -> PCA(64) if dim>64 -> StandardScaler -> classifier
+  classifiers: [LogisticRegression(C=1.0), MLPClassifier(128), RidgeCV]
+  seeds: [0, 1, 2]
+  bootstrap: {n: 2000, unit: fov}
+  permutation: {n: 200, unit: fov}
+tracking:
+  dataset: S-BIAD2196 (held out from pretraining entirely)
+  max_frames_per_movie: 120
+  n_tracks_per_movie: 40
+  n_steps: 32
+  thresholds_um: [1, 2, 4, 8, 16]
+  bootstrap: {n: 2000, unit: movie}
+partB:
+  seeds: [0, 1, 2]
+  cv: LeaveOneGroupOut if groups<=12 else GroupKFold(5), grouped by well
+  permutation: {n: 200, unit: well}

@@ -1,0 +1,181 @@
+{
+  "key": "geo_GSE172116",
+  "kind": "geo",
+  "accession": "GSE172116",
+  "record_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE172116",
+  "title": "Epigenomic analysis reveals a dynamic and context-specific macrophage enhancer landscape associated with innate immune activation and tolerance",
+  "platform_summary": "GPL18573",
+  "licence_verified": "NCBI GEO public domain data (no licence asserted); cite the originating publication",
+  "licence_source": "GEO is a US-government public-domain repository",
+  "role": "partB_human_endotoxin_tolerance",
+  "n_samples": 12,
+  "sample_table": "results/omics/GSE172116_samples.csv",
+  "files_used": [
+    {
+      "file": "matrix/GSE172116-GPL18573_series_matrix.txt.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE172nnn/GSE172116/matrix/GSE172116-GPL18573_series_matrix.txt.gz",
+      "size_bytes_local": 5633,
+      "status": "ok"
+    },
+    {
+      "file": "matrix/GSE172116-GPL20301_series_matrix.txt.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE172nnn/GSE172116/matrix/GSE172116-GPL20301_series_matrix.txt.gz",
+      "size_bytes_local": 9961,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE172116_CD14_ATAC_mean.bw",
+      "size_bytes_record": 4565251072,
+      "status": "skipped_too_large_over_600MB"
+    },
+    {
+      "file": "suppl/GSE172116_CD19_ATAC_mean.bw",
+      "size_bytes_record": 2244240346,
+      "status": "skipped_too_large_over_600MB"
+    },
+    {
+      "file": "suppl/GSE172116_CD4_ATAC_mean.bw",
+      "size_bytes_record": 2711359776,
+      "status": "skipped_too_large_over_600MB"
+    },
+    {
+      "file": "suppl/GSE172116_CD8_ATAC_mean.bw",
+      "size_bytes_record": 1539652954,
+      "status": "skipped_too_large_over_600MB"
+    },
+    {
+      "file": "suppl/GSE172116_IPS_HD_rep1234_chr.RPKM.bw",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE172nnn/GSE172116/suppl/GSE172116_IPS_HD_rep1234_chr.RPKM.bw",
+      "size_bytes_local": 244161592,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE172116_IPS_LDHD_rep1234_chr.RPKM.bw",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE172nnn/GSE172116/suppl/GSE172116_IPS_LDHD_rep1234_chr.RPKM.bw",
+      "size_bytes_local": 226810826,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE172116_IPS_UT_rep1234_chr.RPKM.bw",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE172nnn/GSE172116/suppl/GSE172116_IPS_UT_rep1234_chr.RPKM.bw",
+      "size_bytes_local": 273953390,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_ATAC_HD_mean.bw",
+      "size_bytes_record": 4786141459,
+      "status": "skipped_too_large_over_600MB"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_ATAC_LDHD_mean.bw",
+      "size_bytes_record": 5640701151,
+      "status": "skipped_too_large_over_600MB"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_ATAC_UT_mean.bw",
+      "size_bytes_record": 5506307464,
+      "status": "skipped_too_large_over_600MB"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_H3K27ac_HD_mean.bw",
+      "size_bytes_record": 5644606800,
+      "status": "skipped_too_large_over_600MB"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_H3K27ac_LDHD_mean.bw",
+      "size_bytes_record": 4955689155,
+      "status": "skipped_too_large_over_600MB"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_H3K27ac_UT_mean.bw",
+      "size_bytes_record": 6130812242,
+      "status": "skipped_too_large_over_600MB"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_H3K4me3_HD_mean.bw",
+      "size_bytes_record": 6993065183,
+      "status": "skipped_too_large_over_600MB"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_H3K4me3_LDHD_mean.bw",
+      "size_bytes_record": 7695896198,
+      "status": "skipped_too_large_over_600MB"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_H3K4me3_UT_mean.bw",
+      "size_bytes_record": 7555955186,
+      "status": "skipped_too_large_over_600MB"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_HD_rep123456_RPKM.bw",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE172nnn/GSE172116/suppl/GSE172116_MDMs_HD_rep123456_RPKM.bw",
+      "size_bytes_local": 82407830,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_HD_rep123456_RPKM_FR.bedgraph.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE172nnn/GSE172116/suppl/GSE172116_MDMs_HD_rep123456_RPKM_FR.bedgraph.gz",
+      "size_bytes_local": 108456267,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_HD_rep123456_RPKM_FR.bedgraph.gz.tbi.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE172nnn/GSE172116/suppl/GSE172116_MDMs_HD_rep123456_RPKM_FR.bedgraph.gz.tbi.gz",
+      "size_bytes_local": 1493178,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_LDHD_rep123456_RPKM.bw",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE172nnn/GSE172116/suppl/GSE172116_MDMs_LDHD_rep123456_RPKM.bw",
+      "size_bytes_local": 87632595,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_LDHD_rep123456_RPKM_FR.bedgraph.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE172nnn/GSE172116/suppl/GSE172116_MDMs_LDHD_rep123456_RPKM_FR.bedgraph.gz",
+      "size_bytes_local": 117188016,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_LDHD_rep123456_RPKM_FR.bedgraph.gz.tbi.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE172nnn/GSE172116/suppl/GSE172116_MDMs_LDHD_rep123456_RPKM_FR.bedgraph.gz.tbi.gz",
+      "size_bytes_local": 1428879,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_UT_rep123456_RPKM.bw",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE172nnn/GSE172116/suppl/GSE172116_MDMs_UT_rep123456_RPKM.bw",
+      "size_bytes_local": 107295963,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_UT_rep123456_RPKM_FR.bedgraph.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE172nnn/GSE172116/suppl/GSE172116_MDMs_UT_rep123456_RPKM_FR.bedgraph.gz",
+      "size_bytes_local": 141426156,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE172116_MDMs_UT_rep123456_RPKM_FR.bedgraph.gz.tbi.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE172nnn/GSE172116/suppl/GSE172116_MDMs_UT_rep123456_RPKM_FR.bedgraph.gz.tbi.gz",
+      "size_bytes_local": 1600586,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE172116_iPSMs_ATAC_HD_mean.bw",
+      "size_bytes_record": 3818652144,
+      "status": "skipped_too_large_over_600MB"
+    },
+    {
+      "file": "suppl/GSE172116_iPSMs_ATAC_LDHD_mean.bw",
+      "size_bytes_record": 3147513717,
+      "status": "skipped_too_large_over_600MB"
+    },
+    {
+      "file": "suppl/GSE172116_iPSMs_ATAC_UT_mean.bw",
+      "size_bytes_record": 4053789141,
+      "status": "skipped_too_large_over_600MB"
+    }
+  ],
+  "status": "ok",
+  "retrieved_utc": "2026-10-15T15:34:10Z"
+}

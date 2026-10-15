@@ -1,0 +1,22 @@
+# Resolved configuration of the TiJepa-0 pretraining run (tier T1, 1x A100-40GB).
+# The authoritative copy is stored inside the checkpoint and in
+# results/partA/pretrain_seed0.json; this file documents the values used.
+tier: T1
+seed: 0
+clip_frames: 16
+clip_size: 96
+tubelet: [2, 8, 8]
+tokens: 1152
+encoder: {arch: ViT-S, dim: 384, depth: 12, heads: 6, params_m: 21.3}
+predictor: {dim: 192, depth: 6, heads: 6}
+ema: {start: 0.996, end: 1.0}
+mask: {type: multiblock_tube, n_blocks: 8, scale: [0.15, 0.3], aspect: [0.6, 1.7]}
+loss: l1_on_layernormed_target_latents
+optim: {name: AdamW, lr: 1.5e-4, weight_decay: 0.05, betas: [0.9, 0.95],
+        warmup_steps: 500, schedule: cosine, grad_clip: 1.0}
+batch_size: 128
+num_workers: 28
+precision: bfloat16
+max_steps: 55000
+max_hours: 8
+ckpt_minutes: 30
