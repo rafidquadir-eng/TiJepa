@@ -1,0 +1,67 @@
+{
+  "key": "geo_GSE58310",
+  "kind": "geo",
+  "accession": "GSE58310",
+  "record_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE58310",
+  "title": "Epigenetic programming during monocyte to macrophage differentiation and trained innate immunity",
+  "platform_summary": "GPL11154",
+  "licence_verified": "NCBI GEO public domain data (no licence asserted); cite the originating publication",
+  "licence_source": "GEO is a US-government public-domain repository",
+  "role": "partBC_human_trained_tolerant_saeed2014",
+  "n_samples": 53,
+  "sample_table": "results/omics/GSE58310_samples.csv",
+  "files_used": [
+    {
+      "file": "matrix/GSE58310-GPL11154_series_matrix.txt.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE58nnn/GSE58310/matrix/GSE58310-GPL11154_series_matrix.txt.gz",
+      "size_bytes_local": 7453,
+      "status": "ok"
+    },
+    {
+      "file": "matrix/GSE58310-GPL18573_series_matrix.txt.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE58nnn/GSE58310/matrix/GSE58310-GPL18573_series_matrix.txt.gz",
+      "size_bytes_local": 4874,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE58310_BGall4Buffy891112merge.hg19.hotspot.twopass.fdr0.01.bed.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE58nnn/GSE58310/suppl/GSE58310_BGall4Buffy891112merge.hg19.hotspot.twopass.fdr0.01.bed.gz",
+      "size_bytes_local": 3687537,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE58310_Buffy101112Day0merge.hg19.hotspot.twopass.fdr0.01.bed.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE58nnn/GSE58310/suppl/GSE58310_Buffy101112Day0merge.hg19.hotspot.twopass.fdr0.01.bed.gz",
+      "size_bytes_local": 1906921,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE58310_GeneExpression.csv.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE58nnn/GSE58310/suppl/GSE58310_GeneExpression.csv.gz",
+      "size_bytes_local": 3390517,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE58310_LPSall4Buffy891112merge.hg19.hotspot.twopass.fdr0.01.bed.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE58nnn/GSE58310/suppl/GSE58310_LPSall4Buffy891112merge.hg19.hotspot.twopass.fdr0.01.bed.gz",
+      "size_bytes_local": 2315975,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE58310_RAW.tar",
+      "status": "skipped_raw_or_filelist"
+    },
+    {
+      "file": "suppl/GSE58310_RPMIall4Buffy891112merge.hg19.hotspot.twopass.fdr0.01.bed.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE58nnn/GSE58310/suppl/GSE58310_RPMIall4Buffy891112merge.hg19.hotspot.twopass.fdr0.01.bed.gz",
+      "size_bytes_local": 2492459,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/filelist.txt",
+      "status": "skipped_raw_or_filelist"
+    }
+  ],
+  "status": "ok",
+  "retrieved_utc": "2026-10-15T15:32:58Z"
+}

@@ -1,0 +1,49 @@
+{
+  "key": "geo_GSE46903",
+  "kind": "geo",
+  "accession": "GSE46903",
+  "record_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE46903",
+  "title": "Transcriptome-based network analysis reveals a spectrum model of human macrophage activation [Expression]",
+  "platform_summary": "GPL6947",
+  "licence_verified": "NCBI GEO public domain data (no licence asserted); cite the originating publication",
+  "licence_source": "GEO is a US-government public-domain repository",
+  "role": "partC_human_macrophage_activation_anchors",
+  "n_samples": 384,
+  "sample_table": "results/omics/GSE46903_samples.csv",
+  "files_used": [
+    {
+      "file": "matrix/GSE46903_series_matrix.txt.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE46nnn/GSE46903/matrix/GSE46903_series_matrix.txt.gz",
+      "size_bytes_local": 53717800,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE46903_Affymetrix_Reanalyzed_data.txt.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE46nnn/GSE46903/suppl/GSE46903_Affymetrix_Reanalyzed_data.txt.gz",
+      "size_bytes_local": 20811109,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE46903_Affymetrix_metadata.txt.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE46nnn/GSE46903/suppl/GSE46903_Affymetrix_metadata.txt.gz",
+      "size_bytes_local": 485,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/GSE46903_RAW.tar",
+      "status": "skipped_raw_or_filelist"
+    },
+    {
+      "file": "suppl/GSE46903_non-normalized.txt.gz",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE46nnn/GSE46903/suppl/GSE46903_non-normalized.txt.gz",
+      "size_bytes_local": 108395175,
+      "status": "ok"
+    },
+    {
+      "file": "suppl/filelist.txt",
+      "status": "skipped_raw_or_filelist"
+    }
+  ],
+  "status": "ok",
+  "retrieved_utc": "2026-10-15T15:32:27Z"
+}

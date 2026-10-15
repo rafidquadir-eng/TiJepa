@@ -1,0 +1,24 @@
+{
+  "key": "tay_traces",
+  "kind": "zenodo",
+  "record": "14337874",
+  "doi": "10.5281/zenodo.14337874",
+  "title": "tay-lab/macrophage_memory: Wang_Son_2024_coderelease",
+  "licence_verified": "cc-by-4.0",
+  "licence_source": "https://zenodo.org/api/records/14337874 metadata.license",
+  "role": "partB_traces",
+  "files_used": [
+    {
+      "file": "tay-lab_macrophage_memory-v1.zip",
+      "url": "https://zenodo.org/api/records/14337874/files/tay-lab/macrophage_memory-v1.zip/content",
+      "size_bytes_record": 171945297,
+      "size_bytes_local": 171945297,
+      "size_match": true,
+      "checksum_record": "md5:727b088f8702744dff7679eb8667a77a",
+      "sha256_local": "73feda93596491cd14e8341472508c1da457828f0688cd66c432c3fd19d50d28"
+    }
+  ],
+  "total_gb": 0.172,
+  "status": "ok",
+  "retrieved_utc": "2026-10-15T15:29:48Z"
+}

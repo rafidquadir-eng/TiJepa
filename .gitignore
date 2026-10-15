@@ -31,3 +31,8 @@ checkpoints/
 Thumbs.db
 .vscode/
 .idea/
+data/
+checkpoints/
+logs/
+*.pt
+*.ckpt
