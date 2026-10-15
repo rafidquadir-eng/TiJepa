@@ -30,7 +30,6 @@ def detect_frame(
 ) -> np.ndarray:
     """Return (n, 2) array of (y, x) centroids for one frame."""
     from skimage.measure import label, regionprops
-    from skimage.morphology import remove_small_objects
 
     d = np.abs(frame.astype(np.float32) - bg)
     med = float(np.median(d))
@@ -38,7 +37,6 @@ def detect_frame(
     mask = d > med + k_mad * 1.4826 * mad
     if mask.sum() == 0:
         return np.zeros((0, 2), dtype=np.float32)
-    mask = remove_small_objects(mask, min_area_px)
     lab = label(mask)
     cents = [
         r.centroid for r in regionprops(lab)
@@ -53,7 +51,7 @@ def detect_movie(
     k_mad: float = 4.0,
     min_area_px: int = 25,
     max_area_px: int = 4000,
-) -> "object":
+) -> object:
     """Detect in every `stride`-th frame; returns a DataFrame for trackpy."""
     import pandas as pd
 
@@ -105,7 +103,7 @@ def extract_clips(
         fr = g["frame"].to_numpy()
         ys = g["y"].to_numpy()
         xs = g["x"].to_numpy()
-        pos = {int(f): (y, x) for f, y, x in zip(fr, ys, xs)}
+        pos = {int(f): (y, x) for f, y, x in zip(fr, ys, xs, strict=False)}
         for stride in strides:
             span = (n_frames - 1) * stride
             if fr[-1] - fr[0] < span:

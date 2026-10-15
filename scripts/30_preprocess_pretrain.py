@@ -157,7 +157,7 @@ def main() -> int:
             continue
         a = np.load(r["npy"], mmap_mode="r")
         src = Path(r["npy"]).name.split("__")[0]
-        for i, m in enumerate(r["meta"][: len(a)]):
+        for m in r["meta"][: len(a)]:
             buf_meta.append({
                 "source": src, "movie": Path(r["member"]).name,
                 "track_id": m["particle"], "t0": m["t0"], "stride": m["stride"],

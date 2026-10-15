@@ -32,7 +32,8 @@ def multiblock_tube_mask(
     t, h, w = grid
     m = torch.zeros(h, w, dtype=torch.bool, device=device)
     for _ in range(n_blocks):
-        s = torch.empty(1, device=device).uniform_(*scale, generator=generator).item()
+        s = torch.empty(1, device=device).uniform_(
+            *scale, generator=generator).item()
         ar = torch.empty(1, device=device).uniform_(*aspect, generator=generator).item()
         bh = max(1, min(h, int(round((s * h * w * ar) ** 0.5))))
         bw = max(1, min(w, int(round((s * h * w / ar) ** 0.5))))
@@ -43,7 +44,7 @@ def multiblock_tube_mask(
     if (~m).sum() < min_keep:
         flat = m.flatten()
         masked_idx = flat.nonzero(as_tuple=False).flatten()
-        perm = masked_idx[torch.randperm(masked_idx.numel(), generator=generator, device=device)]
+        perm = masked_idx[torch.randperm(masked_idx.numel(), generator=generator, device=device)]  # noqa: E501
         flat[perm[: min_keep - int((~m).sum())]] = False
         m = flat.reshape(h, w)
     return m[None, :, :].expand(t, h, w).reshape(-1).clone()
@@ -79,9 +80,9 @@ class VideoJEPA(nn.Module):
     def update_target(self, progress: float) -> float:
         lo, hi = self.ema_range
         m = lo + (hi - lo) * min(max(progress, 0.0), 1.0)
-        for pt, pc in zip(self.target.parameters(), self.encoder.parameters()):
+        for pt, pc in zip(self.target.parameters(), self.encoder.parameters(), strict=False):
             pt.mul_(m).add_(pc.detach(), alpha=1 - m)
-        for bt, bc in zip(self.target.buffers(), self.encoder.buffers()):
+        for bt, bc in zip(self.target.buffers(), self.encoder.buffers(), strict=False):
             bt.copy_(bc)
         return m
 

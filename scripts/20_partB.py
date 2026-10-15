@@ -7,11 +7,10 @@ B3.2 first-ligand identity, reported alongside (not against) the published 4-cla
 from __future__ import annotations
 
 import csv
+import functools
 import json
 import sys
 from pathlib import Path
-
-import functools
 
 import numpy as np
 
@@ -21,7 +20,9 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
 
 from tijepa.eval.stats import (  # noqa: E402
-    classification_metrics, cluster_bootstrap_ci, permutation_p,
+    classification_metrics,
+    cluster_bootstrap_ci,
+    permutation_p,
 )
 from tijepa.io import tay  # noqa: E402
 from tijepa.models.trace_jepa import trace_features  # noqa: E402
@@ -39,7 +40,7 @@ def b1_conditions(ts: tay.TraceSet) -> list[dict]:
     """Audit table: every (source, first, second, gap) cell count and well count."""
     rows = []
     keys = sorted({(s, f, sec, g) for s, f, sec, g in
-                   zip(ts.source, ts.first, ts.second, ts.gap)})
+                   zip(ts.source, ts.first, ts.second, ts.gap, strict=False)})
     for s, f, sec, g in keys:
         m = ((ts.source == s) & (ts.first == f) & (ts.second == sec) & (ts.gap == g))
         tr = ts.traces[m]
@@ -197,7 +198,7 @@ def b31_tolerance(ts: tay.TraceSet) -> dict:
             pred0, score0 = grouped_cv_predict(x, y, groups, "logreg", 0, C)
             ci = cluster_bootstrap_ci(y, pred0, groups, seed=0)
             perm = permutation_p(
-                lambda yp: grouped_cv_predict(x, yp, groups, "logreg", 0, C)[0],
+                lambda yp, x=x, C=C, g=groups: grouped_cv_predict(x, yp, g, "logreg", 0, C)[0],
                 y, groups, observed=ci["point"], n_perm=200, seed=0,
             )
             entry["representations"][rep_name] = {
@@ -226,7 +227,7 @@ def b32_ligand_identity(ts: tay.TraceSet) -> dict:
         sub.traces[:, :tay.STIM1_IDX], axis=1, keepdims=True)
     # restrict to codes with enough wells to be learnable
     codes, counts = np.unique(sub.first, return_counts=True)
-    keep_codes = [c for c, n in zip(codes, counts)
+    keep_codes = [c for c, n in zip(codes, counts, strict=False)
                   if n >= 200 and len(set(sub.well[sub.first == c])) >= 4]
     m = np.isin(sub.first, keep_codes)
     sub2, win2 = sub.subset(m), win[m]

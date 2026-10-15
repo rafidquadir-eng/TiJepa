@@ -35,7 +35,7 @@ def sincos_3d(dim: int, grid: tuple[int, int, int], device=None) -> torch.Tensor
         ang = pos * omega
         return torch.cat([ang.sin(), ang.cos()], dim=1)[:, :d]
 
-    et, eh, ew = (axis_emb(n, d) for n, d in zip((t, h, w), dims))
+    et, eh, ew = (axis_emb(n, d) for n, d in zip((t, h, w), dims, strict=False))
     out = torch.cat(
         [
             et[:, None, None, :].expand(t, h, w, dims[0]),
@@ -83,7 +83,7 @@ class Block(nn.Module):
 class TubeletEmbed(nn.Module):
     """Conv3d tubelet embedding: (B,C,T,H,W) -> (B, N, dim)."""
 
-    def __init__(self, in_ch: int = 1, dim: int = 384, tubelet: tuple[int, int, int] = (2, 8, 8)):
+    def __init__(self, in_ch: int = 1, dim: int = 384, tubelet: tuple[int, int, int] = (2, 8, 8)):  # noqa: E501
         super().__init__()
         self.tubelet = tubelet
         self.proj = nn.Conv3d(in_ch, dim, kernel_size=tubelet, stride=tubelet)
@@ -140,7 +140,7 @@ class VideoViT(nn.Module):
         else:
             z = z + self.pos
         if keep is not None:
-            b, n, d = z.shape
+            b, n, d = z.shape  # noqa: E501
             k = int(keep[0].sum().item())
             idx = keep.nonzero(as_tuple=False)[:, 1].reshape(b, k)
             z = torch.gather(z, 1, idx[:, :, None].expand(b, k, d))

@@ -31,7 +31,7 @@ def load_annotations(csv_path: Path) -> list[dict]:
         for r in csv.DictReader(fh):
             keys = {k.strip().lower(): k for k in r}
 
-            def get(*names):
+            def get(*names, r=r, keys=keys):
                 for n in names:
                     if n in keys:
                         return r[keys[n]]

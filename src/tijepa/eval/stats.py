@@ -61,7 +61,7 @@ def permutation_p(
     null = []
     for _ in range(n_perm):
         perm = rng.permutation([glab[g] for g in uniq])
-        mapping = dict(zip(uniq, perm))
+        mapping = dict(zip(uniq, perm, strict=False))
         y_perm = np.array([mapping[g] for g in groups])
         try:
             null.append(float(metric(y_perm, fit_predict(y_perm))))

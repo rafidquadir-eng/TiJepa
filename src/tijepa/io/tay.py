@@ -82,7 +82,7 @@ class TraceSet:
     def __len__(self) -> int:
         return self.traces.shape[0]
 
-    def subset(self, m: np.ndarray) -> "TraceSet":
+    def subset(self, m: np.ndarray) -> TraceSet:
         return TraceSet(*(getattr(self, f)[m] for f in
                           ("traces", "first", "second", "gap", "rep", "well", "source")))
 
@@ -95,7 +95,7 @@ class TraceSet:
         """Grouping unit for cross-validation: source + replicate + well."""
         return np.array(
             [f"{s}|rep{int(r)}|well{int(w)}"
-             for s, r, w in zip(self.source, self.rep, self.well)]
+             for s, r, w in zip(self.source, self.rep, self.well, strict=False)]
         )
 
 

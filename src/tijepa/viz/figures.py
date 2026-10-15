@@ -200,7 +200,7 @@ def fig3_bbbc054(repo: Path) -> list[str]:
     ax = axes[0]
     keys = [k for k in ENCODER_ORDER if k in t1]
     xs, means, errs, cols, labs = [], [], [], [], []
-    for i, k in enumerate(keys):
+    for _i, k in enumerate(keys):
         e = t1[k]
         if e.get("status") != "ok":
             continue
@@ -292,7 +292,7 @@ def fig4_tracking(repo: Path) -> list[str]:
         means = [agg[k]["delta_avg_mean"] for k in ks]
         errs = [[m - (agg[k]["delta_avg_ci"] or [m, m])[0],
                  (agg[k]["delta_avg_ci"] or [m, m])[1] - m]
-                for k, m in zip(ks, means)]
+                for k, m in zip(ks, means, strict=False)]
         ax.bar(range(len(ks)), means, color=[col[k] for k in ks],
                yerr=np.asarray(errs).T, capsize=3,
                error_kw={"ecolor": C["ink"], "lw": 1})

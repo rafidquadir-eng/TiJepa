@@ -66,7 +66,7 @@ class TraceJEPA(nn.Module):
     def update_target(self, progress: float) -> float:
         lo, hi = self.ema_range
         m = lo + (hi - lo) * min(max(progress, 0.0), 1.0)
-        for pt, pc in zip(self.target.parameters(), self.encoder.parameters()):
+        for pt, pc in zip(self.target.parameters(), self.encoder.parameters(), strict=False):
             pt.mul_(m).add_(pc.detach(), alpha=1 - m)
         return m
 

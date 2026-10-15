@@ -30,7 +30,10 @@ sys.path.insert(0, str(REPO / "src"))
 
 from tijepa.eval import probes as P  # noqa: E402
 from tijepa.eval.stats import (  # noqa: E402
-    classification_metrics, cluster_bootstrap_ci, paired_bootstrap, permutation_p,
+    classification_metrics,
+    cluster_bootstrap_ci,
+    paired_bootstrap,
+    permutation_p,
 )
 from tijepa.io import bbbc054 as B  # noqa: E402
 from tijepa.models.video_jepa import VideoJEPA  # noqa: E402
@@ -60,7 +63,7 @@ def build_dataset(n_max: int, seed: int = 0):
         by_key.setdefault((a["fov"], a["label"]), []).append(a)
     per_key = max(1, n_max // max(1, len(by_key)))
     chosen = []
-    for k, v in by_key.items():
+    for _k, v in by_key.items():
         idx = rng.permutation(len(v))[:per_key]
         chosen.extend(v[i] for i in idx)
     rng.shuffle(chosen)
@@ -91,7 +94,7 @@ def build_dataset(n_max: int, seed: int = 0):
         feats.append(mf)
     X = np.stack(crops)
     print(f"BBBC054: {len(X)} usable crops, {len(set(fovs))} FOVs, "
-          f"labels {dict(zip(*np.unique(labels, return_counts=True)))}")
+          f"labels {dict(zip(*np.unique(labels, return_counts=True), strict=False))}")
     return (X, np.asarray(labels), np.asarray(fovs), np.asarray(hours),
             np.stack(feats), mnames)
 
@@ -227,7 +230,7 @@ def main() -> int:
         "static_note": "each annotated cell is a single frame repeated to NF frames; "
                        "E5 (frame-shuffle) is undefined and reported as N/A",
         "labels_present": {k: int(v) for k, v in
-                           zip(*np.unique(labels, return_counts=True))},
+                           zip(*np.unique(labels, return_counts=True), strict=False)},
         "labels_absent": [l for l in B.LABELS if l not in set(labels)],
         "pixel_size_note": "BBBC054 states a 20x objective but no um/px; crops are in "
                            "native pixels and were NOT resampled to 0.65 um/px. "
@@ -252,7 +255,7 @@ def main() -> int:
         ba = [p["balanced_accuracy"] for p in per_seed]
         pred0, _ = grouped_logreg(emb, labels, fovs, 0)
         ci = cluster_bootstrap_ci(labels, pred0, fovs, seed=0)
-        perm = permutation_p(lambda yp: grouped_logreg(emb, yp, fovs, 0)[0],
+        perm = permutation_p(lambda yp, emb=emb: grouped_logreg(emb, yp, fovs, 0)[0],
                              labels, fovs, observed=ci["point"], n_perm=200, seed=0)
         mlp = grouped_mlp(emb, labels, fovs, 0)
         task1[key] = {
