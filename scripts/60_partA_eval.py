@@ -116,11 +116,29 @@ def load_tijepa(ckpt: Path | None, random_init: bool) -> VideoJEPA:
     return model.eval().to(DEV)
 
 
+# Identical probe for every encoder (PLAN.md A4). A PCA step is included so the 384-d
+# encoders and the 14-d hand-crafted baseline go through the same pipeline, and so the
+# 200 group-permutation refits are tractable. Applied identically to all encoders and
+# fitted inside each CV fold; recorded as a deviation in RUN_REPORT.md.
+PROBE_PCA = 64
+
+
+def _probe(seed: int, n_features: int, classifier):
+    from sklearn.decomposition import PCA
+    from sklearn.pipeline import make_pipeline
+    from sklearn.preprocessing import StandardScaler
+
+    steps = [StandardScaler()]
+    if n_features > PROBE_PCA:
+        steps.append(PCA(n_components=PROBE_PCA, random_state=seed))
+        steps.append(StandardScaler())
+    steps.append(classifier)
+    return make_pipeline(*steps)
+
+
 def grouped_logreg(x, y, groups, seed: int):
     from sklearn.linear_model import LogisticRegression
     from sklearn.model_selection import GroupKFold
-    from sklearn.pipeline import make_pipeline
-    from sklearn.preprocessing import StandardScaler
 
     classes = np.unique(y)
     pred = np.empty(len(y), dtype=y.dtype)
@@ -129,10 +147,9 @@ def grouped_logreg(x, y, groups, seed: int):
         if len(np.unique(y[tr])) < 2:
             pred[te] = y[tr][0]
             continue
-        clf = make_pipeline(StandardScaler(),
-                            LogisticRegression(C=1.0, max_iter=3000,
-                                               class_weight="balanced",
-                                               random_state=seed))
+        clf = _probe(seed, x.shape[1],
+                     LogisticRegression(C=1.0, max_iter=2000,
+                                        class_weight="balanced", random_state=seed))
         clf.fit(x[tr], y[tr])
         pred[te] = clf.predict(x[te])
         pr = clf.predict_proba(x[te])
@@ -144,17 +161,15 @@ def grouped_logreg(x, y, groups, seed: int):
 def grouped_mlp(x, y, groups, seed: int):
     from sklearn.model_selection import GroupKFold
     from sklearn.neural_network import MLPClassifier
-    from sklearn.pipeline import make_pipeline
-    from sklearn.preprocessing import StandardScaler
 
     pred = np.empty(len(y), dtype=y.dtype)
     for tr, te in GroupKFold(n_splits=5).split(x, y, groups):
         if len(np.unique(y[tr])) < 2:
             pred[te] = y[tr][0]
             continue
-        clf = make_pipeline(StandardScaler(),
-                            MLPClassifier(hidden_layer_sizes=(128,), max_iter=400,
-                                          random_state=seed, early_stopping=True))
+        clf = _probe(seed, x.shape[1],
+                     MLPClassifier(hidden_layer_sizes=(128,), max_iter=400,
+                                   random_state=seed, early_stopping=True))
         clf.fit(x[tr], y[tr])
         pred[te] = clf.predict(x[te])
     return pred
@@ -163,13 +178,10 @@ def grouped_mlp(x, y, groups, seed: int):
 def grouped_ridge(x, y, groups, seed: int):
     from sklearn.linear_model import RidgeCV
     from sklearn.model_selection import GroupKFold
-    from sklearn.pipeline import make_pipeline
-    from sklearn.preprocessing import StandardScaler
 
     pred = np.zeros(len(y))
     for tr, te in GroupKFold(n_splits=5).split(x, y, groups):
-        m = make_pipeline(StandardScaler(),
-                          RidgeCV(alphas=np.logspace(-2, 4, 13)))
+        m = _probe(seed, x.shape[1], RidgeCV(alphas=np.logspace(-2, 4, 13)))
         m.fit(x[tr], y[tr])
         pred[te] = m.predict(x[te])
     return pred
@@ -236,6 +248,9 @@ def main() -> int:
                            "native pixels and were NOT resampled to 0.65 um/px. "
                            "Recorded as a deviation.",
         "e1_feature_names": e1names,
+        "probe_note": f"identical probe for every encoder: StandardScaler -> PCA("
+                      f"{PROBE_PCA}) when dim > {PROBE_PCA} -> StandardScaler -> "
+                      f"classifier; PCA fitted inside each CV fold",
         "encoders": {}, "model_licences": model_licences,
         "tasks": {},
     }
