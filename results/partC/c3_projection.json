@@ -82,7 +82,31 @@
     }
   },
   "reduced_one_axis_analysis": {
-    "status": "not_performed",
-    "reason": "BBBC054 probe results are not available either"
+    "label": "REDUCED, ONE-AXIS, HYPOTHESIS ONLY - not the analysis PLAN.md C3 specifies. It maps a human monocyte omics score onto a mouse microglia imaging axis; the two share no donors, no species, no platform and no experiment.",
+    "image_axis": "BBBC054 LPS exposure time, 0-29.5 h (60 FOVs, 30 min apart)",
+    "anchors": "unstimulated macrophage baseline = 0 h; the largest observed M1-like displacement = 29.5 h",
+    "states": {
+      "LPS_tolerised": {
+        "m1_like_rel_baseline": 0.0013947076652890966,
+        "equivalent_lps_exposure_hours": 2.1497788515907885,
+        "direction": "toward LPS activation"
+      },
+      "beta_glucan_trained": {
+        "m1_like_rel_baseline": -0.0092060121403994,
+        "equivalent_lps_exposure_hours": 0.0,
+        "direction": "away from LPS activation"
+      },
+      "control": {
+        "m1_like_rel_baseline": 0.0,
+        "equivalent_lps_exposure_hours": 0.0,
+        "direction": "away from LPS activation"
+      },
+      "naive_monocyte": {
+        "m1_like_rel_baseline": 0.019138655167057206,
+        "equivalent_lps_exposure_hours": 29.5,
+        "direction": "toward LPS activation"
+      }
+    },
+    "testable_prediction": "If LPS-tolerised and beta-glucan-trained monocytes sit near the unstimulated baseline on the M1-like axis, a label-free imaging assay should NOT separate them from unstimulated macrophages on an activation axis trained on acute LPS exposure alone. Separating them would require a readout sensitive to the primed state rather than to acute activation. Testing this needs a prime-rest-restimulate imaging experiment, which no public dataset provides."
   }
 }

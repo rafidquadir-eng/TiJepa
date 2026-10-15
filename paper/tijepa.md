@@ -20,11 +20,16 @@ joint-embedding predictive architecture (JEPA) over spatio-temporal tubelets, on
 288,081 cell-centred clips (42.48 GB) drawn from 288
 openly licensed (CC BY 4.0) human neutrophil migration movies, and evaluate frozen
 representations against hand-crafted, ImageNet and DINOv2 baselines. On BBBC054
-LPS-exposed microglia, TiJepa-0 reaches a balanced accuracy of n/a on the
-morphology-class probe (n/a is best at n/a), and
-n/a Spearman ρ for LPS exposure time. On held-out neutrophil movies it
-tracks points with ⟨δ⟩ = n/a against n/a for a nearest-detection
-baseline. Separately, single-cell NF-κB dynamics distinguish naive→LPS from LPS→LPS
+LPS-exposed microglia, TiJepa-0 reaches a balanced accuracy of 0.828 on the
+morphology-class probe, ahead of DINOv2-S (0.769) and of the identical
+architecture with random weights (0.772); the pretraining effect, isolated by a
+paired bootstrap against that random-init control, is +0.056 (95% CI [0.045, 0.067], p < 0.0001). It carries less
+field-of-view identity than the ImageNet and DINOv2 baselines, so the gain is not field
+memorisation. The same representation is **worse** than DINOv2 at regressing LPS
+exposure time (0.083 vs 0.277 Spearman ρ, both weak). On held-out neutrophil movies it does **not** beat a
+nearest-detection baseline at point tracking (⟨δ⟩ 0.463 vs 0.527) and is
+indistinguishable from its frame-shuffled and random-init controls, so the learned
+temporal structure does not transfer to that task. Separately, single-cell NF-κB dynamics distinguish naive→LPS from LPS→LPS
 macrophages at a balanced accuracy of 0.701 (95% CI [0.643, 0.752]), but the
 contrast rests on 4 wells and is **not significant** against a group-level
 permutation null (p = 0.30). Attempts to regress condition-level transcriptomes
@@ -84,7 +89,7 @@ Figure 2 shows the corpus composition, the pretraining loss and collapse diagnos
 
 ### 2.2 TiJepa-0: latent-space masked prediction over tubelets
 
-TiJepa-0 is a ViT-S (96x96 px, 16 frames, 2x8x8 tubelets, 1,152 tokens) trained with a V-JEPA-style objective: a context encoder sees visible tubelets, an EMA target encoder sees the whole clip, and a narrow predictor regresses the target encoder's latents at masked positions under an L1 loss. Masking is multi-block and tubed over time, so a masked cell cannot be copied from an adjacent frame. Training ran for **150 steps (0.59 effective epochs over the corpus) in 0.02 GPU-hours** on one NVIDIA A100-SXM4-40GB in bf16, stopping on `max_steps`. Mean loss fell from 0.676 over the first 500 steps to 0.676 over the last 500. Embedding standard deviation and effective rank were logged throughout as collapse diagnostics (Figure 2); no collapse intervention was required. Pretraining used **seed 0 only**: the run had a single GPU, so the three-seed requirement was applied to all probes and downstream models instead, and single-seed pretraining is a limitation of this run.
+TiJepa-0 is a ViT-S (96x96 px, 16 frames, 2x8x8 tubelets, 1,152 tokens) trained with a V-JEPA-style objective: a context encoder sees visible tubelets, an EMA target encoder sees the whole clip, and a narrow predictor regresses the target encoder's latents at masked positions under an L1 loss. Masking is multi-block and tubed over time, so a masked cell cannot be copied from an adjacent frame. Training ran for **55,000 steps (24.44 effective epochs over the corpus) in 4.43 GPU-hours** on one NVIDIA A100-SXM4-40GB in bf16, stopping on `max_steps`. Mean loss fell from 0.400 over the first 500 steps to 0.312 over the last 500. Embedding standard deviation and effective rank were logged throughout as collapse diagnostics (Figure 2); no collapse intervention was required. Pretraining used **seed 0 only**: the run had a single GPU, so the three-seed requirement was applied to all probes and downstream models instead, and single-seed pretraining is a limitation of this run.
 
 ### 2.3 Activation-state probes on BBBC054
 
@@ -102,7 +107,18 @@ than as a number. It also means that, with Dryad unreachable, **no dataset in th
 provides video of innate immune cells carrying activation-state labels**, which is
 itself the paper's thesis restated as an experimental limitation.
 
-*(not available in this run; see `reports/RUN_REPORT.md`)*
+We sampled 7,041 annotated cells across 60 fields of view, stratified by FOV and class, and cropped 96x96 px around each annotation. Replicate 1 contains only amoeboid vs round (no stratified cells are annotated in it), so the planned three-class probe is a two-class probe. All probes are FOV-grouped (never splitting a field of view across train and test), with cluster-bootstrap CIs over FOVs and a FOV-level permutation null.
+
+| encoder | balanced accuracy (mean ± sd over 3 seeds) | 95% CI | perm. p | Spearman ρ (exposure time) | FOV-identity BA |
+|---|---|---|---|---|---|
+| E1_handcrafted_morphology | 0.697 ± 0.000 | [0.678, 0.715] | 0.005 | -0.076 [-0.094, -0.058], p<0.0001 | -0.000 | 0.095 |
+| E2_imagenet_vit_s | 0.755 ± 0.000 | [0.738, 0.772] | 0.005 | -0.017 [-0.036, 0.002], p=0.0690 | 0.197 | 0.234 |
+| E3_dinov2_vit_s | 0.769 ± 0.000 | [0.755, 0.786] | 0.005 | -0.003 [-0.019, 0.014], p=0.7290 | 0.277 | 0.230 |
+| E4_tijepa0 | 0.828 ± 0.000 | [0.814, 0.843] | 0.005 | +0.056 [0.045, 0.067], p<0.0001 | 0.083 | 0.110 |
+| E5_tijepa0_frame_shuffled | N/A (undefined on static frames) | | | | | |
+| E6_tijepa0_random_init | 0.772 ± 0.000 | [0.756, 0.790] | 0.005 | - (reference) | 0.100 | 0.065 |
+
+The FOV-identity column matters: in BBBC054 each FOV *is* one exposure time, so an encoder that merely memorises fields of view would score well on exposure-time regression for the wrong reason. Chance for that probe is 0.017. The comparison that isolates pretraining from architecture is E4 against E6, the same network with random weights: +0.056 (95% CI [0.045, 0.067], p < 0.0001). Notably E6 alone is already competitive with DINOv2, so much of the performance on this task comes from the architecture and the probe rather than from either pretraining corpus. Crops were not resampled to a common micron scale because BBBC054 states a 20x objective but no pixel size; this is a recorded deviation.
 
 Figure 3 shows the encoder comparison, the exposure-time regression, and a
 field-of-view identity probe included because FOV is perfectly confounded with exposure
@@ -115,7 +131,16 @@ consistent over time. These movies were **held out of pretraining entirely**, so
 leakage is possible. This is the one evaluation in the run with real temporal
 structure, and therefore the only place the frame-shuffle control applies.
 
-*(not available in this run; see `reports/RUN_REPORT.md`)*
+We tracked query points on 5 held-out movies (0.641 um/px, 8 s per frame) for 32 steps, scoring TAP-Vid-style ⟨δ⟩ over thresholds of 1.0, 2.0, 4.0, 8.0, 16.0 um.
+
+| method | ⟨δ⟩ (1–16 µm) | 95% CI (movie bootstrap) | median survival (frames) |
+|---|---|---|---|
+| baseline_nearest_detection | 0.527 | [0.417, 0.637] | 17 |
+| E4_tijepa0 | 0.463 | [0.325, 0.602] | 4 |
+| E5_tijepa0_frame_shuffled | 0.474 | [0.338, 0.607] | 3 |
+| E6_tijepa0_random_init | 0.436 | [0.306, 0.566] | 4 |
+
+The frame-shuffled control (E5) is meaningful here because the input is a genuine time series. CoTracker was not run (NOT RUN: dl.fbaipublicfiles.com unreachable in preflight).
 
 ### 2.5 Part B: signalling dynamics and LPS tolerance
 
@@ -149,7 +174,7 @@ We scored every GSE58310 sample (Saeed et al.: naive monocytes, 6 d macrophage c
 
 The separations are small — hundredths of a unit on a rank scale whose range is ±0.5 — and the trained and tolerant states sit close to the macrophage baseline on both axes, with naive monocytes displaced furthest. Replication was not possible: NOT USABLE: the GEO series matrix contains no expression table (table_begin immediately followed by table_end) and no processed supplementary matrix is deposited NOT USABLE for gene-level scoring: only bigWig/bedGraph coverage tracks are deposited, no gene-level matrix
 
-**The projection into image space (C3) was not performed.** the image-side anchors require the M0/M1/M2 movie dataset that proved unreachable Mapping omics coordinates into the learned image space requires image-side centroids for M0, M1 and M2 cells, and no accessible dataset in this run provides images labelled with those states. Rather than substitute a different label set and present it as the same analysis, the projection is left undone and the omics coordinates are reported on their own.
+**The projection into image space (C3) was not performed.** The planned two-axis projection requires image-space centroids for M0, M1 and M2 cells. The only public dataset providing images with those labels is Dryad doi:10.5061/dryad.m0cfxpp8v, which was unreachable in this run (an Anubis proof-of-work challenge on every official download endpoint; see reports/MANUAL_DOWNLOADS.md). No accessible dataset substitutes for it: BBBC054 carries microglial morphology classes and LPS exposure time, not macrophage polarization states. Substituting it and presenting the result as the planned analysis would misrepresent what was measured, so the two-axis projection is left undone. Mapping omics coordinates into the learned image space requires image-side centroids for M0, M1 and M2 cells, and no accessible dataset in this run provides images labelled with those states. Rather than substitute a different label set and present it as the same analysis, the projection is left undone and the omics coordinates are reported on their own.
 
 Figure 6 shows the omics coordinates and, where available, the predicted positions in
 image space.

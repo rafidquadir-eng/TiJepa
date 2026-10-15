@@ -1,6 +1,6 @@
 # TiJepa-0 run report
 
-Generated 2026-10-15 16:33 UTC from `results/` at commit `4cfbb2881f` by `scripts/91_run_report.py`. Every number below is read from a results file.
+Generated 2026-10-15 21:34 UTC from `results/` at commit `062ed68082` by `scripts/91_run_report.py`. Every number below is read from a results file.
 
 ## 1. Compute
 
@@ -15,7 +15,7 @@ Generated 2026-10-15 16:33 UTC from `results/` at commit `4cfbb2881f` by `script
 | Raw-video cap | 120.0 GB (brief cap 120 GB) |
 | PyTorch | 2.11.0+cu128 (CUDA 12.8) |
 | Seed policy | single GPU: pretraining uses seed 0 only; seeds 0/1/2 used for all probes and downstream models (must be stated in Methods) |
-| Pretraining | not completed in this run |
+| Pretraining | 55,000 steps, **4.43 GPU-hours**, 24.44 effective epochs, stop: `max_steps` |
 
 ## 2. Data used
 
@@ -43,8 +43,20 @@ Datasets the plan excluded on licence grounds (Zenodo 16319732 CC BY-NC-ND, Deep
 
 | analysis | result | source file |
 |---|---|---|
-| Part A probes | not completed | - |
-| Point tracking | not completed | - |
+| BBBC054 morphology, E1_handcrafted_morphology | BA 0.697 +/- 0.000, 95% CI [0.678, 0.715], perm p 0.005 | `results/partA/bbbc054_probes.json` |
+| BBBC054 morphology, E2_imagenet_vit_s | BA 0.755 +/- 0.000, 95% CI [0.738, 0.772], perm p 0.005 | `results/partA/bbbc054_probes.json` |
+| BBBC054 morphology, E3_dinov2_vit_s | BA 0.769 +/- 0.000, 95% CI [0.755, 0.786], perm p 0.005 | `results/partA/bbbc054_probes.json` |
+| BBBC054 morphology, E4_tijepa0 | BA 0.828 +/- 0.000, 95% CI [0.814, 0.843], perm p 0.005 | `results/partA/bbbc054_probes.json` |
+| BBBC054 morphology, E6_tijepa0_random_init | BA 0.772 +/- 0.000, 95% CI [0.756, 0.790], perm p 0.005 | `results/partA/bbbc054_probes.json` |
+| BBBC054 LPS-time, E1_handcrafted_morphology | Spearman rho -0.000, MAE 8.03 h (mean-predictor 7.89 h) | `results/partA/bbbc054_probes.json` |
+| BBBC054 LPS-time, E2_imagenet_vit_s | Spearman rho 0.197, MAE 7.64 h (mean-predictor 7.89 h) | `results/partA/bbbc054_probes.json` |
+| BBBC054 LPS-time, E3_dinov2_vit_s | Spearman rho 0.277, MAE 7.41 h (mean-predictor 7.89 h) | `results/partA/bbbc054_probes.json` |
+| BBBC054 LPS-time, E4_tijepa0 | Spearman rho 0.083, MAE 7.96 h (mean-predictor 7.89 h) | `results/partA/bbbc054_probes.json` |
+| BBBC054 LPS-time, E6_tijepa0_random_init | Spearman rho 0.100, MAE 7.89 h (mean-predictor 7.89 h) | `results/partA/bbbc054_probes.json` |
+| Tracking, baseline_nearest_detection | <delta> 0.527 [0.417, 0.637], median survival 17 frames | `results/partA/tracking.json` |
+| Tracking, E4_tijepa0 | <delta> 0.463 [0.325, 0.602], median survival 4 frames | `results/partA/tracking.json` |
+| Tracking, E5_tijepa0_frame_shuffled | <delta> 0.474 [0.338, 0.607], median survival 3 frames | `results/partA/tracking.json` |
+| Tracking, E6_tijepa0_random_init | <delta> 0.436 [0.306, 0.566], median survival 4 frames | `results/partA/tracking.json` |
 | B3.1 tolerance (handcrafted) | BA 0.598, 95% CI [0.566, 0.633], perm p 0.30 **not significant**, 4 wells | `results/partB/b31_tolerance.json` |
 | B3.1 tolerance (raw_trace) | BA 0.701, 95% CI [0.643, 0.752], perm p 0.30 **not significant**, 4 wells | `results/partB/b31_tolerance.json` |
 | B3.2 ligand identity | BA 0.338 (10 classes, chance 0.100) | `results/partB/b32_ligand_identity.json` |

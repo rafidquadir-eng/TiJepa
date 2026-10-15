@@ -32,6 +32,13 @@ def fmt(v, nd=3, pct=False):
         return str(v)
 
 
+def pfmt(p: float, tight: bool = False) -> str:
+    """Format a p-value, avoiding the misleading 'p = 0.0000'."""
+    if p < 1e-4:
+        return "<0.0001" if tight else "< 0.0001"
+    return f"={p:.4f}" if tight else f"= {p:.4f}"
+
+
 def ci(d, nd=3):
     if not d or d.get("ci_low") is None:
         return "n/a"
@@ -116,6 +123,16 @@ def main() -> int:
         v["BBBC_E4_BA"] = fmt(e4.get("balanced_accuracy_mean")) if e4.get("status") == "ok" else "n/a"  # noqa: E501
         v["BBBC_BEST_NAME"] = (best or "n/a").replace("_", " ")
         v["BBBC_BEST_BA"] = fmt(ok[best]["balanced_accuracy_mean"]) if best else "n/a"
+        e3 = t1.get("E3_dinov2_vit_s", {})
+        e6 = t1.get("E6_tijepa0_random_init", {})
+        v["BBBC_E3_BA"] = fmt(e3.get("balanced_accuracy_mean")) if e3.get("status") == "ok" else "n/a"
+        v["BBBC_E6_BA"] = fmt(e6.get("balanced_accuracy_mean")) if e6.get("status") == "ok" else "n/a"
+        pb6 = e4.get("paired_bootstrap_vs_E6") or {}
+        v["BBBC_E4_VS_E6"] = (
+            f"+{fmt(pb6['delta'])} (95% CI [{fmt(pb6['ci_low'])}, {fmt(pb6['ci_high'])}], "
+            f"p {pfmt(pb6['p_two_sided'])})"
+            if pb6.get("delta") is not None else "n/a")
+        v["BBBC_E3_RHO"] = fmt(t2.get("E3_dinov2_vit_s", {}).get("spearman_rho"))
         r4 = t2.get("E4_tijepa0", {})
         v["BBBC_E4_RHO"] = fmt(r4.get("spearman_rho")) if r4.get("status") == "ok" else "n/a"
         lines = [
@@ -130,13 +147,17 @@ def main() -> int:
             if e.get("status") != "ok":
                 note = ("N/A (undefined on static frames)"
                         if k.startswith("E5") else f"not available ({e.get('status')})")
-                lines.append(f"| {k} | {note} | | | | |")
+                lines.append(f"| {k} | {note} | | | | | |")
                 continue
+            pb = e.get("paired_bootstrap_vs_E6") or {}
+            pbs = (f"{pb['delta']:+.3f} {ci(pb)}, p{pfmt(pb['p_two_sided'], True)}"
+                   if pb.get("delta") is not None else "- (reference)")
             lines.append(
                 f"| {k} | {fmt(e['balanced_accuracy_mean'])} ± "
                 f"{fmt(e['balanced_accuracy_sd'])} | "
                 f"{ci(e['cluster_bootstrap_ci_seed0'])} | "
                 f"{fmt(e['fov_permutation_test_seed0'].get('p_value'))} | "
+                f"{pbs} | "
                 f"{fmt(t2.get(k, {}).get('spearman_rho'))} | "
                 f"{fmt(conf.get(k, {}).get('fov_identity_balanced_accuracy'))} |")
         labels = " vs ".join(bb["labels_present"])
@@ -155,6 +176,11 @@ def main() -> int:
             f"time, so an encoder that merely memorises fields of view would score well "
             f"on exposure-time regression for the wrong reason. Chance for that probe is "
             f"{fmt(list(conf.values())[0]['chance']) if conf else 'n/a'}. "
+            f"The comparison that isolates pretraining from architecture is E4 against "
+            f"E6, the same network with random weights: {v.get('BBBC_E4_VS_E6')}. "
+            f"Notably E6 alone is already competitive with DINOv2, so much of the "
+            f"performance on this task comes from the architecture and the probe rather "
+            f"than from either pretraining corpus. "
             f"Crops were not resampled to a common micron scale because BBBC054 states a "
             f"20x objective but no pixel size; this is a recorded deviation.")
     else:

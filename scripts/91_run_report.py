@@ -54,7 +54,7 @@ def main() -> int:
       "Every number below is read from a results file.\n")
 
     a("## 1. Compute\n")
-    a(f"| item | value |\n|---|---|")
+    a("| item | value |\n|---|---|")
     a(f"| GPU | {comp.get('gpu_count')}x {gpu.get('name')} "
       f"({gpu.get('memory_total_mib')} MiB) |")
     a(f"| CPU | {comp.get('cpu_cores_logical')} logical cores |")
@@ -209,8 +209,9 @@ Each item states what the plan asked for, what was done instead, and why.
 - [ ] Publish weights per `reports/WEIGHTS.md` if desired.
 - [ ] **Nothing has been posted to bioRxiv, Zenodo or Hugging Face**, per PLAN §1.4.3.
 """)
-    (REPO / "reports" / "RUN_REPORT.md").write_text("\n".join(L) + "\n")
-    print(f"wrote reports/RUN_REPORT.md ({len('\n'.join(L).split())} words)")
+    text = "\n".join(L) + "\n"
+    (REPO / "reports" / "RUN_REPORT.md").write_text(text)
+    print(f"wrote reports/RUN_REPORT.md ({len(text.split())} words)")
     return 0
 
 

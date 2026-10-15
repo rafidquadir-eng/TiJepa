@@ -23,8 +23,6 @@ import json
 import sys
 from pathlib import Path
 
-import numpy as np
-
 print = functools.partial(print, flush=True)
 
 REPO = Path(__file__).resolve().parents[1]

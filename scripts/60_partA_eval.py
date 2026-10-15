@@ -287,15 +287,19 @@ def main() -> int:
         }
         print(f"  T1 {key:32s} BA {np.mean(ba):.3f}+/-{np.std(ba):.3f} "
               f"CI[{ci['ci_low']:.3f},{ci['ci_high']:.3f}] p={perm['p_value']}")
-    # paired comparisons vs E1
-    if task1.get("E1_handcrafted_morphology", {}).get("status") == "ok":
-        base, _ = grouped_logreg(embeddings["E1_handcrafted_morphology"], labels, fovs, 0)
-        for key, emb in embeddings.items():
-            if emb is None or key == "E1_handcrafted_morphology":
+    # paired comparisons against E1 (hand-crafted) and E6 (architecture control).
+    # E4 vs E6 is the comparison that isolates the effect of pretraining from the
+    # effect of the architecture, since E6 is the same network with random weights.
+    preds = {k: grouped_logreg(e, labels, fovs, 0)[0]
+             for k, e in embeddings.items() if e is not None}
+    for ref in ("E1_handcrafted_morphology", "E6_tijepa0_random_init"):
+        if ref not in preds:
+            continue
+        for key in preds:
+            if key == ref:
                 continue
-            pk, _ = grouped_logreg(emb, labels, fovs, 0)
-            task1[key]["paired_bootstrap_vs_E1"] = paired_bootstrap(
-                labels, pk, base, fovs, seed=0)
+            task1[key][f"paired_bootstrap_vs_{ref.split('_')[0]}"] = paired_bootstrap(
+                labels, preds[key], preds[ref], fovs, seed=0)
     results["tasks"]["morphology_class"] = task1
 
     # ---- task 2: LPS exposure-time regression
@@ -336,6 +340,9 @@ def main() -> int:
         }
     results["tasks"]["fov_confound_probe"] = conf
 
+    np.savez_compressed(OUT / "bbbc054_embeddings.npz",
+                        labels=labels, fovs=fovs, hours=hours,
+                        **{k: v for k, v in embeddings.items() if v is not None})
     (OUT / "bbbc054_probes.json").write_text(json.dumps(results, indent=2,
                                                         default=float) + "\n")
     print(f"wrote {OUT/'bbbc054_probes.json'}")

@@ -21,10 +21,15 @@ joint-embedding predictive architecture (JEPA) over spatio-temporal tubelets, on
 openly licensed (CC BY 4.0) human neutrophil migration movies, and evaluate frozen
 representations against hand-crafted, ImageNet and DINOv2 baselines. On BBBC054
 LPS-exposed microglia, TiJepa-0 reaches a balanced accuracy of {{BBBC_E4_BA}} on the
-morphology-class probe ({{BBBC_BEST_NAME}} is best at {{BBBC_BEST_BA}}), and
-{{BBBC_E4_RHO}} Spearman ρ for LPS exposure time. On held-out neutrophil movies it
-tracks points with ⟨δ⟩ = {{TRACK_E4}} against {{TRACK_BASE}} for a nearest-detection
-baseline. Separately, single-cell NF-κB dynamics distinguish naive→LPS from LPS→LPS
+morphology-class probe, ahead of DINOv2-S ({{BBBC_E3_BA}}) and of the identical
+architecture with random weights ({{BBBC_E6_BA}}); the pretraining effect, isolated by a
+paired bootstrap against that random-init control, is {{BBBC_E4_VS_E6}}. It carries less
+field-of-view identity than the ImageNet and DINOv2 baselines, so the gain is not field
+memorisation. The same representation is **worse** than DINOv2 at regressing LPS
+exposure time ({{BBBC_E4_RHO}} vs {{BBBC_E3_RHO}} Spearman ρ, both weak). On held-out neutrophil movies it does **not** beat a
+nearest-detection baseline at point tracking (⟨δ⟩ {{TRACK_E4}} vs {{TRACK_BASE}}) and is
+indistinguishable from its frame-shuffled and random-init controls, so the learned
+temporal structure does not transfer to that task. Separately, single-cell NF-κB dynamics distinguish naive→LPS from LPS→LPS
 macrophages at a balanced accuracy of {{B31_RAW_BA}} (95% CI {{B31_RAW_CI}}), but the
 contrast rests on {{B31_GROUPS}} wells and is **not significant** against a group-level
 permutation null (p = {{B31_RAW_P}}). Attempts to regress condition-level transcriptomes
