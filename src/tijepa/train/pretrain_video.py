@@ -59,6 +59,7 @@ class ShardClipDataset(Dataset):
         self.cum = np.cumsum([0] + self.lengths)
         self.flip = flip
         self.seed = seed
+        self._rng: np.random.Generator | None = None
 
     def __len__(self) -> int:
         return int(self.cum[-1])
@@ -72,10 +73,13 @@ class ShardClipDataset(Dataset):
         s = int(np.searchsorted(self.cum, idx, side="right") - 1)
         clip = np.asarray(self._get_map(s)[idx - self.cum[s]], dtype=np.float32)
         if self.flip:
-            rng = np.random.default_rng((self.seed * 1_000_003 + idx) % (2**32))
-            if rng.random() < 0.5:
+            if self._rng is None:
+                info = torch.utils.data.get_worker_info()
+                wid = 0 if info is None else info.id
+                self._rng = np.random.default_rng(self.seed * 1_000_003 + wid)
+            if self._rng.random() < 0.5:
                 clip = clip[:, ::-1, :]
-            if rng.random() < 0.5:
+            if self._rng.random() < 0.5:
                 clip = clip[:, :, ::-1]
         clip = np.ascontiguousarray(clip) / 255.0
         # per-clip standardisation: removes illumination offset between wells/plates

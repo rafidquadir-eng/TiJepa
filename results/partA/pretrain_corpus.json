@@ -1,17 +1,17 @@
 {
-  "n_movies_attempted": 47,
-  "n_movies_ok": 47,
+  "n_movies_attempted": 174,
+  "n_movies_ok": 174,
   "n_movies_failed": 0,
   "failures": [],
-  "n_clips": 32288,
-  "n_shards": 5,
+  "n_clips": 176807,
+  "n_shards": 26,
   "clip_shape": [
     16,
     96,
     96
   ],
   "bytes_per_clip": 147456,
-  "total_gb": 4.76,
+  "total_gb": 26.07,
   "sources": {
     "complexeye": {
       "um_per_px": 0.641,
@@ -19,9 +19,12 @@
       "frame_interval_s": 8.0,
       "licence": "CC BY 4.0",
       "zips": [
+        "384-well_plate_movies_n=16_complexeye.zip",
         "96-well_plate_movies_n=1_complexeye.zip",
         "96-well_plate_movies_n=1_leica.zip",
         "R06.zip",
+        "R09.zip",
+        "R16.zip",
         "R17.zip"
       ]
     }
@@ -33,10 +36,10 @@
       24.0
     ],
     "counts": {
-      "8.0": 24413,
-      "24.0": 7875
+      "8.0": 135318,
+      "24.0": 41489
     }
   },
   "detector": "temporal-median background + MAD threshold + area filter; trackpy linking (search_range 12 px, memory 2, min_len 16)",
-  "generated_utc": "2026-10-15T15:52:15Z"
+  "generated_utc": "2026-10-15T16:13:38Z"
 }
