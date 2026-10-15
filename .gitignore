@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.ipynb_checkpoints/
+
+# Data, models, imaging payloads — keep out of git
+data/
+datasets/
+checkpoints/
+*.ckpt
+*.pt
+*.pth
+*.h5
+*.hdf5
+*.zarr/
+*.ome.tiff
+*.ome.zarr/
+*.tif
+*.tiff
+*.nd2
+*.czi
+*.lif
+*.sdt
+*.fcs
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
