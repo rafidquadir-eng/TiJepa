@@ -38,15 +38,20 @@ CROP, NF = 96, 16
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
 
 
-def nearest_detection_tracker(frames: np.ndarray, start: tuple[float, float],
-                              t0: int, n_steps: int, search_px: float = 20.0
-                              ) -> np.ndarray:
-    """Greedy nearest-detection linking from a query point."""
+def precompute_detections(frames: np.ndarray) -> list[np.ndarray]:
+    """Detect once per frame for the whole movie; reused by every query track."""
     bg = D.temporal_background(frames)
+    return [D.detect_frame(frames[t], bg) for t in range(frames.shape[0])]
+
+
+def nearest_detection_tracker(dets: list[np.ndarray], start: tuple[float, float],
+                              t0: int, n_steps: int, n_frames: int,
+                              search_px: float = 20.0) -> np.ndarray:
+    """Greedy nearest-detection linking from a query point."""
     pos = np.asarray(start, dtype=float)
     out = [pos.copy()]
-    for t in range(t0 + 1, min(t0 + 1 + n_steps, frames.shape[0])):
-        c = D.detect_frame(frames[t], bg)
+    for t in range(t0 + 1, min(t0 + 1 + n_steps, n_frames)):
+        c = dets[t]
         if len(c) == 0:
             out.append(pos.copy())
             continue
@@ -134,7 +139,7 @@ def evaluate(pred: np.ndarray, gt: np.ndarray) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--max-frames", type=int, default=120)
-    ap.add_argument("--n-tracks", type=int, default=40)
+    ap.add_argument("--n-tracks", type=int, default=25)
     ap.add_argument("--n-steps", type=int, default=32)
     ap.add_argument("--ckpt", default=None)
     args = ap.parse_args()
@@ -168,6 +173,7 @@ def main() -> int:
         ids = sorted(tracks)[: args.n_tracks]
         print(f"{mv.name}: {raw.shape} {len(tracks)} tracks >= {args.n_steps+1} frames; "
               f"using {len(ids)}")
+        dets = precompute_detections(raw)
         rows = []
         for tid in ids:
             tr = tracks[tid]
@@ -176,7 +182,8 @@ def main() -> int:
             start = (gt[0, 0], gt[0, 1])
             res = {"movie": mv.name, "track_id": tid, "t0": t0,
                    "gt_len": int(len(gt))}
-            pred = nearest_detection_tracker(raw, start, t0, args.n_steps)
+            pred = nearest_detection_tracker(dets, start, t0, args.n_steps,
+                                             raw.shape[0])
             res["baseline_nearest_detection"] = evaluate(pred, gt)
             for key, model in encoders.items():
                 if model is None:
