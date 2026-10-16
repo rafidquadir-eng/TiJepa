@@ -80,7 +80,8 @@ def build_dataset(n_max: int, seed: int = 0):
         if f not in cache:
             cache.clear()
             cache[f] = B.read_zip_image(zip_path, by_idx[f])
-        # page states axis-1 = x, axis-2 = y
+        # axis-1 = row = y, axis-2 = column = x: the BBBC054 page says the opposite,
+        # but the data contradict it. See src/tijepa/io/bbbc054.py for the evidence.
         c = B.crop_at(cache[f], y=a["y"], x=a["x"], size=CROP)
         if c is None:
             continue

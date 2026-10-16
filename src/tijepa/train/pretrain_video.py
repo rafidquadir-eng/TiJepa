@@ -1,4 +1,15 @@
-"""M5: TiJepa-0 video-JEPA pretraining (tier T1: 1 GPU, ViT-S, bf16).
+"""M5 / F2: TiJepa video-JEPA pretraining (tier T1: 1 GPU, ViT-S, bf16).
+
+v1 changes (PLAN_v1.md F2.1-F2.2):
+  * the masking objective is **mixed**: per batch, either the v0 spatial tube mask or a
+    **future mask** whose targets are the last temporal slots, making the predictor a
+    latent forecaster (review finding C4). The two objectives are not on the same
+    scale, so their losses are logged in separate columns rather than averaged into one
+    uninterpretable curve;
+  * the run stops on a **GPU-hour budget** rather than an arbitrary step count (C3),
+    and `max_steps` becomes a bound for the LR schedule and for the ablation to match;
+  * the shard list is frozen at startup and recorded, so a corpus still being built in
+    the background cannot change the training set mid-run.
 
 Reads the big sequential .npy shards built by scripts/30_preprocess_pretrain.py with a
 multi-worker DataLoader, trains the latent-space masked predictor, logs curves and
@@ -18,7 +29,7 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader, Dataset
 
-from ..models.video_jepa import VideoJEPA, collapse_diagnostics, multiblock_tube_mask
+from ..models.video_jepa import VideoJEPA, collapse_diagnostics, sample_mask
 
 
 @dataclass
@@ -36,6 +47,10 @@ class PretrainConfig:
     ema_start: float = 0.996
     ema_end: float = 1.0
     mask_blocks: int = 8
+    p_future: float = 0.5
+    n_future_slots: int = 2
+    context_spatial_mask: float = 0.0
+    run_name: str = "tijepa1"
     seed: int = 0
     num_workers: int = 12
     log_every: int = 50
@@ -114,8 +129,8 @@ def train(cfg: PretrainConfig) -> dict:
     opt = torch.optim.AdamW(params, lr=cfg.lr, weight_decay=cfg.weight_decay,
                             betas=(0.9, 0.95))
 
-    ckpt_path = out / f"tijepa0_T1_seed{cfg.seed}.pt"
-    log_path = out / f"pretrain_log_seed{cfg.seed}.csv"
+    ckpt_path = out / f"{cfg.run_name}_T1_seed{cfg.seed}.pt"
+    log_path = out / f"pretrain_log_{cfg.run_name}_seed{cfg.seed}.csv"
     step = 0
     if ckpt_path.exists():
         sd = torch.load(ckpt_path, map_location=dev, weights_only=False)
@@ -127,13 +142,16 @@ def train(cfg: PretrainConfig) -> dict:
     if not log_path.exists():
         with log_path.open("w", newline="") as fh:
             csv.writer(fh).writerow(
-                ["step", "loss", "lr", "ema_m", "clips_seen", "seconds",
+                ["step", "loss", "loss_spatial", "loss_future", "n_spatial",
+                 "n_future", "lr", "ema_m", "clips_seen", "seconds",
                  "std_mean", "effective_rank"])
 
     gen = torch.Generator().manual_seed(cfg.seed)
     t_start = time.time()
     t_ckpt = t_start
     losses: list[float] = []
+    losses_by_kind: dict[str, list[float]] = {"spatial": [], "future": []}
+    kind_counts = {"spatial": 0, "future": 0}
     stop_reason = "max_steps"
     n_epochs = 0
 
@@ -150,8 +168,11 @@ def train(cfg: PretrainConfig) -> dict:
             for g in opt.param_groups:
                 g["lr"] = lr
             clips = clips.to(dev, non_blocking=True)
-            mask = multiblock_tube_mask(model.grid, n_blocks=cfg.mask_blocks,
-                                        generator=gen).to(dev)
+            mask, kind = sample_mask(
+                model.grid, p_future=cfg.p_future, generator=gen,
+                n_blocks=cfg.mask_blocks, n_future_slots=cfg.n_future_slots,
+                context_spatial_mask=cfg.context_spatial_mask)
+            mask = mask.to(dev)
             with torch.autocast("cuda", dtype=amp_dtype, enabled=dev == "cuda"):
                 res = model(clips, mask)
             loss = res["loss"]
@@ -160,19 +181,30 @@ def train(cfg: PretrainConfig) -> dict:
             opt.step()
             opt.zero_grad(set_to_none=True)
             m = model.update_target(step / max(1, cfg.max_steps))
-            losses.append(float(loss.detach()))
+            lv = float(loss.detach())
+            losses.append(lv)
+            losses_by_kind[kind].append(lv)
+            kind_counts[kind] += 1
             step += 1
 
             if step % cfg.log_every == 0:
                 with torch.no_grad(), torch.autocast("cuda", dtype=amp_dtype,
                                                      enabled=dev == "cuda"):
                     diag = collapse_diagnostics(model.embed(clips[:64]).float())
-                row = [step, float(np.mean(losses[-cfg.log_every:])), lr, m,
+                tail_s = losses_by_kind["spatial"][-cfg.log_every:]
+                tail_f = losses_by_kind["future"][-cfg.log_every:]
+                row = [step, float(np.mean(losses[-cfg.log_every:])),
+                       float(np.mean(tail_s)) if tail_s else "",
+                       float(np.mean(tail_f)) if tail_f else "",
+                       kind_counts["spatial"], kind_counts["future"], lr, m,
                        step * cfg.batch_size, round(time.time() - t_start, 1),
                        diag["std_mean"], diag["effective_rank"]]
                 with log_path.open("a", newline="") as fh:
                     csv.writer(fh).writerow(row)
-                print(f"step {step} loss {row[1]:.4f} lr {lr:.2e} ema {m:.4f} "
+                print(f"step {step} loss {row[1]:.4f} "
+                      f"(spatial {row[2] if row[2] == '' else f'{row[2]:.4f}'} / "
+                      f"future {row[3] if row[3] == '' else f'{row[3]:.4f}'}) "
+                      f"lr {lr:.2e} ema {m:.4f} "
                       f"rank {diag['effective_rank']:.1f} "
                       f"{elapsed_h:.2f}h", flush=True)
 
@@ -188,6 +220,20 @@ def train(cfg: PretrainConfig) -> dict:
                 "step": step, "config": asdict(cfg)}, ckpt_path)
     gpu_hours = (time.time() - t_start) / 3600.0
     summary = {
+        "run_name": cfg.run_name,
+        "objective": (f"mixed masking: future mask with probability {cfg.p_future} "
+                      f"(last {cfg.n_future_slots} temporal slots as targets), "
+                      f"spatial tube mask otherwise"
+                      if cfg.p_future > 0 else
+                      "spatial tube masking only (the v1 ablation)"),
+        "mask_kind_counts": kind_counts,
+        "final_loss_spatial_last500": (
+            float(np.mean(losses_by_kind["spatial"][-500:]))
+            if losses_by_kind["spatial"] else None),
+        "final_loss_future_last500": (
+            float(np.mean(losses_by_kind["future"][-500:]))
+            if losses_by_kind["future"] else None),
+        "shards_frozen_at_start": [p.name for p in ds.paths],
         "steps": step,
         "epochs_started": n_epochs,
         "clips_seen": step * cfg.batch_size,

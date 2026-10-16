@@ -1,0 +1,1102 @@
+{
+  "phase": "F3.2",
+  "task": "BBBC054 microglial MORPHOLOGY CLASS (not activation state)",
+  "dataset_note": "Replicate 1 annotates all THREE classes - round, ramified and amoeboid - contrary to the premise of review finding D5b and PLAN_v1.md F3.2.1 that only two of three are present. The three-class task is primary; the two-class round-vs-amoeboid contrast is also reported for comparability with v0.",
+  "um_per_px": 0.65,
+  "um_per_px_provenance": "Leica DMI 6000 with a 20x objective and an Andor AND-DG-152V-C1E-FI camera (BBBC054 page). The Andor Neo 5.5 sCMOS specification gives 2560 x 2160 at 6.5 um pixel pitch; these images are 1080 x 1280 = exactly half in each axis, i.e. 2x2 binning, so the pixel size is 2 x 6.5 / 20 = 0.65 um/px, equal to the common target (resample factor 1.0). The camera model code could not be confirmed by name, so a scale-sensitivity analysis is also reported.",
+  "e5_frame_shuffle": "N/A: BBBC054 is static, so there is no temporal order to destroy. E5 applies only to tracking and forecasting.",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "seed_varies": "a different stratified cell subsample, a different StratifiedGroupKFold fold assignment, and for E6 a different random-init draw (PLAN_v1.md F3.5)",
+  "encoders": {
+    "E1_handcrafted_improved": {
+      "note": "segmentation + shape + Zernike + Haralick on the mask; probed with logistic regression and a random forest, better reported (fixes C6)",
+      "per_seed": [
+        {
+          "seed": 0,
+          "exposure_time_block_cv": {
+            "status": "ok",
+            "cv": "leave-6-contiguous-FOVs-out (FOV = exposure time, so a shuffled split would let the model interpolate between neighbouring times)",
+            "spearman_rho": -0.7917532251225311,
+            "mae_hours": 100100852.29883127,
+            "mae_mean_predictor_hours": 7.467888708986451,
+            "n": 879
+          },
+          "fov_identity_balanced_accuracy": 0.04938949938949939
+        },
+        {
+          "seed": 1,
+          "exposure_time_block_cv": {
+            "status": "ok",
+            "cv": "leave-6-contiguous-FOVs-out (FOV = exposure time, so a shuffled split would let the model interpolate between neighbouring times)",
+            "spearman_rho": -0.685987868995363,
+            "mae_hours": 8.497382748085736,
+            "mae_mean_predictor_hours": 7.515024165579114,
+            "n": 867
+          },
+          "fov_identity_balanced_accuracy": 0.02473443223443223
+        },
+        {
+          "seed": 2,
+          "exposure_time_block_cv": {
+            "status": "ok",
+            "cv": "leave-6-contiguous-FOVs-out (FOV = exposure time, so a shuffled split would let the model interpolate between neighbouring times)",
+            "spearman_rho": -0.9405464442941135,
+            "mae_hours": 8.362612168807896,
+            "mae_mean_predictor_hours": 7.479267861788333,
+            "n": 879
+          },
+          "fov_identity_balanced_accuracy": 0.027496947496947494
+        }
+      ],
+      "tasks": {
+        "three_class": [
+          {
+            "seed": 0,
+            "balanced_accuracy": 0.46222665914192645,
+            "macro_f1": 0.45599515030074667,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.4057027066145607,
+                0.5031349206349206,
+                0.4755892255892256,
+                0.44976190476190475,
+                0.47578347578347574,
+                0.4631065759637189
+              ],
+              "per_bin_n": [
+                145,
+                147,
+                133,
+                147,
+                160,
+                147
+              ],
+              "mean": 0.4621798015579677,
+              "sd": 0.03282352725949682
+            }
+          },
+          {
+            "seed": 1,
+            "balanced_accuracy": 0.4620485922710556,
+            "macro_f1": 0.4592054642074106,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.46212121212121215,
+                0.49685534591194963,
+                0.5121212121212121,
+                0.3869417332150251,
+                0.5314810706891452,
+                0.38993710691823896
+              ],
+              "per_bin_n": [
+                132,
+                157,
+                133,
+                143,
+                143,
+                159
+              ],
+              "mean": 0.4632429468294639,
+              "sd": 0.06224499882043867
+            }
+          },
+          {
+            "seed": 2,
+            "balanced_accuracy": 0.4517802811614809,
+            "macro_f1": 0.44871438991983065,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.4846486466927196,
+                0.45659863945578233,
+                0.43333333333333335,
+                0.4483985150651817,
+                0.4393900242737452,
+                0.4449149615816282
+              ],
+              "per_bin_n": [
+                144,
+                149,
+                132,
+                161,
+                132,
+                161
+              ],
+              "mean": 0.4512140200670651,
+              "sd": 0.01818790490610262
+            }
+          }
+        ],
+        "round_vs_amoeboid": [
+          {
+            "seed": 0,
+            "balanced_accuracy": 0.6900238086860655,
+            "macro_f1": 0.6899948676589193,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.6836734693877551,
+                0.7043927648578812,
+                0.7448979591836735,
+                0.6077806122448979,
+                0.6882327399044724,
+                0.709643605870021
+              ],
+              "per_bin_n": [
+                98,
+                88,
+                98,
+                97,
+                96,
+                107
+              ],
+              "mean": 0.6897701919081168,
+              "sd": 0.04562821036259355
+            }
+          },
+          {
+            "seed": 1,
+            "balanced_accuracy": 0.6496292277084463,
+            "macro_f1": 0.6490982568309307,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.6363636363636364,
+                0.696699956578376,
+                0.7002551020408163,
+                0.6328748890860691,
+                0.6533481317055123,
+                0.5729166666666667
+              ],
+              "per_bin_n": [
+                88,
+                96,
+                97,
+                95,
+                104,
+                96
+              ],
+              "mean": 0.6487430637401795,
+              "sd": 0.047178919007794896
+            }
+          },
+          {
+            "seed": 2,
+            "balanced_accuracy": 0.6867003367003367,
+            "macro_f1": 0.6865335500348271,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.7217261904761905,
+                0.7277551020408164,
+                0.731063829787234,
+                0.6404255319148936,
+                0.6125,
+                0.6859183673469388
+              ],
+              "per_bin_n": [
+                97,
+                99,
+                97,
+                97,
+                98,
+                99
+              ],
+              "mean": 0.6865648369276789,
+              "sd": 0.05005591383258134
+            }
+          }
+        ]
+      },
+      "three_class_mean": 0.458685177524821,
+      "three_class_sd": 0.005980478433534884,
+      "three_class_within_bin_mean": 0.45887892281816556,
+      "round_vs_amoeboid_mean": 0.6754511243649496,
+      "round_vs_amoeboid_sd": 0.022424074712556783,
+      "round_vs_amoeboid_within_bin_mean": 0.6750260308586583,
+      "fov_identity_mean": 0.03387362637362637,
+      "exposure_time_rho_mean": -0.8060958461373359
+    },
+    "E2_imagenet_vit_s": {
+      "note": "",
+      "per_seed": [
+        {
+          "seed": 0,
+          "exposure_time_block_cv": {
+            "status": "ok",
+            "cv": "leave-6-contiguous-FOVs-out (FOV = exposure time, so a shuffled split would let the model interpolate between neighbouring times)",
+            "spearman_rho": -0.19680927976990814,
+            "mae_hours": 8.120404616693317,
+            "mae_mean_predictor_hours": 7.467888708986451,
+            "n": 879
+          },
+          "fov_identity_balanced_accuracy": 0.10847374847374845
+        },
+        {
+          "seed": 1,
+          "exposure_time_block_cv": {
+            "status": "ok",
+            "cv": "leave-6-contiguous-FOVs-out (FOV = exposure time, so a shuffled split would let the model interpolate between neighbouring times)",
+            "spearman_rho": -0.11060295003495905,
+            "mae_hours": 8.099173694333404,
+            "mae_mean_predictor_hours": 7.515024165579114,
+            "n": 867
+          },
+          "fov_identity_balanced_accuracy": 0.1139194139194139
+        },
+        {
+          "seed": 2,
+          "exposure_time_block_cv": {
+            "status": "ok",
+            "cv": "leave-6-contiguous-FOVs-out (FOV = exposure time, so a shuffled split would let the model interpolate between neighbouring times)",
+            "spearman_rho": -0.12696669771488964,
+            "mae_hours": 8.073664325089178,
+            "mae_mean_predictor_hours": 7.479267861788333,
+            "n": 879
+          },
+          "fov_identity_balanced_accuracy": 0.12506105006105006
+        }
+      ],
+      "tasks": {
+        "three_class": [
+          {
+            "seed": 0,
+            "balanced_accuracy": 0.5871727829697557,
+            "macro_f1": 0.5871121551274466,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.5724417426545086,
+                0.5625736961451248,
+                0.6400673400673401,
+                0.6403061224489796,
+                0.5928300094966762,
+                0.5169954648526077
+              ],
+              "per_bin_n": [
+                145,
+                147,
+                133,
+                147,
+                160,
+                147
+              ],
+              "mean": 0.5875357292775395,
+              "sd": 0.04774761641401067
+            }
+          },
+          {
+            "seed": 1,
+            "balanced_accuracy": 0.6125881714595768,
+            "macro_f1": 0.6127571384436805,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.6287878787878788,
+                0.6618287373004353,
+                0.6698653198653198,
+                0.6506211180124223,
+                0.5378586217095535,
+                0.5345911949685535
+              ],
+              "per_bin_n": [
+                132,
+                157,
+                133,
+                143,
+                143,
+                159
+              ],
+              "mean": 0.6139254784406939,
+              "sd": 0.06176009100162932
+            }
+          },
+          {
+            "seed": 2,
+            "balanced_accuracy": 0.5554223810561395,
+            "macro_f1": 0.5549417886825597,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.5973971148743186,
+                0.6250340136054421,
+                0.5957671957671957,
+                0.5501122334455668,
+                0.5223631665492131,
+                0.45133816800483467
+              ],
+              "per_bin_n": [
+                144,
+                149,
+                132,
+                161,
+                132,
+                161
+              ],
+              "mean": 0.5570019820410952,
+              "sd": 0.06352168707094608
+            }
+          }
+        ],
+        "round_vs_amoeboid": [
+          {
+            "seed": 0,
+            "balanced_accuracy": 0.751680095703881,
+            "macro_f1": 0.7516766517989366,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.7755102040816326,
+                0.79328165374677,
+                0.8061224489795917,
+                0.741921768707483,
+                0.7090751194094659,
+                0.6907756813417191
+              ],
+              "per_bin_n": [
+                98,
+                88,
+                98,
+                97,
+                96,
+                107
+              ],
+              "mean": 0.7527811460444438,
+              "sd": 0.04663693020683938
+            }
+          },
+          {
+            "seed": 1,
+            "balanced_accuracy": 0.7308916621450534,
+            "macro_f1": 0.7308824992238154,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.6704545454545454,
+                0.8119843682153713,
+                0.8148384353741496,
+                0.7484472049689441,
+                0.6820199778024417,
+                0.65625
+              ],
+              "per_bin_n": [
+                88,
+                96,
+                97,
+                95,
+                104,
+                96
+              ],
+              "mean": 0.7306657553025753,
+              "sd": 0.07147509066232671
+            }
+          },
+          {
+            "seed": 2,
+            "balanced_accuracy": 0.7580169511203994,
+            "macro_f1": 0.758035112979262,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.7931547619047619,
+                0.8185714285714285,
+                0.7817021276595745,
+                0.7955319148936171,
+                0.63125,
+                0.7259183673469387
+              ],
+              "per_bin_n": [
+                97,
+                99,
+                97,
+                97,
+                98,
+                99
+              ],
+              "mean": 0.7576881000627201,
+              "sd": 0.06923785192970297
+            }
+          }
+        ]
+      },
+      "three_class_mean": 0.5850611118284906,
+      "three_class_sd": 0.02864133838299232,
+      "three_class_within_bin_mean": 0.5861543965864429,
+      "round_vs_amoeboid_mean": 0.7468629029897779,
+      "round_vs_amoeboid_sd": 0.014189761616482907,
+      "round_vs_amoeboid_within_bin_mean": 0.7470450004699131,
+      "fov_identity_mean": 0.11581807081807081,
+      "exposure_time_rho_mean": -0.14479297583991893
+    },
+    "E3_dinov2_vit_s": {
+      "note": "",
+      "per_seed": [
+        {
+          "seed": 0,
+          "exposure_time_block_cv": {
+            "status": "ok",
+            "cv": "leave-6-contiguous-FOVs-out (FOV = exposure time, so a shuffled split would let the model interpolate between neighbouring times)",
+            "spearman_rho": -0.21621634677872817,
+            "mae_hours": 8.219395879999363,
+            "mae_mean_predictor_hours": 7.467888708986451,
+            "n": 879
+          },
+          "fov_identity_balanced_accuracy": 0.1217032967032967
+        },
+        {
+          "seed": 1,
+          "exposure_time_block_cv": {
+            "status": "ok",
+            "cv": "leave-6-contiguous-FOVs-out (FOV = exposure time, so a shuffled split would let the model interpolate between neighbouring times)",
+            "spearman_rho": -0.08881533921481558,
+            "mae_hours": 8.012036136002415,
+            "mae_mean_predictor_hours": 7.515024165579114,
+            "n": 867
+          },
+          "fov_identity_balanced_accuracy": 0.1085775335775336
+        },
+        {
+          "seed": 2,
+          "exposure_time_block_cv": {
+            "status": "ok",
+            "cv": "leave-6-contiguous-FOVs-out (FOV = exposure time, so a shuffled split would let the model interpolate between neighbouring times)",
+            "spearman_rho": -0.018231446027933564,
+            "mae_hours": 7.812696743879438,
+            "mae_mean_predictor_hours": 7.479267861788333,
+            "n": 879
+          },
+          "fov_identity_balanced_accuracy": 0.1025091575091575
+        }
+      ],
+      "tasks": {
+        "three_class": [
+          {
+            "seed": 0,
+            "balanced_accuracy": 0.6213650273586856,
+            "macro_f1": 0.6203318077803204,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.5860471848313794,
+                0.6249433106575965,
+                0.6632996632996633,
+                0.673922902494331,
+                0.6182336182336182,
+                0.5642006802721088
+              ],
+              "per_bin_n": [
+                145,
+                147,
+                133,
+                147,
+                160,
+                147
+              ],
+              "mean": 0.6217745599647829,
+              "sd": 0.0425618609594029
+            }
+          },
+          {
+            "seed": 1,
+            "balanced_accuracy": 0.6035690601073129,
+            "macro_f1": 0.6031610392836543,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.6287878787878788,
+                0.6618287373004355,
+                0.6624579124579125,
+                0.6104825988366361,
+                0.538018830720694,
+                0.5283018867924528
+              ],
+              "per_bin_n": [
+                132,
+                157,
+                133,
+                143,
+                143,
+                159
+              ],
+              "mean": 0.6049796408160016,
+              "sd": 0.059153891292214864
+            }
+          },
+          {
+            "seed": 2,
+            "balanced_accuracy": 0.5987089972840248,
+            "macro_f1": 0.597786432863266,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.6874155690645053,
+                0.6648979591836734,
+                0.62010582010582,
+                0.5740050073383407,
+                0.5380432229269438,
+                0.513092463092463
+              ],
+              "per_bin_n": [
+                144,
+                149,
+                132,
+                161,
+                132,
+                161
+              ],
+              "mean": 0.599593340285291,
+              "sd": 0.06974780345008469
+            }
+          }
+        ],
+        "round_vs_amoeboid": [
+          {
+            "seed": 0,
+            "balanced_accuracy": 0.7791245909714648,
+            "macro_f1": 0.7791089413730923,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.7346938775510203,
+                0.8620155038759689,
+                0.8367346938775511,
+                0.7831632653061225,
+                0.7307859313938341,
+                0.7374213836477987
+              ],
+              "per_bin_n": [
+                98,
+                88,
+                98,
+                97,
+                96,
+                107
+              ],
+              "mean": 0.7808024426087159,
+              "sd": 0.05698968148457405
+            }
+          },
+          {
+            "seed": 1,
+            "balanced_accuracy": 0.76748055706276,
+            "macro_f1": 0.7673583063067408,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.7045454545454546,
+                0.8430308293530178,
+                0.8456632653061225,
+                0.8001330967169477,
+                0.7219755826859044,
+                0.6875
+              ],
+              "per_bin_n": [
+                88,
+                96,
+                97,
+                95,
+                104,
+                96
+              ],
+              "mean": 0.7671413714345746,
+              "sd": 0.0711537727824693
+            }
+          },
+          {
+            "seed": 2,
+            "balanced_accuracy": 0.750005805178219,
+            "macro_f1": 0.7493879115804515,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.7933673469387755,
+                0.8689795918367347,
+                0.7829787234042553,
+                0.7442553191489362,
+                0.6125,
+                0.6946938775510204
+              ],
+              "per_bin_n": [
+                97,
+                99,
+                97,
+                97,
+                98,
+                99
+              ],
+              "mean": 0.7494624764799537,
+              "sd": 0.08845422680769184
+            }
+          }
+        ]
+      },
+      "three_class_mean": 0.6078810282500079,
+      "three_class_sd": 0.011927645477364543,
+      "three_class_within_bin_mean": 0.6087825136886919,
+      "round_vs_amoeboid_mean": 0.765536984404148,
+      "round_vs_amoeboid_sd": 0.014656364744632666,
+      "round_vs_amoeboid_within_bin_mean": 0.7658020968410814,
+      "fov_identity_mean": 0.11092999592999593,
+      "exposure_time_rho_mean": -0.10775437734049244
+    },
+    "E4_tijepa0_only_available": {
+      "note": "checkpoint tijepa0_T1_seed0.pt at step 55000",
+      "per_seed": [
+        {
+          "seed": 0,
+          "exposure_time_block_cv": {
+            "status": "ok",
+            "cv": "leave-6-contiguous-FOVs-out (FOV = exposure time, so a shuffled split would let the model interpolate between neighbouring times)",
+            "spearman_rho": -0.6604563715979702,
+            "mae_hours": 8.38519933850285,
+            "mae_mean_predictor_hours": 7.467888708986451,
+            "n": 879
+          },
+          "fov_identity_balanced_accuracy": 0.06416361416361417
+        },
+        {
+          "seed": 1,
+          "exposure_time_block_cv": {
+            "status": "ok",
+            "cv": "leave-6-contiguous-FOVs-out (FOV = exposure time, so a shuffled split would let the model interpolate between neighbouring times)",
+            "spearman_rho": -0.5409913938926163,
+            "mae_hours": 8.37390697703642,
+            "mae_mean_predictor_hours": 7.515024165579114,
+            "n": 867
+          },
+          "fov_identity_balanced_accuracy": 0.05702075702075702
+        },
+        {
+          "seed": 2,
+          "exposure_time_block_cv": {
+            "status": "ok",
+            "cv": "leave-6-contiguous-FOVs-out (FOV = exposure time, so a shuffled split would let the model interpolate between neighbouring times)",
+            "spearman_rho": -0.524899882614619,
+            "mae_hours": 8.352518107161451,
+            "mae_mean_predictor_hours": 7.479267861788333,
+            "n": 879
+          },
+          "fov_identity_balanced_accuracy": 0.05034188034188035
+        }
+      ],
+      "tasks": {
+        "three_class": [
+          {
+            "seed": 0,
+            "balanced_accuracy": 0.6407291735620811,
+            "macro_f1": 0.6409674981103554,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.6410479085251123,
+                0.6517290249433106,
+                0.7306397306397306,
+                0.6746031746031745,
+                0.5928300094966761,
+                0.5643537414965986
+              ],
+              "per_bin_n": [
+                145,
+                147,
+                133,
+                147,
+                160,
+                147
+              ],
+              "mean": 0.6425339316174338,
+              "sd": 0.05909390522626616
+            }
+          },
+          {
+            "seed": 1,
+            "balanced_accuracy": 0.6257671670585397,
+            "macro_f1": 0.6215492930594085,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.5757575757575757,
+                0.6866231253023706,
+                0.6563973063973064,
+                0.6801427092576161,
+                0.587997880311545,
+                0.5660377358490566
+              ],
+              "per_bin_n": [
+                132,
+                157,
+                133,
+                143,
+                143,
+                159
+              ],
+              "mean": 0.6254927221459118,
+              "sd": 0.05494175817198577
+            }
+          },
+          {
+            "seed": 2,
+            "balanced_accuracy": 0.6026095203862485,
+            "macro_f1": 0.6013271627959091,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.6298095479326483,
+                0.7193197278911564,
+                0.5740740740740741,
+                0.5790425623758958,
+                0.5225628376791168,
+                0.5818181818181819
+              ],
+              "per_bin_n": [
+                144,
+                149,
+                132,
+                161,
+                132,
+                161
+              ],
+              "mean": 0.6011044886285123,
+              "sd": 0.067166878279071
+            }
+          }
+        ],
+        "round_vs_amoeboid": [
+          {
+            "seed": 0,
+            "balanced_accuracy": 0.825305232046726,
+            "macro_f1": 0.8253096846846847,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.8163265306122449,
+                0.8974160206718347,
+                0.8877551020408163,
+                0.7931547619047619,
+                0.8434650455927051,
+                0.7283368273934312
+              ],
+              "per_bin_n": [
+                98,
+                88,
+                98,
+                97,
+                96,
+                107
+              ],
+              "mean": 0.8277423813692989,
+              "sd": 0.06310504584630218
+            }
+          },
+          {
+            "seed": 1,
+            "balanced_accuracy": 0.8352143244709712,
+            "macro_f1": 0.8350649702954183,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.7840909090909091,
+                0.8949196699956579,
+                0.938562925170068,
+                0.8966282165039929,
+                0.7310395856455789,
+                0.7708333333333333
+              ],
+              "per_bin_n": [
+                88,
+                96,
+                97,
+                95,
+                104,
+                96
+              ],
+              "mean": 0.83601243995659,
+              "sd": 0.08440900139757915
+            }
+          },
+          {
+            "seed": 2,
+            "balanced_accuracy": 0.824689422965285,
+            "macro_f1": 0.8245294791984096,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.8550170068027211,
+                0.9093877551020408,
+                0.8848936170212766,
+                0.7948936170212766,
+                0.7054166666666667,
+                0.796734693877551
+              ],
+              "per_bin_n": [
+                97,
+                99,
+                97,
+                97,
+                98,
+                99
+              ],
+              "mean": 0.8243905594152553,
+              "sd": 0.07431396396217657
+            }
+          }
+        ]
+      },
+      "three_class_mean": 0.6230352870022898,
+      "three_class_sd": 0.01920610231261784,
+      "three_class_within_bin_mean": 0.6230437141306192,
+      "round_vs_amoeboid_mean": 0.828402993160994,
+      "round_vs_amoeboid_sd": 0.005906816474794387,
+      "round_vs_amoeboid_within_bin_mean": 0.8293817935803814,
+      "fov_identity_mean": 0.05717541717541719,
+      "exposure_time_rho_mean": -0.5754492160350685
+    },
+    "E6_tijepa_random_init": {
+      "note": "three INDEPENDENT random-init draws, one per seed, so the sd reflects architecture variability and not just folds",
+      "per_seed": [
+        {
+          "seed": 0,
+          "exposure_time_block_cv": {
+            "status": "ok",
+            "cv": "leave-6-contiguous-FOVs-out (FOV = exposure time, so a shuffled split would let the model interpolate between neighbouring times)",
+            "spearman_rho": -0.5994108095243632,
+            "mae_hours": 8.30717760873736,
+            "mae_mean_predictor_hours": 7.467888708986451,
+            "n": 879
+          },
+          "fov_identity_balanced_accuracy": 0.03556776556776557
+        },
+        {
+          "seed": 1,
+          "exposure_time_block_cv": {
+            "status": "ok",
+            "cv": "leave-6-contiguous-FOVs-out (FOV = exposure time, so a shuffled split would let the model interpolate between neighbouring times)",
+            "spearman_rho": -0.4147310245435508,
+            "mae_hours": 8.311260742024704,
+            "mae_mean_predictor_hours": 7.515024165579114,
+            "n": 867
+          },
+          "fov_identity_balanced_accuracy": 0.025158730158730158
+        },
+        {
+          "seed": 2,
+          "exposure_time_block_cv": {
+            "status": "ok",
+            "cv": "leave-6-contiguous-FOVs-out (FOV = exposure time, so a shuffled split would let the model interpolate between neighbouring times)",
+            "spearman_rho": -0.5700728685690101,
+            "mae_hours": 8.344532078579153,
+            "mae_mean_predictor_hours": 7.479267861788333,
+            "n": 879
+          },
+          "fov_identity_balanced_accuracy": 0.04763125763125764
+        }
+      ],
+      "tasks": {
+        "three_class": [
+          {
+            "seed": 0,
+            "balanced_accuracy": 0.5747660131155505,
+            "macro_f1": 0.5733651049357856,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.5848892748588796,
+                0.6048015873015874,
+                0.6323232323232323,
+                0.591984126984127,
+                0.5434472934472935,
+                0.49712585034013607
+              ],
+              "per_bin_n": [
+                145,
+                147,
+                133,
+                147,
+                160,
+                147
+              ],
+              "mean": 0.5757618942092093,
+              "sd": 0.0482012852020706
+            }
+          },
+          {
+            "seed": 1,
+            "balanced_accuracy": 0.5129076988002653,
+            "macro_f1": 0.5095524654565371,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.5454545454545454,
+                0.6040154813739719,
+                0.4826599326599326,
+                0.5405944986690329,
+                0.4762089618456078,
+                0.42767295597484273
+              ],
+              "per_bin_n": [
+                132,
+                157,
+                133,
+                143,
+                143,
+                159
+              ],
+              "mean": 0.5127677293296555,
+              "sd": 0.06269458133835062
+            }
+          },
+          {
+            "seed": 2,
+            "balanced_accuracy": 0.536185716928907,
+            "macro_f1": 0.5321697845472615,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.5195125922709509,
+                0.6047619047619047,
+                0.5396825396825397,
+                0.5425537425537426,
+                0.49312504893900244,
+                0.513092463092463
+              ],
+              "per_bin_n": [
+                144,
+                149,
+                132,
+                161,
+                132,
+                161
+              ],
+              "mean": 0.5354547152167671,
+              "sd": 0.038516955909748456
+            }
+          }
+        ],
+        "round_vs_amoeboid": [
+          {
+            "seed": 0,
+            "balanced_accuracy": 0.7705687109297117,
+            "macro_f1": 0.7705452540961496,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.7142857142857143,
+                0.8640826873385012,
+                0.826530612244898,
+                0.8142006802721089,
+                0.6984368215371255,
+                0.7192522711390636
+              ],
+              "per_bin_n": [
+                98,
+                88,
+                98,
+                97,
+                96,
+                107
+              ],
+              "mean": 0.7727981311362352,
+              "sd": 0.0703628982005522
+            }
+          },
+          {
+            "seed": 1,
+            "balanced_accuracy": 0.7793633568457226,
+            "macro_f1": 0.7794015204745376,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.7159090909090908,
+                0.8528006947459835,
+                0.8656462585034014,
+                0.8518189884649512,
+                0.6997780244173142,
+                0.6875
+              ],
+              "per_bin_n": [
+                88,
+                96,
+                97,
+                95,
+                104,
+                96
+              ],
+              "mean": 0.7789088428401234,
+              "sd": 0.08589005309820345
+            }
+          },
+          {
+            "seed": 2,
+            "balanced_accuracy": 0.7685649599442703,
+            "macro_f1": 0.7682805062115408,
+            "within_time_bin": {
+              "n_bins_used": 6,
+              "per_bin": [
+                0.7525510204081632,
+                0.8487755102040816,
+                0.7617021276595746,
+                0.7448936170212765,
+                0.7345833333333334,
+                0.7665306122448979
+              ],
+              "per_bin_n": [
+                97,
+                99,
+                97,
+                97,
+                98,
+                99
+              ],
+              "mean": 0.7681727034785545,
+              "sd": 0.04112317084581718
+            }
+          }
+        ]
+      },
+      "three_class_mean": 0.5412864762815742,
+      "three_class_sd": 0.031243016371063175,
+      "three_class_within_bin_mean": 0.541328112918544,
+      "round_vs_amoeboid_mean": 0.7728323425732349,
+      "round_vs_amoeboid_sd": 0.005744072168200261,
+      "round_vs_amoeboid_within_bin_mean": 0.7732932258183043,
+      "fov_identity_mean": 0.03611925111925112,
+      "exposure_time_rho_mean": -0.5280715675456413
+    }
+  },
+  "time_only_baseline": {
+    "three_class": {
+      "per_seed": [
+        0.33405850730650544,
+        0.33125942002773257,
+        0.33097131499745264
+      ],
+      "mean": 0.33209641411056356,
+      "sd": 0.0017053176857375419,
+      "interpretation": "balanced accuracy obtainable from exposure time with no image at all; any encoder's score must be read against this, because FOV = time in this dataset"
+    },
+    "round_vs_amoeboid": {
+      "per_seed": [
+        0.49475739769888466,
+        0.5020075963103636,
+        0.5020608382677348
+      ],
+      "mean": 0.4996086107589943,
+      "sd": 0.00420135808905174,
+      "interpretation": "balanced accuracy obtainable from exposure time with no image at all; any encoder's score must be read against this, because FOV = time in this dataset"
+    }
+  },
+  "exposure_time_regression": {},
+  "fov_identity_probe": {},
+  "e1_segmentation_methods": {
+    "sobel_variance_otsu_watershed": 879
+  },
+  "checkpoint": {
+    "file": "tijepa0_T1_seed0.pt",
+    "step": 55000
+  }
+}

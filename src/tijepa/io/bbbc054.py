@@ -29,7 +29,15 @@ from pathlib import Path
 
 import numpy as np
 
-LABELS = ("round", "amoeboid", "stratified")
+# The three classes actually annotated in Replicate 1, with their counts:
+# round (43,813), ramified (11,143), amoeboid (3,230).
+#
+# v0 had ("round", "amoeboid", "stratified"). "stratified" does not occur anywhere in
+# the annotation file, so every `ramified` row -- 11,143 of 58,186, about one annotation
+# in five -- was silently dropped by the `lab not in LABELS` filter below, and v0 ran a
+# two-class task while believing the third class was simply absent from this replicate.
+# That is the true content of review finding D5b: not a missing class, a wrong name.
+LABELS = ("round", "amoeboid", "ramified")
 MINUTES_PER_FOV = 30.0
 
 
