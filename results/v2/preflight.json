@@ -1,0 +1,51 @@
+{
+  "phase": "G0",
+  "timestamp_utc": "2026-10-16T16:31:18Z",
+  "hardware": {
+    "hostname": "132-145-134-44",
+    "gpus": [
+      {
+        "name": "NVIDIA A100-SXM4-40GB",
+        "memory_total": "40960 MiB",
+        "driver_version": "580.178.04",
+        "compute_capability": "8.0"
+      }
+    ],
+    "cuda_available": true,
+    "torch_version": "2.11.0+cu128",
+    "torch_cuda": "12.8",
+    "bf16_matmul_ok": true,
+    "cpu_logical_cores": 30,
+    "cpu_physical_cores": 30,
+    "ram_gb": 232.2,
+    "project_fs": "/dev/vda1      ext4 402662404",
+    "python": "3.12.3"
+  },
+  "checkpoint": {
+    "file": "checkpoints/tijepa1_T1_seed0.pt",
+    "bytes": 376538701,
+    "sha256": "2774e60461d2c24b9b8c92b71d211c1cfa4b4e6241010d1c61888f6b7d054b22",
+    "md5": "86fa543bc2c0db40d7c5284da56e72e1",
+    "step": 14751,
+    "keys": [
+      "config",
+      "model",
+      "optim",
+      "step"
+    ],
+    "config_max_steps": 150000
+  },
+  "corpus": {
+    "path": "data/processed/v1",
+    "pretrain_index_md5": "43b19b36849e88d29cefa484066e35a1",
+    "n_shards": 43
+  },
+  "storage_read": {
+    "file": "data/processed/v1/pretrain_shard_0021.npy",
+    "dd": "1032192128 bytes (1.0 GB, 984 MiB) copied, 0.128779 s, 8.0 GB/s"
+  },
+  "storage_decision": "project directory is local ext4 with >1 GB/s direct reads; the corpus is read in place (no copy to another disk)",
+  "drive_remote": "remote 'gdrive' (type drive) present; OAuth token missing on this instance (rclone reports 'empty token found'); Drive reachable read-only via the author's Drive connector",
+  "integrity_ok": true,
+  "problems": []
+}

@@ -26,3 +26,24 @@ hand against `md5sum` of the local file and is identical.
 ## F9.1 — v1 outputs
 
 See the section appended at the end of the run.
+
+## G0.5 — v1 partial checkpoint (step 14,751), on the v2 instance
+
+- Timestamp (UTC): 2026-10-16T16:28Z
+- **rclone could not run**: the `gdrive` remote exists on this instance but holds no OAuth
+  token (rclone: "empty token found - please run rclone config reconnect"). Re-authorising
+  needs the author's browser, so the planned copy to `gdrive:TiJepa/checkpoints_v1_partial/`
+  is **pending**.
+- What exists meanwhile:
+
+| copy | location | bytes | hash | verified |
+|---|---|---|---|---|
+| original | `checkpoints/tijepa1_T1_seed0.pt` (this instance) | 376538701 | sha256 `2774e604…7d054b22`, md5 `86fa543bc2c0db40d7c5284da56e72e1` | G0.4 |
+| frozen local copy | `checkpoints/v1_partial/tijepa1_T1_seed0.pt` | 376538701 | md5 `86fa543bc2c0db40d7c5284da56e72e1` | md5 equal |
+| shared filesystem | `LambdaFilesystem/transfer/proj2/checkpoints/tijepa1_T1_seed0.pt` | 376538701 | sha256 `2774e604…7d054b22` | sha256 equal |
+| Drive (uploaded by the previous instance at the move) | `gdrive:TiJepa/checkpoints_v1/tijepa1_T1_seed0.pt` | 376538701 | — | size and modification time (2026-10-16T04:25:59Z) match; md5 **not** verifiable without rclone |
+
+The log CSV (`pretrain_log_tijepa1_seed0.csv`, md5 `6e951a290182b8a5355db55a9470c644`) is
+in the local frozen copy and on the shared filesystem (md5 equal); it is not on Drive.
+Resumed training writes only `checkpoints/tijepa1_T1_seed0.pt`; the frozen copies are never
+written. The md5 check against Drive is re-run as soon as the remote is re-authorised.

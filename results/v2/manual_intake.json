@@ -1,0 +1,13 @@
+{
+  "phase": "G0.7",
+  "timestamp_utc": "2026-10-16T16:30Z",
+  "expected_path": "<remote>:TiJepa/manual_downloads/",
+  "expected_path_exists": false,
+  "how_checked": "rclone could not be used (remote present but OAuth token missing on this instance). The author's Google Drive was searched through the Drive connector: children of the TiJepa folder are checkpoints_v0, checkpoints_v1, corpus_v1 only; a title search for dryad|m0cfxpp8v|ltdb|manual_downloads returned nothing.",
+  "datasets": {
+    "dryad_m0cfxpp8v": {"doi": "10.5061/dryad.m0cfxpp8v", "status": "not_provided",
+      "code_path_ready": "scripts/64_dryad_v1.py", "recheck": "before G4 (PLAN_v2 §2.1)"},
+    "ltdb": {"doi": "10.6084/m9.figshare.c.3827890", "status": "not_provided"}
+  },
+  "previous": "results/v1/manual_intake.json"
+}
