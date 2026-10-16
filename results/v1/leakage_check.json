@@ -1,0 +1,4172 @@
+{
+  "n_eval_movies": 6,
+  "n_train_movies": 288,
+  "match_threshold_r": 0.98,
+  "report_threshold_r": 0.9,
+  "n_pairs_reported": 226,
+  "n_pairs_matched": 1,
+  "excluded_train_movies": [
+    "R08.zip:H4.tiff"
+  ],
+  "eval_movies_with_a_twin": [
+    "08_H4.ome.zarr.zip"
+  ],
+  "pairs": [
+    {
+      "eval_movie": "08_H4.ome.zarr.zip",
+      "train_movie": "R08.zip:H4.tiff",
+      "pearson_r": 0.99749,
+      "eval_shape": [
+        437,
+        800,
+        1280
+      ],
+      "train_shape": [
+        437,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "LEAKAGE: exclude the pretraining movie"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:E2.tiff",
+      "pearson_r": 0.96756,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        441,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R09.zip:E6.tiff",
+      "pearson_r": 0.96701,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        435,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:E2.tiff",
+      "pearson_r": 0.96507,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:B4.tiff",
+      "pearson_r": 0.96488,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R17.zip:A6.tiff",
+      "pearson_r": 0.96193,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        445,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:E1.tiff",
+      "pearson_r": 0.96036,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        445,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:A6.tiff",
+      "pearson_r": 0.9603,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:C8.tiff",
+      "pearson_r": 0.95994,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        435,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:D5.tiff",
+      "pearson_r": 0.95993,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        543,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:B6.tiff",
+      "pearson_r": 0.95984,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        441,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:D5.tiff",
+      "pearson_r": 0.95931,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        434,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R08.zip:F2.tiff",
+      "pearson_r": 0.95902,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        438,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:F2.tiff",
+      "pearson_r": 0.95895,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        438,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:B2.tiff",
+      "pearson_r": 0.95783,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R17.zip:C5.tiff",
+      "pearson_r": 0.95728,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        450,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:E5.tiff",
+      "pearson_r": 0.95728,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        435,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:E1.tiff",
+      "pearson_r": 0.95726,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        445,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A1.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+      "pearson_r": 0.95666,
+      "eval_shape": [
+        438,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R17.zip:B6.tiff",
+      "pearson_r": 0.9566,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        443,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:D8.tiff",
+      "pearson_r": 0.9564,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        436,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:A5.tiff",
+      "pearson_r": 0.95617,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:A5.tiff",
+      "pearson_r": 0.95586,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R17.zip:C6.tiff",
+      "pearson_r": 0.95563,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        450,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:D5.tiff",
+      "pearson_r": 0.9544,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        543,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:E5.tiff",
+      "pearson_r": 0.95437,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:H3.tiff",
+      "pearson_r": 0.95396,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:A6.tiff",
+      "pearson_r": 0.95394,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        439,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R08.zip:D6.tiff",
+      "pearson_r": 0.95387,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        435,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R08.zip:E2.tiff",
+      "pearson_r": 0.95328,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        439,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:C5.tiff",
+      "pearson_r": 0.95279,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        431,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R09.zip:E1.tiff",
+      "pearson_r": 0.95261,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        429,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:A5.tiff",
+      "pearson_r": 0.9524,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        431,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:D6.tiff",
+      "pearson_r": 0.95226,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        440,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R17.zip:C6.tiff",
+      "pearson_r": 0.95189,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        450,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:C6.tiff",
+      "pearson_r": 0.95047,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        439,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:G5.tiff",
+      "pearson_r": 0.95028,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        440,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:E6.tiff",
+      "pearson_r": 0.95016,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        444,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:F5.tiff",
+      "pearson_r": 0.95013,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        441,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:F1.tiff",
+      "pearson_r": 0.94957,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        442,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:A6.tiff",
+      "pearson_r": 0.94929,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:E1.tiff",
+      "pearson_r": 0.94769,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R09.zip:E1.tiff",
+      "pearson_r": 0.9476,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        429,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:D7.tiff",
+      "pearson_r": 0.94759,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:E8.tiff",
+      "pearson_r": 0.94692,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "96-well_plate_movies_n=1_complexeye.zip:D1.tiff",
+      "pearson_r": 0.94646,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        447,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:F8.tiff",
+      "pearson_r": 0.9464,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        543,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:G5.tiff",
+      "pearson_r": 0.94574,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        440,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:E2.tiff",
+      "pearson_r": 0.94539,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        441,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R09.zip:A6.tiff",
+      "pearson_r": 0.94525,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        430,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:C7.tiff",
+      "pearson_r": 0.94522,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        429,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A1.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:B1.tiff",
+      "pearson_r": 0.94449,
+      "eval_shape": [
+        438,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:F1.tiff",
+      "pearson_r": 0.94443,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:D7.tiff",
+      "pearson_r": 0.94433,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        434,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:D5.tiff",
+      "pearson_r": 0.94331,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        434,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:E5.tiff",
+      "pearson_r": 0.9433,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        435,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R17.zip:C5.tiff",
+      "pearson_r": 0.94316,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        450,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:C6.tiff",
+      "pearson_r": 0.94286,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        439,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R08.zip:G6.tiff",
+      "pearson_r": 0.94267,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        446,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:B6.tiff",
+      "pearson_r": 0.94242,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        441,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R09.zip:G6.tiff",
+      "pearson_r": 0.94219,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        433,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:C7.tiff",
+      "pearson_r": 0.94208,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:F2.tiff",
+      "pearson_r": 0.94199,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        438,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:H5.tiff",
+      "pearson_r": 0.94154,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        442,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:D3.tiff",
+      "pearson_r": 0.9415,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        544,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R08.zip:D6.tiff",
+      "pearson_r": 0.94115,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        435,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R08.zip:F2.tiff",
+      "pearson_r": 0.94099,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        438,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:B3.tiff",
+      "pearson_r": 0.94069,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:F1.tiff",
+      "pearson_r": 0.94045,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        442,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R17.zip:A6.tiff",
+      "pearson_r": 0.9402,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        445,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R17.zip:B6.tiff",
+      "pearson_r": 0.9401,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        443,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R09.zip:G6.tiff",
+      "pearson_r": 0.94002,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        433,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R17.zip:A5.tiff",
+      "pearson_r": 0.93978,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        442,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:D6.tiff",
+      "pearson_r": 0.93967,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        440,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:E6.tiff",
+      "pearson_r": 0.93965,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        444,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:G2.tiff",
+      "pearson_r": 0.93907,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        441,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:C5.tiff",
+      "pearson_r": 0.93897,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        431,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:D6.tiff",
+      "pearson_r": 0.93845,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R09.zip:E6.tiff",
+      "pearson_r": 0.93757,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        435,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:C2.tiff",
+      "pearson_r": 0.93755,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        448,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R08.zip:E2.tiff",
+      "pearson_r": 0.93749,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        439,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R09.zip:F2.tiff",
+      "pearson_r": 0.9372,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        428,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:G6.tiff",
+      "pearson_r": 0.9368,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        445,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "R16.zip:C8.tiff",
+      "pearson_r": 0.93678,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        435,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:F5.tiff",
+      "pearson_r": 0.93628,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        441,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:E4.tiff",
+      "pearson_r": 0.93624,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:H6.tiff",
+      "pearson_r": 0.93619,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        442,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R08.zip:B6.tiff",
+      "pearson_r": 0.93547,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        427,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:E4.tiff",
+      "pearson_r": 0.93544,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:A6.tiff",
+      "pearson_r": 0.93445,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        439,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "R16.zip:G4.tiff",
+      "pearson_r": 0.93407,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        440,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R08.zip:A6.tiff",
+      "pearson_r": 0.93404,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        436,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R08.zip:H5.tiff",
+      "pearson_r": 0.93353,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        448,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:F4.tiff",
+      "pearson_r": 0.93229,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:A5.tiff",
+      "pearson_r": 0.93228,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        431,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R17.zip:C2.tiff",
+      "pearson_r": 0.93224,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        450,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:C6.tiff",
+      "pearson_r": 0.93214,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R09.zip:E5.tiff",
+      "pearson_r": 0.93117,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        434,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:G1.tiff",
+      "pearson_r": 0.93108,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        445,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "R16.zip:D8.tiff",
+      "pearson_r": 0.93103,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        436,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:C7.tiff",
+      "pearson_r": 0.93092,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        429,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:F4.tiff",
+      "pearson_r": 0.9309,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R08.zip:G6.tiff",
+      "pearson_r": 0.9307,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        446,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:F3.tiff",
+      "pearson_r": 0.9304,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R09.zip:F2.tiff",
+      "pearson_r": 0.92992,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        428,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:E8.tiff",
+      "pearson_r": 0.92947,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:G4.tiff",
+      "pearson_r": 0.92936,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        440,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:H5.tiff",
+      "pearson_r": 0.92878,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        544,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:G4.tiff",
+      "pearson_r": 0.92864,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:B6.tiff",
+      "pearson_r": 0.92823,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        535,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "R16.zip:D7.tiff",
+      "pearson_r": 0.92814,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        434,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R08.zip:D8.tiff",
+      "pearson_r": 0.92762,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        430,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R17.zip:C8.tiff",
+      "pearson_r": 0.92712,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        445,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:E3.tiff",
+      "pearson_r": 0.92703,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        431,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:H1.tiff",
+      "pearson_r": 0.92663,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        442,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:H2.tiff",
+      "pearson_r": 0.92627,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        438,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:C3.tiff",
+      "pearson_r": 0.92555,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R08.zip:F5.tiff",
+      "pearson_r": 0.92555,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        448,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R17.zip:C4.tiff",
+      "pearson_r": 0.92545,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        450,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:H6.tiff",
+      "pearson_r": 0.92531,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        442,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:G6.tiff",
+      "pearson_r": 0.92421,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        445,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:D8.tiff",
+      "pearson_r": 0.92382,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        543,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "R09.zip:H6.tiff",
+      "pearson_r": 0.92348,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        430,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R08.zip:F5.tiff",
+      "pearson_r": 0.92346,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        448,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:D4.tiff",
+      "pearson_r": 0.92324,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:E5.tiff",
+      "pearson_r": 0.92275,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R08.zip:C8.tiff",
+      "pearson_r": 0.9227,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        434,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R17.zip:A5.tiff",
+      "pearson_r": 0.92234,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        442,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:H5.tiff",
+      "pearson_r": 0.92229,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        442,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R08.zip:H5.tiff",
+      "pearson_r": 0.92213,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        448,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:E2.tiff",
+      "pearson_r": 0.92189,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R08.zip:D5.tiff",
+      "pearson_r": 0.92181,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        443,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:D2.tiff",
+      "pearson_r": 0.9216,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:C4.tiff",
+      "pearson_r": 0.92105,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:F3.tiff",
+      "pearson_r": 0.92105,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:C4.tiff",
+      "pearson_r": 0.92044,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        439,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R17.zip:C7.tiff",
+      "pearson_r": 0.92036,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        442,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:F8.tiff",
+      "pearson_r": 0.92019,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        543,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R09.zip:E5.tiff",
+      "pearson_r": 0.92006,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        434,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:D3.tiff",
+      "pearson_r": 0.91984,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        544,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:D8.tiff",
+      "pearson_r": 0.9197,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        543,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R08.zip:D4.tiff",
+      "pearson_r": 0.91957,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        437,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R09.zip:C6.tiff",
+      "pearson_r": 0.91911,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        435,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:C2.tiff",
+      "pearson_r": 0.91859,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R09.zip:A6.tiff",
+      "pearson_r": 0.91832,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        430,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:D2.tiff",
+      "pearson_r": 0.91806,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:G2.tiff",
+      "pearson_r": 0.91805,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        543,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:D6.tiff",
+      "pearson_r": 0.91753,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "R09.zip:F6.tiff",
+      "pearson_r": 0.91742,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        435,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:G8.tiff",
+      "pearson_r": 0.91737,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R08.zip:E1.tiff",
+      "pearson_r": 0.91718,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        445,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R09.zip:E2.tiff",
+      "pearson_r": 0.91699,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        437,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R17.zip:D2.tiff",
+      "pearson_r": 0.9168,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        450,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R08.zip:E1.tiff",
+      "pearson_r": 0.91673,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        445,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:F3.tiff",
+      "pearson_r": 0.91628,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        434,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:G4.tiff",
+      "pearson_r": 0.91612,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:E3.tiff",
+      "pearson_r": 0.91586,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        431,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "96-well_plate_movies_n=1_complexeye.zip:D2.tiff",
+      "pearson_r": 0.91577,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        443,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:C7.tiff",
+      "pearson_r": 0.91572,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:E4.tiff",
+      "pearson_r": 0.91532,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        439,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:D7.tiff",
+      "pearson_r": 0.91497,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:A2.tiff",
+      "pearson_r": 0.91448,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        446,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "R08.zip:B6.tiff",
+      "pearson_r": 0.91436,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        427,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:D4.tiff",
+      "pearson_r": 0.91434,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        439,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:D7.tiff",
+      "pearson_r": 0.91413,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        434,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:H1.tiff",
+      "pearson_r": 0.91383,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        442,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R17.zip:C4.tiff",
+      "pearson_r": 0.91361,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        450,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R09.zip:C8.tiff",
+      "pearson_r": 0.91353,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        431,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:G8.tiff",
+      "pearson_r": 0.9134,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R08.zip:F6.tiff",
+      "pearson_r": 0.91298,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        441,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:H3.tiff",
+      "pearson_r": 0.91291,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R08.zip:H6.tiff",
+      "pearson_r": 0.91288,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        441,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "96-well_plate_movies_n=1_complexeye.zip:D2.tiff",
+      "pearson_r": 0.9128,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        443,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:A4.tiff",
+      "pearson_r": 0.91269,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "R16.zip:E4.tiff",
+      "pearson_r": 0.91261,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        439,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "R16.zip:G3.tiff",
+      "pearson_r": 0.91231,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        442,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:C2.tiff",
+      "pearson_r": 0.9112,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        448,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:B2.tiff",
+      "pearson_r": 0.91073,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:H4.tiff",
+      "pearson_r": 0.9102,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:H5.tiff",
+      "pearson_r": 0.90999,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        544,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:G3.tiff",
+      "pearson_r": 0.90914,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        442,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:E4.tiff",
+      "pearson_r": 0.90908,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        439,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:H8.tiff",
+      "pearson_r": 0.90885,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:H2.tiff",
+      "pearson_r": 0.90856,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        546,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "96-well_plate_movies_n=1_complexeye.zip:D1.tiff",
+      "pearson_r": 0.90854,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        447,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R08.zip:E3.tiff",
+      "pearson_r": 0.90842,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        447,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:H8.tiff",
+      "pearson_r": 0.90832,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:C6.tiff",
+      "pearson_r": 0.90807,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R08.zip:B6.tiff",
+      "pearson_r": 0.90801,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        427,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:H4.tiff",
+      "pearson_r": 0.9077,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R08.zip:A6.tiff",
+      "pearson_r": 0.9073,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        436,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "R08.zip:D5.tiff",
+      "pearson_r": 0.90684,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        443,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:C3.tiff",
+      "pearson_r": 0.90676,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R09.zip:E2.tiff",
+      "pearson_r": 0.90665,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        437,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:G1.tiff",
+      "pearson_r": 0.90606,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        445,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "R17.zip:C7.tiff",
+      "pearson_r": 0.9059,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        442,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:C3.tiff",
+      "pearson_r": 0.90567,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        431,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "R16.zip:C2.tiff",
+      "pearson_r": 0.90531,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        448,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:C8.tiff",
+      "pearson_r": 0.90479,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:C8.tiff",
+      "pearson_r": 0.90449,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        435,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:H3.tiff",
+      "pearson_r": 0.90427,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:D4.tiff",
+      "pearson_r": 0.9042,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A1.ome.zarr.zip",
+      "train_movie": "R08.zip:D2.tiff",
+      "pearson_r": 0.90413,
+      "eval_shape": [
+        438,
+        800,
+        1280
+      ],
+      "train_shape": [
+        441,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "R09.zip:F4.tiff",
+      "pearson_r": 0.90392,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        435,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "R17.zip:C8.tiff",
+      "pearson_r": 0.9038,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        445,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R09.zip:C4.tiff",
+      "pearson_r": 0.90365,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        435,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:C8.tiff",
+      "pearson_r": 0.9036,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:F3.tiff",
+      "pearson_r": 0.90349,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "R16.zip:E2.tiff",
+      "pearson_r": 0.90347,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        441,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R09.zip:G5.tiff",
+      "pearson_r": 0.90346,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        432,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "R08.zip:B8.tiff",
+      "pearson_r": 0.90341,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        430,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "R16.zip:H4.tiff",
+      "pearson_r": 0.90329,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        438,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "R17.zip:C2.tiff",
+      "pearson_r": 0.90287,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        450,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:C4.tiff",
+      "pearson_r": 0.90268,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:G5.tiff",
+      "pearson_r": 0.90222,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        541,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R16.zip:D8.tiff",
+      "pearson_r": 0.90204,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        436,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "R16.zip:C7.tiff",
+      "pearson_r": 0.90151,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        429,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R09.zip:F6.tiff",
+      "pearson_r": 0.9012,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        435,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "02_F8.ome.zarr.zip",
+      "train_movie": "384-well_plate_movies_n=16_complexeye.zip:G4.tiff",
+      "pearson_r": 0.90106,
+      "eval_shape": [
+        435,
+        800,
+        1280
+      ],
+      "train_shape": [
+        540,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R17.zip:B2.tiff",
+      "pearson_r": 0.90102,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        443,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R08.zip:F1.tiff",
+      "pearson_r": 0.90075,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        442,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A2.ome.zarr.zip",
+      "train_movie": "R08.zip:D2.tiff",
+      "pearson_r": 0.90066,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        441,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "03_F2.ome.zarr.zip",
+      "train_movie": "R16.zip:C4.tiff",
+      "pearson_r": 0.90061,
+      "eval_shape": [
+        441,
+        800,
+        1280
+      ],
+      "train_shape": [
+        439,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "R08.zip:D6.tiff",
+      "pearson_r": 0.90046,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        435,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "R08.zip:H5.tiff",
+      "pearson_r": 0.90042,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        448,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    },
+    {
+      "eval_movie": "01_A3.ome.zarr.zip",
+      "train_movie": "R09.zip:G5.tiff",
+      "pearson_r": 0.90033,
+      "eval_shape": [
+        436,
+        800,
+        1280
+      ],
+      "train_shape": [
+        432,
+        800,
+        1280
+      ],
+      "same_frame_shape": true,
+      "frame0_sha1_identical": false,
+      "decision": "reported only, not a match"
+    }
+  ],
+  "status": "ok",
+  "eval_source": "S-BIAD2196 CellTrack (tracking evaluation)",
+  "train_source": "ComplexEye Zenodo 10082674 (pretraining candidates)",
+  "archives_on_disk": [
+    "384-well_plate_movies_n=16_complexeye.zip",
+    "96-well_plate_movies_n=1_complexeye.zip",
+    "96-well_plate_movies_n=1_leica.zip",
+    "R06.zip",
+    "R08.zip",
+    "R09.zip",
+    "R16.zip",
+    "R17.zip"
+  ],
+  "n_fingerprint_failures": 14,
+  "fingerprint_failures": [
+    {
+      "key": "R08.zip:A2.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "key": "R08.zip:A3.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "key": "R08.zip:A5.tiff",
+      "status": "failed",
+      "error": "error: Error -3 while decompressing data: invalid code lengths set"
+    },
+    {
+      "key": "R08.zip:C5.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "key": "R08.zip:C4.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "key": "R08.zip:A1.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad CRC-32 for file 'A1.tiff'"
+    },
+    {
+      "key": "R08.zip:C6.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "key": "R08.zip:C3.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "key": "R08.zip:C2.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad CRC-32 for file 'C2.tiff'"
+    },
+    {
+      "key": "R08.zip:E5.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "key": "R08.zip:E6.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "key": "R08.zip:E4.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad CRC-32 for file 'E4.tiff'"
+    },
+    {
+      "key": "R08.zip:G4.tiff",
+      "status": "failed",
+      "error": "BadZipFile: Bad magic number for file header"
+    },
+    {
+      "key": "R08.zip:G3.tiff",
+      "status": "failed",
+      "error": "error: Error -3 while decompressing data: invalid stored block lengths"
+    }
+  ],
+  "interpretation": "1 matching pair(s): the listed ComplexEye movies are excluded from pretraining, and the affected S-BIAD2196 movies remain usable for evaluation once their twin is excluded.",
+  "elapsed_s": 88.7
+}

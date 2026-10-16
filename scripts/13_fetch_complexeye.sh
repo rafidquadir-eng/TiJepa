@@ -64,7 +64,11 @@ for row in "${ROWS[@]}"; do
     if echo "$md5  $f" | md5sum -c - >/dev/null 2>&1; then
       say "OK (already verified) $key"; continue
     fi
-    say "MD5 MISMATCH, refetching $key"
+    # aria2c treats a file whose size already matches the remote as complete and will
+    # not replace its bytes, so a corrupt-but-complete archive has to be removed or the
+    # refetch is a no-op that loops forever. This is what R08.zip did.
+    say "MD5 MISMATCH, discarding and refetching $key ($(stat -c%s "$f") bytes)"
+    rm -f "$f" "$f.aria2"
   fi
 
   gb=$(( size / 1000000000 ))
@@ -90,7 +94,12 @@ for row in "${ROWS[@]}"; do
       break
     fi
     if [ -f "$f" ]; then
-      say "  incomplete or corrupt after attempt $attempt ($(stat -c%s "$f") / $size bytes)"
+      have=$(stat -c%s "$f")
+      say "  unverified after attempt $attempt ($have / $size bytes)"
+      if [ "$have" -ge "$size" ]; then
+        say "  complete size but wrong digest: discarding so the refetch is not a no-op"
+        rm -f "$f" "$f.aria2"
+      fi
     fi
     if [ $attempt -ge 40 ]; then
       say "GIVING UP on $key after $attempt attempts"; break

@@ -1,0 +1,37 @@
+{
+  "source": "GEO GSE261647_logCPM.csv.gz",
+  "guard": {
+    "accession": "GSE261647",
+    "library_strategy": "ATAC-seq",
+    "organism": "Mus musculus",
+    "n_samples_expected": 18,
+    "n_samples_found": 18,
+    "row_id_class_expected": "interval",
+    "row_id_class_found": "interval",
+    "row_id_class_fractions": {
+      "interval": 1.0
+    },
+    "n_rows": 53796,
+    "passed": true,
+    "notes": [
+      "9 conditions x 2 replicates; condition codes use M for media (CL CT MC ML MM MP MT PL PT), unlike the RNA series which uses F.",
+      "This is the matrix the Tay deposit ships as a bare logCPM.csv at its root, and the one the v0 run mistook for RNA-seq."
+    ]
+  },
+  "cross_check_deposit": {
+    "n_shared_peaks": 53796,
+    "n_shared_samples": 18,
+    "max_abs_difference": 0.0,
+    "status": "identical"
+  },
+  "genome_build_check": {
+    "landmark": "Xkr4 (Entrez 497097), the first annotated gene on chr1",
+    "xkr4_start_mm10": 3214482,
+    "xkr4_start_mm39": 3269956,
+    "xkr4_start_in_annotation": 3214482,
+    "annotation_build": "mm10",
+    "earliest_chr1_peak_start_in_atac": 4414143,
+    "peaks_and_annotation_consistent_evidence": "The ATAC peaks carry no build label, so build agreement is established functionally rather than asserted: promoter peaks must land within 10 kb of the annotation's TSSs for the positive control below to work at all. They do, and the LPS-induced accessibility shift at those windows is about 15x the genome-wide shift. Coordinates from two different builds would be offset by tens to hundreds of kilobases and could not produce that enrichment.",
+    "builds_consistent": true
+  }
+}

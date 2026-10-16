@@ -1,0 +1,129 @@
+{
+  "status": "in_progress",
+  "archives_done": [
+    "96-well_plate_movies_n=1_leica.zip"
+  ],
+  "archives_in_record": [
+    "384-well_plate_movies_n=16_complexeye.zip",
+    "384-well_plate_movies_n=1_complexeye.zip",
+    "96-well_plate_movies_n=1_complexeye.zip",
+    "96-well_plate_movies_n=1_leica.zip",
+    "R01.zip",
+    "R02.zip",
+    "R03.zip",
+    "R04.zip",
+    "R05.zip",
+    "R06.zip",
+    "R07.zip",
+    "R08.zip",
+    "R09.zip",
+    "R10.zip",
+    "R11.zip",
+    "R12.zip",
+    "R13.zip",
+    "R14.zip",
+    "R15.zip",
+    "R16.zip",
+    "R17.zip"
+  ],
+  "next_shard_id": 1,
+  "bytes_downloaded": 0,
+  "n_clips": 2511,
+  "qc_thresholds": {
+    "method": "heuristic (S-BIAD2133 classifier not trainable; see RUN_REPORT_v1)",
+    "focus_min": 117.1711483001709,
+    "saturation_max": 0.0002077116489832006,
+    "drift_max": 0.005358003716023781,
+    "quantiles": {
+      "focus": 0.05,
+      "saturation": 0.98,
+      "drift": 0.98
+    },
+    "movie_fail_fraction": 0.5,
+    "n_frames_pooled": 96,
+    "distribution": {
+      "focus": {
+        "p1": 17.864144706726073,
+        "p50": 166.02167510986328,
+        "p99": 182.56622848510742
+      },
+      "saturation": {
+        "p50": 8.150972590627763e-05,
+        "p99": 0.00022463527851458885
+      },
+      "drift": {
+        "p50": 0.0009774594781278261,
+        "p99": 0.005661277529903517
+      }
+    }
+  },
+  "n_movies_qc_dropped_this_archive": 0,
+  "leakage_exclusions": [],
+  "movies": [
+    {
+      "key": "96-well_plate_movies_n=1_leica.zip:fMLP002_chan00.tiff",
+      "status": "ok",
+      "n_frames": 450,
+      "n_detections": 49980,
+      "n_tracks": 633,
+      "n_clips": 700,
+      "n_static": 64,
+      "um_per_px": 0.4762,
+      "seconds": 95.7,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.08333333333333333,
+        "reason": "out of focus"
+      }
+    },
+    {
+      "key": "96-well_plate_movies_n=1_leica.zip:CXCL8003_chan00.tiff",
+      "status": "ok",
+      "n_frames": 450,
+      "n_detections": 53498,
+      "n_tracks": 513,
+      "n_clips": 700,
+      "n_static": 61,
+      "um_per_px": 0.4762,
+      "seconds": 129.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.125,
+        "reason": "out of focus, saturated"
+      }
+    },
+    {
+      "key": "96-well_plate_movies_n=1_leica.zip:PBS001_chan00.tiff",
+      "status": "ok",
+      "n_frames": 450,
+      "n_detections": 49056,
+      "n_tracks": 418,
+      "n_clips": 593,
+      "n_static": 54,
+      "um_per_px": 0.4762,
+      "seconds": 139.7,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.125,
+        "reason": "out of focus, illumination drift"
+      }
+    },
+    {
+      "key": "96-well_plate_movies_n=1_leica.zip:CXCL1004_chan00.tiff",
+      "status": "ok",
+      "n_frames": 450,
+      "n_detections": 44283,
+      "n_tracks": 408,
+      "n_clips": 518,
+      "n_static": 61,
+      "um_per_px": 0.4762,
+      "seconds": 146.3,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.041666666666666664,
+        "reason": "out of focus"
+      }
+    }
+  ],
+  "generated_utc": "2026-10-16T00:24:20Z"
+}

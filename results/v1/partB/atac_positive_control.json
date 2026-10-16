@@ -1,0 +1,87 @@
+{
+  "status": "ok",
+  "analysis": "GSE261647 ATAC-seq (chromatin accessibility, NOT expression): ML (media->LPS) vs MM (media->media), logCPM difference at peaks within +/-10000 bp of canonical LPS/NF-kB gene TSSs",
+  "criterion": "increased accessibility at these peaks for at least 5 of 7 genes, and a one-sided Mann-Whitney shift against the genome-wide distribution with p < 0.05",
+  "genes": [
+    {
+      "gene": "Tnf",
+      "entrez": "21926",
+      "chr": "chr17",
+      "tss": 35201996,
+      "n_peaks_within_10kb": 6,
+      "n_peaks_increased": 6,
+      "mean_delta": 1.5616193250471326,
+      "max_delta": 2.434986712984385
+    },
+    {
+      "gene": "Il1b",
+      "entrez": "16176",
+      "chr": "chr2",
+      "tss": 129371120,
+      "n_peaks_within_10kb": 3,
+      "n_peaks_increased": 2,
+      "mean_delta": 0.4521407679369515,
+      "max_delta": 1.0497227524089103
+    },
+    {
+      "gene": "Il6",
+      "entrez": "16193",
+      "chr": "chr5",
+      "tss": 30013161,
+      "n_peaks_within_10kb": 1,
+      "n_peaks_increased": 1,
+      "mean_delta": 0.7686439900624555,
+      "max_delta": 0.7686439900624555
+    },
+    {
+      "gene": "Cxcl2",
+      "entrez": "20310",
+      "chr": "chr5",
+      "tss": 90903899,
+      "n_peaks_within_10kb": 5,
+      "n_peaks_increased": 4,
+      "mean_delta": 0.41732467725453093,
+      "max_delta": 1.453586524306429
+    },
+    {
+      "gene": "Ccl4",
+      "entrez": "20303",
+      "chr": "chr11",
+      "tss": 83662584,
+      "n_peaks_within_10kb": 5,
+      "n_peaks_increased": 5,
+      "mean_delta": 0.8840977070385643,
+      "max_delta": 1.3420509195584804
+    },
+    {
+      "gene": "Nfkbia",
+      "entrez": "18035",
+      "chr": "chr12",
+      "tss": 55492647,
+      "n_peaks_within_10kb": 6,
+      "n_peaks_increased": 6,
+      "mean_delta": 1.4031059924125333,
+      "max_delta": 2.263502766091605
+    },
+    {
+      "gene": "Tnfaip3",
+      "entrez": "21929",
+      "chr": "chr10",
+      "tss": 19015410,
+      "n_peaks_within_10kb": 4,
+      "n_peaks_increased": 4,
+      "mean_delta": 1.6169138414321649,
+      "max_delta": 2.1173393814902552
+    }
+  ],
+  "n_genes_with_peaks_in_window": 7,
+  "n_genes_increased": 7,
+  "n_peaks_in_windows": 30,
+  "mean_delta_at_windows": 1.0962728495275147,
+  "mean_delta_genome_wide": 0.07238273726872606,
+  "mannwhitney_u": 1386304.0,
+  "mannwhitney_p_one_sided": 4.901826893241682e-12,
+  "passed": true,
+  "n_peaks_total": 53796,
+  "consequence": "Part B accessibility analyses may report results."
+}
