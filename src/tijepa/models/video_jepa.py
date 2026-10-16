@@ -50,6 +50,82 @@ def multiblock_tube_mask(
     return m[None, :, :].expand(t, h, w).reshape(-1).clone()
 
 
+def future_mask(
+    grid: tuple[int, int, int],
+    n_future_slots: int = 2,
+    context_spatial_mask: float = 0.0,
+    min_keep: int = 16,
+    generator: torch.Generator | None = None,
+    device=None,
+) -> torch.Tensor:
+    """Mask every spatial position of the LAST `n_future_slots` temporal slots.
+
+    PLAN_v1.md F2.1. The v0 objective masked spatial tubes across all time, so the
+    model never had to predict forwards: review finding C4 was that TiJepa-0 is not a
+    forecasting model at all, which is also why its representation carried no
+    transferable temporal structure. Under this mask the context is the first
+    `t - n_future_slots` slots and the targets are everything in the remaining slots,
+    which makes the predictor a latent forecaster and is what F3.4 evaluates.
+
+    With tubelet depth 2 and 16 frames there are 8 temporal slots, so the default
+    masks the last 2 slots = the last 4 frames, leaving 6 slots = 12 frames of context.
+
+    `context_spatial_mask` optionally also masks that fraction of spatial positions
+    within the context slots (the plan allows up to 0.15), so the task is not purely
+    temporal. Those positions are additional targets.
+
+    Returns a (N,) bool tensor, True = masked (a prediction target).
+    """
+    t, h, w = grid
+    if not 0 < n_future_slots < t:
+        raise ValueError(
+            f"n_future_slots must be in (0, {t}), got {n_future_slots}")
+    m = torch.zeros(t, h, w, dtype=torch.bool, device=device)
+    m[t - n_future_slots:, :, :] = True
+    if context_spatial_mask > 0.0:
+        n_ctx = t - n_future_slots
+        n_pos = h * w
+        k = int(round(context_spatial_mask * n_pos))
+        if k > 0:
+            perm = torch.randperm(n_pos, generator=generator, device=device)[:k]
+            flat = m[:n_ctx].reshape(n_ctx, n_pos)
+            flat[:, perm] = True
+            m[:n_ctx] = flat.reshape(n_ctx, h, w)
+    flat = m.reshape(-1)
+    if int((~flat).sum()) < min_keep:
+        raise ValueError(
+            f"future mask leaves only {int((~flat).sum())} visible tokens, "
+            f"below min_keep={min_keep}; reduce n_future_slots or "
+            "context_spatial_mask")
+    return flat.clone()
+
+
+def sample_mask(
+    grid: tuple[int, int, int],
+    p_future: float = 0.5,
+    generator: torch.Generator | None = None,
+    device=None,
+    **kwargs,
+) -> tuple[torch.Tensor, str]:
+    """Per-batch choice between the spatial tube mask and the future mask (F2.1).
+
+    Returns `(mask, kind)` so the kind can be logged and the two objectives' losses
+    tracked separately: they are not on the same scale, and averaging them without
+    saying so would make the loss curve uninterpretable.
+    """
+    u = torch.rand(1, generator=generator, device=device).item()
+    if u < p_future:
+        return future_mask(
+            grid,
+            n_future_slots=kwargs.get("n_future_slots", 2),
+            context_spatial_mask=kwargs.get("context_spatial_mask", 0.0),
+            generator=generator, device=device), "future"
+    return multiblock_tube_mask(
+        grid,
+        n_blocks=kwargs.get("n_blocks", 8),
+        generator=generator, device=device), "spatial"
+
+
 class VideoJEPA(nn.Module):
     def __init__(
         self,
