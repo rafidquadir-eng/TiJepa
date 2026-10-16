@@ -20,7 +20,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 RAW = REPO / "data" / "raw"
-OUT = REPO / "results" / "downloads"
+OUT = REPO / "results" / "v1" / "downloads"
 
 ZENODO = "https://zenodo.org/api/records"
 

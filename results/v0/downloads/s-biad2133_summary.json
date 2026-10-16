@@ -1,0 +1,128 @@
+{
+  "key": "s-biad2133",
+  "kind": "biostudies",
+  "accession": "S-BIAD2133",
+  "record_url": "https://www.ebi.ac.uk/biostudies/studies/S-BIAD2133",
+  "title": "AutoQC-Bench: A Diffusion Model and Benchmark for Automatic Quality Control on High-throughput Microscopy",
+  "licence_verified": "MIT",
+  "licence_source": "BioStudies API study S-BIAD2133 attributes",
+  "role": "frame_qc_classifier",
+  "n_files_in_record": 8441,
+  "total_gb": 0.028,
+  "status": "ok",
+  "retrieved_utc": "2026-10-15T16:16:36Z",
+  "files_used_n": 8445,
+  "files_used_sample": [
+    {
+      "file": "test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/133/S-BIAD2133/Files/test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "size_bytes_record": 2775,
+      "size_bytes_local": 2775,
+      "pixel_size": "X,Y = 0.641 \u00b5m",
+      "time_interval_s": null,
+      "annotation_type": "Segmentation masks",
+      "source_image": "test/anomalies/air_bubble/human/raw/01_B1_100.tiff",
+      "status": "ok"
+    },
+    {
+      "file": "test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/133/S-BIAD2133/Files/test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "size_bytes_record": 2775,
+      "size_bytes_local": 2775,
+      "pixel_size": "X,Y = 0.641 \u00b5m",
+      "time_interval_s": null,
+      "annotation_type": "Segmentation masks",
+      "source_image": "test/anomalies/air_bubble/human/raw/01_B1_100.tiff",
+      "status": "ok"
+    },
+    {
+      "file": "test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/133/S-BIAD2133/Files/test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "size_bytes_record": 2775,
+      "size_bytes_local": 2775,
+      "pixel_size": "X,Y = 0.641 \u00b5m",
+      "time_interval_s": null,
+      "annotation_type": "Segmentation masks",
+      "source_image": "test/anomalies/air_bubble/human/raw/01_B1_100.tiff",
+      "status": "ok"
+    },
+    {
+      "file": "test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/133/S-BIAD2133/Files/test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "size_bytes_record": 2775,
+      "size_bytes_local": 2775,
+      "pixel_size": "X,Y = 0.641 \u00b5m",
+      "time_interval_s": null,
+      "annotation_type": "Segmentation masks",
+      "source_image": "test/anomalies/air_bubble/human/raw/01_B1_100.tiff",
+      "status": "ok"
+    },
+    {
+      "file": "test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/133/S-BIAD2133/Files/test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "size_bytes_record": 2775,
+      "size_bytes_local": 2775,
+      "pixel_size": "X,Y = 0.641 \u00b5m",
+      "time_interval_s": null,
+      "annotation_type": "Segmentation masks",
+      "source_image": "test/anomalies/air_bubble/human/raw/01_B1_100.tiff",
+      "status": "ok"
+    },
+    {
+      "file": "test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/133/S-BIAD2133/Files/test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "size_bytes_record": 2775,
+      "size_bytes_local": 2775,
+      "pixel_size": "X,Y = 0.641 \u00b5m",
+      "time_interval_s": null,
+      "annotation_type": "Segmentation masks",
+      "source_image": "test/anomalies/air_bubble/human/raw/01_B1_100.tiff",
+      "status": "ok"
+    },
+    {
+      "file": "test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/133/S-BIAD2133/Files/test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "size_bytes_record": 2775,
+      "size_bytes_local": 2775,
+      "pixel_size": "X,Y = 0.641 \u00b5m",
+      "time_interval_s": null,
+      "annotation_type": "Segmentation masks",
+      "source_image": "test/anomalies/air_bubble/human/raw/01_B1_100.tiff",
+      "status": "ok"
+    },
+    {
+      "file": "test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/133/S-BIAD2133/Files/test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "size_bytes_record": 2775,
+      "size_bytes_local": 2775,
+      "pixel_size": "X,Y = 0.641 \u00b5m",
+      "time_interval_s": null,
+      "annotation_type": "Segmentation masks",
+      "source_image": "test/anomalies/air_bubble/human/raw/01_B1_100.tiff",
+      "status": "ok"
+    },
+    {
+      "file": "test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/133/S-BIAD2133/Files/test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "size_bytes_record": 2775,
+      "size_bytes_local": 2775,
+      "pixel_size": "X,Y = 0.641 \u00b5m",
+      "time_interval_s": null,
+      "annotation_type": "Segmentation masks",
+      "source_image": "test/anomalies/air_bubble/human/raw/01_B1_100.tiff",
+      "status": "ok"
+    },
+    {
+      "file": "test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/133/S-BIAD2133/Files/test/anomalies/air_bubble/human/masks/01_B1_100.tiff",
+      "size_bytes_record": 2775,
+      "size_bytes_local": 2775,
+      "pixel_size": "X,Y = 0.641 \u00b5m",
+      "time_interval_s": null,
+      "annotation_type": "Segmentation masks",
+      "source_image": "test/anomalies/air_bubble/human/raw/01_B1_100.tiff",
+      "status": "ok"
+    }
+  ],
+  "files_used_note": "The full per-file listing is 4.2 MB and is kept out of git per PLAN_v1.md 11.5; it is regenerated by scripts/11_download_labelled.py --only s2133 into data/raw/s-biad2133/.file_listing.json (gitignored)."
+}

@@ -18,7 +18,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 RAW = REPO / "data" / "raw" / "geo"
 OUT = REPO / "results" / "omics"
-DL = REPO / "results" / "downloads"
+DL = REPO / "results" / "v1" / "downloads"
 
 SERIES = {
     "GSE260996": "partB_rnaseq_mouse_bmdm_ligand_pairs",

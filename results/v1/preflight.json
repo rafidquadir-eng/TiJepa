@@ -1,0 +1,210 @@
+{
+  "generated_utc": "2026-10-15T23:44:12Z",
+  "hostname": "150-136-70-112",
+  "platform": {
+    "system": "Linux",
+    "release": "6.8.0-62-generic",
+    "machine": "x86_64",
+    "python": "3.12.3"
+  },
+  "compute": {
+    "cpu_cores_logical": 30,
+    "cpu_model": "AMD EPYC 7J13 64-Core Processor",
+    "ram_total_gb": 226.8,
+    "gpus": [
+      {
+        "name": "NVIDIA A100-SXM4-40GB",
+        "memory_total_mib": 40960,
+        "driver_version": "595.91.07",
+        "compute_capability": "8.0"
+      }
+    ],
+    "gpu_count": 1,
+    "torch_version": "2.11.0+cu128",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "device_count": 1,
+    "bf16_supported": true
+  },
+  "disk": {
+    "path": "/home/ubuntu/proj2/data",
+    "total_gb": 531.4,
+    "used_gb": 293.9,
+    "free_gb": 237.5,
+    "all_data_local": true
+  },
+  "tier": {
+    "tier": "T1",
+    "reason": "exactly 1 GPU detected (40960 MiB); brief: 1 GPU -> T1",
+    "encoder": "ViT-S",
+    "precision": "bf16",
+    "raw_video_cap_gb": 120.0,
+    "raw_video_cap_source": "brief cap 120 GB",
+    "disk_cap_gb": 142.5,
+    "pretrain_gpu_hours_budget_per_seed": 24,
+    "pretrain_seeds": [
+      0
+    ],
+    "seed_policy": "single GPU: pretraining uses seed 0 only; seeds 0/1/2 used for all probes and downstream models (must be stated in Methods)",
+    "probe_seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "v1_schedule": {
+    "runs": [
+      "tijepa1_seed0",
+      "tijepa1_spatial_seed0"
+    ],
+    "parallel": false,
+    "gpu_hours_per_run": 12,
+    "gpu_hours_total": 24,
+    "note": "1 GPU: TiJepa-1 seed 0 for 12 GPU-h, then the spatial-only ablation for the SAME NUMBER OF STEPS (~24 GPU-h total). Pretraining has a single seed; seed variance in Part A comes from random-init draws, cell subsamples and fold assignment (PLAN_v1.md F3.5). This must be stated in Methods."
+  },
+  "rclone": {
+    "rclone_installed": true,
+    "rclone_version": "rclone v1.75.2",
+    "remotes": [
+      {
+        "name": "gdrive",
+        "type": "drive"
+      }
+    ],
+    "drive_remote": "gdrive"
+  },
+  "network": [
+    {
+      "url": "https://zenodo.org",
+      "status": null,
+      "reachable": false,
+      "error": "URLError: <urlopen error [Errno 104] Connection reset by peer>",
+      "seconds": 15.12
+    },
+    {
+      "url": "https://datadryad.org",
+      "status": 200,
+      "reachable": true,
+      "seconds": 1.25
+    },
+    {
+      "url": "https://ftp.ebi.ac.uk",
+      "status": 200,
+      "reachable": true,
+      "seconds": 0.24
+    },
+    {
+      "url": "https://www.ebi.ac.uk",
+      "status": 200,
+      "reachable": true,
+      "seconds": 0.35
+    },
+    {
+      "url": "https://ftp.ncbi.nlm.nih.gov",
+      "status": 200,
+      "reachable": true,
+      "seconds": 0.03
+    },
+    {
+      "url": "https://www.ncbi.nlm.nih.gov",
+      "status": 200,
+      "reachable": true,
+      "seconds": 0.02
+    },
+    {
+      "url": "https://figshare.com",
+      "status": 202,
+      "reachable": true,
+      "seconds": 0.3
+    },
+    {
+      "url": "https://ndownloader.figshare.com",
+      "status": null,
+      "reachable": false,
+      "error": "HTTPError: HTTP Error 404: Not Found",
+      "seconds": 0.28
+    },
+    {
+      "url": "https://bbbc.broadinstitute.org",
+      "status": 200,
+      "reachable": true,
+      "seconds": 0.36
+    },
+    {
+      "url": "https://data.broadinstitute.org",
+      "status": 200,
+      "reachable": true,
+      "seconds": 0.05
+    },
+    {
+      "url": "https://immunemap.org",
+      "status": 200,
+      "reachable": true,
+      "seconds": 0.57
+    },
+    {
+      "url": "https://huggingface.co",
+      "status": 200,
+      "reachable": true,
+      "seconds": 0.03
+    },
+    {
+      "url": "https://dl.fbaipublicfiles.com",
+      "status": null,
+      "reachable": false,
+      "error": "HTTPError: HTTP Error 403: Forbidden",
+      "seconds": 0.23
+    },
+    {
+      "url": "https://github.com",
+      "status": 200,
+      "reachable": true,
+      "seconds": 0.02
+    },
+    {
+      "url": "https://pypi.org",
+      "status": 200,
+      "reachable": true,
+      "seconds": 0.06
+    },
+    {
+      "url": "https://api.crossref.org",
+      "status": null,
+      "reachable": false,
+      "error": "HTTPError: HTTP Error 429: Too Many Requests",
+      "seconds": 0.02
+    },
+    {
+      "url": "https://doi.org",
+      "status": 200,
+      "reachable": true,
+      "seconds": 0.07
+    },
+    {
+      "url": "https://www.cellpose.org",
+      "status": 200,
+      "reachable": true,
+      "seconds": 0.28
+    },
+    {
+      "url": "https://www.bioconductor.org",
+      "status": 200,
+      "reachable": true,
+      "seconds": 0.05
+    },
+    {
+      "url": "https://cloud.r-project.org",
+      "status": 200,
+      "reachable": true,
+      "seconds": 0.03
+    }
+  ],
+  "unreachable_hosts": [
+    "https://zenodo.org",
+    "https://ndownloader.figshare.com",
+    "https://dl.fbaipublicfiles.com",
+    "https://api.crossref.org"
+  ],
+  "git_sha": "fb4e8cc1e793cdc91ef33d9508c6a0d6912c7fbb",
+  "git_branch": "tijepa-v0"
+}

@@ -1,6 +1,8 @@
-"""P0 preflight: record compute, disk, network reachability and compute tier.
+"""P0 / F0.2 preflight: record compute, disk, network reachability and compute tier.
 
-Writes results/preflight.json. No data is downloaded here.
+Writes results/v1/preflight.json (v0 wrote results/v0/preflight.json). No data is
+downloaded here. Extended for v1 per PLAN_v1.md F0.2: extra hosts, rclone remote
+detection, and the v1 pretraining schedule of PLAN_v1.md Section 5.4.
 """
 from __future__ import annotations
 
@@ -33,6 +35,12 @@ HOSTS = [
     "https://dl.fbaipublicfiles.com",
     "https://github.com",
     "https://pypi.org",
+    # added for v1 (PLAN_v1.md F0.2)
+    "https://api.crossref.org",
+    "https://doi.org",
+    "https://www.cellpose.org",
+    "https://www.bioconductor.org",
+    "https://cloud.r-project.org",
 ]
 
 # Caps from the run brief (overriding PLAN.md Section 2 for this run).
@@ -91,6 +99,62 @@ def reach(url: str, timeout: int = 15) -> dict:
             "error": f"{type(exc).__name__}: {exc}"[:200],
             "seconds": round(time.time() - t0, 2),
         }
+
+
+def rclone_remotes() -> dict:
+    """Detect rclone remotes by NAME AND TYPE ONLY.
+
+    Never reads, prints or stores rclone config contents, tokens or credentials
+    (PLAN_v1.md Section 1 rule 6). `rclone listremotes --long` emits only
+    "<name>: <type>" pairs, which is all that is captured here.
+    """
+    if shutil.which("rclone") is None:
+        return {"rclone_installed": False, "remotes": [], "drive_remote": None}
+    out = sh(["rclone", "listremotes", "--long"])
+    remotes = []
+    for line in out.splitlines():
+        if ":" not in line:
+            continue
+        name, _, rtype = line.partition(":")
+        remotes.append({"name": name.strip(), "type": rtype.strip()})
+    drive = next((r["name"] for r in remotes if r["type"] == "drive"), None)
+    if drive is None:
+        drive = next(
+            (r["name"] for r in remotes
+             if any(k in r["name"].lower() for k in ("gdrive", "drive"))), None)
+    return {
+        "rclone_installed": True,
+        "rclone_version": sh(["rclone", "version"]).splitlines()[0]
+        if sh(["rclone", "version"]) else None,
+        "remotes": remotes,
+        "drive_remote": drive,
+    }
+
+
+def v1_schedule(n_gpu: int) -> dict:
+    """PLAN_v1.md Section 5.4: pretraining runs and GPU-hour budget by tier."""
+    if n_gpu >= 4:
+        return {"runs": ["tijepa1_seed0", "tijepa1_seed1", "tijepa1_seed2",
+                         "tijepa1_spatial_seed0"],
+                "parallel": True, "gpu_hours_per_run": 16,
+                "note": "4+ GPUs: three seeds plus the spatial-only ablation in parallel"}
+    if n_gpu == 3:
+        return {"runs": ["tijepa1_seed0", "tijepa1_seed1", "tijepa1_spatial_seed0"],
+                "parallel": True, "gpu_hours_per_run": 16, "note": "3 GPUs"}
+    if n_gpu == 2:
+        return {"runs": ["tijepa1_seed0", "tijepa1_spatial_seed0"],
+                "parallel": True, "gpu_hours_per_run": 16, "note": "2 GPUs"}
+    if n_gpu == 1:
+        return {"runs": ["tijepa1_seed0", "tijepa1_spatial_seed0"],
+                "parallel": False, "gpu_hours_per_run": 12,
+                "gpu_hours_total": 24,
+                "note": "1 GPU: TiJepa-1 seed 0 for 12 GPU-h, then the spatial-only "
+                        "ablation for the SAME NUMBER OF STEPS (~24 GPU-h total). "
+                        "Pretraining has a single seed; seed variance in Part A comes "
+                        "from random-init draws, cell subsamples and fold assignment "
+                        "(PLAN_v1.md F3.5). This must be stated in Methods."}
+    return {"runs": [], "parallel": False, "gpu_hours_per_run": 0,
+            "note": "no GPU detected"}
 
 
 def choose_tier(n_gpu: int, min_mem_mib: int) -> tuple[str, str]:
@@ -205,16 +269,21 @@ def main() -> int:
             "seed_policy": seed_note,
             "probe_seeds": [0, 1, 2],
         },
+        "v1_schedule": v1_schedule(n_gpu),
+        "rclone": rclone_remotes(),
         "network": net,
         "unreachable_hosts": [r["url"] for r in net if not r["reachable"]],
         "git_sha": sh(["git", "-C", str(REPO), "rev-parse", "HEAD"]),
         "git_branch": sh(["git", "-C", str(REPO), "rev-parse", "--abbrev-ref", "HEAD"]),
     }
 
-    out = REPO / "results" / "preflight.json"
+    out = REPO / "results" / "v1" / "preflight.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(info, indent=2) + "\n")
-    print(json.dumps({k: info[k] for k in ("tier", "unreachable_hosts")}, indent=2))
+    print(json.dumps({k: info[k] for k in
+                      ("tier", "v1_schedule", "unreachable_hosts")}, indent=2))
+    print("rclone drive remote detected: "
+          f"{info['rclone']['drive_remote'] or 'NONE'}")
     print(f"\nwrote {out}")
     return 0
 

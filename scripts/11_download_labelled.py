@@ -15,7 +15,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 RAW = REPO / "data" / "raw"
-OUT = REPO / "results" / "downloads"
+OUT = REPO / "results" / "v1" / "downloads"
 
 DRYAD_DOI = "doi:10.5061/dryad.m0cfxpp8v"
 DRYAD_VERSION = "405404"
