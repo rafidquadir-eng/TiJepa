@@ -93,19 +93,21 @@ def fig2_pretraining(repo: Path) -> list[str]:
     fig, axes = plt.subplots(1, 2, figsize=(7.2, 2.6))
     ax = axes[0]
 
-    def smooth(y, k=20):
+    def smooth(x, y, k=20):
+        """Trailing moving mean over k log rows ('valid' mode: no edge artefacts)."""
+        y = np.nan_to_num(y, nan=np.nanmean(y))
         if len(y) < k:
-            return y
-        return np.convolve(np.nan_to_num(y, nan=np.nanmean(y)), np.ones(k) / k, "same")
+            return x, y
+        return x[k - 1:], np.convolve(y, np.ones(k) / k, "valid")
 
     L = logs["tijepa1"]
-    ax.plot(L["step"], smooth(L["loss_spatial"]), color=TIJEPA1, lw=1.6,
+    ax.plot(*smooth(L["step"], L["loss_spatial"]), color=TIJEPA1, lw=1.6,
             label="TiJepa-1, spatial-masked batches")
-    ax.plot(L["step"], smooth(L["loss_future"]), color=TIJEPA1, lw=1.6, ls="--",
+    ax.plot(*smooth(L["step"], L["loss_future"]), color=TIJEPA1, lw=1.6, ls="--",
             label="TiJepa-1, future-masked batches")
     if logs["tijepa1_spatial"]:
         S = logs["tijepa1_spatial"]
-        ax.plot(S["step"], smooth(S["loss_spatial"]), color=SPATIAL, lw=1.6,
+        ax.plot(*smooth(S["step"], S["loss_spatial"]), color=SPATIAL, lw=1.6,
                 label="TiJepa-1-spatial")
     ax.set_xlabel("step")
     ax.set_ylabel("latent L1 loss (moving mean)")
@@ -148,8 +150,8 @@ def fig4_bbbc054(repo: Path) -> list[str]:
     tob = bb["time_only_baseline"]["three_class"]["mean"]
     ax.axvline(1 / 3, color=MUTED, lw=0.8, ls=":")
     ax.axvline(tob, color=MUTED, lw=0.8, ls="--")
-    ax.text(1 / 3, len(order) - 0.4, "chance", fontsize=7, color=MUTED, ha="right")
-    ax.text(tob, len(order) - 0.4, " time only", fontsize=7, color=MUTED, ha="left")
+    ax.text(1 / 3, len(order) - 0.35, "chance ", fontsize=7, color=MUTED, ha="right")
+    ax.text(tob, len(order) - 0.75, " time only", fontsize=7, color=MUTED, ha="left")
     ax.set_yticks(range(len(order)), [_label(k, enc[k]) for k in order])
     ax.set_xlabel("three-class balanced accuracy (each dot one seed)")
     ax.set_title("Morphology-class probe")
@@ -205,12 +207,13 @@ def fig5_tracking_forecast(repo: Path) -> list[str]:
     movies = sorted({m for k in rows for m in summ[k]["per_movie_ratio_vs_copy_last"]})
     for j, k in enumerate(rows):
         pm = summ[k]["per_movie_ratio_vs_copy_last"]
-        xs = [movies.index(m) + (j - 1) * 0.18 for m in pm]
+        xs = [movies.index(m) + (j - (len(rows) - 1) / 2) * 0.12 for m in pm]
         ax.scatter(xs, list(pm.values()), s=26, color=_colour(k), zorder=3,
                    edgecolor="white", linewidth=0.8, label=_label(k, encs[k]))
     ax.axhline(1, color=MUTED, lw=0.8, ls=":")
-    ax.text(len(movies) - 0.5, 1, "copy-last", fontsize=7, color=MUTED, va="bottom",
-            ha="right")
+    ax.text(-0.4, 1, "copy-last baseline", fontsize=7, color=MUTED, va="bottom",
+            ha="left")
+    ax.set_xlim(-0.5, len(movies) - 0.5)
     ax.set_xticks(range(len(movies)), [m.split(".")[0] for m in movies], rotation=30)
     ax.set_ylabel("L1(predictor) / L1(copy-last)")
     ax.set_title("Latent forecasting, per movie")
@@ -233,10 +236,10 @@ def fig6_partB(repo: Path) -> list[str]:
         c = INK if lab == "LPS->LPS" else GREY
         ax.scatter([i] * len(vals), vals, s=24, color=c, zorder=3, edgecolor="white",
                    linewidth=0.8)
-        ax.text(i, -0.12, lab.replace("->", "→"), fontsize=6.5, ha="center", color=MUTED)
     ax.axhline(0.5, color=MUTED, lw=0.8, ls=":")
-    ax.set_xticks(range(len(pw)), [f"well {i + 1}" for i in range(len(pw))])
-    ax.set_ylim(-0.18, 1)
+    ax.set_xticks(range(len(pw)), [f"well {i + 1}\n{recs[0]['true_label'].replace('->', '→')}"
+                                   for i, (_w, recs) in enumerate(sorted(pw.items()))])
+    ax.set_ylim(0, 1)
     ax.set_ylabel("fraction of cells called tolerant")
     ax.set_title("Acute endotoxin tolerance, held-out wells")
     ax = axes[1]
@@ -277,14 +280,16 @@ def fig7_partC(repo: Path) -> list[str]:
             ax.scatter(x["per_donor_log2_difference"], [i] * 3, s=22, color=c, zorder=3,
                        edgecolor="white", linewidth=0.8)
             if exp in ("higher", "lower"):
-                ax.annotate("expected ↑" if exp == "higher" else "expected ↓",
-                            (1.0, i), xycoords=("axes fraction", "data"), fontsize=6.5,
-                            color=MUTED, ha="right", va="center")
+                ax.annotate("↑" if exp == "higher" else "↓", (1.02, i),
+                            xycoords=("axes fraction", "data"), fontsize=9, color=INK,
+                            ha="left", va="center", annotation_clip=False)
         ax.axvline(0, color=MUTED, lw=0.8)
-        ax.set_xlabel(f"{g}: log2 difference vs untrained → LPS (per donor)")
+        ax.set_xlabel("log2 Δ vs untrained → LPS")
         ax.set_title(g)
-    axes[0].set_yticks(range(len(rows)), [f"{a.replace('_', ' ')} ({g})"
-                                          for g, a, _ in rows])
+    arm = {"beta_glucan": "β-glucan", "itaconate": "itaconate", "DMI": "dimethyl itaconate",
+           "beta_glucan_plus_DMI": "β-glucan + DMI", "LPS_tolerised": "LPS-tolerised",
+           "IL4": "IL-4", "IL4_plus_LPS": "IL-4 + LPS"}
+    axes[0].set_yticks(range(len(rows)), [f"{arm.get(a, a)} ({g})" for g, a, _ in rows])
     fig.tight_layout()
     return _save(fig, repo, "fig7_partC")
 

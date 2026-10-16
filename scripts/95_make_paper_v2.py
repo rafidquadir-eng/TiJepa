@@ -37,6 +37,12 @@ from tijepa.viz.claims import Comparison, compare_phrase  # noqa: E402
 from tijepa.viz.tables import markdown_table  # noqa: E402
 
 V1 = REPO / "results" / "v1"
+ANALYSIS = {"rna_expression": "RNA expression",
+            "chromatin_accessibility": "chromatin accessibility"}
+ARM = {"beta_glucan": "β-glucan", "itaconate": "itaconate", "DMI": "dimethyl itaconate",
+       "beta_glucan_plus_DMI": "β-glucan + dimethyl itaconate",
+       "LPS_tolerised": "LPS-tolerised", "IL4": "IL-4", "IL4_plus_LPS": "IL-4 + LPS"}
+ANCHOR = {"IFNg": "interferon-γ", "IL4": "IL-4", "LPS": "LPS"}
 TEMPLATE = REPO / "paper" / "tijepa_v2.template.md"
 
 LABELS: dict[str, dict] = {}
@@ -286,14 +292,22 @@ def bbbc_section(bb) -> dict:
     confound = (
         "In BBBC054 one field of view is one LPS exposure time, so field and time are "
         "confounded. In the full annotation file the dependence of class on exposure time "
-        f"is moderate (Cramér's V = {conf['cramers_v_class_vs_time']:.3f} over "
-        f"{conf['n_annotations']:,} annotations and 60 times). In the sample used here, "
-        "where no class runs out every field contributes equal class counts, so exposure "
-        "time carries no class information **by construction**; a time-only classifier "
-        f"nevertheless reaches {f(tob['three_class']['mean'])} on the three-class task and "
-        f"{f(tob['round_vs_amoeboid']['mean'])} on round versus amoeboid, against chance "
-        "levels of 0.333 and 0.500, because amoeboid cells run out in some fields. Those "
-        "figures are the share of any encoder's score that needs no image. Balanced "
+        f"is measured by Cramér's V = {conf['cramers_v_class_vs_time']:.3f} over "
+        f"{conf['n_annotations']:,} annotations and 60 times. In the sample used here, "
+        "every field contributes equal counts of each class unless that class runs out in "
+        "the field, so wherever no class runs out exposure time carries no class "
+        "information **by construction**, and the time-only baseline below is not a "
+        "measure of the confound in the data. "
+        + (f"Here a time-only classifier scores {f(tob['three_class']['mean'])} on the "
+           f"three-class task and {f(tob['round_vs_amoeboid']['mean'])} on round versus "
+           "amoeboid, i.e. at chance (0.333 and 0.500). "
+           if abs(tob['three_class']['mean'] - 1 / 3) < 0.02 else
+           f"Here a time-only classifier reaches {f(tob['three_class']['mean'])} on the "
+           f"three-class task and {f(tob['round_vs_amoeboid']['mean'])} on round versus "
+           "amoeboid, above chance (0.333 and 0.500), because amoeboid cells run out in "
+           "some fields; those figures are the share of any encoder's score that needs no "
+           "image. ")
+        + "Balanced "
         "accuracy computed within six contiguous time bins is reported alongside, and a "
         "field-identity probe measures how much field-specific appearance each encoder "
         "carries.")
@@ -362,9 +376,9 @@ def track_section(tf) -> dict:
         "candidate tokens in a search window with an identical motion prior. Success is "
         "the fraction of frames within 1, 2, 4, 8 and 16 µm of the ground truth, and ⟨δ⟩ "
         "is their mean; survival is the number of frames tracked before the first error "
-        "above 8 µm. With six movies no confidence interval is reported; each method is "
-        "compared with the baseline by an exact sign-flip permutation over movies, whose "
-        "smallest attainable two-sided p is 0.031."
+        f"above 8 µm. With {tf['n_movies']} movies no confidence interval is reported; each "
+        "method is compared with the baseline by an exact sign-flip permutation over "
+        f"movies, whose smallest attainable two-sided p is {2 / 2 ** tf['n_movies']:.3f}."
         + (f" Movie(s) {', '.join(m.split('.')[0] for m in excl)} are excluded for models "
            "trained on the corpus, which contains a duplicate of them." if excl else "")
         + "\n\n" + markdown_table(
@@ -426,7 +440,7 @@ def track_section(tf) -> dict:
             f"attainable {f(p['minimum_achievable_p'])}).")
     supp = fc["supplementary_random_init"]["rows"]
     if supp:
-        fpara += (" Random-init models are listed in the supplementary results only "
+        fpara += ("\n\nRandom-init models are listed in the supplementary results only "
                   "(ratios " + ", ".join(f"{v['mean_ratio_vs_copy_last']:.2f}"
                                          for v in supp.values()
                                          if v.get("mean_ratio_vs_copy_last")) +
@@ -496,7 +510,7 @@ def partB(rna, atac, lig, b3, b34) -> dict:
         r = v["top2000_variable_targets"]
         p = r["exact_permutation"]
         bits.append(
-            f"for {k.replace('_', ' ')}, {100 * r['fraction_q2_positive']:.1f}% of the "
+            f"for {ANALYSIS[k]}, {100 * r['fraction_q2_positive']:.1f}% of the "
             f"{r['n_targets']:,} most variable targets have Q² > 0 against a permutation "
             f"null mean of {100 * p['null_mean']:.1f}% ({pf(p['p_value'])}, exact over all "
             f"{p['n_permutations'] + 1} condition orderings)")
@@ -544,15 +558,16 @@ def partC(anc, restim, c3, expect) -> dict:
     a = anc["anchors"]
     usable = anc.get("anchors_usable", [])
     out["C1_PARA"] = (
-        "An earlier design built activation axes from GSE46903 [xue2014] with donor-paired "
-        "moderated tests and a canonical-marker sanity rule. Under those requirements "
+        "Activation axes built from GSE46903 [xue2014] with donor-paired moderated tests "
+        "and a canonical-marker sanity rule do not reach this question: "
         + "; ".join(
-            f"the {k} anchor "
+            f"the {ANCHOR.get(k, k)} anchor "
             + ("passes" if v.get("status") == "ok" else
                "cannot be built (too few donor-matched pairs)" if v.get("status") ==
                "cannot_form_anchor" else "fails its marker rule")
             for k, v in a.items())
-        + f", leaving only {', '.join(usable) or 'no'} axis. An interferon-γ axis is not an "
+        + f", leaving only the {', '.join(ANCHOR.get(u, u) for u in usable) or 'no'} axis. "
+        "An interferon-γ axis is not an "
         "LPS-response signature, and the restimulation in the datasets below is LPS, so "
         "here the restimulation response is read directly from TNF and IL6, the canonical "
         "trained-immunity readouts, with a pre-specified NF-κB panel and the "
@@ -567,11 +582,13 @@ def partC(anc, restim, c3, expect) -> dict:
                 continue
             for g in ("TNF", "IL6"):
                 x = r["primary_TNF_IL6"][g]
-                rows.append([gse, arm.replace("_", " "), g,
+                rows.append([gse, ARM.get(arm, arm), g,
                              ", ".join(f"{v:+.2f}" for v in x["per_donor_log2_difference"]),
                              f"{x['mean_difference']:+.2f}",
                              x["sourced_expectation"],
-                             x.get("verdict", "—").replace(" the sourced direction", ""),
+                             {"matches the sourced direction": "matches",
+                              "opposite to the sourced direction": "opposite"}.get(
+                                  x.get("verdict"), "—"),
                              pf(x["exact_sign_flip_p_two_sided"])])
     pc = {g: restim[g]["positive_control"] for g in ("GSE212282", "GSE185433")}
     pc_txt = "; ".join(
@@ -626,7 +643,7 @@ def methods(ps, abl, plan, bb, tf) -> str:
 
 Pretraining ran on {', '.join(gpus)} GPUs, one at a time, with torch
 {' and '.join(torches)}; per-segment hosts, GPUs, step ranges and times are recorded with
-each checkpoint. On the second instance one GPU trained at
+each checkpoint. The dedicated GPU that ran most of the training sustained
 {bench.get('steps_per_hour', 0):,.0f} steps per hour at {bench.get('gpu_util_mean')}%
 mean utilisation with 28 data-loading workers reading memory-mapped shards from local
 disk. There is a single pretraining seed per objective; the seed-to-seed variation
@@ -682,9 +699,11 @@ are written atomically under an exclusive lock.
 
 ### 4.5 Probes and statistics
 
-All probes use frozen features. BBBC054 probes use folds grouped by field of view, a
-standardise-PCA-standardise pipeline applied identically to every encoder, and three seeds
-that each vary the cell subsample, the fold assignment and the random-init draw.
+All probes use frozen features. The pretrained baselines are an ImageNet-trained ViT-S/16
+and DINOv2 ViT-S/14 [dinov2], both through timm. BBBC054 probes use folds grouped by field
+of view, a standardise-PCA-standardise pipeline applied identically to every encoder, and
+three seeds that each vary the cell subsample, the fold assignment and the random-init
+draw.
 Hand-crafted features (segmentation, shape, Zernike moments, Haralick texture) are probed
 with both logistic regression and a random forest and both are reported. Exposure-time
 regression clips features to their 0.1-99.9% training-fold quantiles, scales them robustly
@@ -751,8 +770,16 @@ def main() -> int:
     ap.add_argument("--results", default=str(REPO / "results" / "v2"))
     ap.add_argument("--out", default=str(REPO / "paper" / "tijepa.md"))
     ap.add_argument("--labels-out", default=str(REPO / "paper" / "labels.json"))
+    ap.add_argument("--smoke", action="store_true",
+                    help="skip the finished-inputs gate; output must be outside paper/ "
+                         "and results/ (code test only)")
     a = ap.parse_args()
     R = Path(a.results)
+    if a.smoke:
+        for o in (a.out, a.labels_out):
+            if Path(o).resolve().is_relative_to(REPO / "paper") or \
+                    Path(o).resolve().is_relative_to(REPO / "results"):
+                raise SystemExit("--smoke output must be outside paper/ and results/")
 
     ps = load(R, "partA/pretrain_tijepa1_seed0.json")
     abl = load(R, "partA/pretrain_tijepa1_spatial_seed0.json")
@@ -766,7 +793,7 @@ def main() -> int:
     for name, s in (("TiJepa-1", ps), ("TiJepa-1-spatial", abl)):
         if not s.get("annealed"):
             print(f"WARNING: {name} is unannealed; the paper states it")
-    for res in (bb, tf):
+    for res in (() if a.smoke else (bb, tf)):
         for k, e in res["encoders"].items():
             cp = e.get("checkpoint") if isinstance(e, dict) else None
             if cp and cp.get("run_name", "").startswith("tijepa1") and not cp.get("final"):
@@ -810,9 +837,10 @@ def main() -> int:
         "FIG6": ("fig6_partB", "Part B. Per-well tolerance predictions and the B4 overlap "
                  "against its expectation."),
         "FIG7": ("fig7_partC", "Part C. Per-donor TNF and IL6 log2 differences after LPS "
-                 "restimulation, each arm against untrained cells, with the sourced "
-                 "expectation where one exists. Hypothesis-generating; no image is paired "
-                 "with these samples."),
+                 "restimulation, each arm against untrained cells of the same donor (one dot "
+                 "per donor). Black dots and an arrow mark arms whose source publication "
+                 "reports a direction (arrow = reported direction); grey arms have no sourced "
+                 "expectation. Hypothesis-generating; no image is paired with these samples."),
     }
     for i, (k, (fn, cap)) in enumerate(captions.items(), start=2):
         n = {"FIG2": 2, "FIG4": 3, "FIG5": 4, "FIG6": 5, "FIG7": 6}[k]
@@ -875,7 +903,13 @@ def main() -> int:
         f"point in the reported direction and {n_opp} the opposite way"
         + (", including β-glucan" if restim["GSE212282"].get("beta_glucan_opposite") else "")
         + "; with three donors none is significant.")
-    if fdir == -1:
+    if fdir is None:
+        sub["DISCUSSION_PARTA"] = (
+            "Self-supervised video pretraining on openly licensed innate-immune microscopy "
+            "is practical at modest scale and can be compared against strong baselines under "
+            "leakage-controlled protocols. The comparison that would attribute forecasting "
+            "to the future-masking objective is not available.")
+    elif fdir == -1:
         sub["DISCUSSION_PARTA"] = (
             "Self-supervised video pretraining on openly licensed innate-immune microscopy "
             "is practical at modest scale, and the future-masking objective produces a model "
@@ -898,16 +932,25 @@ def main() -> int:
     sub["POWER_PARA"] = (
         f"The Part B tolerance contrast has {b31['n_wells']} wells; the dynamics-to-omics "
         "regressions have five matched conditions; the restimulation datasets have three "
-        "donors each; tracking and forecasting have six movies. Donor, well and movie "
+        f"donors each; tracking and forecasting have {tf['n_movies']} movies. Donor, well "
+        "and movie "
         "counts, not model capacity, limit what any analysis here can conclude.")
     refs = load(R, "references.json")["references"]
+    body = TEMPLATE.read_text() + "\n".join(sub.values())
+    cited = {k for grp in re.findall(r"\[([a-z0-9_; ]+)\]", body)
+             for k in (x.strip() for x in grp.split(";"))}
+    refs = {k: r for k, r in refs.items()
+            if k in cited and r.get("status") in ("resolved", "arxiv_only")}
+    uncited = cited - set(refs)
+    if uncited:
+        raise SystemExit(f"cited but not resolved: {sorted(uncited)}")
     sub["REFERENCES"] = markdown_table(
         ["key", "first author", "title", "venue, year", "identifier"],
         [[k, r.get("first_author") or "—", (r.get("title") or "—")[:90],
           f"{r.get('container') or '—'}, {r.get('year') or '—'}",
           (r.get("doi") and f"doi:{r['doi']}") or (r.get("arxiv_id") and
                                                     f"arXiv:{r['arxiv_id']}") or "—"]
-         for k, r in refs.items() if r.get("status") == "resolved"])
+         for k, r in refs.items()])
     sub["DATA_AVAILABILITY"] = (
         "All datasets are public and listed with their licences in "
         "`manifests/datasets.yaml`. The Dryad macrophage movies "
