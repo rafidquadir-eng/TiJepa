@@ -1,5 +1,31 @@
 # Model weights
 
+## v1 checkpoints
+
+v1 produces two checkpoints, neither committed to git and neither published:
+
+| | |
+|---|---|
+| `checkpoints/tijepa1_T1_seed0.pt` | TiJepa-1: mixed spatial + future masking, the v1 model |
+| `checkpoints/tijepa1_spatial_T1_seed0.pt` | TiJepa-1-spatial: the matched-step spatial-only ablation |
+
+Both are ViT-S over 2x8x8 tubelets of 16x96x96 clips, bf16, tier T1 (one
+A100-SXM4-40GB), trained on the v1 corpus of openly licensed (CC BY 4.0) ComplexEye
+human neutrophil movies described in `results/v1/pretrain_corpus.json`. Steps,
+GPU-hours and per-mask losses are in `results/v1/partA/pretrain_tijepa1*.json`.
+
+Pretraining used a **single seed**, because the run had one GPU; the seed variation
+reported in Part A comes from random-init draws, cell subsamples and fold assignments.
+
+Both are backed up to the author's private Google Drive with matching md5s
+(`reports/BACKUP.md`). Google Drive is private storage, not publication.
+
+**Neither checkpoint has been published**, and no GitHub Release was created: the plan
+forbids publishing weights, posting to bioRxiv, Zenodo or Hugging Face, and creating
+Releases. Publishing them is the author's decision.
+
+## v0 checkpoint
+
 The TiJepa-0 checkpoint is **not committed to git** (PLAN.md §1.3.2 and the repository
 `.gitignore` exclude `checkpoints/` and `*.pt`).
 
