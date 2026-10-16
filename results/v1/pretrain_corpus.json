@@ -1,5 +1,5 @@
 {
-  "status": "in_progress",
+  "status": "partial",
   "archives_done": [
     "384-well_plate_movies_n=16_complexeye.zip",
     "96-well_plate_movies_n=1_complexeye.zip",
@@ -6889,5 +6889,44 @@
       }
     }
   ],
-  "generated_utc": "2026-10-16T02:40:04Z"
+  "generated_utc": "2026-10-16T02:55:40Z",
+  "n_archives_done": 10,
+  "n_archives_in_record": 21,
+  "n_movies_ok": 407,
+  "n_movies_excluded_leakage": 1,
+  "n_movies_excluded_qc": 18,
+  "n_movies_failed": 0,
+  "n_shards": 43,
+  "total_gb": 41.24,
+  "clips_by_source": {
+    "complexeye_leica": 2511,
+    "complexeye": 277136
+  },
+  "clips_by_stride": {
+    "1": 211661,
+    "3": 61078,
+    "9": 6173,
+    "27": 735
+  },
+  "n_static_clips": 28450,
+  "static_fraction": 0.1017,
+  "strides_requested": [
+    1,
+    3,
+    9,
+    27
+  ],
+  "target_um_per_px": 0.65,
+  "pixel_size_provenance": {
+    "complexeye": {
+      "um_per_px": 0.641,
+      "source": "S-BIAD2196 BioStudies per-file metadata (same instrument), cross-checked against Cibir et al. Nat Commun 2023 Methods: OV9712 sensor, 1280x800 over 3888x2430 um active area = 3.0375 um/sensor px at 4.69x = 0.648 um/px, agreeing to 1%",
+      "verified": true
+    },
+    "complexeye_leica": {
+      "um_per_px": 0.4762,
+      "source": "Cibir et al. Nat Commun 2023 Methods report the Leica DMI6000 B field of view as 662.9 x 495.2 um; these movies are 1392 x 1040 px, so 662.9/1392 = 0.4762 and 495.2/1040 = 0.4762 um/px, consistent in both axes",
+      "verified": true
+    }
+  }
 }
