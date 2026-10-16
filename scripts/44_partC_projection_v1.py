@@ -10,7 +10,7 @@ Two independent requirements both fail in this run, and either alone would be en
 stop it:
 
   1. **No image anchors.** The Dryad movies were not provided, and no other accessible
-     dataset carries M0/M1/M2 image labels (see results/v1/partA/dryad_benchmark.json).
+     dataset carries M0/M1/M2 image labels (see results/v2/partA/dryad_benchmark.json).
   2. **No matching omics anchor.** Of the anchors 8.1 could build, the LPS anchor
      cannot be formed at all - GSE46903 has only 2 donor-matched sLPS/con pairs at
      GM-CSF 72 h against a minimum of 3 - and the IL-4 anchor fails its canonical-marker
@@ -33,21 +33,23 @@ print = functools.partial(print, flush=True)
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
-OUT = REPO / "results" / "v1" / "partC"
+OUT = REPO / "results" / "v2" / "partC"
+ANCHORS = REPO / "results" / "v1" / "partC" / "c1_anchors.json"  # unchanged in v2
 
 
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
-    anchors_p = OUT / "c1_anchors.json"
+    anchors_p = ANCHORS
     anchors = json.loads(anchors_p.read_text()) if anchors_p.exists() else {}
-    dryad_p = REPO / "results" / "v1" / "partA" / "dryad_benchmark.json"
+    dryad_p = REPO / "results" / "v2" / "partA" / "dryad_benchmark.json"
     dryad = json.loads(dryad_p.read_text()) if dryad_p.exists() else {}
 
     usable = anchors.get("anchors_usable", [])
     per_anchor = {k: v.get("status") for k, v in (anchors.get("anchors") or {}).items()}
 
     res = {
-        "phase": "F5 8.4",
+        "phase": "F5 8.4 / G2.4",
+        "anchors_source": "results/v1/partC/c1_anchors.json (not re-run in v2)",
         "framing": "HYPOTHESIS-GENERATING ONLY; no image is paired with any molecular "
                    "sample; cross-study, cross-platform and cross-species",
         "status": "not_performed",

@@ -115,3 +115,60 @@ Two things that look like v0 errors and are not:
 - **The BBBC054 axis convention.** v0 found that the BBBC054 page's statement
   ("axis-1 is x") contradicts its own data and followed the data. That was correct, and
   v1 keeps it; only the stale comment in `scripts/60_partA_eval.py` needed fixing.
+
+---
+
+# v1 errata
+
+Corrections to the v1 record (`reports/RUN_REPORT_v1.md`, `paper/tijepa.md` as of commit
+`94576a3`), established while executing `PLAN_v2.md`. Same rule as above: where a
+machine-written record contradicts a hand-written claim, the record wins.
+
+## V1-E1. TiJepa-0 results were labelled TiJepa-1 (finding N1)
+
+`scripts/91_make_paper_v1.py` mapped the results key `E4_tijepa0_only_available` to the
+label "E4 TiJepa-1". The v1 BBBC054 and tracking numbers printed as TiJepa-1 came from
+`tijepa0_T1_seed0.pt`, because the TiJepa-1 checkpoint was still at step 14,751 of an
+unfinished run. v2 derives every label from the checkpoint record stored with each result
+(`src/tijepa/eval/provenance.py`), refuses unfinished TiJepa-1 checkpoints, and the claims
+checker fails on any mismatch.
+
+## V1-E2. The paper, figures and run report were generated before pretraining finished (N2)
+
+The v1 report marked C3 "partially fixed - pretraining ran to its GPU-hour budget" when
+the run had used 1.51 of 12 GPU-hours. v2 regenerates the paper, figures and report only
+after both pretraining runs and all evaluations have finished.
+
+## V1-E3. The GSE212282 "4-OI" arm is dimethyl itaconate (DMI)
+
+`scripts/43_partC_restim.py` labelled the files `*_d7_DMI` as `4OI_trained_restim` and
+`*_d7_BG_DMI` as `beta_glucan_plus_4OI_restim`. The file names, the GEO overall design
+("LPS, BG, DMI, or Itaconate") and the source paper (Ferreira et al., *Cell Rep* 2023,
+"Dimethyl itaconate induces long-term innate immune responses") all say **DMI**; 4-octyl
+itaconate is not an arm of this series.
+
+## V1-E4. Part C "expected directions" were assumed, not sourced (N8)
+
+The v1 restimulation code set "expected higher" for any arm whose name contained `train`,
+`BG` or `IL4` and "expected lower" otherwise, so the itaconate, DMI and β-glucan + DMI
+arms received expectations no publication gave them. v2 sources each expectation from the
+dataset's own publication (`results/v2/partC/arm_expectations.json`) or states none.
+
+## V1-E5. The BBBC054 numbers came from a smoke run (N6)
+
+`RUN_REPORT_v1.md` and the paper reported BBBC054 results computed on 867-879 cells per
+seed (`logs/v1_bbbc_smoke.log`), not the ~9,000 the run command specifies. The E1
+exposure-time MAE of 1.0 x 10^8 h came from `np.nan_to_num` turning infinite feature
+values into 1.8 x 10^308 before the regressor. The note that E1 was "probed with logistic
+regression and a random forest, better reported" was not what the code did: only
+logistic regression ran. v2 reports both probes.
+
+## V1-E6. The B3.1 sensitivity "seeds" were identical (N10)
+
+Each seed refitted the same cells with the same deterministic folds, so the three values
+were equal and the sd was exactly 0. v2 draws a per-well cell subsample per seed.
+
+## V1-E7. The leakage check covered 8 of the 10 corpus archives (N5)
+
+R05 and R12 had been deleted before the check ran. v2 re-fetches all 10 archives and
+adds a full-resolution comparison (`results/v2/leakage_check_full.json`).

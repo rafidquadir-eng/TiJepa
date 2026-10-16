@@ -650,6 +650,15 @@ def main() -> int:
     e1_cache: dict[int, np.ndarray] = {}
 
     def e1_embed(d: dict, seed: int) -> np.ndarray:
+        # on-disk cache keyed by the exact crop set, so the CPU-heavy features can be
+        # computed while the GPU is busy and reused by the final run
+        import hashlib
+        tag = hashlib.sha1(d["X"].tobytes()).hexdigest()[:16]
+        cpath = REPO / "data" / "interim" / "bbbc054_e1_cache" / f"seed{seed}_{tag}.npz"
+        if seed not in e1_cache and cpath.exists():
+            z = np.load(cpath, allow_pickle=False)
+            e1_cache[seed] = z["feats"]
+            result["e1_segmentation_methods"] = json.loads(str(z["methods"]))
         if seed not in e1_cache:
             feats, methods = [], []
             for img in d["X"]:
@@ -660,6 +669,9 @@ def main() -> int:
             result["e1_segmentation_methods"] = {
                 str(u): int(c) for u, c in zip(uniq, cnt, strict=False)}
             e1_cache[seed] = np.stack(feats)
+            cpath.parent.mkdir(parents=True, exist_ok=True)
+            np.savez(cpath, feats=e1_cache[seed],
+                     methods=json.dumps(result["e1_segmentation_methods"]))
         return e1_cache[seed]
 
     if want("E1"):

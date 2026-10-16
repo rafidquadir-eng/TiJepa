@@ -7,7 +7,7 @@ nothing to do with it.
 
 This script takes the candidate list from PLAN_v1.md 10.4 plus the sources actually used
 in the run, resolves each DOI against Crossref (`api.crossref.org/works/<doi>`), and
-writes `results/v1/references.json` with the **authoritative** title, first author,
+writes `results/v2/references.json` with the **authoritative** title, first author,
 container and year as the registry returns them. A DOI that does not resolve stays
 `TODO(verify)` and is never silently dressed up as verified. For arXiv preprints the
 arXiv id is recorded and, where a journal DOI exists, that is resolved too.
@@ -28,7 +28,7 @@ from pathlib import Path
 print = functools.partial(print, flush=True)
 
 REPO = Path(__file__).resolve().parents[1]
-OUT = REPO / "results" / "v1"
+OUT = REPO / "results" / "v2"
 CROSSREF = "https://api.crossref.org/works/"
 UA = "TiJepa-reference-check/1.0 (mailto:noreply@anthropic.com)"
 
@@ -52,6 +52,9 @@ TITLE_MUST_CONTAIN: dict[str, tuple[str, ...]] = {
     "mgi": ("mouse genome informatics",),
     "trackpy": ("trackpy",),
     "scikit_image": ("scikit-image",),
+    "ferreira2023": ("dimethyl itaconate", "innate immune"),
+    "schrijver2023": ("immunoparalysis", "interleukin-4"),
+    "pydeseq2": ("pydeseq2",),
 }
 
 
@@ -102,6 +105,14 @@ CANDIDATES: dict[str, tuple[str | None, str | None, str]] = {
                 "trackpy, used for detection linking in preprocessing"),
     "scikit_image": ("10.7717/peerj.453", None,
                      "scikit-image, used for segmentation and texture features"),
+    "ferreira2023": ("10.1016/j.celrep.2023.112658", None,
+                     "Ferreira et al. 2023, the source of GSE212282 (GEO Series_pubmed_id "
+                     "37330914) and of the sourced Part C expectations"),
+    "schrijver2023": ("10.1038/s41551-023-01050-0", None,
+                      "Schrijver, Roring et al. 2023, the source of GSE185433 (GEO "
+                      "Series_pubmed_id 37291433) and of the sourced IL-4 expectation"),
+    "pydeseq2": ("10.1093/bioinformatics/btad547", None,
+                 "PyDESeq2, used for the B4 interaction model"),
 }
 
 # A bibliographic title query was tried for the one reference that had no DOI and

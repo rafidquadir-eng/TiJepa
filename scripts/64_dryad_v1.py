@@ -27,14 +27,14 @@ print = functools.partial(print, flush=True)
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
 
-OUT = REPO / "results" / "v1" / "partA"
+OUT = REPO / "results" / "v2" / "partA"
 DATA = REPO / "data" / "raw" / "dryad_bmdm"
 
 
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     files = sorted(p.name for p in DATA.glob("**/*") if p.is_file()) if DATA.exists() else []
-    intake = REPO / "results" / "v1" / "manual_intake.json"
+    intake = REPO / "results" / "v2" / "manual_intake.json"
     status = {
         "phase": "F3.1",
         "analysis": "Dryad M0/M1/M2 BMDM video benchmark, leave-one-batch-out",
@@ -57,10 +57,11 @@ def main() -> int:
         status.update({
             "status": "not_provided",
             "reason": (
-                "The author prerequisite in PLAN_v1.md Section 2.3 was not completed: "
-                "TiJepa/manual_downloads/ does not exist on the Drive remote and "
-                "neither Dryad m0cfxpp8v nor LTDB is anywhere in the account "
-                "(see results/v1/manual_intake.json). Automated download remains "
+                "The author prerequisite (PLAN_v1.md 2.3, PLAN_v2.md 2.1) was not "
+                "completed: TiJepa/manual_downloads/ does not exist on the author's "
+                "Drive and neither Dryad m0cfxpp8v nor LTDB is in the account (checked "
+                "at the start of the run and again before the evaluations; see "
+                "results/v2/manual_intake.json). Automated download remains "
                 "blocked by a proof-of-work interstitial, which PLAN.md Section 2 and "
                 "Section 9 forbid bypassing, so the run continued per the Section 14 "
                 "degrade rule."),
@@ -73,11 +74,14 @@ def main() -> int:
                 "Part C 8.4 (the C3 projection) cannot be performed: it needs "
                 "image-space M0/M1/M2 centroids with stimuli matched to the omics "
                 "anchors. See results/v1/partC/c3_projection.json.",
-                "The planned every-2-hour linear-probe collapse monitor of F2.2 used "
-                "Dryad; collapse was instead monitored by embedding std and effective "
-                "rank logged every 50 steps.",
+                "The every-2-hour collapse monitor uses a fixed BBBC054 subset instead "
+                "of Dryad (results/v2/pretrain_monitor.csv).",
             ],
             "first_todo_author": True,
+            "code_path": "this script detects the files and records them; the "
+                         "leave-one-batch-out benchmark itself still has to be written "
+                         "against the deposit's README (condition, batch and "
+                         "magnification encoding), which nobody in this project has seen",
             "intake_record": str(intake.relative_to(REPO)),
         })
         print("Dryad NOT PROVIDED: recording an explicit status and continuing")
