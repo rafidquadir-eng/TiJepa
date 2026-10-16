@@ -46,3 +46,6 @@ ignore = ["E741"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = [
+    "data: needs downloaded data; such tests skip automatically when it is absent, so the suite passes on a clean checkout (PLAN_v1.md 11.4)",
+]
