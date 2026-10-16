@@ -4,6 +4,7 @@
     "384-well_plate_movies_n=16_complexeye.zip",
     "96-well_plate_movies_n=1_complexeye.zip",
     "96-well_plate_movies_n=1_leica.zip",
+    "R05.zip",
     "R06.zip",
     "R08.zip",
     "R09.zip",
@@ -33,34 +34,34 @@
     "R16.zip",
     "R17.zip"
   ],
-  "next_shard_id": 31,
-  "bytes_downloaded": 9737483121,
-  "n_clips": 196347,
+  "next_shard_id": 37,
+  "bytes_downloaded": 19492307750,
+  "n_clips": 237647,
   "qc_thresholds": {
     "method": "heuristic (S-BIAD2133 classifier not trainable; see RUN_REPORT_v1)",
-    "focus_min": 28.797712898254396,
-    "saturation_max": 0.0005426757812499999,
-    "drift_max": 0.45097414316063167,
+    "focus_min": 29.99728574752808,
+    "saturation_max": 0.000750683593749999,
+    "drift_max": 0.46489540656486816,
     "quantiles": {
       "focus": 0.05,
       "saturation": 0.98,
       "drift": 0.98
     },
     "movie_fail_fraction": 0.5,
-    "n_frames_pooled": 7224,
+    "n_frames_pooled": 8664,
     "distribution": {
       "focus": {
-        "p1": 18.219211769104003,
-        "p50": 60.03292274475098,
-        "p99": 194.83525573730458
+        "p1": 19.04482822418213,
+        "p50": 64.1619873046875,
+        "p99": 210.33203170776378
       },
       "saturation": {
         "p50": 0.0,
-        "p99": 0.001235878906249999
+        "p99": 0.0013843652343750055
       },
       "drift": {
-        "p50": 0.01778120631000278,
-        "p99": 0.55760455093365
+        "p50": 0.018343900984764034,
+        "p99": 0.5796321990334703
       }
     }
   },
@@ -4901,7 +4902,967 @@
         "fail_fraction": 0.08333333333333333,
         "reason": "illumination drift"
       }
+    },
+    {
+      "key": "R05.zip:D1.tiff",
+      "status": "ok",
+      "n_frames": 438,
+      "n_detections": 93284,
+      "n_tracks": 1624,
+      "n_clips": 700,
+      "n_static": 70,
+      "um_per_px": 0.641,
+      "seconds": 106.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:B4.tiff",
+      "status": "ok",
+      "n_frames": 436,
+      "n_detections": 91365,
+      "n_tracks": 1666,
+      "n_clips": 700,
+      "n_static": 71,
+      "um_per_px": 0.641,
+      "seconds": 107.4,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:C7.tiff",
+      "status": "ok",
+      "n_frames": 436,
+      "n_detections": 74358,
+      "n_tracks": 1500,
+      "n_clips": 700,
+      "n_static": 80,
+      "um_per_px": 0.641,
+      "seconds": 109.1,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:D2.tiff",
+      "status": "ok",
+      "n_frames": 438,
+      "n_detections": 77729,
+      "n_tracks": 1512,
+      "n_clips": 700,
+      "n_static": 71,
+      "um_per_px": 0.641,
+      "seconds": 123.6,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:D7.tiff",
+      "status": "ok",
+      "n_frames": 431,
+      "n_detections": 76261,
+      "n_tracks": 1526,
+      "n_clips": 700,
+      "n_static": 71,
+      "um_per_px": 0.641,
+      "seconds": 132.5,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:B3.tiff",
+      "status": "ok",
+      "n_frames": 434,
+      "n_detections": 87018,
+      "n_tracks": 1593,
+      "n_clips": 700,
+      "n_static": 67,
+      "um_per_px": 0.641,
+      "seconds": 133.9,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.041666666666666664,
+        "reason": "out of focus"
+      }
+    },
+    {
+      "key": "R05.zip:D5.tiff",
+      "status": "ok",
+      "n_frames": 433,
+      "n_detections": 86865,
+      "n_tracks": 1560,
+      "n_clips": 700,
+      "n_static": 86,
+      "um_per_px": 0.641,
+      "seconds": 141.1,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:C4.tiff",
+      "status": "ok",
+      "n_frames": 430,
+      "n_detections": 70095,
+      "n_tracks": 1289,
+      "n_clips": 700,
+      "n_static": 78,
+      "um_per_px": 0.641,
+      "seconds": 144.1,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:B6.tiff",
+      "status": "ok",
+      "n_frames": 435,
+      "n_detections": 76046,
+      "n_tracks": 1455,
+      "n_clips": 700,
+      "n_static": 82,
+      "um_per_px": 0.641,
+      "seconds": 148.9,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:C1.tiff",
+      "status": "ok",
+      "n_frames": 439,
+      "n_detections": 86253,
+      "n_tracks": 1760,
+      "n_clips": 700,
+      "n_static": 61,
+      "um_per_px": 0.641,
+      "seconds": 149.4,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:D8.tiff",
+      "status": "ok",
+      "n_frames": 438,
+      "n_detections": 77229,
+      "n_tracks": 1561,
+      "n_clips": 700,
+      "n_static": 82,
+      "um_per_px": 0.641,
+      "seconds": 150.3,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:C3.tiff",
+      "status": "ok",
+      "n_frames": 437,
+      "n_detections": 69211,
+      "n_tracks": 1343,
+      "n_clips": 700,
+      "n_static": 80,
+      "um_per_px": 0.641,
+      "seconds": 152.7,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:B8.tiff",
+      "status": "ok",
+      "n_frames": 439,
+      "n_detections": 79594,
+      "n_tracks": 1551,
+      "n_clips": 700,
+      "n_static": 82,
+      "um_per_px": 0.641,
+      "seconds": 157.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:A5.tiff",
+      "status": "ok",
+      "n_frames": 435,
+      "n_detections": 73550,
+      "n_tracks": 1417,
+      "n_clips": 700,
+      "n_static": 69,
+      "um_per_px": 0.641,
+      "seconds": 158.6,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:D4.tiff",
+      "status": "ok",
+      "n_frames": 436,
+      "n_detections": 82399,
+      "n_tracks": 1473,
+      "n_clips": 700,
+      "n_static": 84,
+      "um_per_px": 0.641,
+      "seconds": 158.6,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:A3.tiff",
+      "status": "ok",
+      "n_frames": 437,
+      "n_detections": 92097,
+      "n_tracks": 1236,
+      "n_clips": 700,
+      "n_static": 79,
+      "um_per_px": 0.641,
+      "seconds": 159.8,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:A4.tiff",
+      "status": "ok",
+      "n_frames": 430,
+      "n_detections": 79379,
+      "n_tracks": 1609,
+      "n_clips": 700,
+      "n_static": 61,
+      "um_per_px": 0.641,
+      "seconds": 163.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:B7.tiff",
+      "status": "ok",
+      "n_frames": 436,
+      "n_detections": 73876,
+      "n_tracks": 1512,
+      "n_clips": 700,
+      "n_static": 73,
+      "um_per_px": 0.641,
+      "seconds": 167.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:D3.tiff",
+      "status": "ok",
+      "n_frames": 433,
+      "n_detections": 64263,
+      "n_tracks": 1220,
+      "n_clips": 700,
+      "n_static": 55,
+      "um_per_px": 0.641,
+      "seconds": 169.3,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:A7.tiff",
+      "status": "ok",
+      "n_frames": 437,
+      "n_detections": 75199,
+      "n_tracks": 1570,
+      "n_clips": 700,
+      "n_static": 78,
+      "um_per_px": 0.641,
+      "seconds": 178.7,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:B5.tiff",
+      "status": "ok",
+      "n_frames": 432,
+      "n_detections": 88130,
+      "n_tracks": 1665,
+      "n_clips": 700,
+      "n_static": 80,
+      "um_per_px": 0.641,
+      "seconds": 178.8,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.041666666666666664,
+        "reason": "out of focus"
+      }
+    },
+    {
+      "key": "R05.zip:C5.tiff",
+      "status": "ok",
+      "n_frames": 437,
+      "n_detections": 79842,
+      "n_tracks": 1479,
+      "n_clips": 700,
+      "n_static": 67,
+      "um_per_px": 0.641,
+      "seconds": 179.3,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:C8.tiff",
+      "status": "ok",
+      "n_frames": 430,
+      "n_detections": 73363,
+      "n_tracks": 1420,
+      "n_clips": 700,
+      "n_static": 63,
+      "um_per_px": 0.641,
+      "seconds": 194.6,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:C2.tiff",
+      "status": "ok",
+      "n_frames": 434,
+      "n_detections": 87073,
+      "n_tracks": 1558,
+      "n_clips": 700,
+      "n_static": 52,
+      "um_per_px": 0.641,
+      "seconds": 195.4,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:A6.tiff",
+      "status": "ok",
+      "n_frames": 430,
+      "n_detections": 66771,
+      "n_tracks": 1266,
+      "n_clips": 700,
+      "n_static": 63,
+      "um_per_px": 0.641,
+      "seconds": 221.6,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.041666666666666664,
+        "reason": "out of focus"
+      }
+    },
+    {
+      "key": "R05.zip:C6.tiff",
+      "status": "ok",
+      "n_frames": 430,
+      "n_detections": 74735,
+      "n_tracks": 1435,
+      "n_clips": 700,
+      "n_static": 62,
+      "um_per_px": 0.641,
+      "seconds": 228.6,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:A8.tiff",
+      "status": "ok",
+      "n_frames": 429,
+      "n_detections": 84183,
+      "n_tracks": 1686,
+      "n_clips": 700,
+      "n_static": 77,
+      "um_per_px": 0.641,
+      "seconds": 229.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:D6.tiff",
+      "status": "ok",
+      "n_frames": 436,
+      "n_detections": 82112,
+      "n_tracks": 1581,
+      "n_clips": 700,
+      "n_static": 82,
+      "um_per_px": 0.641,
+      "seconds": 229.4,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:F4.tiff",
+      "status": "ok",
+      "n_frames": 436,
+      "n_detections": 75080,
+      "n_tracks": 1422,
+      "n_clips": 700,
+      "n_static": 65,
+      "um_per_px": 0.641,
+      "seconds": 93.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:F3.tiff",
+      "status": "ok",
+      "n_frames": 433,
+      "n_detections": 71117,
+      "n_tracks": 1311,
+      "n_clips": 700,
+      "n_static": 71,
+      "um_per_px": 0.641,
+      "seconds": 119.3,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:E1.tiff",
+      "status": "ok",
+      "n_frames": 439,
+      "n_detections": 78625,
+      "n_tracks": 1506,
+      "n_clips": 700,
+      "n_static": 75,
+      "um_per_px": 0.641,
+      "seconds": 166.9,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:G2.tiff",
+      "status": "excluded_qc",
+      "n_frames": 441,
+      "n_detections": 91405,
+      "n_tracks": 1772,
+      "n_clips": 700,
+      "n_static": 85,
+      "um_per_px": 0.641,
+      "seconds": 115.1,
+      "qc_verdict": {
+        "pass": false,
+        "fail_fraction": 0.9166666666666666,
+        "reason": "saturated"
+      }
+    },
+    {
+      "key": "R05.zip:F1.tiff",
+      "status": "ok",
+      "n_frames": 445,
+      "n_detections": 74375,
+      "n_tracks": 1385,
+      "n_clips": 700,
+      "n_static": 60,
+      "um_per_px": 0.641,
+      "seconds": 135.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:E3.tiff",
+      "status": "ok",
+      "n_frames": 437,
+      "n_detections": 70962,
+      "n_tracks": 1385,
+      "n_clips": 700,
+      "n_static": 76,
+      "um_per_px": 0.641,
+      "seconds": 182.7,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:E5.tiff",
+      "status": "ok",
+      "n_frames": 438,
+      "n_detections": 68039,
+      "n_tracks": 1297,
+      "n_clips": 700,
+      "n_static": 72,
+      "um_per_px": 0.641,
+      "seconds": 161.5,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:E4.tiff",
+      "status": "ok",
+      "n_frames": 430,
+      "n_detections": 83994,
+      "n_tracks": 1627,
+      "n_clips": 700,
+      "n_static": 67,
+      "um_per_px": 0.641,
+      "seconds": 172.6,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:F5.tiff",
+      "status": "ok",
+      "n_frames": 438,
+      "n_detections": 85264,
+      "n_tracks": 1628,
+      "n_clips": 700,
+      "n_static": 71,
+      "um_per_px": 0.641,
+      "seconds": 143.4,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.041666666666666664,
+        "reason": "out of focus"
+      }
+    },
+    {
+      "key": "R05.zip:F6.tiff",
+      "status": "ok",
+      "n_frames": 439,
+      "n_detections": 95203,
+      "n_tracks": 1842,
+      "n_clips": 700,
+      "n_static": 69,
+      "um_per_px": 0.641,
+      "seconds": 144.0,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:E6.tiff",
+      "status": "ok",
+      "n_frames": 432,
+      "n_detections": 62616,
+      "n_tracks": 1264,
+      "n_clips": 700,
+      "n_static": 69,
+      "um_per_px": 0.641,
+      "seconds": 169.0,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:G1.tiff",
+      "status": "ok",
+      "n_frames": 440,
+      "n_detections": 79976,
+      "n_tracks": 1395,
+      "n_clips": 700,
+      "n_static": 81,
+      "um_per_px": 0.641,
+      "seconds": 141.5,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.2916666666666667,
+        "reason": "illumination drift"
+      }
+    },
+    {
+      "key": "R05.zip:E2.tiff",
+      "status": "ok",
+      "n_frames": 441,
+      "n_detections": 143909,
+      "n_tracks": 2484,
+      "n_clips": 700,
+      "n_static": 53,
+      "um_per_px": 0.641,
+      "seconds": 198.0,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.4583333333333333,
+        "reason": "saturated, illumination drift"
+      }
+    },
+    {
+      "key": "R05.zip:G4.tiff",
+      "status": "ok",
+      "n_frames": 437,
+      "n_detections": 68631,
+      "n_tracks": 1327,
+      "n_clips": 700,
+      "n_static": 82,
+      "um_per_px": 0.641,
+      "seconds": 131.7,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.375,
+        "reason": "illumination drift"
+      }
+    },
+    {
+      "key": "R05.zip:F7.tiff",
+      "status": "ok",
+      "n_frames": 433,
+      "n_detections": 74900,
+      "n_tracks": 1430,
+      "n_clips": 700,
+      "n_static": 77,
+      "um_per_px": 0.641,
+      "seconds": 152.7,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:E7.tiff",
+      "status": "ok",
+      "n_frames": 437,
+      "n_detections": 76693,
+      "n_tracks": 1489,
+      "n_clips": 700,
+      "n_static": 74,
+      "um_per_px": 0.641,
+      "seconds": 170.3,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:G7.tiff",
+      "status": "ok",
+      "n_frames": 437,
+      "n_detections": 70109,
+      "n_tracks": 1354,
+      "n_clips": 700,
+      "n_static": 73,
+      "um_per_px": 0.641,
+      "seconds": 116.9,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:E8.tiff",
+      "status": "ok",
+      "n_frames": 430,
+      "n_detections": 78094,
+      "n_tracks": 1501,
+      "n_clips": 700,
+      "n_static": 73,
+      "um_per_px": 0.641,
+      "seconds": 168.3,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:F2.tiff",
+      "status": "ok",
+      "n_frames": 432,
+      "n_detections": 104171,
+      "n_tracks": 2067,
+      "n_clips": 700,
+      "n_static": 62,
+      "um_per_px": 0.641,
+      "seconds": 163.6,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:G5.tiff",
+      "status": "ok",
+      "n_frames": 440,
+      "n_detections": 68519,
+      "n_tracks": 1292,
+      "n_clips": 700,
+      "n_static": 64,
+      "um_per_px": 0.641,
+      "seconds": 136.3,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:H4.tiff",
+      "status": "ok",
+      "n_frames": 435,
+      "n_detections": 69939,
+      "n_tracks": 1356,
+      "n_clips": 700,
+      "n_static": 64,
+      "um_per_px": 0.641,
+      "seconds": 91.3,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.20833333333333334,
+        "reason": "saturated, illumination drift"
+      }
+    },
+    {
+      "key": "R05.zip:G3.tiff",
+      "status": "ok",
+      "n_frames": 440,
+      "n_detections": 87093,
+      "n_tracks": 1716,
+      "n_clips": 700,
+      "n_static": 73,
+      "um_per_px": 0.641,
+      "seconds": 153.0,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:H3.tiff",
+      "status": "ok",
+      "n_frames": 442,
+      "n_detections": 76121,
+      "n_tracks": 1329,
+      "n_clips": 700,
+      "n_static": 62,
+      "um_per_px": 0.641,
+      "seconds": 94.4,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:F8.tiff",
+      "status": "ok",
+      "n_frames": 436,
+      "n_detections": 84482,
+      "n_tracks": 1702,
+      "n_clips": 700,
+      "n_static": 71,
+      "um_per_px": 0.641,
+      "seconds": 164.7,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:H2.tiff",
+      "status": "ok",
+      "n_frames": 434,
+      "n_detections": 63095,
+      "n_tracks": 977,
+      "n_clips": 700,
+      "n_static": 70,
+      "um_per_px": 0.641,
+      "seconds": 97.9,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.20833333333333334,
+        "reason": "illumination drift"
+      }
+    },
+    {
+      "key": "R05.zip:H5.tiff",
+      "status": "ok",
+      "n_frames": 439,
+      "n_detections": 71775,
+      "n_tracks": 1365,
+      "n_clips": 700,
+      "n_static": 82,
+      "um_per_px": 0.641,
+      "seconds": 83.8,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:G8.tiff",
+      "status": "ok",
+      "n_frames": 427,
+      "n_detections": 84318,
+      "n_tracks": 1076,
+      "n_clips": 700,
+      "n_static": 74,
+      "um_per_px": 0.641,
+      "seconds": 136.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:H1.tiff",
+      "status": "ok",
+      "n_frames": 445,
+      "n_detections": 106545,
+      "n_tracks": 2005,
+      "n_clips": 700,
+      "n_static": 75,
+      "um_per_px": 0.641,
+      "seconds": 111.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.5,
+        "reason": "saturated"
+      }
+    },
+    {
+      "key": "R05.zip:H7.tiff",
+      "status": "ok",
+      "n_frames": 435,
+      "n_detections": 78605,
+      "n_tracks": 776,
+      "n_clips": 700,
+      "n_static": 73,
+      "um_per_px": 0.641,
+      "seconds": 63.5,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:G6.tiff",
+      "status": "ok",
+      "n_frames": 434,
+      "n_detections": 139854,
+      "n_tracks": 2684,
+      "n_clips": 700,
+      "n_static": 57,
+      "um_per_px": 0.641,
+      "seconds": 158.5,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:H8.tiff",
+      "status": "ok",
+      "n_frames": 436,
+      "n_detections": 66662,
+      "n_tracks": 1306,
+      "n_clips": 700,
+      "n_static": 74,
+      "um_per_px": 0.641,
+      "seconds": 62.8,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R05.zip:H6.tiff",
+      "status": "ok",
+      "n_frames": 436,
+      "n_detections": 89006,
+      "n_tracks": 859,
+      "n_clips": 700,
+      "n_static": 82,
+      "um_per_px": 0.641,
+      "seconds": 84.4,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.3333333333333333,
+        "reason": "saturated, illumination drift"
+      }
     }
   ],
-  "generated_utc": "2026-10-16T01:14:02Z"
+  "generated_utc": "2026-10-16T02:16:31Z"
 }

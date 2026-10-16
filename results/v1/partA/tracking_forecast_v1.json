@@ -1,0 +1,1668 @@
+{
+  "phase": "F3.3 + F3.4",
+  "dataset": "S-BIAD2196 CellTrack, all 6 movies the deposit contains",
+  "n_movies": 6,
+  "movies": [
+    "01_A1.ome.zarr.zip",
+    "01_A2.ome.zarr.zip",
+    "01_A3.ome.zarr.zip",
+    "02_F8.ome.zarr.zip",
+    "03_F2.ome.zarr.zip",
+    "08_H4.ome.zarr.zip"
+  ],
+  "leakage": {
+    "checked": true,
+    "excluded_pretraining_movies": [
+      "R08.zip:H4.tiff"
+    ],
+    "eval_movies_with_a_twin": [
+      "08_H4.ome.zarr.zip"
+    ],
+    "policy": "the matching ComplexEye movie is excluded from pretraining, so the evaluation movie stays usable (F1.3.4)"
+  },
+  "ltdb": "NOT PROVIDED by the author; see results/v1/manual_intake.json",
+  "cotracker": "not run: dl.fbaipublicfiles.com was unreachable in preflight; the Hugging Face route was not attempted in this run",
+  "encoders": {
+    "E0_tijepa0_reference": {
+      "note": "historical reference: different corpus, not a valid ablation",
+      "checkpoint": "tijepa0_T1_seed0.pt",
+      "step": 55000
+    },
+    "E6_random_init_draw0": {
+      "note": "independent random-init draw 0",
+      "checkpoint": null,
+      "step": null
+    },
+    "E6_random_init_draw1": {
+      "note": "independent random-init draw 1",
+      "checkpoint": null,
+      "step": null
+    },
+    "E6_random_init_draw2": {
+      "note": "independent random-init draw 2",
+      "checkpoint": null,
+      "step": null
+    }
+  },
+  "statistics": "6 movies is below the 10-group minimum, so no bootstrap CI is reported (rule 3); per-movie values and an exact sign-flip permutation are given instead.",
+  "tracking": {
+    "aggregate": {
+      "baseline_nearest_detection": {
+        "delta_avg_mean": 0.4883597883597884,
+        "median_survival_frames": 5.5,
+        "n_tracks": 18,
+        "per_movie_delta_avg": {
+          "01_A1.ome.zarr.zip": 0.15238095238095237,
+          "08_H4.ome.zarr.zip": 0.5206349206349207,
+          "03_F2.ome.zarr.zip": 0.6190476190476191,
+          "02_F8.ome.zarr.zip": 0.6317460317460317,
+          "01_A3.ome.zarr.zip": 0.3460317460317461,
+          "01_A2.ome.zarr.zip": 0.6603174603174603
+        },
+        "confidence_interval": null
+      },
+      "E0_tijepa0_reference": {
+        "delta_avg_mean": 0.6862433862433863,
+        "median_survival_frames": 2.5,
+        "n_tracks": 18,
+        "per_movie_delta_avg": {
+          "01_A1.ome.zarr.zip": 0.5492063492063491,
+          "08_H4.ome.zarr.zip": 1.0,
+          "03_F2.ome.zarr.zip": 0.7111111111111111,
+          "02_F8.ome.zarr.zip": 0.5904761904761905,
+          "01_A3.ome.zarr.zip": 0.26666666666666666,
+          "01_A2.ome.zarr.zip": 1.0
+        },
+        "confidence_interval": null,
+        "vs_baseline_exact_permutation": {
+          "n_movies": 6,
+          "per_movie_difference": [
+            0.39682539682539675,
+            0.3396825396825397,
+            -0.07936507936507942,
+            -0.041269841269841234,
+            0.09206349206349207,
+            0.4793650793650793
+          ],
+          "mean_difference": 0.19788359788359786,
+          "exact_sign_flip_p_two_sided": 0.15625,
+          "minimum_achievable_p": 0.03125,
+          "confidence_interval": null,
+          "confidence_interval_reason": "6 movies is below the 10-group minimum (rule 3); v0 bootstrapped over 5"
+        }
+      },
+      "E6_random_init_draw0": {
+        "delta_avg_mean": 0.6661375661375661,
+        "median_survival_frames": 2.0,
+        "n_tracks": 18,
+        "per_movie_delta_avg": {
+          "01_A1.ome.zarr.zip": 0.4857142857142857,
+          "08_H4.ome.zarr.zip": 1.0,
+          "03_F2.ome.zarr.zip": 0.7333333333333334,
+          "02_F8.ome.zarr.zip": 0.4888888888888889,
+          "01_A3.ome.zarr.zip": 0.2888888888888889,
+          "01_A2.ome.zarr.zip": 1.0
+        },
+        "confidence_interval": null,
+        "vs_baseline_exact_permutation": {
+          "n_movies": 6,
+          "per_movie_difference": [
+            0.33333333333333337,
+            0.3396825396825397,
+            -0.05714285714285716,
+            -0.14285714285714285,
+            0.11428571428571432,
+            0.4793650793650793
+          ],
+          "mean_difference": 0.1777777777777778,
+          "exact_sign_flip_p_two_sided": 0.1875,
+          "minimum_achievable_p": 0.03125,
+          "confidence_interval": null,
+          "confidence_interval_reason": "6 movies is below the 10-group minimum (rule 3); v0 bootstrapped over 5"
+        }
+      },
+      "E6_random_init_draw1": {
+        "delta_avg_mean": 0.6544973544973546,
+        "median_survival_frames": 2.0,
+        "n_tracks": 18,
+        "per_movie_delta_avg": {
+          "01_A1.ome.zarr.zip": 0.41269841269841273,
+          "08_H4.ome.zarr.zip": 1.0,
+          "03_F2.ome.zarr.zip": 0.7333333333333334,
+          "02_F8.ome.zarr.zip": 0.49206349206349204,
+          "01_A3.ome.zarr.zip": 0.2888888888888889,
+          "01_A2.ome.zarr.zip": 1.0
+        },
+        "confidence_interval": null,
+        "vs_baseline_exact_permutation": {
+          "n_movies": 6,
+          "per_movie_difference": [
+            0.2603174603174604,
+            0.3396825396825397,
+            -0.05714285714285716,
+            -0.13968253968253969,
+            0.11428571428571432,
+            0.4793650793650793
+          ],
+          "mean_difference": 0.16613756613756617,
+          "exact_sign_flip_p_two_sided": 0.1875,
+          "minimum_achievable_p": 0.03125,
+          "confidence_interval": null,
+          "confidence_interval_reason": "6 movies is below the 10-group minimum (rule 3); v0 bootstrapped over 5"
+        }
+      },
+      "E6_random_init_draw2": {
+        "delta_avg_mean": 0.652910052910053,
+        "median_survival_frames": 2.0,
+        "n_tracks": 18,
+        "per_movie_delta_avg": {
+          "01_A1.ome.zarr.zip": 0.3968253968253968,
+          "08_H4.ome.zarr.zip": 1.0,
+          "03_F2.ome.zarr.zip": 0.7333333333333334,
+          "02_F8.ome.zarr.zip": 0.4984126984126984,
+          "01_A3.ome.zarr.zip": 0.2888888888888889,
+          "01_A2.ome.zarr.zip": 1.0
+        },
+        "confidence_interval": null,
+        "vs_baseline_exact_permutation": {
+          "n_movies": 6,
+          "per_movie_difference": [
+            0.24444444444444444,
+            0.3396825396825397,
+            -0.05714285714285716,
+            -0.1333333333333333,
+            0.11428571428571432,
+            0.4793650793650793
+          ],
+          "mean_difference": 0.16455026455026456,
+          "exact_sign_flip_p_two_sided": 0.1875,
+          "minimum_achievable_p": 0.03125,
+          "confidence_interval": null,
+          "confidence_interval_reason": "6 movies is below the 10-group minimum (rule 3); v0 bootstrapped over 5"
+        }
+      },
+      "E5_frame_shuffled": {
+        "status": "unavailable"
+      }
+    },
+    "per_track": [
+      {
+        "movie": "01_A1.ome.zarr.zip",
+        "track_id": 1,
+        "t0": 0,
+        "gt_len": 60,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.14285714285714285,
+            "within_2um": 0.19047619047619047,
+            "within_4um": 0.19047619047619047,
+            "within_8um": 0.19047619047619047,
+            "within_16um": 0.3333333333333333
+          },
+          "delta_avg": 0.2095238095238095,
+          "median_error_um": 22.372756264779216,
+          "survival_frames": 4,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 0.09523809523809523,
+            "within_2um": 0.2857142857142857,
+            "within_4um": 0.6190476190476191,
+            "within_8um": 0.6666666666666666,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.5333333333333333,
+          "median_error_um": 3.0415699219437835,
+          "survival_frames": 14,
+          "n_steps": 21
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.19047619047619047,
+            "within_8um": 0.7619047619047619,
+            "within_16um": 0.9523809523809523
+          },
+          "delta_avg": 0.39999999999999997,
+          "median_error_um": 5.880838035313912,
+          "survival_frames": 16,
+          "n_steps": 21
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.19047619047619047,
+            "within_8um": 0.7619047619047619,
+            "within_16um": 0.9523809523809523
+          },
+          "delta_avg": 0.39999999999999997,
+          "median_error_um": 5.880838035313912,
+          "survival_frames": 16,
+          "n_steps": 21
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.19047619047619047,
+            "within_8um": 0.7619047619047619,
+            "within_16um": 0.9523809523809523
+          },
+          "delta_avg": 0.39999999999999997,
+          "median_error_um": 5.880838035313912,
+          "survival_frames": 16,
+          "n_steps": 21
+        }
+      },
+      {
+        "movie": "01_A1.ome.zarr.zip",
+        "track_id": 2,
+        "t0": 0,
+        "gt_len": 60,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.14285714285714285,
+            "within_8um": 0.19047619047619047,
+            "within_16um": 0.2857142857142857
+          },
+          "delta_avg": 0.14285714285714285,
+          "median_error_um": 26.118454001897355,
+          "survival_frames": 4,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.2857142857142857,
+            "within_4um": 0.8571428571428571,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.6380952380952382,
+          "median_error_um": 2.84435543684341,
+          "survival_frames": 21,
+          "n_steps": 21
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.2857142857142857,
+            "within_4um": 0.6666666666666666,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.6,
+          "median_error_um": 3.4230013672488218,
+          "survival_frames": 21,
+          "n_steps": 21
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.2857142857142857,
+            "within_4um": 0.6666666666666666,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.6,
+          "median_error_um": 3.4230013672488218,
+          "survival_frames": 21,
+          "n_steps": 21
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.2857142857142857,
+            "within_4um": 0.6190476190476191,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.5904761904761905,
+          "median_error_um": 3.6349856701290295,
+          "survival_frames": 21,
+          "n_steps": 21
+        }
+      },
+      {
+        "movie": "01_A1.ome.zarr.zip",
+        "track_id": 3,
+        "t0": 0,
+        "gt_len": 60,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.047619047619047616,
+            "within_8um": 0.14285714285714285,
+            "within_16um": 0.23809523809523808
+          },
+          "delta_avg": 0.10476190476190475,
+          "median_error_um": 18.27258660281241,
+          "survival_frames": 3,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.19047619047619047,
+            "within_4um": 0.42857142857142855,
+            "within_8um": 0.7142857142857143,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.47619047619047616,
+          "median_error_um": 6.50443256369233,
+          "survival_frames": 9,
+          "n_steps": 21
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.14285714285714285,
+            "within_4um": 0.38095238095238093,
+            "within_8um": 0.7142857142857143,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.45714285714285713,
+          "median_error_um": 4.776321153806034,
+          "survival_frames": 15,
+          "n_steps": 21
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.14285714285714285,
+            "within_4um": 0.3333333333333333,
+            "within_8um": 0.3333333333333333,
+            "within_16um": 0.3333333333333333
+          },
+          "delta_avg": 0.23809523809523805,
+          "median_error_um": 17.16702689236885,
+          "survival_frames": 7,
+          "n_steps": 21
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.14285714285714285,
+            "within_4um": 0.23809523809523808,
+            "within_8um": 0.23809523809523808,
+            "within_16um": 0.3333333333333333
+          },
+          "delta_avg": 0.2,
+          "median_error_um": 16.704676203469713,
+          "survival_frames": 5,
+          "n_steps": 21
+        }
+      },
+      {
+        "movie": "01_A2.ome.zarr.zip",
+        "track_id": 1,
+        "t0": 0,
+        "gt_len": 29,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.7619047619047619,
+            "within_2um": 0.9047619047619048,
+            "within_4um": 0.9047619047619048,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.9142857142857143,
+          "median_error_um": 0.5554850489597692,
+          "survival_frames": 21,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        }
+      },
+      {
+        "movie": "01_A2.ome.zarr.zip",
+        "track_id": 7,
+        "t0": 0,
+        "gt_len": 26,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.19047619047619047,
+            "within_2um": 0.5238095238095238,
+            "within_4um": 0.8571428571428571,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.7142857142857142,
+          "median_error_um": 1.9755867151965727,
+          "survival_frames": 21,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        }
+      },
+      {
+        "movie": "01_A2.ome.zarr.zip",
+        "track_id": 8,
+        "t0": 0,
+        "gt_len": 60,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.09523809523809523,
+            "within_2um": 0.09523809523809523,
+            "within_4um": 0.09523809523809523,
+            "within_8um": 0.47619047619047616,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.35238095238095235,
+          "median_error_um": 8.25600037081216,
+          "survival_frames": 2,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        }
+      },
+      {
+        "movie": "01_A3.ome.zarr.zip",
+        "track_id": 1,
+        "t0": 0,
+        "gt_len": 60,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.047619047619047616,
+            "within_8um": 0.23809523809523808,
+            "within_16um": 0.3333333333333333
+          },
+          "delta_avg": 0.14285714285714285,
+          "median_error_um": 33.12437649297764,
+          "survival_frames": 5,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.19047619047619047,
+            "within_8um": 0.19047619047619047,
+            "within_16um": 0.23809523809523808
+          },
+          "delta_avg": 0.14285714285714285,
+          "median_error_um": 60.13197710195013,
+          "survival_frames": 4,
+          "n_steps": 21
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.14285714285714285,
+            "within_8um": 0.23809523809523808,
+            "within_16um": 0.3333333333333333
+          },
+          "delta_avg": 0.1619047619047619,
+          "median_error_um": 31.83993592762744,
+          "survival_frames": 5,
+          "n_steps": 21
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.14285714285714285,
+            "within_8um": 0.23809523809523808,
+            "within_16um": 0.3333333333333333
+          },
+          "delta_avg": 0.1619047619047619,
+          "median_error_um": 32.6651805543577,
+          "survival_frames": 5,
+          "n_steps": 21
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.14285714285714285,
+            "within_8um": 0.23809523809523808,
+            "within_16um": 0.3333333333333333
+          },
+          "delta_avg": 0.1619047619047619,
+          "median_error_um": 31.83993592762744,
+          "survival_frames": 5,
+          "n_steps": 21
+        }
+      },
+      {
+        "movie": "01_A3.ome.zarr.zip",
+        "track_id": 2,
+        "t0": 0,
+        "gt_len": 60,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.5238095238095238,
+            "within_2um": 0.5238095238095238,
+            "within_4um": 0.5238095238095238,
+            "within_8um": 0.8095238095238095,
+            "within_16um": 0.9047619047619048
+          },
+          "delta_avg": 0.6571428571428573,
+          "median_error_um": 0.7756124259001757,
+          "survival_frames": 11,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.09523809523809523,
+            "within_8um": 0.19047619047619047,
+            "within_16um": 0.38095238095238093
+          },
+          "delta_avg": 0.15238095238095237,
+          "median_error_um": 21.876194973618407,
+          "survival_frames": 4,
+          "n_steps": 21
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.09523809523809523,
+            "within_8um": 0.19047619047619047,
+            "within_16um": 0.3333333333333333
+          },
+          "delta_avg": 0.14285714285714285,
+          "median_error_um": 23.939707309276212,
+          "survival_frames": 4,
+          "n_steps": 21
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.09523809523809523,
+            "within_8um": 0.19047619047619047,
+            "within_16um": 0.3333333333333333
+          },
+          "delta_avg": 0.14285714285714285,
+          "median_error_um": 23.939707309276212,
+          "survival_frames": 4,
+          "n_steps": 21
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.09523809523809523,
+            "within_8um": 0.19047619047619047,
+            "within_16um": 0.3333333333333333
+          },
+          "delta_avg": 0.14285714285714285,
+          "median_error_um": 23.939707309276212,
+          "survival_frames": 4,
+          "n_steps": 21
+        }
+      },
+      {
+        "movie": "01_A3.ome.zarr.zip",
+        "track_id": 3,
+        "t0": 0,
+        "gt_len": 60,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.09523809523809523,
+            "within_8um": 0.38095238095238093,
+            "within_16um": 0.6190476190476191
+          },
+          "delta_avg": 0.23809523809523808,
+          "median_error_um": 12.593213310095486,
+          "survival_frames": 1,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 0.09523809523809523,
+            "within_2um": 0.19047619047619047,
+            "within_4um": 0.42857142857142855,
+            "within_8um": 0.8095238095238095,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.5047619047619047,
+          "median_error_um": 4.340890120105195,
+          "survival_frames": 7,
+          "n_steps": 21
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 0.14285714285714285,
+            "within_2um": 0.2857142857142857,
+            "within_4um": 0.5238095238095238,
+            "within_8um": 0.8571428571428571,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.5619047619047619,
+          "median_error_um": 3.9006137514932453,
+          "survival_frames": 7,
+          "n_steps": 21
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 0.14285714285714285,
+            "within_2um": 0.2857142857142857,
+            "within_4um": 0.5238095238095238,
+            "within_8um": 0.8571428571428571,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.5619047619047619,
+          "median_error_um": 3.9006137514932453,
+          "survival_frames": 7,
+          "n_steps": 21
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 0.14285714285714285,
+            "within_2um": 0.2857142857142857,
+            "within_4um": 0.5238095238095238,
+            "within_8um": 0.8571428571428571,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.5619047619047619,
+          "median_error_um": 3.9006137514932453,
+          "survival_frames": 7,
+          "n_steps": 21
+        }
+      },
+      {
+        "movie": "02_F8.ome.zarr.zip",
+        "track_id": 3,
+        "t0": 0,
+        "gt_len": 60,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.9047619047619048,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.980952380952381,
+          "median_error_um": 0.5266530988334808,
+          "survival_frames": 21,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        }
+      },
+      {
+        "movie": "02_F8.ome.zarr.zip",
+        "track_id": 4,
+        "t0": 0,
+        "gt_len": 60,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.38095238095238093,
+            "within_2um": 0.42857142857142855,
+            "within_4um": 0.47619047619047616,
+            "within_8um": 0.9523809523809523,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.6476190476190476,
+          "median_error_um": 4.859978606121832,
+          "survival_frames": 18,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.14285714285714285,
+            "within_8um": 0.6190476190476191,
+            "within_16um": 0.7619047619047619
+          },
+          "delta_avg": 0.3238095238095238,
+          "median_error_um": 6.546955623671316,
+          "survival_frames": 8,
+          "n_steps": 21
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.09523809523809523,
+            "within_4um": 0.09523809523809523,
+            "within_8um": 0.14285714285714285,
+            "within_16um": 0.38095238095238093
+          },
+          "delta_avg": 0.15238095238095237,
+          "median_error_um": 17.447697120707602,
+          "survival_frames": 3,
+          "n_steps": 21
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.09523809523809523,
+            "within_4um": 0.09523809523809523,
+            "within_8um": 0.14285714285714285,
+            "within_16um": 0.38095238095238093
+          },
+          "delta_avg": 0.15238095238095237,
+          "median_error_um": 17.447697120707602,
+          "survival_frames": 3,
+          "n_steps": 21
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.09523809523809523,
+            "within_4um": 0.09523809523809523,
+            "within_8um": 0.14285714285714285,
+            "within_16um": 0.47619047619047616
+          },
+          "delta_avg": 0.17142857142857143,
+          "median_error_um": 16.81497465325742,
+          "survival_frames": 3,
+          "n_steps": 21
+        }
+      },
+      {
+        "movie": "02_F8.ome.zarr.zip",
+        "track_id": 5,
+        "t0": 0,
+        "gt_len": 60,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.09523809523809523,
+            "within_8um": 0.47619047619047616,
+            "within_16um": 0.6666666666666666
+          },
+          "delta_avg": 0.26666666666666666,
+          "median_error_um": 8.256295534799287,
+          "survival_frames": 6,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.14285714285714285,
+            "within_4um": 0.3333333333333333,
+            "within_8um": 0.7142857142857143,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.44761904761904764,
+          "median_error_um": 4.572393884028374,
+          "survival_frames": 11,
+          "n_steps": 21
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.09523809523809523,
+            "within_4um": 0.19047619047619047,
+            "within_8um": 0.38095238095238093,
+            "within_16um": 0.8571428571428571
+          },
+          "delta_avg": 0.3142857142857142,
+          "median_error_um": 10.528700226397621,
+          "survival_frames": 8,
+          "n_steps": 21
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.09523809523809523,
+            "within_4um": 0.19047619047619047,
+            "within_8um": 0.38095238095238093,
+            "within_16um": 0.9047619047619048
+          },
+          "delta_avg": 0.3238095238095238,
+          "median_error_um": 10.528700226397621,
+          "survival_frames": 8,
+          "n_steps": 21
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.09523809523809523,
+            "within_4um": 0.19047619047619047,
+            "within_8um": 0.38095238095238093,
+            "within_16um": 0.9047619047619048
+          },
+          "delta_avg": 0.3238095238095238,
+          "median_error_um": 10.528700226397621,
+          "survival_frames": 8,
+          "n_steps": 21
+        }
+      },
+      {
+        "movie": "03_F2.ome.zarr.zip",
+        "track_id": 2,
+        "t0": 0,
+        "gt_len": 60,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.8095238095238095,
+            "within_2um": 0.9523809523809523,
+            "within_4um": 0.9523809523809523,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.9428571428571428,
+          "median_error_um": 0.5801817182373025,
+          "survival_frames": 21,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.047619047619047616,
+            "within_8um": 0.23809523809523808,
+            "within_16um": 0.2857142857142857
+          },
+          "delta_avg": 0.13333333333333333,
+          "median_error_um": 37.774011476048706,
+          "survival_frames": 5,
+          "n_steps": 21
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.047619047619047616,
+            "within_8um": 0.14285714285714285,
+            "within_16um": 0.7142857142857143
+          },
+          "delta_avg": 0.2,
+          "median_error_um": 14.86827982458317,
+          "survival_frames": 3,
+          "n_steps": 21
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.047619047619047616,
+            "within_8um": 0.14285714285714285,
+            "within_16um": 0.7142857142857143
+          },
+          "delta_avg": 0.2,
+          "median_error_um": 14.86827982458317,
+          "survival_frames": 3,
+          "n_steps": 21
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 0.047619047619047616,
+            "within_2um": 0.047619047619047616,
+            "within_4um": 0.047619047619047616,
+            "within_8um": 0.14285714285714285,
+            "within_16um": 0.7142857142857143
+          },
+          "delta_avg": 0.2,
+          "median_error_um": 14.86827982458317,
+          "survival_frames": 3,
+          "n_steps": 21
+        }
+      },
+      {
+        "movie": "03_F2.ome.zarr.zip",
+        "track_id": 3,
+        "t0": 0,
+        "gt_len": 60,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.14285714285714285,
+            "within_2um": 0.14285714285714285,
+            "within_4um": 0.14285714285714285,
+            "within_8um": 0.42857142857142855,
+            "within_16um": 0.6190476190476191
+          },
+          "delta_avg": 0.29523809523809524,
+          "median_error_um": 8.336779334740697,
+          "survival_frames": 3,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        }
+      },
+      {
+        "movie": "03_F2.ome.zarr.zip",
+        "track_id": 4,
+        "t0": 0,
+        "gt_len": 60,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.14285714285714285,
+            "within_2um": 0.38095238095238093,
+            "within_4um": 0.6666666666666666,
+            "within_8um": 0.9047619047619048,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.619047619047619,
+          "median_error_um": 2.191171066914244,
+          "survival_frames": 1,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        }
+      },
+      {
+        "movie": "08_H4.ome.zarr.zip",
+        "track_id": 3,
+        "t0": 0,
+        "gt_len": 26,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.2857142857142857,
+            "within_2um": 0.7142857142857143,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 0.8,
+          "median_error_um": 1.4971526063367366,
+          "survival_frames": 21,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        }
+      },
+      {
+        "movie": "08_H4.ome.zarr.zip",
+        "track_id": 8,
+        "t0": 0,
+        "gt_len": 60,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.23809523809523808,
+            "within_2um": 0.2857142857142857,
+            "within_4um": 0.2857142857142857,
+            "within_8um": 0.38095238095238093,
+            "within_16um": 0.47619047619047616
+          },
+          "delta_avg": 0.3333333333333333,
+          "median_error_um": 18.540064144234915,
+          "survival_frames": 6,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        }
+      },
+      {
+        "movie": "08_H4.ome.zarr.zip",
+        "track_id": 9,
+        "t0": 0,
+        "gt_len": 37,
+        "baseline_nearest_detection": {
+          "deltas": {
+            "within_1um": 0.14285714285714285,
+            "within_2um": 0.19047619047619047,
+            "within_4um": 0.23809523809523808,
+            "within_8um": 0.7619047619047619,
+            "within_16um": 0.8095238095238095
+          },
+          "delta_avg": 0.42857142857142855,
+          "median_error_um": 5.846602040928728,
+          "survival_frames": 2,
+          "n_steps": 21
+        },
+        "E0_tijepa0_reference": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw0": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw1": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        },
+        "E6_random_init_draw2": {
+          "deltas": {
+            "within_1um": 1.0,
+            "within_2um": 1.0,
+            "within_4um": 1.0,
+            "within_8um": 1.0,
+            "within_16um": 1.0
+          },
+          "delta_avg": 1.0,
+          "median_error_um": 0.0,
+          "survival_frames": 1,
+          "n_steps": 1
+        }
+      }
+    ]
+  },
+  "forecasting": {
+    "n_future_slots": 2,
+    "frames_context_then_predicted": [
+      12,
+      4
+    ],
+    "per_movie": {
+      "E0_tijepa0_reference": {
+        "01_A1.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.615041615050516,
+          "l1_copy_last_latent": 0.6737036528410735,
+          "l1_mean_latent": 0.7652367485894097,
+          "ratio_vs_copy_last": 0.9129260505814776,
+          "ratio_vs_mean_latent": 0.8037272336753898,
+          "n_elements": 331776,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        },
+        "01_A3.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.654836584020544,
+          "l1_copy_last_latent": 0.7981132224754051,
+          "l1_mean_latent": 0.7919387817382812,
+          "ratio_vs_copy_last": 0.8204808109675488,
+          "ratio_vs_mean_latent": 0.8268777828801336,
+          "n_elements": 331776,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        },
+        "02_F8.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.5801157068323206,
+          "l1_copy_last_latent": 0.6791629084834346,
+          "l1_mean_latent": 0.7603335910373263,
+          "ratio_vs_copy_last": 0.8541628224776208,
+          "ratio_vs_mean_latent": 0.7629752435912588,
+          "n_elements": 221184,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        },
+        "03_F2.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.6272506713867188,
+          "l1_copy_last_latent": 0.7047481536865234,
+          "l1_mean_latent": 0.7942969710738571,
+          "ratio_vs_copy_last": 0.8900352106005288,
+          "ratio_vs_mean_latent": 0.7896928909834585,
+          "n_elements": 110592,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        }
+      },
+      "E6_random_init_draw0": {
+        "01_A1.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.9199103838131751,
+          "l1_copy_last_latent": 0.3210327713577836,
+          "l1_mean_latent": 0.5391043203848379,
+          "ratio_vs_copy_last": 2.8654718953535006,
+          "ratio_vs_mean_latent": 1.7063680423790706,
+          "n_elements": 331776,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        },
+        "01_A3.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.9152322463047358,
+          "l1_copy_last_latent": 0.3735820628978588,
+          "l1_mean_latent": 0.4638996830692998,
+          "ratio_vs_copy_last": 2.449882735817993,
+          "ratio_vs_mean_latent": 1.9729098331115125,
+          "n_elements": 331776,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        },
+        "02_F8.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.9188314367223669,
+          "l1_copy_last_latent": 0.6021387312147353,
+          "l1_mean_latent": 0.5623989811650029,
+          "ratio_vs_copy_last": 1.5259464124965787,
+          "ratio_vs_mean_latent": 1.6337715171869949,
+          "n_elements": 221184,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        },
+        "03_F2.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.9163359889277706,
+          "l1_copy_last_latent": 0.18371250011302806,
+          "l1_mean_latent": 0.622059150978371,
+          "ratio_vs_copy_last": 4.987880456495884,
+          "ratio_vs_mean_latent": 1.4730688994552412,
+          "n_elements": 110592,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        }
+      },
+      "E6_random_init_draw1": {
+        "01_A1.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.8991630460009162,
+          "l1_copy_last_latent": 0.320823245578342,
+          "l1_mean_latent": 0.5476964314778646,
+          "ratio_vs_copy_last": 2.8026742400788693,
+          "ratio_vs_mean_latent": 1.6417179194954392,
+          "n_elements": 331776,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        },
+        "01_A3.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.9022027474862558,
+          "l1_copy_last_latent": 0.39148881700303817,
+          "l1_mean_latent": 0.48387923064055266,
+          "ratio_vs_copy_last": 2.3045428331590228,
+          "ratio_vs_mean_latent": 1.8645205050275298,
+          "n_elements": 331776,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        },
+        "02_F8.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.9143652739348235,
+          "l1_copy_last_latent": 0.5960806387442129,
+          "l1_mean_latent": 0.5691456971345125,
+          "ratio_vs_copy_last": 1.5339623777433093,
+          "ratio_vs_mean_latent": 1.606557474717623,
+          "n_elements": 221184,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        },
+        "03_F2.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.953818851047092,
+          "l1_copy_last_latent": 0.193682211416739,
+          "l1_mean_latent": 0.6728454872413918,
+          "ratio_vs_copy_last": 4.924659028158215,
+          "ratio_vs_mean_latent": 1.4175897277065297,
+          "n_elements": 110592,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        }
+      },
+      "E6_random_init_draw2": {
+        "01_A1.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.9294348822699653,
+          "l1_copy_last_latent": 0.3156312071246865,
+          "l1_mean_latent": 0.5400035999439381,
+          "ratio_vs_copy_last": 2.944686270843943,
+          "ratio_vs_mean_latent": 1.7211642336578072,
+          "n_elements": 331776,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        },
+        "01_A3.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.9327484884379823,
+          "l1_copy_last_latent": 0.3803932755081742,
+          "l1_mean_latent": 0.4764946831597222,
+          "ratio_vs_copy_last": 2.452063557621798,
+          "ratio_vs_mean_latent": 1.9575212933180257,
+          "n_elements": 331776,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        },
+        "02_F8.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.9310531616210938,
+          "l1_copy_last_latent": 0.6237260323983652,
+          "l1_mean_latent": 0.5810954482467087,
+          "ratio_vs_copy_last": 1.4927277574754856,
+          "ratio_vs_mean_latent": 1.602237918796789,
+          "n_elements": 221184,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        },
+        "03_F2.ome.zarr.zip": {
+          "status": "ok",
+          "l1_predictor": 0.9385284141257957,
+          "l1_copy_last_latent": 0.19937183238841868,
+          "l1_mean_latent": 0.6841121956154153,
+          "ratio_vs_copy_last": 4.707427337565634,
+          "ratio_vs_mean_latent": 1.3718925347932325,
+          "n_elements": 110592,
+          "interpretation": "ratio < 1 means the predictor beats assuming the latent does not change. Only WITHIN-model ratios are comparable: each model has its own latent space, so raw L1 across models is meaningless."
+        }
+      }
+    },
+    "summary": {
+      "E0_tijepa0_reference": {
+        "mean_ratio_vs_copy_last": 0.869401223656794,
+        "mean_ratio_vs_mean_latent": 0.7958182877825601,
+        "note": "historical reference: different corpus, not a valid ablation"
+      },
+      "E6_random_init_draw0": {
+        "mean_ratio_vs_copy_last": 2.9572953750409887,
+        "mean_ratio_vs_mean_latent": 1.6965295730332048,
+        "note": "independent random-init draw 0"
+      },
+      "E6_random_init_draw1": {
+        "mean_ratio_vs_copy_last": 2.8914596197848543,
+        "mean_ratio_vs_mean_latent": 1.6325964067367802,
+        "note": "independent random-init draw 1"
+      },
+      "E6_random_init_draw2": {
+        "mean_ratio_vs_copy_last": 2.899226230876715,
+        "mean_ratio_vs_mean_latent": 1.6632039951414637,
+        "note": "independent random-init draw 2"
+      }
+    }
+  }
+}
