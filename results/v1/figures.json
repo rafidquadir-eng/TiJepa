@@ -1,0 +1,109 @@
+{
+  "figures": [
+    {
+      "function": "fig1_overview",
+      "files": [
+        "figures/fig1_overview_v1.png",
+        "figures/fig1_overview_v1.pdf"
+      ],
+      "status": "ok",
+      "size_px": [
+        1590,
+        909
+      ],
+      "ink_fraction": 0.5885
+    },
+    {
+      "function": "fig2_pretraining",
+      "files": [
+        "figures/fig2_pretraining_v1.png",
+        "figures/fig2_pretraining_v1.pdf"
+      ],
+      "status": "ok",
+      "size_px": [
+        2786,
+        666
+      ],
+      "ink_fraction": 0.1654
+    },
+    {
+      "function": "fig3_dryad",
+      "files": [
+        "figures/fig3_dryad_headline_v1.png",
+        "figures/fig3_dryad_headline_v1.pdf"
+      ],
+      "status": "ok",
+      "size_px": [
+        1290,
+        686
+      ],
+      "ink_fraction": 0.097
+    },
+    {
+      "function": "fig4_bbbc054",
+      "files": [
+        "figures/fig4_bbbc054_v1.png",
+        "figures/fig4_bbbc054_v1.pdf"
+      ],
+      "status": "ok",
+      "size_px": [
+        2681,
+        718
+      ],
+      "ink_fraction": 0.0415
+    },
+    {
+      "function": "fig5_tracking_forecast",
+      "files": [
+        "figures/fig5_tracking_forecast_v1.png",
+        "figures/fig5_tracking_forecast_v1.pdf"
+      ],
+      "status": "ok",
+      "size_px": [
+        2685,
+        785
+      ],
+      "ink_fraction": 0.2698
+    },
+    {
+      "function": "fig6_partB",
+      "files": [
+        "figures/fig6_partB_v1.png",
+        "figures/fig6_partB_v1.pdf"
+      ],
+      "status": "ok",
+      "size_px": [
+        2982,
+        746
+      ],
+      "ink_fraction": 0.2651
+    },
+    {
+      "function": "fig7_partC",
+      "files": [
+        "figures/fig7_partC_v1.png",
+        "figures/fig7_partC_v1.pdf"
+      ],
+      "status": "ok",
+      "size_px": [
+        3168,
+        766
+      ],
+      "ink_fraction": 0.1248
+    },
+    {
+      "function": "fig8_landscape",
+      "files": [
+        "figures/fig8_landscape_v1.png",
+        "figures/fig8_landscape_v1.pdf"
+      ],
+      "status": "ok",
+      "size_px": [
+        1694,
+        866
+      ],
+      "ink_fraction": 0.2553
+    }
+  ],
+  "generated_from": "results/v1"
+}
