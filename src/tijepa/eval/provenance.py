@@ -126,8 +126,15 @@ def check_results(encoders: dict) -> list[str]:
     for key, rec in encoders.items():
         if not isinstance(rec, dict) or rec.get("status") == "unavailable":
             continue
+        cp = rec.get("checkpoint")
+        if cp is None and rec.get("checkpoint_per_seed"):
+            per = list(rec["checkpoint_per_seed"].values())
+            if len({c["run_name"] for c in per}) != 1:
+                problems.append(f"{key!r}: per-seed checkpoints from different runs")
+                continue
+            cp = per[0]
         try:
-            label_for_key(key, rec.get("checkpoint"))
+            label_for_key(key, cp)
         except ProvenanceError as exc:
             problems.append(str(exc))
     return problems

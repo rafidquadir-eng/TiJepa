@@ -57,3 +57,11 @@ def test_banned_strings_are_found():
 def test_dangling_comparative_is_found():
     assert check_grammar("TiJepa-1 is higher than (+0.082, 95% CI [0.01, 0.15]).")
     assert check_grammar("TiJepa-1 is higher than DINOv2 (+0.082).") == []
+
+
+def test_per_seed_random_init_records_are_accepted():
+    rec = {"checkpoint": None,
+           "checkpoint_per_seed": {"0": PV.random_init_record(0),
+                                   "1": PV.random_init_record(1)}}
+    assert PV.check_results({"E6_random_init": rec}) == []
+    assert PV.check_results({"E6_random_init": {"checkpoint": None}})
