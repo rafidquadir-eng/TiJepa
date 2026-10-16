@@ -29,101 +29,104 @@
         "per_seed": [
           {
             "seed": 0,
-            "cell_balanced_accuracy": 0.5607781582952815,
+            "n_cells_subsampled": 1000,
+            "cell_balanced_accuracy": 0.544,
             "well_balanced_accuracy": 0.5
           },
           {
             "seed": 1,
-            "cell_balanced_accuracy": 0.5607781582952815,
+            "n_cells_subsampled": 1000,
+            "cell_balanced_accuracy": 0.552,
             "well_balanced_accuracy": 0.5
           },
           {
             "seed": 2,
-            "cell_balanced_accuracy": 0.5607781582952815,
+            "n_cells_subsampled": 1000,
+            "cell_balanced_accuracy": 0.544,
             "well_balanced_accuracy": 0.5
           }
         ],
-        "cell_balanced_accuracy_mean": 0.5607781582952815,
-        "cell_balanced_accuracy_sd": 0.0,
+        "cell_balanced_accuracy_mean": 0.5466666666666667,
+        "cell_balanced_accuracy_sd": 0.004618802153517011,
         "per_well": {
           "TNFLPSfirst_traces.mat|rep1|well13": [
             {
               "seed": 0,
-              "n_cells": 368,
+              "n_cells": 250,
               "true_label": "LPS->LPS",
-              "fraction_predicted_tolerant": 0.8315217391304348
+              "fraction_predicted_tolerant": 0.816
             },
             {
               "seed": 1,
-              "n_cells": 368,
+              "n_cells": 250,
               "true_label": "LPS->LPS",
-              "fraction_predicted_tolerant": 0.8315217391304348
+              "fraction_predicted_tolerant": 0.812
             },
             {
               "seed": 2,
-              "n_cells": 368,
+              "n_cells": 250,
               "true_label": "LPS->LPS",
-              "fraction_predicted_tolerant": 0.8315217391304348
+              "fraction_predicted_tolerant": 0.82
             }
           ],
           "TNFLPSfirst_traces.mat|rep1|well5": [
             {
               "seed": 0,
-              "n_cells": 315,
+              "n_cells": 250,
               "true_label": "naive->LPS",
-              "fraction_predicted_tolerant": 0.692063492063492
+              "fraction_predicted_tolerant": 0.684
             },
             {
               "seed": 1,
-              "n_cells": 315,
+              "n_cells": 250,
               "true_label": "naive->LPS",
-              "fraction_predicted_tolerant": 0.692063492063492
+              "fraction_predicted_tolerant": 0.704
             },
             {
               "seed": 2,
-              "n_cells": 315,
+              "n_cells": 250,
               "true_label": "naive->LPS",
-              "fraction_predicted_tolerant": 0.692063492063492
+              "fraction_predicted_tolerant": 0.708
             }
           ],
           "TNFLPSfirst_traces.mat|rep2|well37": [
             {
               "seed": 0,
-              "n_cells": 269,
+              "n_cells": 250,
               "true_label": "naive->LPS",
-              "fraction_predicted_tolerant": 0.7137546468401487
+              "fraction_predicted_tolerant": 0.756
             },
             {
               "seed": 1,
-              "n_cells": 269,
+              "n_cells": 250,
               "true_label": "naive->LPS",
-              "fraction_predicted_tolerant": 0.7137546468401487
+              "fraction_predicted_tolerant": 0.708
             },
             {
               "seed": 2,
-              "n_cells": 269,
+              "n_cells": 250,
               "true_label": "naive->LPS",
-              "fraction_predicted_tolerant": 0.7137546468401487
+              "fraction_predicted_tolerant": 0.744
             }
           ],
           "TNFLPSfirst_traces.mat|rep2|well45": [
             {
               "seed": 0,
-              "n_cells": 352,
+              "n_cells": 250,
               "true_label": "LPS->LPS",
-              "fraction_predicted_tolerant": 0.8153409090909091
+              "fraction_predicted_tolerant": 0.8
             },
             {
               "seed": 1,
-              "n_cells": 352,
+              "n_cells": 250,
               "true_label": "LPS->LPS",
-              "fraction_predicted_tolerant": 0.8153409090909091
+              "fraction_predicted_tolerant": 0.808
             },
             {
               "seed": 2,
-              "n_cells": 352,
+              "n_cells": 250,
               "true_label": "LPS->LPS",
-              "fraction_predicted_tolerant": 0.8153409090909091
+              "fraction_predicted_tolerant": 0.808
             }
           ]
         },
@@ -137,107 +140,111 @@
           "note": "Exact enumeration over all distinct well-label assignments (PLAN_v1.md Section 9). No bootstrap CI is reported, because 4 groups is below the 10-group minimum (rule 3)."
         },
         "confidence_interval": null,
-        "confidence_interval_reason": "4 grouping units is below the 10-group minimum (PLAN_v1.md rule 3), so no bootstrap CI is reported. v0 reported one."
+        "confidence_interval_reason": "4 grouping units is below the 10-group minimum (PLAN_v1.md rule 3), so no bootstrap CI is reported. v0 reported one.",
+        "seed_varies": "a different stratified per-well cell subsample per seed (F3.5); the protocol is otherwise deterministic, so without this the sd would be exactly 0 and the seed claim would have to be withdrawn under rule 4."
       },
       "handcrafted": {
         "per_seed": [
           {
             "seed": 0,
-            "cell_balanced_accuracy": 0.3636415525114155,
-            "well_balanced_accuracy": 0.25
+            "n_cells_subsampled": 1000,
+            "cell_balanced_accuracy": 0.514,
+            "well_balanced_accuracy": 0.5
           },
           {
             "seed": 1,
-            "cell_balanced_accuracy": 0.3636415525114155,
-            "well_balanced_accuracy": 0.25
+            "n_cells_subsampled": 1000,
+            "cell_balanced_accuracy": 0.509,
+            "well_balanced_accuracy": 0.5
           },
           {
             "seed": 2,
-            "cell_balanced_accuracy": 0.3636415525114155,
-            "well_balanced_accuracy": 0.25
+            "n_cells_subsampled": 1000,
+            "cell_balanced_accuracy": 0.526,
+            "well_balanced_accuracy": 0.5
           }
         ],
-        "cell_balanced_accuracy_mean": 0.36364155251141544,
-        "cell_balanced_accuracy_sd": 6.798699777552591e-17,
+        "cell_balanced_accuracy_mean": 0.5163333333333334,
+        "cell_balanced_accuracy_sd": 0.008736894948054113,
         "per_well": {
           "TNFLPSfirst_traces.mat|rep1|well13": [
             {
               "seed": 0,
-              "n_cells": 368,
+              "n_cells": 250,
               "true_label": "LPS->LPS",
-              "fraction_predicted_tolerant": 0.25815217391304346
+              "fraction_predicted_tolerant": 0.248
             },
             {
               "seed": 1,
-              "n_cells": 368,
+              "n_cells": 250,
               "true_label": "LPS->LPS",
-              "fraction_predicted_tolerant": 0.25815217391304346
+              "fraction_predicted_tolerant": 0.216
             },
             {
               "seed": 2,
-              "n_cells": 368,
+              "n_cells": 250,
               "true_label": "LPS->LPS",
-              "fraction_predicted_tolerant": 0.25815217391304346
+              "fraction_predicted_tolerant": 0.26
             }
           ],
           "TNFLPSfirst_traces.mat|rep1|well5": [
             {
               "seed": 0,
-              "n_cells": 315,
+              "n_cells": 250,
               "true_label": "naive->LPS",
-              "fraction_predicted_tolerant": 0.8158730158730159
+              "fraction_predicted_tolerant": 0.808
             },
             {
               "seed": 1,
-              "n_cells": 315,
+              "n_cells": 250,
               "true_label": "naive->LPS",
-              "fraction_predicted_tolerant": 0.8158730158730159
+              "fraction_predicted_tolerant": 0.832
             },
             {
               "seed": 2,
-              "n_cells": 315,
+              "n_cells": 250,
               "true_label": "naive->LPS",
-              "fraction_predicted_tolerant": 0.8158730158730159
+              "fraction_predicted_tolerant": 0.204
             }
           ],
           "TNFLPSfirst_traces.mat|rep2|well37": [
             {
               "seed": 0,
-              "n_cells": 269,
+              "n_cells": 250,
               "true_label": "naive->LPS",
-              "fraction_predicted_tolerant": 0.21561338289962825
+              "fraction_predicted_tolerant": 0.208
             },
             {
               "seed": 1,
-              "n_cells": 269,
+              "n_cells": 250,
               "true_label": "naive->LPS",
-              "fraction_predicted_tolerant": 0.21561338289962825
+              "fraction_predicted_tolerant": 0.172
             },
             {
               "seed": 2,
-              "n_cells": 269,
+              "n_cells": 250,
               "true_label": "naive->LPS",
-              "fraction_predicted_tolerant": 0.21561338289962825
+              "fraction_predicted_tolerant": 0.2
             }
           ],
           "TNFLPSfirst_traces.mat|rep2|well45": [
             {
               "seed": 0,
-              "n_cells": 352,
+              "n_cells": 250,
               "true_label": "LPS->LPS",
-              "fraction_predicted_tolerant": 0.2755681818181818
+              "fraction_predicted_tolerant": 0.824
             },
             {
               "seed": 1,
-              "n_cells": 352,
+              "n_cells": 250,
               "true_label": "LPS->LPS",
-              "fraction_predicted_tolerant": 0.2755681818181818
+              "fraction_predicted_tolerant": 0.824
             },
             {
               "seed": 2,
-              "n_cells": 352,
+              "n_cells": 250,
               "true_label": "LPS->LPS",
-              "fraction_predicted_tolerant": 0.2755681818181818
+              "fraction_predicted_tolerant": 0.248
             }
           ]
         },
@@ -251,7 +258,8 @@
           "note": "Exact enumeration over all distinct well-label assignments (PLAN_v1.md Section 9). No bootstrap CI is reported, because 4 groups is below the 10-group minimum (rule 3)."
         },
         "confidence_interval": null,
-        "confidence_interval_reason": "4 grouping units is below the 10-group minimum (PLAN_v1.md rule 3), so no bootstrap CI is reported. v0 reported one."
+        "confidence_interval_reason": "4 grouping units is below the 10-group minimum (PLAN_v1.md rule 3), so no bootstrap CI is reported. v0 reported one.",
+        "seed_varies": "a different stratified per-well cell subsample per seed (F3.5); the protocol is otherwise deterministic, so without this the sd would be exactly 0 and the seed claim would have to be withdrawn under rule 4."
       }
     },
     "interpretation": "The design supplies 4 wells, so the exact permutation null has 6 distinct assignments and no p below 0.167 is achievable. The contrast therefore CANNOT reach conventional significance, whatever the classifier does. This is a limitation of the public deposit, not of the analysis.",
