@@ -1,0 +1,45 @@
+{
+  "phase": "G1.2",
+  "budget_definition": "steps, not wall-clock (PLAN_v2 rule 4)",
+  "v1_budget": "12 A100-SXM4-40GB GPU-hours at the v1 observed rate",
+  "v1_observed_rate_steps_per_hour": 9770,
+  "v1_rate_source": "14,751 steps / 1.51 h (RESUME.md; the log gives 5,401.9 s at step 14,750)",
+  "S_total_formula": "14,751 + 9,770 x (12 - 1.51)",
+  "S_total_formula_value": 117238,
+  "S_total": 117000,
+  "S_total_rounding": "PLAN_v2 G1.2 rounds to 117,000; kept for both runs",
+  "batch_size": 128,
+  "clips_at_S_total": 14976000,
+  "epochs_at_S_total": 53.55,
+  "benchmark": {
+    "bench_steps": 500,
+    "loop_seconds": 193.1,
+    "process_seconds": 196.4,
+    "steps_per_hour": 9321.6,
+    "gpu_util_mean": 93.6,
+    "num_workers": 28,
+    "batch_size": 128,
+    "gpu": "NVIDIA A100-SXM4-40GB",
+    "torch_version": "2.11.0+cu128",
+    "scratch_copy_deleted": true
+  },
+  "projected_hours": {
+    "main_remaining": 10.97,
+    "ablation": 12.55,
+    "total": 23.52
+  },
+  "cap_36h_rule": "projection <= 36 h, so S_total is not reduced",
+  "safety_cap_hours_per_segment": 30.0,
+  "num_workers": 28,
+  "schedule_at_resume_step_14751": {
+    "lr_old_schedule_max150000": 0.0001466619629066497,
+    "lr_new_schedule_max117000": 0.00014452951681492493,
+    "lr_relative_change": -0.014539871480392486,
+    "ema_last_update_old_schedule": 0.9963933333333334,
+    "ema_next_update_old_schedule": 0.99639336,
+    "ema_next_update_new_schedule": 0.9965043418803419,
+    "ema_one_minus_m_relative_change": -0.030771543692152514,
+    "note": "the discontinuity at the resume is reported, not hidden; the new schedule anneals LR to 0 and EMA to 1.0 on update 117,000"
+  },
+  "ablation": "tijepa1_spatial (p_future 0.0) from scratch to the same S_total, same schedule, seed 0, same frozen shard list, after the main run (1 GPU)"
+}
