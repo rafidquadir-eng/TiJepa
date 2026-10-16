@@ -36,6 +36,21 @@ What v1 changes:
     Haralick texture on the cell mask, probed with both logistic regression and a random
     forest, better reported.
 
+v2 changes (PLAN_v2.md G2.2; findings N6, N15, N1):
+
+  * the full sample: the per-(FOV, class) cap is water-filled so the total reaches
+    `--n-cells` (about 9,000 per seed); v1's numbers came from a ~880-cell smoke run;
+  * exposure-time regression: robust scaling, features clipped to the 0.1-99.9%
+    quantiles of the training fold, non-finite features dropped, and an assertion that
+    every MAE is finite and below 10x the mean predictor (v1's E1 MAE was 1e8 h);
+  * leave-one-FOV-out with a +/-3-FOV buffer replaces block CV, whose held-out blocks
+    regress to a training mean on the other side of the time axis (negative rho for
+    every encoder); the within-block rho is reported as well;
+  * the confound is described on the full annotation file (class proportions per
+    exposure time, Cramer's V), and the time-only baseline is reported for what it is;
+  * every learned encoder records the checkpoint it came from (file, run, step,
+    SHA-256) and its results key is derived from that record (`tijepa.eval.provenance`).
+
 E5 (frame shuffle) stays **N/A** here: BBBC054 is static, so there is no temporal order
 to destroy. It applies only to the tracking and forecasting evaluations.
 """
@@ -60,15 +75,17 @@ from sklearn.ensemble import RandomForestClassifier  # noqa: E402
 from sklearn.linear_model import LogisticRegression, RidgeCV  # noqa: E402
 from sklearn.metrics import balanced_accuracy_score, f1_score  # noqa: E402
 from sklearn.model_selection import StratifiedGroupKFold  # noqa: E402
-from sklearn.preprocessing import StandardScaler  # noqa: E402
+from sklearn.preprocessing import RobustScaler, StandardScaler  # noqa: E402
 
+from tijepa.eval import provenance as PV  # noqa: E402
 from tijepa.io import bbbc054 as B  # noqa: E402
 from tijepa.models.video_jepa import VideoJEPA  # noqa: E402
 from tijepa.preprocess import morphology_v1 as M1  # noqa: E402
 
-OUT = REPO / "results" / "v1" / "partA"
+OUT = REPO / "results" / "v2" / "partA"
 CROP, NF = 96, 16
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
+LOFO_BUFFER = 3
 SEEDS = (0, 1, 2)
 PROBE_PCA = 64
 N_TIME_BINS = 6
@@ -101,7 +118,13 @@ def build_dataset(n_max: int, seed: int) -> dict:
     by_key: dict[tuple, list] = {}
     for a in ann:
         by_key.setdefault((a["fov"], a["label"]), []).append(a)
-    per_key = max(1, n_max // max(1, len(by_key)))
+    # water-fill: the smallest per-(FOV, class) cap whose total reaches n_max, so rare
+    # classes are taken whole and common ones capped (v1 used n_max // n_keys, which
+    # undershoots once amoeboid cells run out)
+    sizes = np.array([len(v) for v in by_key.values()])
+    per_key = 1
+    while per_key < sizes.max() and np.minimum(sizes, per_key).sum() < n_max:
+        per_key += 1
     chosen = []
     for _k, v in by_key.items():
         idx = rng.permutation(len(v))[:per_key]
@@ -132,7 +155,7 @@ def build_dataset(n_max: int, seed: int) -> dict:
     print(f"  seed {seed}: {len(X)} crops, {len(set(fovs))} FOVs, "
           f"classes {dict(zip(uniq, counts, strict=False))}")
     return {"X": X, "labels": labels, "fovs": np.asarray(fovs),
-            "hours": np.asarray(hours), "fov_order": fov_order,
+            "hours": np.asarray(hours), "fov_order": fov_order, "per_key_cap": per_key,
             "class_counts": {str(u): int(c) for u, c in zip(uniq, counts, strict=False)}}
 
 
@@ -246,31 +269,138 @@ def within_bin_score(y, pred, hours, n_bins: int = N_TIME_BINS) -> dict:
             "sd": float(np.std(scores, ddof=1)) if len(scores) > 1 else None}
 
 
-def block_cv_regression(x, y, fovs, seed: int, block: int = 6) -> dict:
-    """Leave-6-contiguous-FOVs-out ridge regression of exposure time (exploratory)."""
+class QuantileClip:
+    """Clip each feature to its 0.1-99.9% quantiles on the training fold (G2.2.2)."""
+
+    def __init__(self, lo: float = 0.001, hi: float = 0.999):
+        self.lo, self.hi = lo, hi
+
+    def fit(self, x, y=None):
+        self.lo_, self.hi_ = np.quantile(x, [self.lo, self.hi], axis=0)
+        return self
+
+    def transform(self, x):
+        return np.clip(x, self.lo_, self.hi_)
+
+    def fit_transform(self, x, y=None):
+        return self.fit(x).transform(x)
+
+    def get_params(self, deep=True):
+        return {"lo": self.lo, "hi": self.hi}
+
+    def set_params(self, **kw):
+        for k, v in kw.items():
+            setattr(self, k, v)
+        return self
+
+
+def regression_pipeline(seed: int, n_features: int):
+    from sklearn.decomposition import PCA
+    from sklearn.pipeline import make_pipeline
+    steps = [QuantileClip(), RobustScaler()]
+    if n_features > PROBE_PCA:
+        steps += [PCA(n_components=PROBE_PCA, random_state=seed), StandardScaler()]
+    steps.append(RidgeCV(alphas=np.logspace(-2, 4, 13)))
+    return make_pipeline(*steps)
+
+
+class RegressionBlowUp(AssertionError):
+    pass
+
+
+def check_mae(mae: float, mae_mean: float, what: str) -> None:
+    if not np.isfinite(mae) or mae >= 10 * mae_mean:
+        raise RegressionBlowUp(f"{what}: MAE {mae} is not finite or >= 10x the mean "
+                               f"predictor ({mae_mean}); features reached the regressor "
+                               "unscaled or with outliers")
+
+
+def lofo_buffered_regression(x, y, fovs, seed: int, buffer: int = LOFO_BUFFER,
+                             block: int = 6) -> dict:
+    """Exposure time from embeddings, leave-one-FOV-out with a +/-buffer exclusion.
+
+    Each test FOV is bracketed by training FOVs on both sides of the time axis, so its
+    prediction cannot be dragged toward a training mean that lies entirely on one side -
+    the artefact that made every encoder's block-CV rho negative in v1.
+    """
+    x = np.asarray(x, dtype=np.float64)
     order = np.array(sorted(set(fovs.tolist())))
-    pred = np.zeros(len(y))
-    for i in range(0, len(order), block):
-        held = set(order[i:i + block].tolist())
-        te = np.array([f in held for f in fovs])
-        tr = ~te
-        if tr.sum() < 50 or te.sum() == 0:
-            continue
-        m = probe_pipeline(seed, x.shape[1], RidgeCV(alphas=np.logspace(-2, 4, 13)))
-        m.fit(x[tr], y[tr])
-        pred[te] = m.predict(x[te])
-    ok = pred != 0
-    if ok.sum() < 20:
-        return {"status": "insufficient"}
+    pos = {f: i for i, f in enumerate(order)}
+    fpos = np.array([pos[f] for f in fovs])
+    pred = np.full(len(y), np.nan)
+    pred_mean = np.full(len(y), np.nan)  # the same folds, predicting the training mean
+    n_dropped = []
+    for i in range(len(order)):
+        te = fpos == i
+        tr = np.abs(fpos - i) > buffer
+        pred_mean[te] = y[tr].mean()
+        finite = np.isfinite(x[tr]).all(axis=0)
+        n_dropped.append(int((~finite).sum()))
+        m = regression_pipeline(seed, int(finite.sum()))
+        m.fit(x[tr][:, finite], y[tr])
+        pred[te] = m.predict(np.nan_to_num(x[te][:, finite]))
     from scipy import stats as st
+    mae = float(np.mean(np.abs(y - pred)))
+    mae_mean = float(np.mean(np.abs(y - y.mean())))
+    check_mae(mae, mae_mean, "LOFO exposure-time regression")
+    mae_cv_mean = float(np.mean(np.abs(y - pred_mean)))
+    within = []
+    for b in range(0, len(order), block):
+        m = (fpos >= b) & (fpos < b + block)
+        if m.sum() > 10 and len(np.unique(y[m])) > 2:
+            within.append(float(st.spearmanr(y[m], pred[m]).statistic))
     return {
         "status": "ok",
-        "cv": f"leave-{block}-contiguous-FOVs-out (FOV = exposure time, so a shuffled "
-              "split would let the model interpolate between neighbouring times)",
-        "spearman_rho": float(st.spearmanr(y[ok], pred[ok]).statistic),
-        "mae_hours": float(np.mean(np.abs(y[ok] - pred[ok]))),
-        "mae_mean_predictor_hours": float(np.mean(np.abs(y[ok] - y[ok].mean()))),
-        "n": int(ok.sum()),
+        "cv": f"leave-one-FOV-out with a +/-{buffer}-FOV buffer removed from training, so "
+              "each test FOV is bracketed by training FOVs on both sides of the time axis",
+        "spearman_rho": float(st.spearmanr(y, pred).statistic),
+        "spearman_rho_cv_mean_predictor": float(st.spearmanr(y, pred_mean).statistic),
+        "mae_cv_mean_predictor_hours": mae_cv_mean,
+        "skill_vs_cv_mean_predictor": 1.0 - mae / mae_cv_mean,
+        "reading": "any leave-one-out scheme shifts the training mean away from the held-out "
+                   "FOV, so a predictor with no time information is anti-ranked (see "
+                   "spearman_rho_cv_mean_predictor). Read rho and MAE against that "
+                   "reference under the same folds; skill > 0 means better than it.",
+        "within_block_spearman_rho": within,
+        "within_block_rho_mean": float(np.mean(within)) if within else None,
+        "block_size_fovs": block,
+        "mae_hours": mae,
+        "mae_mean_predictor_hours": mae_mean,
+        "max_nonfinite_features_dropped": int(max(n_dropped)),
+        "feature_handling": "0.1-99.9% quantile clipping and RobustScaler fitted on the "
+                            "training fold; non-finite features dropped",
+        "n": int(len(y)),
+    }
+
+
+def full_file_confound(ann: list[dict]) -> dict:
+    """Class proportions per exposure time and Cramer's V on the FULL annotation file."""
+    from scipy.stats import chi2_contingency
+    fov_order = sorted({a["fov"] for a in ann})
+    labels = sorted({a["label"] for a in ann})
+    tab = np.zeros((len(fov_order), len(labels)), dtype=int)
+    fi = {f: i for i, f in enumerate(fov_order)}
+    li = {lab: j for j, lab in enumerate(labels)}
+    for a in ann:
+        tab[fi[a["fov"]], li[a["label"]]] += 1
+    chi2, p, dof, _ = chi2_contingency(tab)
+    n = tab.sum()
+    v = float(np.sqrt(chi2 / (n * (min(tab.shape) - 1))))
+    props = tab / tab.sum(1, keepdims=True)
+    return {
+        "n_annotations": int(n), "classes": labels,
+        "class_totals": {lab: int(tab[:, j].sum()) for j, lab in enumerate(labels)},
+        "per_exposure_time": [
+            {"fov": int(f), "hours": float(B.exposure_hours(f, fov_order)),
+             "n": int(tab[i].sum()),
+             "proportions": {lab: round(float(props[i, j]), 4)
+                             for j, lab in enumerate(labels)}}
+            for i, f in enumerate(fov_order)],
+        "cramers_v_class_vs_time": v, "chi2": float(chi2), "dof": int(dof),
+        "p_value": float(p),
+        "interpretation": "Cramer's V measures how strongly morphology class depends on "
+                          "exposure time in the full annotation file, i.e. the confound "
+                          "before any subsampling",
     }
 
 
@@ -344,30 +474,33 @@ def main() -> int:
     ap.add_argument("--n-cells", type=int, default=9000)
     ap.add_argument("--ckpt", default=None)
     ap.add_argument("--scale-sensitivity", action="store_true")
+    ap.add_argument("--encoders", default="",
+                    help="comma-separated subset of E1,E2,E3,E0,E4,E4s,E6 (default all)")
+    ap.add_argument("--allow-unfinished", action="store_true",
+                    help="accept a TiJepa-1 checkpoint that has not reached its planned "
+                         "final step (smoke tests only; recorded in the output)")
+    ap.add_argument("--out-name", default="bbbc054.json")
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
 
-    ckpt = Path(args.ckpt) if args.ckpt else None
-    if ckpt is None:
-        for cand in ("tijepa1_T1_seed0.pt", "tijepa0_T1_seed0.pt"):
-            if (REPO / "checkpoints" / cand).exists():
-                ckpt = REPO / "checkpoints" / cand
-                break
-    abl = REPO / "checkpoints" / "tijepa1_spatial_T1_seed0.pt"
-    v0_ckpt = REPO / "checkpoints" / "tijepa0_T1_seed0.pt"
-    print(f"checkpoint: {ckpt.name if ckpt else 'NONE'}; "
-          f"ablation: {'yes' if abl.exists() else 'no'}; "
-          f"v0 reference: {'yes' if v0_ckpt.exists() else 'no'}")
+    ckpts = {
+        "tijepa0": REPO / "checkpoints" / "tijepa0_T1_seed0.pt",
+        "tijepa1": Path(args.ckpt) if args.ckpt else
+        REPO / "checkpoints" / "tijepa1_T1_seed0.pt",
+        "tijepa1_spatial": REPO / "checkpoints" / "tijepa1_spatial_T1_seed0.pt",
+    }
+    wanted = set(args.encoders.split(",")) if args.encoders else None
+    print({k: (v.name if v.exists() else "absent") for k, v in ckpts.items()})
 
     result: dict = {
-        "phase": "F3.2",
+        "phase": "G2.2 (F3.2 redesigned)",
         "task": "BBBC054 microglial MORPHOLOGY CLASS (not activation state)",
         "dataset_note": (
             "Replicate 1 annotates all THREE classes - round, ramified and amoeboid - "
-            "contrary to the premise of review finding D5b and PLAN_v1.md F3.2.1 that "
-            "only two of three are present. The three-class task is primary; the "
-            "two-class round-vs-amoeboid contrast is also reported for comparability "
-            "with v0."),
+            "the three-class task is primary; the two-class round-vs-amoeboid contrast "
+            "is also reported."),
+        "n_cells_requested_per_seed": args.n_cells,
+        "allow_unfinished": args.allow_unfinished,
         "um_per_px": UM_PER_PX,
         "um_per_px_provenance": UM_PER_PX_PROVENANCE,
         "e5_frame_shuffle": "N/A: BBBC054 is static, so there is no temporal order to "
@@ -378,11 +511,19 @@ def main() -> int:
                        "random-init draw (PLAN_v1.md F3.5)",
         "encoders": {},
         "time_only_baseline": {},
-        "exposure_time_regression": {},
-        "fov_identity_probe": {},
     }
+    ann_all = B.load_annotations(REPO / "data" / "raw" / "bbbc054"
+                                 / "Replicate1annotation.csv")
+    result["confound_full_file"] = full_file_confound(ann_all)
+    print(f"  full-file Cramer's V (class vs time): "
+          f"{result['confound_full_file']['cramers_v_class_vs_time']:.3f}")
 
     per_seed_data = {s: build_dataset(args.n_cells, s) for s in SEEDS}
+    result["n_cells_per_seed"] = {str(s): int(len(d["labels"]))
+                                  for s, d in per_seed_data.items()}
+    result["class_counts_per_seed"] = {str(s): d["class_counts"]
+                                       for s, d in per_seed_data.items()}
+    result["per_key_cap"] = {str(s): int(d["per_key_cap"]) for s, d in per_seed_data.items()}
 
     # ---------------- (a) the time-only baseline: morphology from exposure time alone
     tob = []
@@ -402,16 +543,27 @@ def main() -> int:
         result["time_only_baseline"][task] = {
             "per_seed": v, "mean": float(np.mean(v)),
             "sd": float(np.std(v, ddof=1)),
-            "interpretation": "balanced accuracy obtainable from exposure time with no "
-                              "image at all; any encoder's score must be read against "
-                              "this, because FOV = time in this dataset",
+            "interpretation": (
+                "balanced accuracy obtainable from exposure time with no image. The "
+                "sample takes up to the same number of cells of each class from every "
+                "FOV, so where no class runs out every FOV has equal class counts and "
+                "time carries no class information BY CONSTRUCTION; any skill above "
+                "chance here comes from FOVs where a class ran out. It is therefore not "
+                "a measure of the confound in the data, which is described on the full "
+                "file in confound_full_file."),
         }
         print(f"  time-only baseline {task}: BA {np.mean(v):.3f} "
               f"+/- {np.std(v, ddof=1):.3f}")
 
     # ---------------- encoders
-    def register(name: str, embed_fn, note: str = "") -> None:
-        rec: dict = {"note": note, "per_seed": [], "tasks": {}}
+    def register(name: str, embed_fn, note: str = "", checkpoint: dict | None = None,
+                 per_seed_checkpoint: dict | None = None, probe: str = "logreg") -> None:
+        # the key must agree with the checkpoint it came from (PLAN_v2 rule 1)
+        PV.label_for_key(name, checkpoint or (per_seed_checkpoint or {}).get(SEEDS[0]))
+        rec: dict = {"note": note, "per_seed": [], "tasks": {}, "checkpoint": checkpoint,
+                     "probe": probe}
+        if per_seed_checkpoint:
+            rec["checkpoint_per_seed"] = {str(k): v for k, v in per_seed_checkpoint.items()}
         for s in SEEDS:
             d = per_seed_data[s]
             z = embed_fn(d, s)
@@ -419,13 +571,18 @@ def main() -> int:
                 result["encoders"][name] = {"status": "unavailable", "note": note}
                 print(f"  {name}: unavailable")
                 return
-            z = np.nan_to_num(np.asarray(z, dtype=np.float32))
+            z = np.asarray(z, dtype=np.float64)
+            # drop non-finite feature columns; v1's nan_to_num turned inf into 1.8e308,
+            # which is what produced an exposure-time MAE of 1e8 h
+            finite = np.isfinite(z).all(axis=0)
+            rec.setdefault("nonfinite_features_dropped", {})[str(s)] = int((~finite).sum())
+            z = z[:, finite]
             for task in ("three_class", "round_vs_amoeboid"):
                 m = (np.isin(d["labels"], ["round", "amoeboid"])
                      if task.startswith("round") else
                      np.ones(len(d["labels"]), dtype=bool))
                 y = d["labels"][m]
-                pred = grouped_predict(z[m], y, d["fovs"][m], s)
+                pred = grouped_predict(z[m], y, d["fovs"][m], s, kind=probe)
                 rec["tasks"].setdefault(task, []).append({
                     "seed": s,
                     "balanced_accuracy": float(balanced_accuracy_score(y, pred)),
@@ -439,7 +596,7 @@ def main() -> int:
             # exposure-time regression (exploratory) and the FOV-identity probe
             rec["per_seed"].append({
                 "seed": s,
-                "exposure_time_block_cv": block_cv_regression(
+                "exposure_time_lofo": lofo_buffered_regression(
                     z, d["hours"], d["fovs"], s),
                 "fov_identity_balanced_accuracy": float(balanced_accuracy_score(
                     d["fovs"].astype(str),
@@ -457,75 +614,103 @@ def main() -> int:
                   f"  within-bin {np.mean(wb):.3f}" if wb else "")
         fov = [r["fov_identity_balanced_accuracy"] for r in rec["per_seed"]]
         rec["fov_identity_mean"] = float(np.mean(fov))
-        rho = [r["exposure_time_block_cv"].get("spearman_rho") for r in rec["per_seed"]
-               if r["exposure_time_block_cv"].get("spearman_rho") is not None]
-        rec["exposure_time_rho_mean"] = float(np.mean(rho)) if rho else None
+        lofo = [r["exposure_time_lofo"] for r in rec["per_seed"]]
+        rec["exposure_time_rho_mean"] = float(np.mean([r["spearman_rho"] for r in lofo]))
+        rec["exposure_time_within_block_rho_mean"] = float(np.mean(
+            [r["within_block_rho_mean"] for r in lofo
+             if r["within_block_rho_mean"] is not None]))
+        rec["exposure_time_mae_mean"] = float(np.mean([r["mae_hours"] for r in lofo]))
+        rec["exposure_time_mae_mean_predictor"] = float(np.mean(
+            [r["mae_mean_predictor_hours"] for r in lofo]))
+        rec["exposure_time_rho_cv_mean_predictor"] = float(np.mean(
+            [r["spearman_rho_cv_mean_predictor"] for r in lofo]))
+        rec["exposure_time_skill_vs_cv_mean"] = float(np.mean(
+            [r["skill_vs_cv_mean_predictor"] for r in lofo]))
         result["encoders"][name] = rec
 
-    # E1 improved classical baseline
+    def want(tag: str) -> bool:
+        return wanted is None or tag in wanted
+
+    def load_jepa(run: str):
+        path = ckpts[run]
+        if not path.exists():
+            print(f"  {run}: checkpoint absent, not evaluated")
+            return None, None
+        sd = torch.load(path, map_location="cpu", weights_only=False)
+        rec = PV.checkpoint_record(path, sd)
+        if run != "tijepa0" and not rec["final"] and not args.allow_unfinished:
+            raise SystemExit(f"{path.name} is at step {rec['step']}, not its planned final "
+                             f"step {rec['planned_final_step']}; evaluate final checkpoints "
+                             "only (or pass --allow-unfinished for a smoke test)")
+        m = VideoJEPA(clip=(NF, CROP, CROP))
+        m.load_state_dict(sd["model"])
+        return m.eval().to(DEV), rec
+
+    # E1 classical baseline; features computed once per seed, probed two ways
+    e1_cache: dict[int, np.ndarray] = {}
+
     def e1_embed(d: dict, seed: int) -> np.ndarray:
-        feats, methods = [], []
-        for img in d["X"]:
-            v, _n, meth = M1.features_single_frame(img)
-            feats.append(v)
-            methods.append(meth)
-        result.setdefault("e1_segmentation_methods", {})
-        uniq, cnt = np.unique(methods, return_counts=True)
-        result["e1_segmentation_methods"] = {
-            str(u): int(c) for u, c in zip(uniq, cnt, strict=False)}
-        return np.stack(feats)
+        if seed not in e1_cache:
+            feats, methods = [], []
+            for img in d["X"]:
+                v, _n, meth = M1.features_single_frame(img)
+                feats.append(v)
+                methods.append(meth)
+            uniq, cnt = np.unique(methods, return_counts=True)
+            result["e1_segmentation_methods"] = {
+                str(u): int(c) for u, c in zip(uniq, cnt, strict=False)}
+            e1_cache[seed] = np.stack(feats)
+        return e1_cache[seed]
 
-    register("E1_handcrafted_improved", e1_embed,
-             "segmentation + shape + Zernike + Haralick on the mask; probed with "
-             "logistic regression and a random forest, better reported (fixes C6)")
+    if want("E1"):
+        register("E1_handcrafted_logreg", e1_embed,
+                 "segmentation + shape + Zernike + Haralick on the mask; logistic-"
+                 "regression probe (the probe every encoder gets)")
+        register("E1_handcrafted_rf", e1_embed,
+                 "the same features with a random-forest probe; both probes are "
+                 "reported, neither is selected on the test folds", probe="rf")
+    if want("E2"):
+        register("E2_imagenet_vit_s",
+                 lambda d, s: embed_timm("vit_small_patch16_224.augreg_in21k_ft_in1k",
+                                         d["X"]))
+    if want("E3"):
+        register("E3_dinov2_vit_s",
+                 lambda d, s: embed_timm("vit_small_patch14_dinov2.lvd142m", d["X"]))
 
-    register("E2_imagenet_vit_s",
-             lambda d, s: embed_timm("vit_small_patch16_224.augreg_in21k_ft_in1k",
-                                     d["X"]))
-    register("E3_dinov2_vit_s", lambda d, s: embed_timm("vit_small_patch14_dinov2.lvd142m",
-                                                        d["X"]))
+    model = None
+    for tag, run, note in (
+            ("E4", "tijepa1", "mixed spatial + future masking"),
+            ("E4s", "tijepa1_spatial", "matched-step spatial-masking-only ablation"),
+            ("E0", "tijepa0", "historical reference: a different corpus, so not an "
+                              "ablation of anything")):
+        if not want(tag):
+            continue
+        m, rec = load_jepa(run)
+        if m is None:
+            continue
+        register(PV.key_for(rec), lambda d, s, m=m: embed_jepa(m, static_clips(d["X"])),
+                 f"{note}; checkpoint {rec['file']} at step {rec['step']}", checkpoint=rec)
+        if run == "tijepa1":
+            model = m
+            result["scale_sensitivity_checkpoint"] = rec
+        else:
+            del m
+            torch.cuda.empty_cache()
 
-    if ckpt and ckpt.exists():
-        model = VideoJEPA(clip=(NF, CROP, CROP))
-        sd = torch.load(ckpt, map_location="cpu", weights_only=False)
-        model.load_state_dict(sd["model"])
-        model = model.eval().to(DEV)
-        name = ("E4_tijepa1" if "tijepa1" in ckpt.name else "E4_tijepa0_only_available")
-        register(name, lambda d, s: embed_jepa(model, static_clips(d["X"])),
-                 f"checkpoint {ckpt.name} at step {sd.get('step')}")
-        result["checkpoint"] = {"file": ckpt.name, "step": sd.get("step")}
-
-    if abl.exists():
-        m_abl = VideoJEPA(clip=(NF, CROP, CROP))
-        m_abl.load_state_dict(torch.load(abl, map_location="cpu",
-                                         weights_only=False)["model"])
-        m_abl = m_abl.eval().to(DEV)
-        register("E4s_tijepa1_spatial_only",
-                 lambda d, s: embed_jepa(m_abl, static_clips(d["X"])),
-                 "the matched-step spatial-masking-only ablation (F2.3)")
-
-    if v0_ckpt.exists() and (not ckpt or ckpt.name != v0_ckpt.name):
-        m_v0 = VideoJEPA(clip=(NF, CROP, CROP))
-        m_v0.load_state_dict(torch.load(v0_ckpt, map_location="cpu",
-                                        weights_only=False)["model"])
-        m_v0 = m_v0.eval().to(DEV)
-        register("E0_tijepa0_reference",
-                 lambda d, s: embed_jepa(m_v0, static_clips(d["X"])),
-                 "historical reference only: a different corpus, so NOT a valid "
-                 "ablation of anything")
-
-    # E6: three independent random-init draws (F3's encoder list)
+    # E6: three independent random-init draws, one per seed
     def e6_embed(d: dict, seed: int) -> np.ndarray:
         torch.manual_seed(5000 + seed)
         m = VideoJEPA(clip=(NF, CROP, CROP)).eval().to(DEV)
         return embed_jepa(m, static_clips(d["X"]))
 
-    register("E6_tijepa_random_init", e6_embed,
-             "three INDEPENDENT random-init draws, one per seed, so the sd reflects "
-             "architecture variability and not just folds")
+    if want("E6"):
+        register("E6_random_init", e6_embed,
+                 "three INDEPENDENT random-init draws, one per seed, so the sd reflects "
+                 "architecture variability and not just folds",
+                 per_seed_checkpoint={s: PV.random_init_record(5000 + s) for s in SEEDS})
 
-    # ---------------- scale sensitivity
-    if args.scale_sensitivity and ckpt and ckpt.exists():
+    # ---------------- scale sensitivity (TiJepa-1)
+    if args.scale_sensitivity and model is not None:
         scales = {}
         d = per_seed_data[SEEDS[0]]
         for f in SCALE_FACTORS:
@@ -536,6 +721,7 @@ def main() -> int:
             print(f"  scale {f}: three-class BA {scales[str(f)]:.3f}")
         result["scale_sensitivity"] = {
             "factors": list(SCALE_FACTORS), "three_class_balanced_accuracy": scales,
+            "checkpoint": result["scale_sensitivity_checkpoint"],
             "note": "resample factor 1.0 is the derived 0.65 um/px; reported because "
                     "the camera model code could not be confirmed by name (F1.5)"}
 
@@ -577,9 +763,11 @@ def main() -> int:
                   f"(BH-corrected within the task)")
     result["pairwise_comparisons"] = comps
 
-    (OUT / "bbbc054_v1.json").write_text(
-        json.dumps(result, indent=2, default=float) + "\n")
-    print(f"wrote {OUT/'bbbc054_v1.json'}")
+    problems = PV.check_results(result["encoders"])
+    if problems:
+        raise SystemExit("provenance check failed: " + "; ".join(problems))
+    (OUT / args.out_name).write_text(json.dumps(result, indent=2, default=float) + "\n")
+    print(f"wrote {OUT / args.out_name}")
     return 0
 
 

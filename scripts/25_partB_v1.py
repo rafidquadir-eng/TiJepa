@@ -46,7 +46,7 @@ from sklearn.preprocessing import StandardScaler  # noqa: E402
 
 from tijepa.io import tay  # noqa: E402
 
-OUT = REPO / "results" / "v1" / "partB"
+OUT = REPO / "results" / "v2" / "partB"
 LPS, NAIVE = 2.0, 0.0
 SEEDS = (0, 1, 2)
 
@@ -245,10 +245,16 @@ def b31_sensitivity(ts: tay.TraceSet) -> dict:
     uniq = np.unique(groups)
     per_seed = []
     for seed in SEEDS:
-        pred = loo_group_predict(x, y, groups, seed=seed)
-        per_seed.append({"seed": seed,
-                         "cell_balanced_accuracy": float(balanced_accuracy_score(y, pred)),
-                         "well_balanced_accuracy": well_level_score(y, pred, groups)})
+        # v2 (PLAN_v2 G4.1): v1 refit the same cells with the same deterministic folds,
+        # so the three "seeds" were identical (sd exactly 0). Each seed now draws its
+        # own per-well cell subsample, as the primary analysis does.
+        sel = subsample_per_group(groups, np.random.default_rng(seed), per_group=250)
+        pred = loo_group_predict(x[sel], y[sel], groups[sel], seed=seed)
+        per_seed.append({"seed": seed, "n_cells_subsampled": int(len(sel)),
+                         "cell_balanced_accuracy": float(
+                             balanced_accuracy_score(y[sel], pred)),
+                         "well_balanced_accuracy": well_level_score(
+                             y[sel], pred, groups[sel])})
     ba = np.array([r["cell_balanced_accuracy"] for r in per_seed])
 
     def stat(y_lab: np.ndarray) -> float:
@@ -269,6 +275,8 @@ def b31_sensitivity(ts: tay.TraceSet) -> dict:
         "per_seed": per_seed,
         "cell_balanced_accuracy_mean": float(ba.mean()),
         "cell_balanced_accuracy_sd": float(ba.std(ddof=1)),
+        "seed_varies": "a different per-well cell subsample (up to 250 cells per well) per "
+                       "seed; the exact permutation uses all cells",
         "exact_permutation": perm,
         "confidence_interval": None,
         "confidence_interval_reason":

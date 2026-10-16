@@ -58,16 +58,23 @@ def load_movie(path: Path, max_frames: int | None = None
 
 
 def tracks_from_labels(labels: np.ndarray, min_len: int = 16) -> dict[int, np.ndarray]:
-    """Instance IDs -> (n_frames_present, 3) arrays of (t, y, x) centroids."""
+    """Instance IDs -> (n_frames_present, 3) arrays of (t, y, x) centroids.
+
+    Centroids come from one bincount per frame (pixel counts and coordinate sums per
+    ID), identical to averaging `np.nonzero(frame == i)` but linear in the frame size
+    instead of (frame size x number of IDs).
+    """
     out: dict[int, list] = {}
+    h, w = labels.shape[1], labels.shape[2]
+    yy = np.repeat(np.arange(h, dtype=np.float64), w)
+    xx = np.tile(np.arange(w, dtype=np.float64), h)
     for t in range(labels.shape[0]):
-        frame = labels[t]
-        ids = np.unique(frame)
-        for i in ids:
+        flat = np.asarray(labels[t]).ravel().astype(np.int64)
+        n = np.bincount(flat)
+        sy = np.bincount(flat, weights=yy, minlength=n.size)
+        sx = np.bincount(flat, weights=xx, minlength=n.size)
+        for i in np.flatnonzero(n):
             if i == 0:
                 continue
-            ys, xs = np.nonzero(frame == i)
-            if ys.size == 0:
-                continue
-            out.setdefault(int(i), []).append((t, float(ys.mean()), float(xs.mean())))
+            out.setdefault(int(i), []).append((t, sy[i] / n[i], sx[i] / n[i]))
     return {k: np.asarray(v) for k, v in out.items() if len(v) >= min_len}

@@ -65,7 +65,8 @@ def hardware() -> dict:
     return {
         "hostname": socket.gethostname(),
         "gpus": [dict(zip(["name", "memory_total", "driver_version", "compute_capability"],
-                          [p.strip() for p in line.split(",")])) for line in gpu.splitlines()],
+                          [p.strip() for p in line.split(",")], strict=False))
+                 for line in gpu.splitlines()],
         "cuda_available": torch.cuda.is_available(),
         "torch_version": torch.__version__,
         "torch_cuda": torch.version.cuda,

@@ -1,0 +1,38 @@
+{
+  "phase": "G5.1",
+  "rule": "An 'expected direction' is stated only where the source publication of the dataset reports TNF and/or IL-6 after LPS restimulation for that arm. Other arms get 'no sourced expectation'.",
+  "sources": {
+    "GSE212282": {"pubmed_id": "37330914", "doi": "10.1016/j.celrep.2023.112658",
+      "citation": "Ferreira AV, et al. Dimethyl itaconate induces long-term innate immune responses and confers protection against infection. Cell Rep 2023;42:112658",
+      "text_source": "open-access PDF (CC BY 4.0), Radboud repository handle 2066/295307",
+      "protocol": "monocytes exposed 24 h, rested 5 days, restimulated on day 6 with 10 ng/mL LPS for 24 h; cytokines in supernatant (protein). The deposited RNA-seq restimulation is 4 h LPS at day 6 (Figure 2A/2F), so protein expectations are at a later time point than the scored RNA."},
+    "GSE185433": {"pubmed_id": "37291433", "doi": "10.1038/s41551-023-01050-0", "pmc": "PMC10504080",
+      "citation": "Schrijver DP, Roring RJ, et al. Resolving sepsis-induced immunoparalysis via trained immunity by targeting interleukin-4 to myeloid cells. Nat Biomed Eng 2023",
+      "text_source": "PMC full text (Europe PMC fullTextXML)",
+      "protocol": "monocytes exposed 24 h, 5-day rest, restimulated on day 6 with LPS for 24 h; TNF and IL-6 by ELISA (protein). The deposited RNA-seq restimulation samples are d6 + LPS."}
+  },
+  "arms": {
+    "GSE212282:beta_glucan": {"expected": "higher", "readout": "TNF-a and IL-6 protein, 24 h LPS restimulation at day 6",
+      "where": "Ferreira 2023, Figure 1D (left panels)",
+      "quote": "DMI-exposed macrophages (DMI-Mfs) showed increased TNF-a and IL-6 secretion after LPS restimulation, in a similar magnitude as the well-described inducer of trained immunity b-glucan (Figure 1D, left panels)."},
+    "GSE212282:DMI": {"expected": "higher", "readout": "TNF-a and IL-6 protein, 24 h LPS restimulation at day 6",
+      "where": "Ferreira 2023, Figure 1D (left panels)",
+      "quote": "DMI-exposed macrophages (DMI-Mfs) showed increased TNF-a and IL-6 secretion after LPS restimulation"},
+    "GSE212282:itaconate": {"expected": {"IL6": "higher", "TNF": "no sourced expectation"},
+      "readout": "IL-6 protein, 24 h LPS restimulation at day 6", "where": "Ferreira 2023, Figures 1B and 1C",
+      "quote": "exposure to ITA led to increased production of interleukin-6 (IL-6), and OI treatment led to enhanced tumor necrosis factor a (TNF-a) secretion, both upon restimulation (Figures 1B and 1C).",
+      "note": "the TNF increase is reported for 4-octyl itaconate (OI), which is not an arm of GSE212282"},
+    "GSE212282:beta_glucan_plus_DMI": {"expected": "no sourced expectation",
+      "where": "Ferreira 2023, Figure 2B-2E and Figure S4",
+      "quote": "the transcriptional response triggered by the combined exposure of DMI and b-glucan was largely similar to the individual DMI or b-glucan treatment",
+      "note": "no TNF/IL-6 restimulation result is reported for the combination; the paper recalls earlier work in which DMI blunted b-glucan training, and reports that DMI blocked the early (4 h) b-glucan-driven increase of TLR, TNF and NF-kB pathway genes"},
+    "GSE185433:IL4": {"expected": "higher", "readout": "TNF and IL-6 protein, 24 h LPS restimulation at day 6",
+      "where": "Schrijver 2023, Figure 1e",
+      "quote": "Contrary to our initial hypothesis, exposing monocytes to IL4 alone for 24 h induced a trained immunity phenotype on day 6 (Fig. 1e). Besides enhanced production of pro-inflammatory cytokines, ..."},
+    "GSE185433:IL4_plus_LPS": {"expected": "no sourced expectation",
+      "note": "the paper reports IL-4 + LPS only as an acute (24 h) co-stimulation, where IL-4 inhibited TNF and IL-6 (Figure 1b), not after a rest and restimulation"},
+    "GSE185433:LPS_tolerised": {"expected": "no sourced expectation",
+      "note": "the source paper's in vitro experiments do not report TNF/IL-6 for monocytes pre-exposed to LPS in vitro and restimulated on day 6; LPS pre-exposure appears only in the ex vivo endotoxaemia arm ('LPS (to assess initial immune tolerance)'), restimulated on day 3 rather than day 6"}
+  },
+  "erratum": "v1 labelled the GSE212282 arm 'DMI' as '4OI' (4-octyl itaconate). The deposited files (e.g. A_d7_DMI), the GEO overall design and the source paper all say dimethyl itaconate (DMI); 4-OI is not an arm of this series."
+}

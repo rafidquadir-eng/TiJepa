@@ -30,6 +30,23 @@ be meaningless and is not done. A `mean-latent` baseline is reported as well.
 
 TiJepa-1-spatial is queried with the same future mask although it never saw one in
 training, so its ratio is an out-of-distribution query and is labelled as such.
+
+### v2 (PLAN_v2.md G2.3, G3.3; findings N5, N7, N1)
+
+* Up to 50 ground-truth tracks per movie (all if fewer), chosen by a seeded rule that is
+  recorded, over the whole movie rather than its first 160 frames; `n_tracks` per movie.
+* Per-threshold success curves (1, 2, 4, 8, 16 um). Survival = number of frames before
+  the first frame whose error exceeds 8 um. When <delta> and survival rank two methods
+  differently, the output says so.
+* Leakage: TiJepa-0's corpus contained `R08:H4`, the twin of `08_H4`, so every E0
+  comparison is reported with and without `08_H4`. Evaluation movies with a twin in the
+  frozen v1 corpus (`results/v2/leakage_check_full.json`) are excluded for every model
+  trained on that corpus.
+* Forecasting on every movie, from clips sampled along all of its tracks; any movie that
+  cannot be evaluated gets a stated reason. Primary comparison: TiJepa-1 against
+  TiJepa-1-spatial, per-movie ratio, exact sign-flip test over movies. E0 is a reference
+  row; random-init ratios are supplementary (their predictor is untrained).
+* Each learned encoder records its checkpoint (file, run, step, SHA-256).
 """
 from __future__ import annotations
 
@@ -48,11 +65,15 @@ print = functools.partial(print, flush=True)
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
 
+from tijepa.eval import provenance as PV  # noqa: E402
 from tijepa.io import sbiad  # noqa: E402
 from tijepa.models.video_jepa import VideoJEPA, future_mask  # noqa: E402
 from tijepa.preprocess import detect as D  # noqa: E402
 
-OUT = REPO / "results" / "v1" / "partA"
+OUT = REPO / "results" / "v2" / "partA"
+TRACK_SEED = 20261016
+E0_TWIN_MOVIE = "08_H4.ome.zarr.zip"  # twin of R08:H4, which was in TiJepa-0's corpus
+CORPUS_V1_RUNS = ("tijepa1", "tijepa1_spatial")
 RAW = REPO / "data" / "raw"
 THRESH_UM = (1.0, 2.0, 4.0, 8.0, 16.0)
 CROP, NF = 96, 16
@@ -215,86 +236,165 @@ def exact_movie_permutation(per_movie: dict[str, float], ref: dict[str, float]) 
 
 def load_encoders(args) -> dict:
     enc: dict[str, dict] = {}
-    main = (Path(args.ckpt) if args.ckpt
-            else REPO / "checkpoints" / "tijepa1_T1_seed0.pt")
     specs = [
-        ("E4_tijepa1", main, "the v1 model, mixed spatial + future masking"),
-        ("E4s_tijepa1_spatial", REPO / "checkpoints" / "tijepa1_spatial_T1_seed0.pt",
+        ("tijepa1", Path(args.ckpt) if args.ckpt else
+         REPO / "checkpoints" / "tijepa1_T1_seed0.pt",
+         "mixed spatial + future masking"),
+        ("tijepa1_spatial", REPO / "checkpoints" / "tijepa1_spatial_T1_seed0.pt",
          "matched-step spatial-only ablation; queried with a future mask it never saw "
-         "in training, so its forecasting ratio is OUT OF DISTRIBUTION"),
-        ("E0_tijepa0_reference", REPO / "checkpoints" / "tijepa0_T1_seed0.pt",
+         "in training, so its forecasting ratio is out of distribution"),
+        ("tijepa0", REPO / "checkpoints" / "tijepa0_T1_seed0.pt",
          "historical reference: different corpus, not a valid ablation"),
     ]
-    for name, path, note in specs:
+    for run, path, note in specs:
         if not path.exists():
+            print(f"  {run}: checkpoint absent, not evaluated")
             continue
-        m = VideoJEPA(clip=(NF, CROP, CROP))
         sd = torch.load(path, map_location="cpu", weights_only=False)
+        rec = PV.checkpoint_record(path, sd)
+        if run != "tijepa0" and not rec["final"] and not args.allow_unfinished:
+            raise SystemExit(f"{path.name} is at step {rec['step']}, not its planned final "
+                             f"step {rec['planned_final_step']}; evaluate final checkpoints "
+                             "only (or pass --allow-unfinished for a smoke test)")
+        m = VideoJEPA(clip=(NF, CROP, CROP))
         m.load_state_dict(sd["model"])
-        enc[name] = {"model": m.eval().to(DEV), "note": note,
-                     "checkpoint": path.name, "step": sd.get("step")}
+        enc[PV.key_for(rec)] = {"model": m.eval().to(DEV), "note": note, "checkpoint": rec}
     for s in (0, 1, 2):
         torch.manual_seed(9000 + s)
         enc[f"E6_random_init_draw{s}"] = {
             "model": VideoJEPA(clip=(NF, CROP, CROP)).eval().to(DEV),
-            "note": f"independent random-init draw {s}", "checkpoint": None,
-            "step": None}
+            "note": f"independent random-init draw {s}",
+            "checkpoint": PV.random_init_record(9000 + s)}
+    for k, e in enc.items():
+        PV.label_for_key(k, e["checkpoint"])
     return enc
+
+
+def select_tracks(tracks: dict, movie: str, n: int) -> list[int]:
+    """Up to `n` track ids, a seeded draw from all eligible ids (recorded)."""
+    ids = sorted(int(t) for t in tracks)
+    if len(ids) <= n:
+        return ids
+    seed = (TRACK_SEED, int.from_bytes(movie.encode()[:8].ljust(8, b"_"), "little"))
+    rng = np.random.default_rng(seed)
+    return sorted(int(i) for i in rng.choice(ids, size=n, replace=False))
+
+
+def excluded_movies(enc_key: str, enc: dict, corpus_twins: set[str]) -> set[str]:
+    run = (enc.get("checkpoint") or {}).get("run_name")
+    out = set()
+    if run in CORPUS_V1_RUNS or enc_key == "E5_frame_shuffled":
+        out |= corpus_twins
+    if run == "tijepa0":
+        out.add(E0_TWIN_MOVIE)
+    return out
+
+
+def rank_note(agg: dict, a: str, b: str) -> str | None:
+    """A sentence when <delta> and survival order two methods differently."""
+    if a not in agg or b not in agg or "delta_avg_mean" not in agg[a] \
+            or "delta_avg_mean" not in agg[b]:
+        return None
+    d = np.sign(agg[a]["delta_avg_mean"] - agg[b]["delta_avg_mean"])
+    sv = np.sign(agg[a]["median_survival_frames"] - agg[b]["median_survival_frames"])
+    if d != 0 and sv != 0 and d != sv:
+        return (f"{a} and {b} are ordered differently by <delta> and by median survival: "
+                "<delta> averages success over the whole track at five thresholds, while "
+                "survival counts only frames before the first error above 8 um, so a "
+                "tracker that drifts slowly but rarely jumps can win one and lose the other")
+    return None
+
+
+def aggregate(per_track: list[dict], meth: str, skip: set[str]) -> dict | None:
+    rows = [r for r in per_track if meth in r and r["movie"] not in skip
+            and r[meth].get("delta_avg") is not None]
+    if not rows:
+        return None
+    pm: dict[str, float] = {}
+    for mvn in sorted({r["movie"] for r in rows}):
+        pm[mvn] = float(np.mean([r[meth]["delta_avg"] for r in rows if r["movie"] == mvn]))
+    curve = {f"within_{t:g}um": float(np.mean([r[meth]["deltas"][f"within_{t:g}um"]
+                                               for r in rows])) for t in THRESH_UM}
+    return {"delta_avg_mean": float(np.mean([r[meth]["delta_avg"] for r in rows])),
+            "median_survival_frames": float(np.median([r[meth]["survival_frames"]
+                                                       for r in rows])),
+            "per_threshold_success": curve,
+            "n_tracks": len(rows), "per_movie_delta_avg": pm,
+            "movies_excluded": sorted(skip), "confidence_interval": None}
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--max-frames", type=int, default=160)
-    ap.add_argument("--n-tracks", type=int, default=25)
+    ap.add_argument("--max-frames", type=int, default=0, help="0 = whole movie")
+    ap.add_argument("--n-tracks", type=int, default=50, help="per movie")
     ap.add_argument("--n-steps", type=int, default=32)
-    ap.add_argument("--forecast-clips", type=int, default=256)
+    ap.add_argument("--forecast-clips", type=int, default=256, help="per movie")
     ap.add_argument("--ckpt", default=None)
+    ap.add_argument("--allow-unfinished", action="store_true")
+    ap.add_argument("--movies", default="", help="comma-separated subset (smoke tests)")
+    ap.add_argument("--out-name", default="tracking_forecast.json")
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
 
     movies = sorted((RAW / "s-biad2196" / "Celltrack_data").glob("*.zip"))
+    if args.movies:
+        movies = [m for m in movies if any(k in m.name for k in args.movies.split(","))]
     ltdb = sorted((RAW / "ltdb").glob("*")) if (RAW / "ltdb").exists() else []
-    leak_path = REPO / "results" / "v1" / "leakage_check.json"
+    leak_path = REPO / "results" / "v2" / "leakage_check_full.json"
     leak = json.loads(leak_path.read_text()) if leak_path.exists() else {}
+    corpus_twins = set(leak.get("excluded_eval_movies_for_corpus_v1_models", []))
 
     enc = load_encoders(args)
     print(f"{len(movies)} S-BIAD2196 movies, {len(enc)} encoders: {sorted(enc)}")
 
     result: dict = {
-        "phase": "F3.3 + F3.4",
-        "dataset": "S-BIAD2196 CellTrack, all 6 movies the deposit contains",
+        "phase": "G2.3 (F3.3 + F3.4)",
+        "dataset": "S-BIAD2196 CellTrack, all movies the deposit contains",
         "n_movies": len(movies),
         "movies": [m.name for m in movies],
         "leakage": {
-            "checked": bool(leak),
-            "excluded_pretraining_movies": leak.get("excluded_train_movies", []),
-            "eval_movies_with_a_twin": leak.get("eval_movies_with_a_twin", []),
-            "policy": "the matching ComplexEye movie is excluded from pretraining, so "
-                      "the evaluation movie stays usable (F1.3.4)",
+            "full_check": str(leak_path.relative_to(REPO)) if leak else None,
+            "full_check_complete": bool(leak.get("all_archives_checked")),
+            "excluded_for_corpus_v1_models": sorted(corpus_twins),
+            "excluded_for_tijepa0": [E0_TWIN_MOVIE],
+            "policy": "TiJepa-0's corpus contained R08:H4, the twin of 08_H4, so E0 "
+                      "comparisons are given with and without 08_H4; an evaluation movie "
+                      "with a twin in the frozen v1 corpus is excluded for every model "
+                      "trained on it",
         },
+        "track_selection": {
+            "rule": f"tracks of >= {args.n_steps + 1} frames over the whole movie; up to "
+                    f"{args.n_tracks} per movie drawn without replacement with "
+                    f"numpy default_rng(({TRACK_SEED}, movie-name bytes)); all if fewer",
+            "per_movie": {}},
+        "survival_definition": "number of frames tracked before the first frame whose "
+                               "position error exceeds 8 um (the whole track if never)",
         "ltdb": ("provided: " + str(len(ltdb)) + " files" if ltdb else
-                 "NOT PROVIDED by the author; see results/v1/manual_intake.json"),
-        "cotracker": "not run: dl.fbaipublicfiles.com was unreachable in preflight; "
-                     "the Hugging Face route was not attempted in this run",
+                 "not provided by the author; see results/v2/manual_intake.json"),
+        "cotracker": "not run: dl.fbaipublicfiles.com was unreachable in v1 preflight; "
+                     "the Hugging Face route was not attempted",
         "encoders": {k: {kk: vv for kk, vv in v.items() if kk != "model"}
                      for k, v in enc.items()},
-        "statistics": "6 movies is below the 10-group minimum, so no bootstrap CI is "
-                      "reported (rule 3); per-movie values and an exact sign-flip "
-                      "permutation are given instead.",
+        "statistics": f"{len(movies)} movies is below the 10-group minimum, so no "
+                      "bootstrap CI is reported (rule 3); per-movie values and an exact "
+                      "sign-flip permutation are given instead.",
     }
 
     per_track: list[dict] = []
     forecast: dict[str, dict] = {k: {} for k in enc}
+    forecast_status: dict[str, str] = {}
     for mv in movies:
-        raw, lab = sbiad.load_movie(mv, max_frames=args.max_frames)
+        raw, lab = sbiad.load_movie(mv, max_frames=args.max_frames or None)
         tracks = sbiad.tracks_from_labels(lab, min_len=args.n_steps + 1)
-        ids = sorted(tracks)[: args.n_tracks]
+        ids = select_tracks(tracks, mv.name, args.n_tracks)
+        result["track_selection"]["per_movie"][mv.name] = {
+            "n_frames": int(raw.shape[0]), "n_eligible": len(tracks),
+            "n_tracks": len(ids), "track_ids": ids}
         print(f"{mv.name}: {raw.shape}, {len(tracks)} tracks >= {args.n_steps+1}, "
               f"using {len(ids)}")
-        dets = [D.detect_frame(raw[t], D.temporal_background(raw))
-                for t in range(raw.shape[0])]
+        bg = D.temporal_background(raw)
+        dets = [D.detect_frame(raw[t], bg) for t in range(raw.shape[0])]
 
-        clips_for_forecast = []
         for tid in ids:
             tr = tracks[tid]
             t0 = int(tr[0, 0])
@@ -315,75 +415,113 @@ def main() -> int:
                         enc["E4_tijepa1"]["model"].grid, shuffle_frames=True), gt)
             per_track.append(row)
 
-            # a cell-centred clip for the forecasting evaluation
-            half = CROP // 2
-            y0, x0 = int(round(gt[0, 0])) - half, int(round(gt[0, 1])) - half
-            if (y0 >= 0 and x0 >= 0 and y0 + CROP <= raw.shape[1]
-                    and x0 + CROP <= raw.shape[2] and t0 + NF <= raw.shape[0]):
-                c = raw[t0:t0 + NF, y0:y0 + CROP, x0:x0 + CROP].astype(np.float32)
-                c = (c - c.mean()) / (c.std() + 1e-6)
-                clips_for_forecast.append(torch.from_numpy(c)[None])
-
-        if clips_for_forecast:
-            cl = torch.stack(clips_for_forecast)[: args.forecast_clips]
-            for name, e in enc.items():
-                forecast[name][mv.name] = forecast_ratio(e["model"], cl)
-            print(f"   forecasting on {len(cl)} clips: " + ", ".join(
-                f"{n}={forecast[n][mv.name].get('ratio_vs_copy_last'):.3f}"
-                for n in enc if forecast[n][mv.name].get("ratio_vs_copy_last")))
+        # forecasting clips: cell-centred windows along EVERY track, every NF frames
+        half = CROP // 2
+        cands = []
+        for tid in sorted(tracks):
+            tr = tracks[tid]
+            for k in range(0, len(tr) - NF + 1, NF):
+                t0 = int(tr[k, 0])
+                y0 = int(round(tr[k, 1])) - half
+                x0 = int(round(tr[k, 2])) - half
+                if (y0 >= 0 and x0 >= 0 and y0 + CROP <= raw.shape[1]
+                        and x0 + CROP <= raw.shape[2] and t0 + NF <= raw.shape[0]):
+                    cands.append((t0, y0, x0))
+        if not cands:
+            forecast_status[mv.name] = ("no 16-frame cell-centred window fits inside the "
+                                        "frame along any track")
+            continue
+        rng = np.random.default_rng((TRACK_SEED, 1, len(cands)))
+        pick = rng.permutation(len(cands))[: args.forecast_clips]
+        clips = []
+        for i in sorted(pick):
+            t0, y0, x0 = cands[i]
+            c = raw[t0:t0 + NF, y0:y0 + CROP, x0:x0 + CROP].astype(np.float32)
+            clips.append(torch.from_numpy((c - c.mean()) / (c.std() + 1e-6))[None])
+        cl = torch.stack(clips)
+        forecast_status[mv.name] = f"evaluated on {len(cl)} clips of {len(cands)} candidates"
+        for name, e in enc.items():
+            forecast[name][mv.name] = forecast_ratio(e["model"], cl)
+        print(f"   forecasting on {len(cl)} clips: " + ", ".join(
+            f"{n}={forecast[n][mv.name].get('ratio_vs_copy_last'):.3f}"
+            for n in enc if forecast[n][mv.name].get("ratio_vs_copy_last")))
 
     # ---- aggregate tracking
     methods = ["baseline_nearest_detection", *sorted(enc), "E5_frame_shuffled"]
     agg: dict[str, dict] = {}
-    per_movie_delta: dict[str, dict[str, float]] = {}
     for meth in methods:
-        vals = [r[meth]["delta_avg"] for r in per_track
-                if meth in r and r[meth].get("delta_avg") is not None]
-        if not vals:
+        skip = excluded_movies(meth, enc.get(meth, {}), corpus_twins)
+        a = aggregate(per_track, meth, skip)
+        if a is None:
             agg[meth] = {"status": "unavailable"}
             continue
-        surv = [r[meth]["survival_frames"] for r in per_track if meth in r]
-        pm = {}
-        for mvn in {r["movie"] for r in per_track}:
-            v = [r[meth]["delta_avg"] for r in per_track
-                 if r["movie"] == mvn and meth in r
-                 and r[meth].get("delta_avg") is not None]
-            if v:
-                pm[mvn] = float(np.mean(v))
-        per_movie_delta[meth] = pm
-        agg[meth] = {"delta_avg_mean": float(np.mean(vals)),
-                     "median_survival_frames": float(np.median(surv)),
-                     "n_tracks": len(vals), "per_movie_delta_avg": pm,
-                     "confidence_interval": None}
-        print(f"  {meth:28s} <delta> {np.mean(vals):.3f} "
-              f"survival {np.median(surv):.0f} frames")
-
-    base = per_movie_delta.get("baseline_nearest_detection", {})
+        if meth == "E0_tijepa0":
+            a["with_08_H4_reference_only"] = aggregate(per_track, meth, set())
+        agg[meth] = a
+        print(f"  {meth:28s} <delta> {a['delta_avg_mean']:.3f} "
+              f"survival {a['median_survival_frames']:.0f} frames ({a['n_tracks']} tracks)")
+    base_rows = {mvn: v for mvn, v in agg["baseline_nearest_detection"].get(
+        "per_movie_delta_avg", {}).items()}
     for meth in methods:
-        if meth in per_movie_delta and meth != "baseline_nearest_detection" and base:
-            agg[meth]["vs_baseline_exact_permutation"] = exact_movie_permutation(
-                per_movie_delta[meth], base)
+        if meth == "baseline_nearest_detection" or "per_movie_delta_avg" not in agg[meth]:
+            continue
+        pm = agg[meth]["per_movie_delta_avg"]
+        agg[meth]["vs_baseline_exact_permutation"] = exact_movie_permutation(
+            pm, {m: base_rows[m] for m in pm if m in base_rows})
+        if meth == "E0_tijepa0":
+            w = agg[meth]["with_08_H4_reference_only"]["per_movie_delta_avg"]
+            agg[meth]["with_08_H4_reference_only"]["vs_baseline_exact_permutation"] = \
+                exact_movie_permutation(w, base_rows)
+    notes = [n for a, b in itertools.combinations(
+        [m for m in methods if "delta_avg_mean" in agg[m]], 2)
+        if (n := rank_note(agg, a, b))]
+    result["tracking"] = {"aggregate": agg, "rank_consistency_notes": notes,
+                          "per_track": per_track}
 
-    result["tracking"] = {"aggregate": agg, "per_track": per_track}
+    # ---- forecasting
+    def summary(name: str) -> dict:
+        skip = excluded_movies(name, enc[name], corpus_twins)
+        vals = {m: v["ratio_vs_copy_last"] for m, v in forecast[name].items()
+                if v.get("ratio_vs_copy_last") and m not in skip}
+        mv = {m: v["ratio_vs_mean_latent"] for m, v in forecast[name].items()
+              if v.get("ratio_vs_mean_latent") and m not in skip}
+        return {"per_movie_ratio_vs_copy_last": vals,
+                "mean_ratio_vs_copy_last": float(np.mean(list(vals.values()))) if vals
+                else None,
+                "mean_ratio_vs_mean_latent": float(np.mean(list(mv.values()))) if mv
+                else None,
+                "movies_excluded": sorted(skip), "note": enc[name]["note"],
+                "checkpoint": enc[name]["checkpoint"]}
+
+    main_rows = {k: summary(k) for k in enc if not k.startswith("E6_")}
+    supp_rows = {k: summary(k) for k in enc if k.startswith("E6_")}
+    primary = None
+    if "E4_tijepa1" in main_rows and "E4s_tijepa1_spatial" in main_rows:
+        a = main_rows["E4_tijepa1"]["per_movie_ratio_vs_copy_last"]
+        b = main_rows["E4s_tijepa1_spatial"]["per_movie_ratio_vs_copy_last"]
+        primary = {"comparison": "TiJepa-1 ratio minus TiJepa-1-spatial ratio, per movie "
+                                 "(negative = TiJepa-1 forecasts better relative to its "
+                                 "own copy-last baseline)",
+                   **exact_movie_permutation(a, b)}
     result["forecasting"] = {
         "n_future_slots": N_FUTURE_SLOTS,
-        "frames_context_then_predicted": [NF - N_FUTURE_SLOTS * 2,
-                                          N_FUTURE_SLOTS * 2],
+        "frames_context_then_predicted": [NF - N_FUTURE_SLOTS * 2, N_FUTURE_SLOTS * 2],
+        "per_movie_status": forecast_status,
         "per_movie": forecast,
-        "summary": {
-            name: {
-                "mean_ratio_vs_copy_last": float(np.mean(
-                    [v["ratio_vs_copy_last"] for v in forecast[name].values()
-                     if v.get("ratio_vs_copy_last")])) if forecast[name] else None,
-                "mean_ratio_vs_mean_latent": float(np.mean(
-                    [v["ratio_vs_mean_latent"] for v in forecast[name].values()
-                     if v.get("ratio_vs_mean_latent")])) if forecast[name] else None,
-                "note": enc[name]["note"],
-            } for name in enc},
+        "primary_tijepa1_vs_spatial": primary
+        or {"status": "not run", "reason": "both TiJepa-1 checkpoints are required"},
+        "summary": main_rows,
+        "supplementary_random_init": {
+            "rows": supp_rows,
+            "why_not_comparable": "a random-init model's predictor is untrained, so its "
+                                  "ratio measures an arbitrary map, not forecasting; it is "
+                                  "listed for completeness only"},
     }
-    (OUT / "tracking_forecast_v1.json").write_text(
-        json.dumps(result, indent=2, default=float) + "\n")
-    print(f"wrote {OUT/'tracking_forecast_v1.json'}")
+    problems = PV.check_results({k: v for k, v in result["encoders"].items()})
+    if problems:
+        raise SystemExit("provenance check failed: " + "; ".join(problems))
+    (OUT / args.out_name).write_text(json.dumps(result, indent=2, default=float) + "\n")
+    print(f"wrote {OUT / args.out_name}")
     return 0
 
 
