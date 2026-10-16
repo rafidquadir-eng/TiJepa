@@ -16,7 +16,23 @@ Frame interval: `featureextraction.m` treats MATLAB columns 3:42 (40 frames) as 
 first 4-hour stimulus window => 6 min per frame. The first ligand is added at
 `startframe + 3`, i.e. index 3, leaving indices 0..2 as pre-stimulus baseline.
 
-Ligand-code identification (an INFERENCE, recorded as such in the audit table):
+Ligand codes (v1: SOURCED from the deposit, superseding the v0 inference below).
+`figure4_5plotting.m` assigns the codes with their doses in trailing comments:
+    line   8  `lig1 = 1; %100 nM CpG`        line   9  `lig2 = 2; %1 ng LPS`
+    line 148  `lig1 = 3; %1000 ng/mL PIC`    line 149  `lig2 = 6; %10 ng/mL TNF`
+so 1 = CpG, 2 = LPS, 3 = polyI:C, 6 = TNF. This confirms the v0 inference for LPS and
+TNF and CORRECTS it for code 3, which is polyI:C and not CpG. Codes 4, 5, 7, 17 and
+19-21 remain unresolved: the folder holding the human-readable labels was not
+deposited, so they are left unresolved rather than guessed. See
+`scripts/23_partB_ligand_codes.py` and `results/v1/partB/ligand_codes.json`.
+
+Column 128 is the inter-stimulus interval in hours. `rawtraceprocessing.m` writes it
+from whether the ligand list repeats a value, which reads like a homologous flag, but
+the pair (first=0, second=2) occurs at BOTH 4 and 8 and every heterologous pair occurs
+at both values, so it cannot be a function of ligand identity. Homologous
+restimulation was only performed at the 8 h interval.
+
+The superseded v0 inference, kept for the audit trail:
 `col 127` holds the actual second ligand, and its value set per deposit file must match
 that file's name. TNFLPSfirst has col127 in {2, 6} = {TNF, LPS}; CPGLPSscrep has
 col127 in {2, 3} = {CpG, LPS}. The label sets intersect in LPS and the code sets
@@ -38,8 +54,11 @@ FRAME_MIN = 6.0
 STIM1_IDX = 3
 C_FIRST, C_SECOND, C_GAP, C_REP, C_WELL = 126, 127, 128, 129, 130
 
-# Inferred ligand codes for the second-stimulus column; see module docstring.
-LIGAND_CODES = {2.0: "LPS", 6.0: "TNF", 3.0: "CpG"}
+# Ligand codes sourced from the deposit's figure4_5plotting.m; see module docstring.
+LIGAND_CODES = {1.0: "CpG", 2.0: "LPS", 3.0: "polyIC", 6.0: "TNF"}
+LIGAND_DOSES = {1.0: "100 nM", 2.0: "1 ng/ml", 3.0: "1000 ng/ml", 6.0: "10 ng/ml"}
+#: codes that occur in the data but cannot be resolved from the deposited material
+UNRESOLVED_CODES = (4.0, 5.0, 7.0, 17.0, 19.0, 20.0, 21.0)
 NAIVE_CODE = 0.0
 
 # Files whose 5-column metadata layout we could confirm: the interval column holds only
