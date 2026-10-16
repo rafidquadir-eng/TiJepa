@@ -60,7 +60,11 @@ for row in "${ROWS[@]}"; do
   md5="${rest%%$'\t'*}"; size="${rest#*$'\t'}"
   f="$DEST/$key"
 
-  if [ -f "$f" ]; then
+  if [ -f "$f" ] && [ -f "$f.aria2" ]; then
+    # an aria2 control file marks a preallocated PARTIAL download: resume it rather
+    # than discarding it as a digest mismatch (v2 fix; v1 lost partials this way)
+    say "resuming partial $key"
+  elif [ -f "$f" ]; then
     if echo "$md5  $f" | md5sum -c - >/dev/null 2>&1; then
       say "OK (already verified) $key"; continue
     fi
@@ -82,7 +86,7 @@ for row in "${ROWS[@]}"; do
     attempt=$(( attempt + 1 ))
     say "fetch $key attempt $attempt ($(( size / 1000000 )) MB)"
     aria2c --continue=true --max-tries=5 --retry-wait=20 --timeout=60 \
-           --connect-timeout=30 --max-connection-per-server=4 --split=4 \
+           --connect-timeout=30 --max-connection-per-server="${ARIA_CONN:-4}" --split="${ARIA_CONN:-4}" \
            --min-split-size=200M --summary-interval=0 --console-log-level=warn \
            --auto-file-renaming=false --allow-overwrite=true \
            -d "$DEST" -o "$key" \

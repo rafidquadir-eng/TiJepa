@@ -176,3 +176,62 @@ def check_text(text: str, comparisons: dict[str, Comparison],
             seen.add(k)
             unique.append(v)
     return unique
+
+
+# --------------------------------------------------------------- v2 manuscript checks
+# PLAN_v2.md rule 5 and G2.1 (findings N11, N14). These run on the paper BODY.
+
+#: case-insensitive substrings that are internal process language
+BANNED_SUBSTRINGS = [
+    "PLAN_v", "review finding", "D5b", "F3.", "NOT USABLE", "not run in this pass",
+    "blocking requirements recorded", "results/v1/", "results/v2/", "previous version",
+]
+#: case-sensitive patterns: the version tag and identifiers mangled by lowercasing
+BANNED_PATTERNS = [r"\bv0\b", r"\bv1\b", r" e[0-6]s? ", r" bbbc054 ", r" s-biad2196 ",
+                   r"\b[DCBEN]\d{1,2}[a-e]?\b(?= (?:fix|finding))"]
+DANGLING = [r"\b(?:higher|lower|greater|better|worse) than \(",
+            r"\bdistinguishable from \(", r"\bthan \)", r"\bfrom \("]
+
+
+def check_banned(text: str) -> list[dict]:
+    hits = []
+    low = text.lower()
+    for s in BANNED_SUBSTRINGS:
+        i = low.find(s.lower())
+        if i >= 0:
+            hits.append({"rule": "banned substring", "match": s,
+                         "context": text[max(0, i - 60): i + 60]})
+    for pat in BANNED_PATTERNS:
+        for m in re.finditer(pat, text):
+            hits.append({"rule": "banned pattern", "match": m.group(0), "pattern": pat,
+                         "context": text[max(0, m.start() - 60): m.end() + 60]})
+    return hits
+
+
+def check_grammar(text: str) -> list[dict]:
+    hits = []
+    for pat in DANGLING:
+        for m in re.finditer(pat, text):
+            hits.append({"rule": "dangling comparative", "match": m.group(0),
+                         "context": text[max(0, m.start() - 80): m.end() + 40]})
+    return hits
+
+
+def check_labels(labels: dict, label_for_key) -> list[str]:
+    """Every rendered label must equal the one derived from its checkpoint record.
+
+    `labels` maps rendered label -> {"key": results key, "checkpoint": record|None}, as
+    written by the paper renderer next to the paper; `label_for_key` is
+    `tijepa.eval.provenance.label_for_key`.
+    """
+    problems = []
+    for shown, rec in labels.items():
+        try:
+            derived = label_for_key(rec["key"], rec.get("checkpoint"))
+        except ValueError as exc:
+            problems.append(f"{shown!r}: {exc}")
+            continue
+        if derived != rec.get("label", shown):
+            problems.append(f"{shown!r} rendered for {rec['key']} but its checkpoint "
+                            f"says {derived!r}")
+    return problems
