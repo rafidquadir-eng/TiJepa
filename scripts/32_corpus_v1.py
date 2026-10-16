@@ -322,8 +322,18 @@ def main() -> int:
             bytes_downloaded += sizes[key]
         members = members_of(z)
         if not members:
-            print("  no readable TIFF members (bad zip); recording and moving on")
-            movie_records.append({"archive": key, "status": "bad_zip"})
+            # Distinguish the two causes, because they have different owners: a zip
+            # that will not open at all (a defect in the deposited file, as with
+            # R06.zip) versus one that opens but holds no TIFF members.
+            try:
+                with zipfile.ZipFile(z) as zf:
+                    n_any = len(zf.namelist())
+                reason, detail = "no_tiff_members", f"{n_any} members, none TIFF"
+            except zipfile.BadZipFile as exc:
+                reason, detail = "unopenable_zip", f"{type(exc).__name__}: {exc}"
+            print(f"  {reason} ({detail}); recording and moving on")
+            movie_records.append({"archive": key, "status": "bad_zip",
+                                  "reason": reason, "detail": detail})
             done.add(key)
             continue
         print(f"  {len(members)} movie members")

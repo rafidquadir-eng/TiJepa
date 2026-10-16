@@ -1,0 +1,19 @@
+{
+  "status": "fail",
+  "violations": [
+    {
+      "sentence_index": 4,
+      "sentence": "On BBBC054\nLPS-exposed microglia, TiJepa-0 reaches a balanced accuracy of 0.828 on the\nmorphology-class probe, ahead of DINOv2-S (0.769) and of the identical\narchitecture with random weights (0.772); the pretraining effect, isolated by a\npaired bootstrap against that random-init control, is +0.056 (",
+      "comparison": "E3_dinov2_vit_s:E6_tijepa_random_init:round_vs_amoeboid",
+      "word": "ahead of",
+      "word_implies": 1,
+      "results_say": 0,
+      "difference": -0.0072953581690869225,
+      "ci": [
+        -0.06758074268113652,
+        0.05640536830042794
+      ],
+      "p_value": 0.719
+    }
+  ]
+}

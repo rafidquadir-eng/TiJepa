@@ -1098,5 +1098,1007 @@
   "checkpoint": {
     "file": "tijepa0_T1_seed0.pt",
     "step": 55000
+  },
+  "pairwise_comparisons": {
+    "three_class:E1_handcrafted_improved_vs_E2_imagenet_vit_s": {
+      "encoder_a": "E1_handcrafted_improved",
+      "encoder_b": "E2_imagenet_vit_s",
+      "task": "three_class",
+      "difference_mean_over_seeds": -0.1263759343036697,
+      "ci95_widest_over_seeds": [
+        -0.19054912553595654,
+        -0.06075087840715311
+      ],
+      "p_value_max_over_seeds": 0.0,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": -0.12494612382782927,
+          "ci95": [
+            -0.16880178356342254,
+            -0.08031781655891647
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.15053957918852118,
+          "ci95": [
+            -0.19054912553595654,
+            -0.1081978717489557
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.10364209989465861,
+          "ci95": [
+            -0.14520891814746942,
+            -0.06075087840715311
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.0
+    },
+    "three_class:E1_handcrafted_improved_vs_E3_dinov2_vit_s": {
+      "encoder_a": "E1_handcrafted_improved",
+      "encoder_b": "E3_dinov2_vit_s",
+      "task": "three_class",
+      "difference_mean_over_seeds": -0.1491958507251868,
+      "ci95_widest_over_seeds": [
+        -0.20616799656461007,
+        -0.0984398329880678
+      ],
+      "p_value_max_over_seeds": 0.0,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": -0.15913836821675914,
+          "ci95": [
+            -0.20616799656461007,
+            -0.11244015035397013
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.14152046783625732,
+          "ci95": [
+            -0.18341801844856842,
+            -0.0984398329880678
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.14692871612254393,
+          "ci95": [
+            -0.1910256308051942,
+            -0.10106290590525033
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.0
+    },
+    "three_class:E1_handcrafted_improved_vs_E4_tijepa0_only_available": {
+      "encoder_a": "E1_handcrafted_improved",
+      "encoder_b": "E4_tijepa0_only_available",
+      "task": "three_class",
+      "difference_mean_over_seeds": -0.1643501094774688,
+      "ci95_widest_over_seeds": [
+        -0.21979675983696348,
+        -0.10156215221162031
+      ],
+      "p_value_max_over_seeds": 0.0,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": -0.1785025144201547,
+          "ci95": [
+            -0.21979675983696348,
+            -0.13788183940900678
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.16371857478748414,
+          "ci95": [
+            -0.2050182864832538,
+            -0.12312620281978269
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.1508292392247676,
+          "ci95": [
+            -0.19751287193417286,
+            -0.10156215221162031
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.0
+    },
+    "three_class:E1_handcrafted_improved_vs_E6_tijepa_random_init": {
+      "encoder_a": "E1_handcrafted_improved",
+      "encoder_b": "E6_tijepa_random_init",
+      "task": "three_class",
+      "difference_mean_over_seeds": -0.08260129875675332,
+      "ci95_widest_over_seeds": [
+        -0.15475194987920793,
+        -0.008818987659557015
+      ],
+      "p_value_max_over_seeds": 0.019,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": -0.11253935397362408,
+          "ci95": [
+            -0.15475194987920793,
+            -0.07214477463711838
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.05085910652920972,
+          "ci95": [
+            -0.09280876376623097,
+            -0.008818987659557015
+          ],
+          "p_value": 0.019,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.08440543576742615,
+          "ci95": [
+            -0.13182570116646128,
+            -0.03346516875439271
+          ],
+          "p_value": 0.001,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.035
+    },
+    "three_class:E2_imagenet_vit_s_vs_E3_dinov2_vit_s": {
+      "encoder_a": "E2_imagenet_vit_s",
+      "encoder_b": "E3_dinov2_vit_s",
+      "task": "three_class",
+      "difference_mean_over_seeds": -0.022819916421517112,
+      "ci95_widest_over_seeds": [
+        -0.07516006798480757,
+        0.0381630916135258
+      ],
+      "p_value_max_over_seeds": 0.559,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": -0.03419224438892987,
+          "ci95": [
+            -0.06752968512142982,
+            -0.0013900289597211443
+          ],
+          "p_value": 0.038,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": 0.009019111352263853,
+          "ci95": [
+            -0.019455113245677436,
+            0.0381630916135258
+          ],
+          "p_value": 0.559,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.04328661622788532,
+          "ci95": [
+            -0.07516006798480757,
+            -0.01225118471642428
+          ],
+          "p_value": 0.01,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.6477777777777778
+    },
+    "three_class:E2_imagenet_vit_s_vs_E4_tijepa0_only_available": {
+      "encoder_a": "E2_imagenet_vit_s",
+      "encoder_b": "E4_tijepa0_only_available",
+      "task": "three_class",
+      "difference_mean_over_seeds": -0.03797417517379912,
+      "ci95_widest_over_seeds": [
+        -0.08924835384463267,
+        0.022043431099887913
+      ],
+      "p_value_max_over_seeds": 0.484,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": -0.05355639059232542,
+          "ci95": [
+            -0.08924835384463267,
+            -0.019163347207325734
+          ],
+          "p_value": 0.001,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.013178995598962961,
+          "ci95": [
+            -0.04685988033970105,
+            0.022043431099887913
+          ],
+          "p_value": 0.484,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.047187139330108985,
+          "ci95": [
+            -0.08542586512765948,
+            -0.009324830002812144
+          ],
+          "p_value": 0.013,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.6477777777777778
+    },
+    "three_class:E2_imagenet_vit_s_vs_E6_tijepa_random_init": {
+      "encoder_a": "E2_imagenet_vit_s",
+      "encoder_b": "E6_tijepa_random_init",
+      "task": "three_class",
+      "difference_mean_over_seeds": 0.04377463554691637,
+      "ci95_widest_over_seeds": [
+        -0.029576339225039612,
+        0.13637673262751454
+      ],
+      "p_value_max_over_seeds": 0.583,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": 0.01240676985420519,
+          "ci95": [
+            -0.029576339225039612,
+            0.05425434309420964
+          ],
+          "p_value": 0.583,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": 0.09968047265931146,
+          "ci95": [
+            0.06485357767604734,
+            0.13637673262751454
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": 0.01923666412723246,
+          "ci95": [
+            -0.022054328812639173,
+            0.06150558007816601
+          ],
+          "p_value": 0.353,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.6477777777777778
+    },
+    "three_class:E3_dinov2_vit_s_vs_E4_tijepa0_only_available": {
+      "encoder_a": "E3_dinov2_vit_s",
+      "encoder_b": "E4_tijepa0_only_available",
+      "task": "three_class",
+      "difference_mean_over_seeds": -0.01515425875228201,
+      "ci95_widest_over_seeds": [
+        -0.058362737719130184,
+        0.03477169107421221
+      ],
+      "p_value_max_over_seeds": 0.863,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": -0.01936414620339555,
+          "ci95": [
+            -0.05680322026503014,
+            0.018073731466588566
+          ],
+          "p_value": 0.292,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.022198106951226815,
+          "ci95": [
+            -0.058362737719130184,
+            0.01461078248826147
+          ],
+          "p_value": 0.24,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.003900523102223663,
+          "ci95": [
+            -0.04344979705249505,
+            0.03477169107421221
+          ],
+          "p_value": 0.863,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.8629999999999999
+    },
+    "three_class:E3_dinov2_vit_s_vs_E6_tijepa_random_init": {
+      "encoder_a": "E3_dinov2_vit_s",
+      "encoder_b": "E6_tijepa_random_init",
+      "task": "three_class",
+      "difference_mean_over_seeds": 0.06659455196843349,
+      "ci95_widest_over_seeds": [
+        0.006685817009852732,
+        0.1251651736121411
+      ],
+      "p_value_max_over_seeds": 0.021,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": 0.04659901424313506,
+          "ci95": [
+            0.006685817009852732,
+            0.08716279393597012
+          ],
+          "p_value": 0.021,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": 0.0906613613070476,
+          "ci95": [
+            0.05735235103190581,
+            0.1251651736121411
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": 0.06252328035511778,
+          "ci95": [
+            0.01870842493771731,
+            0.10789076943265627
+          ],
+          "p_value": 0.005,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.035
+    },
+    "three_class:E4_tijepa0_only_available_vs_E6_tijepa_random_init": {
+      "encoder_a": "E4_tijepa0_only_available",
+      "encoder_b": "E6_tijepa_random_init",
+      "task": "three_class",
+      "difference_mean_over_seeds": 0.08174881072071549,
+      "ci95_widest_over_seeds": [
+        0.03007370378127367,
+        0.14509524423712009
+      ],
+      "p_value_max_over_seeds": 0.0,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": 0.06596316044653061,
+          "ci95": [
+            0.03495115306101984,
+            0.09515387246350761
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": 0.11285946825827442,
+          "ci95": [
+            0.08041262333588237,
+            0.14509524423712009
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": 0.06642380345734145,
+          "ci95": [
+            0.03007370378127367,
+            0.1027439118904311
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.0
+    },
+    "round_vs_amoeboid:E1_handcrafted_improved_vs_E2_imagenet_vit_s": {
+      "encoder_a": "E1_handcrafted_improved",
+      "encoder_b": "E2_imagenet_vit_s",
+      "task": "round_vs_amoeboid",
+      "difference_mean_over_seeds": -0.07141177862482839,
+      "ci95_widest_over_seeds": [
+        -0.12374466857258103,
+        -0.010308503941463723
+      ],
+      "p_value_max_over_seeds": 0.013,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": -0.06165628701781545,
+          "ci95": [
+            -0.1097903549844178,
+            -0.010308503941463723
+          ],
+          "p_value": 0.013,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.08126243443660708,
+          "ci95": [
+            -0.12374466857258103,
+            -0.040950410510990694
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.07131661442006265,
+          "ci95": [
+            -0.12255456636195323,
+            -0.02220388914625402
+          ],
+          "p_value": 0.002,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.023333333333333334
+    },
+    "round_vs_amoeboid:E1_handcrafted_improved_vs_E3_dinov2_vit_s": {
+      "encoder_a": "E1_handcrafted_improved",
+      "encoder_b": "E3_dinov2_vit_s",
+      "task": "round_vs_amoeboid",
+      "difference_mean_over_seeds": -0.09008586003919843,
+      "ci95_widest_over_seeds": [
+        -0.15590792097704614,
+        -0.016993109254704358
+      ],
+      "p_value_max_over_seeds": 0.005,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": -0.0891007822853993,
+          "ci95": [
+            -0.13722335202001265,
+            -0.041372591633001984
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.11785132935431364,
+          "ci95": [
+            -0.15590792097704614,
+            -0.08092547475662977
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.06330546847788232,
+          "ci95": [
+            -0.1093383043350821,
+            -0.016993109254704358
+          ],
+          "p_value": 0.005,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.0125
+    },
+    "round_vs_amoeboid:E1_handcrafted_improved_vs_E4_tijepa0_only_available": {
+      "encoder_a": "E1_handcrafted_improved",
+      "encoder_b": "E4_tijepa0_only_available",
+      "task": "round_vs_amoeboid",
+      "difference_mean_over_seeds": -0.15295186879604458,
+      "ci95_widest_over_seeds": [
+        -0.23456820915836446,
+        -0.08836853742552397
+      ],
+      "p_value_max_over_seeds": 0.0,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": -0.1352814233606605,
+          "ci95": [
+            -0.17997935565053538,
+            -0.09211042900894775
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.18558509676252488,
+          "ci95": [
+            -0.23456820915836446,
+            -0.13419350992405626
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.13798908626494832,
+          "ci95": [
+            -0.19107948990522963,
+            -0.08836853742552397
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.0
+    },
+    "round_vs_amoeboid:E1_handcrafted_improved_vs_E6_tijepa_random_init": {
+      "encoder_a": "E1_handcrafted_improved",
+      "encoder_b": "E6_tijepa_random_init",
+      "task": "round_vs_amoeboid",
+      "difference_mean_over_seeds": -0.09738121820828534,
+      "ci95_widest_over_seeds": [
+        -0.1784868673581168,
+        -0.027464744725240277
+      ],
+      "p_value_max_over_seeds": 0.003,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": -0.08054490224364619,
+          "ci95": [
+            -0.1294555787019533,
+            -0.027464744725240277
+          ],
+          "p_value": 0.003,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.12973412913727622,
+          "ci95": [
+            -0.1784868673581168,
+            -0.0817928302595597
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.08186462324393362,
+          "ci95": [
+            -0.13929728249589388,
+            -0.027476606358338783
+          ],
+          "p_value": 0.002,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.01
+    },
+    "round_vs_amoeboid:E2_imagenet_vit_s_vs_E3_dinov2_vit_s": {
+      "encoder_a": "E2_imagenet_vit_s",
+      "encoder_b": "E3_dinov2_vit_s",
+      "task": "round_vs_amoeboid",
+      "difference_mean_over_seeds": -0.01867408141437003,
+      "ci95_widest_over_seeds": [
+        -0.06974776990084226,
+        0.045425729544432976
+      ],
+      "p_value_max_over_seeds": 0.678,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": -0.027444495267583857,
+          "ci95": [
+            -0.06974776990084226,
+            0.013404076086380445
+          ],
+          "p_value": 0.18,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.03658889491770656,
+          "ci95": [
+            -0.06737986705757176,
+            -0.004845691366924109
+          ],
+          "p_value": 0.028,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": 0.008011145942180331,
+          "ci95": [
+            -0.027571279482884396,
+            0.045425729544432976
+          ],
+          "p_value": 0.678,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.719
+    },
+    "round_vs_amoeboid:E2_imagenet_vit_s_vs_E4_tijepa0_only_available": {
+      "encoder_a": "E2_imagenet_vit_s",
+      "encoder_b": "E4_tijepa0_only_available",
+      "task": "round_vs_amoeboid",
+      "difference_mean_over_seeds": -0.08154009017121618,
+      "ci95_widest_over_seeds": [
+        -0.14715100727561747,
+        -0.02390697526732549
+      ],
+      "p_value_max_over_seeds": 0.003,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": -0.07362513634284507,
+          "ci95": [
+            -0.11998711882925664,
+            -0.02726703863699526
+          ],
+          "p_value": 0.001,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.1043226623259178,
+          "ci95": [
+            -0.14715100727561747,
+            -0.05878709666762174
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.06667247184488567,
+          "ci95": [
+            -0.10965098136854567,
+            -0.02390697526732549
+          ],
+          "p_value": 0.003,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.01
+    },
+    "round_vs_amoeboid:E2_imagenet_vit_s_vs_E6_tijepa_random_init": {
+      "encoder_a": "E2_imagenet_vit_s",
+      "encoder_b": "E6_tijepa_random_init",
+      "task": "round_vs_amoeboid",
+      "difference_mean_over_seeds": -0.02596943958345695,
+      "ci95_widest_over_seeds": [
+        -0.08999804736169108,
+        0.0404778661151253
+      ],
+      "p_value_max_over_seeds": 0.668,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": -0.01888861522583074,
+          "ci95": [
+            -0.07117538084390876,
+            0.03585952870974419
+          ],
+          "p_value": 0.5,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.04847169470066914,
+          "ci95": [
+            -0.08999804736169108,
+            -0.008294961844697846
+          ],
+          "p_value": 0.02,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.010548008823870969,
+          "ci95": [
+            -0.0626026245481443,
+            0.0404778661151253
+          ],
+          "p_value": 0.668,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.719
+    },
+    "round_vs_amoeboid:E3_dinov2_vit_s_vs_E4_tijepa0_only_available": {
+      "encoder_a": "E3_dinov2_vit_s",
+      "encoder_b": "E4_tijepa0_only_available",
+      "task": "round_vs_amoeboid",
+      "difference_mean_over_seeds": -0.06286600875684616,
+      "ci95_widest_over_seeds": [
+        -0.11378191797644532,
+        -0.0001044222049262156
+      ],
+      "p_value_max_over_seeds": 0.048,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": -0.04618064107526121,
+          "ci95": [
+            -0.09380624303627995,
+            -0.0001044222049262156
+          ],
+          "p_value": 0.048,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.06773376740821124,
+          "ci95": [
+            -0.10537903540521443,
+            -0.025866469193990205
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.074683617787066,
+          "ci95": [
+            -0.11378191797644532,
+            -0.03381278185162245
+          ],
+          "p_value": 0.0,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.06857142857142857
+    },
+    "round_vs_amoeboid:E3_dinov2_vit_s_vs_E6_tijepa_random_init": {
+      "encoder_a": "E3_dinov2_vit_s",
+      "encoder_b": "E6_tijepa_random_init",
+      "task": "round_vs_amoeboid",
+      "difference_mean_over_seeds": -0.0072953581690869225,
+      "ci95_widest_over_seeds": [
+        -0.06758074268113652,
+        0.05640536830042794
+      ],
+      "p_value_max_over_seeds": 0.719,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": 0.008555880041753117,
+          "ci95": [
+            -0.037913583002123004,
+            0.05640536830042794
+          ],
+          "p_value": 0.719,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.011882799782962583,
+          "ci95": [
+            -0.05545927035606655,
+            0.03133171285146273
+          ],
+          "p_value": 0.59,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": -0.0185591547660513,
+          "ci95": [
+            -0.06758074268113652,
+            0.0285813700075081
+          ],
+          "p_value": 0.453,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.719
+    },
+    "round_vs_amoeboid:E4_tijepa0_only_available_vs_E6_tijepa_random_init": {
+      "encoder_a": "E4_tijepa0_only_available",
+      "encoder_b": "E6_tijepa_random_init",
+      "task": "round_vs_amoeboid",
+      "difference_mean_over_seeds": 0.05557065058775923,
+      "ci95_widest_over_seeds": [
+        0.010830023629059497,
+        0.0997016921135794
+      ],
+      "p_value_max_over_seeds": 0.014,
+      "per_seed": [
+        {
+          "status": "ok",
+          "difference": 0.054736521117014325,
+          "ci95": [
+            0.01702938204536519,
+            0.09527104959630911
+          ],
+          "p_value": 0.004,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": 0.05585096762524866,
+          "ci95": [
+            0.010830023629059497,
+            0.0997016921135794
+          ],
+          "p_value": 0.009,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        },
+        {
+          "status": "ok",
+          "difference": 0.0561244630210147,
+          "ci95": [
+            0.015178277364264072,
+            0.0955525085378379
+          ],
+          "p_value": 0.014,
+          "n_resamples": 2000,
+          "n_fovs": 60,
+          "method": "paired cluster bootstrap over FOVs, both encoders scored on the same resample"
+        }
+      ],
+      "p_value_bh": 0.023333333333333334
+    }
   }
 }

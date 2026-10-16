@@ -43,6 +43,7 @@ from __future__ import annotations
 
 import argparse
 import functools
+import itertools
 import json
 import sys
 from pathlib import Path
@@ -273,6 +274,71 @@ def block_cv_regression(x, y, fovs, seed: int, block: int = 6) -> dict:
     }
 
 
+#: per-cell predictions, filled by `register`, keyed (task, seed) -> encoder -> pred
+PREDICTIONS: dict[tuple, dict[str, np.ndarray]] = {}
+TRUTH: dict[tuple, tuple] = {}
+N_BOOT = 2000
+
+
+def paired_fov_bootstrap(y, fovs, pred_a, pred_b, seed: int = 0,
+                         n_boot: int = N_BOOT) -> dict:
+    """Paired cluster bootstrap over FOVs of (BA_a - BA_b).
+
+    BBBC054 has 60 FOVs, which is above the 10-group minimum, so a CI is permitted
+    here (unlike Part B's 4 wells or tracking's 6 movies). Both encoders are scored on
+    the SAME resample, which is what makes the difference paired.
+    """
+    rng = np.random.default_rng(seed)
+    uniq = np.unique(fovs)
+    by_fov = {f: np.flatnonzero(fovs == f) for f in uniq}
+    # Integer-code labels once so balanced accuracy can be computed with bincount:
+    # sklearn's scorer is far too slow for 2,000 resamples x every encoder pair.
+    classes, y_i = np.unique(y, return_inverse=True)
+    code = {c: i for i, c in enumerate(classes)}
+    a_i = np.array([code.get(v, -1) for v in pred_a])
+    b_i = np.array([code.get(v, -1) for v in pred_b])
+    n_cls = len(classes)
+
+    def fast_ba(idx: np.ndarray, p_i: np.ndarray) -> float:
+        yy = y_i[idx]
+        n = np.bincount(yy, minlength=n_cls)
+        hit = np.bincount(yy, weights=(p_i[idx] == yy).astype(float),
+                          minlength=n_cls)
+        present = n > 0
+        return float((hit[present] / n[present]).mean())
+
+    all_idx = np.arange(len(y))
+    obs = fast_ba(all_idx, a_i) - fast_ba(all_idx, b_i)
+    diffs = []
+    for _ in range(n_boot):
+        drawn = rng.choice(uniq, len(uniq), replace=True)
+        idx = np.concatenate([by_fov[f] for f in drawn])
+        if len(np.unique(y_i[idx])) < 2:
+            continue
+        diffs.append(fast_ba(idx, a_i) - fast_ba(idx, b_i))
+    arr = np.asarray(diffs)
+    if arr.size == 0:
+        return {"status": "degenerate"}
+    lo, hi = np.quantile(arr, [0.025, 0.975])
+    # two-sided bootstrap p: how often the resampled difference crosses zero
+    p = 2.0 * min(float((arr <= 0).mean()), float((arr >= 0).mean()))
+    return {"status": "ok", "difference": float(obs),
+            "ci95": [float(lo), float(hi)], "p_value": float(min(1.0, p)),
+            "n_resamples": int(arr.size), "n_fovs": int(len(uniq)),
+            "method": "paired cluster bootstrap over FOVs, both encoders scored on the "
+                      "same resample"}
+
+
+def bh_adjust(pvals: list[float]) -> list[float]:
+    n = len(pvals)
+    order = np.argsort(pvals)
+    ranked = np.asarray(pvals, dtype=float)[order] * n / (np.arange(n) + 1)
+    ranked = np.minimum.accumulate(ranked[::-1])[::-1]
+    out = np.empty(n)
+    out[order] = np.clip(ranked, 0, 1)
+    return [float(v) for v in out]
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--n-cells", type=int, default=9000)
@@ -366,6 +432,10 @@ def main() -> int:
                     "macro_f1": float(f1_score(y, pred, average="macro")),
                     "within_time_bin": within_bin_score(y, pred, d["hours"][m]),
                 })
+                # keep predictions so encoder pairs can be compared on the SAME
+                # bootstrap resamples (PLAN_v1.md Section 9)
+                PREDICTIONS.setdefault((task, s), {})[name] = pred
+                TRUTH[(task, s)] = (y, d["fovs"][m])
             # exposure-time regression (exploratory) and the FOV-identity probe
             rec["per_seed"].append({
                 "seed": s,
@@ -468,6 +538,44 @@ def main() -> int:
             "factors": list(SCALE_FACTORS), "three_class_balanced_accuracy": scales,
             "note": "resample factor 1.0 is the derived 0.65 um/px; reported because "
                     "the camera model code could not be confirmed by name (F1.5)"}
+
+    # ---------------- pairwise encoder comparisons with CIs and BH correction
+    comps: dict[str, dict] = {}
+    for task in ("three_class", "round_vs_amoeboid"):
+        keys = [k for k in PREDICTIONS if k[0] == task]
+        if not keys:
+            continue
+        encs = sorted({e for k in keys for e in PREDICTIONS[k]})
+        raw: list[tuple[str, dict]] = []
+        for a, b in itertools.combinations(encs, 2):
+            per_seed = []
+            for k in keys:
+                if a not in PREDICTIONS[k] or b not in PREDICTIONS[k]:
+                    continue
+                y, fovs = TRUTH[k]
+                per_seed.append(paired_fov_bootstrap(
+                    y, fovs, PREDICTIONS[k][a], PREDICTIONS[k][b], seed=k[1]))
+            ok = [r for r in per_seed if r.get("status") == "ok"]
+            if not ok:
+                continue
+            # average the per-seed differences; the CI is the widest across seeds, so
+            # seed-to-seed instability cannot be hidden by averaging intervals
+            d = float(np.mean([r["difference"] for r in ok]))
+            lo = float(min(r["ci95"][0] for r in ok))
+            hi = float(max(r["ci95"][1] for r in ok))
+            p = float(max(r["p_value"] for r in ok))
+            raw.append((f"{a}_vs_{b}", {
+                "encoder_a": a, "encoder_b": b, "task": task,
+                "difference_mean_over_seeds": d, "ci95_widest_over_seeds": [lo, hi],
+                "p_value_max_over_seeds": p, "per_seed": ok}))
+        if raw:
+            adj = bh_adjust([r[1]["p_value_max_over_seeds"] for r in raw])
+            for (nm, rec), q in zip(raw, adj, strict=False):
+                rec["p_value_bh"] = q
+                comps[f"{task}:{nm}"] = rec
+            print(f"  {len(raw)} pairwise comparisons for {task} "
+                  f"(BH-corrected within the task)")
+    result["pairwise_comparisons"] = comps
 
     (OUT / "bbbc054_v1.json").write_text(
         json.dumps(result, indent=2, default=float) + "\n")

@@ -1,0 +1,21 @@
+{
+  "finding": "ComplexEye R06.zip as PUBLISHED is truncated and zero-padded, and cannot be opened by any standard zip tool.",
+  "record": "Zenodo 10.5281/zenodo.10082674 (ComplexEye, Cibir et al. Nat Commun 2023), file R06.zip",
+  "evidence": {
+    "size_bytes_local": 5239713281,
+    "size_bytes_in_zenodo_record": 5239713281,
+    "md5_local": "5b1a7469e6f82ce3cf25310d97a88755",
+    "md5_in_zenodo_record": "5b1a7469e6f82ce3cf25310d97a88755",
+    "md5_matches": true,
+    "local_file_header_magic_at_offset_0": "PK\\x03\\x04 (present)",
+    "file_command": "Zip archive data, at least v2.0 to extract, compression method=deflate",
+    "python_zipfile": "BadZipFile: File is not a zip file",
+    "info_zip_unzip": "End-of-central-directory signature not found",
+    "last_non_zero_byte_offset": 2226126847,
+    "zero_tail_bytes": 3013586434,
+    "zero_tail_fraction": 0.5751
+  },
+  "diagnosis": "The download is byte-for-byte what Zenodo publishes: the md5 matches the record exactly, so this is NOT a transfer failure. The archive simply has no end-of-central-directory record - its last 3.01 GB, 57.5% of the file, are zeros, and the real member data stops at offset 2,226,126,847. The defect is in the deposited file and is reproducible by anyone who downloads it.",
+  "action_taken": "R06.zip is excluded from the pretraining corpus and recorded as `bad_zip`. Its local file headers survive, so roughly 2.2 GB could in principle be recovered by a streaming reader that ignores the central directory, but the final member is cut mid-stream and the marginal value against the other 20 archives did not justify building one. This is reported so that users of the deposit know, and so that the excluded archive is not mistaken for a download failure at this end.",
+  "distinct_from": "R08.zip, which DID fail its md5 here because the v0 transfer was interrupted, and was successfully re-fetched and verified in v1. That one was our problem; this one is not."
+}
