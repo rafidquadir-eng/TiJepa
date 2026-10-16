@@ -1,19 +1,217 @@
 {
-  "status": "fail",
-  "violations": [
-    {
-      "sentence_index": 4,
-      "sentence": "On BBBC054\nLPS-exposed microglia, TiJepa-0 reaches a balanced accuracy of 0.828 on the\nmorphology-class probe, ahead of DINOv2-S (0.769) and of the identical\narchitecture with random weights (0.772); the pretraining effect, isolated by a\npaired bootstrap against that random-init control, is +0.056 (",
-      "comparison": "E3_dinov2_vit_s:E6_tijepa_random_init:round_vs_amoeboid",
-      "word": "ahead of",
-      "word_implies": 1,
-      "results_say": 0,
+  "status": "ok",
+  "n_comparisons": 25,
+  "n_sentences_scanned": 134,
+  "comparisons": {
+    "E1_handcrafted_improved:E2_imagenet_vit_s:three_class": {
+      "difference": -0.1263759343036697,
+      "ci": [
+        -0.19054912553595654,
+        -0.06075087840715311
+      ],
+      "p_value": 0.0,
+      "direction": -1
+    },
+    "E1_handcrafted_improved:E3_dinov2_vit_s:three_class": {
+      "difference": -0.1491958507251868,
+      "ci": [
+        -0.20616799656461007,
+        -0.0984398329880678
+      ],
+      "p_value": 0.0,
+      "direction": -1
+    },
+    "E1_handcrafted_improved:E4_tijepa0_only_available:three_class": {
+      "difference": -0.1643501094774688,
+      "ci": [
+        -0.21979675983696348,
+        -0.10156215221162031
+      ],
+      "p_value": 0.0,
+      "direction": -1
+    },
+    "E1_handcrafted_improved:E6_tijepa_random_init:three_class": {
+      "difference": -0.08260129875675332,
+      "ci": [
+        -0.15475194987920793,
+        -0.008818987659557015
+      ],
+      "p_value": 0.035,
+      "direction": -1
+    },
+    "E2_imagenet_vit_s:E3_dinov2_vit_s:three_class": {
+      "difference": -0.022819916421517112,
+      "ci": [
+        -0.07516006798480757,
+        0.0381630916135258
+      ],
+      "p_value": 0.6477777777777778,
+      "direction": 0
+    },
+    "E2_imagenet_vit_s:E4_tijepa0_only_available:three_class": {
+      "difference": -0.03797417517379912,
+      "ci": [
+        -0.08924835384463267,
+        0.022043431099887913
+      ],
+      "p_value": 0.6477777777777778,
+      "direction": 0
+    },
+    "E2_imagenet_vit_s:E6_tijepa_random_init:three_class": {
+      "difference": 0.04377463554691637,
+      "ci": [
+        -0.029576339225039612,
+        0.13637673262751454
+      ],
+      "p_value": 0.6477777777777778,
+      "direction": 0
+    },
+    "E3_dinov2_vit_s:E4_tijepa0_only_available:three_class": {
+      "difference": -0.01515425875228201,
+      "ci": [
+        -0.058362737719130184,
+        0.03477169107421221
+      ],
+      "p_value": 0.8629999999999999,
+      "direction": 0
+    },
+    "E3_dinov2_vit_s:E6_tijepa_random_init:three_class": {
+      "difference": 0.06659455196843349,
+      "ci": [
+        0.006685817009852732,
+        0.1251651736121411
+      ],
+      "p_value": 0.035,
+      "direction": 1
+    },
+    "E4_tijepa0_only_available:E6_tijepa_random_init:three_class": {
+      "difference": 0.08174881072071549,
+      "ci": [
+        0.03007370378127367,
+        0.14509524423712009
+      ],
+      "p_value": 0.0,
+      "direction": 1
+    },
+    "E1_handcrafted_improved:E2_imagenet_vit_s:round_vs_amoeboid": {
+      "difference": -0.07141177862482839,
+      "ci": [
+        -0.12374466857258103,
+        -0.010308503941463723
+      ],
+      "p_value": 0.023333333333333334,
+      "direction": -1
+    },
+    "E1_handcrafted_improved:E3_dinov2_vit_s:round_vs_amoeboid": {
+      "difference": -0.09008586003919843,
+      "ci": [
+        -0.15590792097704614,
+        -0.016993109254704358
+      ],
+      "p_value": 0.0125,
+      "direction": -1
+    },
+    "E1_handcrafted_improved:E4_tijepa0_only_available:round_vs_amoeboid": {
+      "difference": -0.15295186879604458,
+      "ci": [
+        -0.23456820915836446,
+        -0.08836853742552397
+      ],
+      "p_value": 0.0,
+      "direction": -1
+    },
+    "E1_handcrafted_improved:E6_tijepa_random_init:round_vs_amoeboid": {
+      "difference": -0.09738121820828534,
+      "ci": [
+        -0.1784868673581168,
+        -0.027464744725240277
+      ],
+      "p_value": 0.01,
+      "direction": -1
+    },
+    "E2_imagenet_vit_s:E3_dinov2_vit_s:round_vs_amoeboid": {
+      "difference": -0.01867408141437003,
+      "ci": [
+        -0.06974776990084226,
+        0.045425729544432976
+      ],
+      "p_value": 0.719,
+      "direction": 0
+    },
+    "E2_imagenet_vit_s:E4_tijepa0_only_available:round_vs_amoeboid": {
+      "difference": -0.08154009017121618,
+      "ci": [
+        -0.14715100727561747,
+        -0.02390697526732549
+      ],
+      "p_value": 0.01,
+      "direction": -1
+    },
+    "E2_imagenet_vit_s:E6_tijepa_random_init:round_vs_amoeboid": {
+      "difference": -0.02596943958345695,
+      "ci": [
+        -0.08999804736169108,
+        0.0404778661151253
+      ],
+      "p_value": 0.719,
+      "direction": 0
+    },
+    "E3_dinov2_vit_s:E4_tijepa0_only_available:round_vs_amoeboid": {
+      "difference": -0.06286600875684616,
+      "ci": [
+        -0.11378191797644532,
+        -0.0001044222049262156
+      ],
+      "p_value": 0.06857142857142857,
+      "direction": -1
+    },
+    "E3_dinov2_vit_s:E6_tijepa_random_init:round_vs_amoeboid": {
       "difference": -0.0072953581690869225,
       "ci": [
         -0.06758074268113652,
         0.05640536830042794
       ],
-      "p_value": 0.719
+      "p_value": 0.719,
+      "direction": 0
+    },
+    "E4_tijepa0_only_available:E6_tijepa_random_init:round_vs_amoeboid": {
+      "difference": 0.05557065058775923,
+      "ci": [
+        0.010830023629059497,
+        0.0997016921135794
+      ],
+      "p_value": 0.023333333333333334,
+      "direction": 1
+    },
+    "E0_tijepa0_reference:baseline_nearest_detection:tracking": {
+      "difference": 0.19788359788359786,
+      "ci": null,
+      "p_value": 0.15625,
+      "direction": 0
+    },
+    "E6_random_init_draw0:baseline_nearest_detection:tracking": {
+      "difference": 0.1777777777777778,
+      "ci": null,
+      "p_value": 0.1875,
+      "direction": 0
+    },
+    "E6_random_init_draw1:baseline_nearest_detection:tracking": {
+      "difference": 0.16613756613756617,
+      "ci": null,
+      "p_value": 0.1875,
+      "direction": 0
+    },
+    "E6_random_init_draw2:baseline_nearest_detection:tracking": {
+      "difference": 0.16455026455026456,
+      "ci": null,
+      "p_value": 0.1875,
+      "direction": 0
+    },
+    "raw_trace:handcrafted:b31": {
+      "difference": 0.030333333333333323,
+      "ci": null,
+      "p_value": 0.6666666666666666,
+      "direction": 0
     }
-  ]
+  }
 }

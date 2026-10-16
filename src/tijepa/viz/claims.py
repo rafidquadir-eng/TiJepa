@@ -117,11 +117,15 @@ def check_text(text: str, comparisons: dict[str, Comparison],
     Returns a list of violations; an empty list means the prose agrees with the numbers.
     """
     violations: list[dict] = []
-    sentences = re.split(r"(?<=[.!?])\s+", text)
+    # Drop table rows and block quotes BEFORE splitting into sentences. Skipping only
+    # chunks that *begin* with "|" is not enough: a table introduced by a line ending
+    # in ":" has no sentence boundary before it, so the whole table lands inside the
+    # preceding sentence and every cell is scanned as prose.
+    kept = [ln for ln in text.splitlines()
+            if not ln.lstrip().startswith(("|", ">"))]
+    sentences = re.split(r"(?<=[.!?])\s+", "\n".join(kept))
     for si, sent in enumerate(sentences):
         low = sent.lower()
-        if low.lstrip().startswith(("|", ">")):
-            continue  # tables and block quotes carry their own numbers
         present = [k for k, aliases in names.items()
                    if any(a.lower() in low for a in aliases)]
         if len(present) < 2:
