@@ -5,6 +5,7 @@
     "96-well_plate_movies_n=1_complexeye.zip",
     "96-well_plate_movies_n=1_leica.zip",
     "R06.zip",
+    "R08.zip",
     "R09.zip",
     "R16.zip",
     "R17.zip"
@@ -32,39 +33,47 @@
     "R16.zip",
     "R17.zip"
   ],
-  "next_shard_id": 24,
-  "bytes_downloaded": 0,
-  "n_clips": 153166,
+  "next_shard_id": 31,
+  "bytes_downloaded": 9737483121,
+  "n_clips": 196347,
   "qc_thresholds": {
     "method": "heuristic (S-BIAD2133 classifier not trainable; see RUN_REPORT_v1)",
-    "focus_min": 27.941243362426757,
-    "saturation_max": 0.0007534765624999995,
-    "drift_max": 0.4194203028193276,
+    "focus_min": 28.797712898254396,
+    "saturation_max": 0.0005426757812499999,
+    "drift_max": 0.45097414316063167,
     "quantiles": {
       "focus": 0.05,
       "saturation": 0.98,
       "drift": 0.98
     },
     "movie_fail_fraction": 0.5,
-    "n_frames_pooled": 5712,
+    "n_frames_pooled": 7224,
     "distribution": {
       "focus": {
-        "p1": 17.668424110412598,
-        "p50": 59.953020095825195,
-        "p99": 200.05693206787137
+        "p1": 18.219211769104003,
+        "p50": 60.03292274475098,
+        "p99": 194.83525573730458
       },
       "saturation": {
         "p50": 0.0,
-        "p99": 0.0014821093750000038
+        "p99": 0.001235878906249999
       },
       "drift": {
-        "p50": 0.016901388663855745,
-        "p99": 0.5147526233926534
+        "p50": 0.01778120631000278,
+        "p99": 0.55760455093365
       }
     }
   },
-  "n_movies_qc_dropped_this_archive": 4,
-  "leakage_exclusions": [],
+  "n_movies_qc_dropped_this_archive": 1,
+  "leakage_exclusions": [
+    {
+      "key": "R08.zip:H4.tiff",
+      "status": "excluded_leakage",
+      "matches_eval_movie": "08_H4.ome.zarr.zip",
+      "pearson_r": 0.99749,
+      "frame0_sha1_identical": false
+    }
+  ],
   "movies": [
     {
       "key": "96-well_plate_movies_n=1_leica.zip:fMLP002_chan00.tiff",
@@ -3877,7 +3886,1022 @@
         "fail_fraction": 0.08333333333333333,
         "reason": "illumination drift"
       }
+    },
+    {
+      "key": "R08.zip:B4.tiff",
+      "status": "ok",
+      "n_frames": 430,
+      "n_detections": 59384,
+      "n_tracks": 1132,
+      "n_clips": 700,
+      "n_static": 81,
+      "um_per_px": 0.641,
+      "seconds": 69.6,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:A6.tiff",
+      "status": "ok",
+      "n_frames": 436,
+      "n_detections": 61507,
+      "n_tracks": 1229,
+      "n_clips": 700,
+      "n_static": 76,
+      "um_per_px": 0.641,
+      "seconds": 77.5,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:B6.tiff",
+      "status": "ok",
+      "n_frames": 427,
+      "n_detections": 53260,
+      "n_tracks": 953,
+      "n_clips": 700,
+      "n_static": 52,
+      "um_per_px": 0.641,
+      "seconds": 83.1,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:A3.tiff",
+      "status": "ok",
+      "n_frames": 428,
+      "n_detections": 56387,
+      "n_tracks": 943,
+      "n_clips": 700,
+      "n_static": 70,
+      "um_per_px": 0.641,
+      "seconds": 83.9,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.125,
+        "reason": "out of focus"
+      }
+    },
+    {
+      "key": "R08.zip:A4.tiff",
+      "status": "ok",
+      "n_frames": 437,
+      "n_detections": 57760,
+      "n_tracks": 1137,
+      "n_clips": 700,
+      "n_static": 61,
+      "um_per_px": 0.641,
+      "seconds": 88.5,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.041666666666666664,
+        "reason": "out of focus"
+      }
+    },
+    {
+      "key": "R08.zip:C3.tiff",
+      "status": "ok",
+      "n_frames": 443,
+      "n_detections": 60286,
+      "n_tracks": 1173,
+      "n_clips": 700,
+      "n_static": 80,
+      "um_per_px": 0.641,
+      "seconds": 90.5,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:B8.tiff",
+      "status": "ok",
+      "n_frames": 430,
+      "n_detections": 60157,
+      "n_tracks": 1064,
+      "n_clips": 700,
+      "n_static": 78,
+      "um_per_px": 0.641,
+      "seconds": 94.1,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:B2.tiff",
+      "status": "ok",
+      "n_frames": 441,
+      "n_detections": 61430,
+      "n_tracks": 1118,
+      "n_clips": 700,
+      "n_static": 82,
+      "um_per_px": 0.641,
+      "seconds": 98.4,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:A5.tiff",
+      "status": "ok",
+      "n_frames": 433,
+      "n_detections": 53509,
+      "n_tracks": 1019,
+      "n_clips": 700,
+      "n_static": 79,
+      "um_per_px": 0.641,
+      "seconds": 99.5,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:D4.tiff",
+      "status": "ok",
+      "n_frames": 437,
+      "n_detections": 65654,
+      "n_tracks": 1241,
+      "n_clips": 700,
+      "n_static": 81,
+      "um_per_px": 0.641,
+      "seconds": 101.1,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:D2.tiff",
+      "status": "ok",
+      "n_frames": 441,
+      "n_detections": 63841,
+      "n_tracks": 1163,
+      "n_clips": 700,
+      "n_static": 83,
+      "um_per_px": 0.641,
+      "seconds": 105.0,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:B7.tiff",
+      "status": "ok",
+      "n_frames": 436,
+      "n_detections": 65319,
+      "n_tracks": 1203,
+      "n_clips": 700,
+      "n_static": 80,
+      "um_per_px": 0.641,
+      "seconds": 105.0,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:B1.tiff",
+      "status": "ok",
+      "n_frames": 448,
+      "n_detections": 88842,
+      "n_tracks": 1373,
+      "n_clips": 700,
+      "n_static": 79,
+      "um_per_px": 0.641,
+      "seconds": 111.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:A1.tiff",
+      "status": "ok",
+      "n_frames": 447,
+      "n_detections": 66851,
+      "n_tracks": 952,
+      "n_clips": 700,
+      "n_static": 77,
+      "um_per_px": 0.641,
+      "seconds": 111.9,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.4166666666666667,
+        "reason": "out of focus"
+      }
+    },
+    {
+      "key": "R08.zip:D3.tiff",
+      "status": "ok",
+      "n_frames": 446,
+      "n_detections": 51677,
+      "n_tracks": 1013,
+      "n_clips": 700,
+      "n_static": 71,
+      "um_per_px": 0.641,
+      "seconds": 115.9,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:A8.tiff",
+      "status": "ok",
+      "n_frames": 434,
+      "n_detections": 57049,
+      "n_tracks": 918,
+      "n_clips": 700,
+      "n_static": 73,
+      "um_per_px": 0.641,
+      "seconds": 116.0,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:C1.tiff",
+      "status": "ok",
+      "n_frames": 447,
+      "n_detections": 62568,
+      "n_tracks": 993,
+      "n_clips": 700,
+      "n_static": 67,
+      "um_per_px": 0.641,
+      "seconds": 116.6,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.041666666666666664,
+        "reason": "out of focus"
+      }
+    },
+    {
+      "key": "R08.zip:B3.tiff",
+      "status": "ok",
+      "n_frames": 439,
+      "n_detections": 67538,
+      "n_tracks": 1189,
+      "n_clips": 700,
+      "n_static": 74,
+      "um_per_px": 0.641,
+      "seconds": 117.0,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:B5.tiff",
+      "status": "ok",
+      "n_frames": 440,
+      "n_detections": 69419,
+      "n_tracks": 1162,
+      "n_clips": 700,
+      "n_static": 64,
+      "um_per_px": 0.641,
+      "seconds": 117.3,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:D1.tiff",
+      "status": "ok",
+      "n_frames": 448,
+      "n_detections": 68825,
+      "n_tracks": 1021,
+      "n_clips": 700,
+      "n_static": 87,
+      "um_per_px": 0.641,
+      "seconds": 126.5,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.041666666666666664,
+        "reason": "out of focus"
+      }
+    },
+    {
+      "key": "R08.zip:C4.tiff",
+      "status": "ok",
+      "n_frames": 444,
+      "n_detections": 80862,
+      "n_tracks": 1144,
+      "n_clips": 700,
+      "n_static": 63,
+      "um_per_px": 0.641,
+      "seconds": 127.8,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.3333333333333333,
+        "reason": "out of focus"
+      }
+    },
+    {
+      "key": "R08.zip:C2.tiff",
+      "status": "ok",
+      "n_frames": 446,
+      "n_detections": 54481,
+      "n_tracks": 1053,
+      "n_clips": 700,
+      "n_static": 62,
+      "um_per_px": 0.641,
+      "seconds": 130.8,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:A2.tiff",
+      "status": "ok",
+      "n_frames": 446,
+      "n_detections": 62192,
+      "n_tracks": 1085,
+      "n_clips": 700,
+      "n_static": 62,
+      "um_per_px": 0.641,
+      "seconds": 141.4,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:C8.tiff",
+      "status": "ok",
+      "n_frames": 434,
+      "n_detections": 74069,
+      "n_tracks": 1425,
+      "n_clips": 700,
+      "n_static": 84,
+      "um_per_px": 0.641,
+      "seconds": 141.9,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:C5.tiff",
+      "status": "ok",
+      "n_frames": 440,
+      "n_detections": 67865,
+      "n_tracks": 1251,
+      "n_clips": 700,
+      "n_static": 70,
+      "um_per_px": 0.641,
+      "seconds": 155.1,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:A7.tiff",
+      "status": "ok",
+      "n_frames": 429,
+      "n_detections": 58119,
+      "n_tracks": 835,
+      "n_clips": 700,
+      "n_static": 67,
+      "um_per_px": 0.641,
+      "seconds": 158.1,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.041666666666666664,
+        "reason": "out of focus"
+      }
+    },
+    {
+      "key": "R08.zip:C6.tiff",
+      "status": "ok",
+      "n_frames": 442,
+      "n_detections": 58084,
+      "n_tracks": 1138,
+      "n_clips": 700,
+      "n_static": 71,
+      "um_per_px": 0.641,
+      "seconds": 170.0,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:D8.tiff",
+      "status": "ok",
+      "n_frames": 430,
+      "n_detections": 68893,
+      "n_tracks": 1189,
+      "n_clips": 700,
+      "n_static": 69,
+      "um_per_px": 0.641,
+      "seconds": 89.7,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:D5.tiff",
+      "status": "ok",
+      "n_frames": 443,
+      "n_detections": 62097,
+      "n_tracks": 1025,
+      "n_clips": 700,
+      "n_static": 75,
+      "um_per_px": 0.641,
+      "seconds": 114.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.041666666666666664,
+        "reason": "out of focus"
+      }
+    },
+    {
+      "key": "R08.zip:F1.tiff",
+      "status": "ok",
+      "n_frames": 442,
+      "n_detections": 84590,
+      "n_tracks": 1131,
+      "n_clips": 700,
+      "n_static": 71,
+      "um_per_px": 0.641,
+      "seconds": 81.6,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.041666666666666664,
+        "reason": "saturated"
+      }
+    },
+    {
+      "key": "R08.zip:C7.tiff",
+      "status": "ok",
+      "n_frames": 428,
+      "n_detections": 51825,
+      "n_tracks": 1022,
+      "n_clips": 700,
+      "n_static": 55,
+      "um_per_px": 0.641,
+      "seconds": 200.4,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:E1.tiff",
+      "status": "ok",
+      "n_frames": 445,
+      "n_detections": 61548,
+      "n_tracks": 841,
+      "n_clips": 581,
+      "n_static": 47,
+      "um_per_px": 0.641,
+      "seconds": 118.7,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.5,
+        "reason": "out of focus, illumination drift"
+      }
+    },
+    {
+      "key": "R08.zip:H4.tiff",
+      "status": "excluded_leakage",
+      "matches_eval_movie": "08_H4.ome.zarr.zip",
+      "pearson_r": 0.99749,
+      "frame0_sha1_identical": false
+    },
+    {
+      "key": "R08.zip:D7.tiff",
+      "status": "ok",
+      "n_frames": 436,
+      "n_detections": 64709,
+      "n_tracks": 852,
+      "n_clips": 700,
+      "n_static": 74,
+      "um_per_px": 0.641,
+      "seconds": 135.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:G1.tiff",
+      "status": "ok",
+      "n_frames": 444,
+      "n_detections": 72476,
+      "n_tracks": 995,
+      "n_clips": 700,
+      "n_static": 67,
+      "um_per_px": 0.641,
+      "seconds": 90.6,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.2916666666666667,
+        "reason": "out of focus, saturated, illumination drift"
+      }
+    },
+    {
+      "key": "R08.zip:G2.tiff",
+      "status": "ok",
+      "n_frames": 440,
+      "n_detections": 53958,
+      "n_tracks": 1000,
+      "n_clips": 700,
+      "n_static": 55,
+      "um_per_px": 0.641,
+      "seconds": 88.4,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:F6.tiff",
+      "status": "ok",
+      "n_frames": 441,
+      "n_detections": 76627,
+      "n_tracks": 1409,
+      "n_clips": 700,
+      "n_static": 82,
+      "um_per_px": 0.641,
+      "seconds": 109.5,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.125,
+        "reason": "saturated"
+      }
+    },
+    {
+      "key": "R08.zip:E3.tiff",
+      "status": "excluded_qc",
+      "n_frames": 447,
+      "n_detections": 61876,
+      "n_tracks": 1036,
+      "n_clips": 700,
+      "n_static": 73,
+      "um_per_px": 0.641,
+      "seconds": 133.0,
+      "qc_verdict": {
+        "pass": false,
+        "fail_fraction": 0.625,
+        "reason": "out of focus"
+      }
+    },
+    {
+      "key": "R08.zip:G5.tiff",
+      "status": "ok",
+      "n_frames": 447,
+      "n_detections": 47352,
+      "n_tracks": 818,
+      "n_clips": 600,
+      "n_static": 70,
+      "um_per_px": 0.641,
+      "seconds": 73.8,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.08333333333333333,
+        "reason": "illumination drift"
+      }
+    },
+    {
+      "key": "R08.zip:E2.tiff",
+      "status": "ok",
+      "n_frames": 439,
+      "n_detections": 60635,
+      "n_tracks": 1008,
+      "n_clips": 700,
+      "n_static": 70,
+      "um_per_px": 0.641,
+      "seconds": 138.4,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.08333333333333333,
+        "reason": "illumination drift"
+      }
+    },
+    {
+      "key": "R08.zip:G3.tiff",
+      "status": "ok",
+      "n_frames": 444,
+      "n_detections": 62147,
+      "n_tracks": 1144,
+      "n_clips": 700,
+      "n_static": 73,
+      "um_per_px": 0.641,
+      "seconds": 89.9,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:D6.tiff",
+      "status": "ok",
+      "n_frames": 435,
+      "n_detections": 62016,
+      "n_tracks": 771,
+      "n_clips": 700,
+      "n_static": 55,
+      "um_per_px": 0.641,
+      "seconds": 154.6,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:F7.tiff",
+      "status": "ok",
+      "n_frames": 441,
+      "n_detections": 52996,
+      "n_tracks": 852,
+      "n_clips": 700,
+      "n_static": 72,
+      "um_per_px": 0.641,
+      "seconds": 120.9,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:F4.tiff",
+      "status": "ok",
+      "n_frames": 441,
+      "n_detections": 74626,
+      "n_tracks": 802,
+      "n_clips": 700,
+      "n_static": 71,
+      "um_per_px": 0.641,
+      "seconds": 124.9,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:E7.tiff",
+      "status": "ok",
+      "n_frames": 436,
+      "n_detections": 61051,
+      "n_tracks": 1202,
+      "n_clips": 700,
+      "n_static": 71,
+      "um_per_px": 0.641,
+      "seconds": 138.1,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:E4.tiff",
+      "status": "ok",
+      "n_frames": 446,
+      "n_detections": 57187,
+      "n_tracks": 995,
+      "n_clips": 700,
+      "n_static": 73,
+      "um_per_px": 0.641,
+      "seconds": 145.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.041666666666666664,
+        "reason": "out of focus"
+      }
+    },
+    {
+      "key": "R08.zip:F3.tiff",
+      "status": "ok",
+      "n_frames": 448,
+      "n_detections": 66295,
+      "n_tracks": 1255,
+      "n_clips": 700,
+      "n_static": 77,
+      "um_per_px": 0.641,
+      "seconds": 128.0,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:G8.tiff",
+      "status": "ok",
+      "n_frames": 434,
+      "n_detections": 60572,
+      "n_tracks": 1188,
+      "n_clips": 700,
+      "n_static": 65,
+      "um_per_px": 0.641,
+      "seconds": 71.7,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:F8.tiff",
+      "status": "ok",
+      "n_frames": 432,
+      "n_detections": 67735,
+      "n_tracks": 1225,
+      "n_clips": 700,
+      "n_static": 83,
+      "um_per_px": 0.641,
+      "seconds": 123.4,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:G7.tiff",
+      "status": "ok",
+      "n_frames": 428,
+      "n_detections": 53750,
+      "n_tracks": 1024,
+      "n_clips": 700,
+      "n_static": 59,
+      "um_per_px": 0.641,
+      "seconds": 80.8,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:G4.tiff",
+      "status": "ok",
+      "n_frames": 444,
+      "n_detections": 51995,
+      "n_tracks": 957,
+      "n_clips": 700,
+      "n_static": 74,
+      "um_per_px": 0.641,
+      "seconds": 109.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.20833333333333334,
+        "reason": "illumination drift"
+      }
+    },
+    {
+      "key": "R08.zip:F5.tiff",
+      "status": "ok",
+      "n_frames": 448,
+      "n_detections": 119987,
+      "n_tracks": 2195,
+      "n_clips": 700,
+      "n_static": 81,
+      "um_per_px": 0.641,
+      "seconds": 134.7,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:H1.tiff",
+      "status": "ok",
+      "n_frames": 444,
+      "n_detections": 64194,
+      "n_tracks": 1153,
+      "n_clips": 700,
+      "n_static": 82,
+      "um_per_px": 0.641,
+      "seconds": 73.3,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:H3.tiff",
+      "status": "ok",
+      "n_frames": 446,
+      "n_detections": 56871,
+      "n_tracks": 951,
+      "n_clips": 700,
+      "n_static": 74,
+      "um_per_px": 0.641,
+      "seconds": 62.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:E5.tiff",
+      "status": "ok",
+      "n_frames": 447,
+      "n_detections": 77815,
+      "n_tracks": 1273,
+      "n_clips": 700,
+      "n_static": 62,
+      "um_per_px": 0.641,
+      "seconds": 171.0,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:F2.tiff",
+      "status": "ok",
+      "n_frames": 438,
+      "n_detections": 149312,
+      "n_tracks": 3116,
+      "n_clips": 700,
+      "n_static": 70,
+      "um_per_px": 0.641,
+      "seconds": 160.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.3333333333333333,
+        "reason": "illumination drift"
+      }
+    },
+    {
+      "key": "R08.zip:E8.tiff",
+      "status": "ok",
+      "n_frames": 439,
+      "n_detections": 68010,
+      "n_tracks": 1369,
+      "n_clips": 700,
+      "n_static": 65,
+      "um_per_px": 0.641,
+      "seconds": 168.2,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:H8.tiff",
+      "status": "ok",
+      "n_frames": 430,
+      "n_detections": 65889,
+      "n_tracks": 1229,
+      "n_clips": 700,
+      "n_static": 69,
+      "um_per_px": 0.641,
+      "seconds": 55.5,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:E6.tiff",
+      "status": "ok",
+      "n_frames": 446,
+      "n_detections": 53878,
+      "n_tracks": 1002,
+      "n_clips": 700,
+      "n_static": 63,
+      "um_per_px": 0.641,
+      "seconds": 185.1,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:H2.tiff",
+      "status": "ok",
+      "n_frames": 441,
+      "n_detections": 89405,
+      "n_tracks": 1414,
+      "n_clips": 700,
+      "n_static": 82,
+      "um_per_px": 0.641,
+      "seconds": 104.3,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.5,
+        "reason": "out of focus, illumination drift"
+      }
+    },
+    {
+      "key": "R08.zip:H7.tiff",
+      "status": "ok",
+      "n_frames": 436,
+      "n_detections": 51337,
+      "n_tracks": 1070,
+      "n_clips": 700,
+      "n_static": 61,
+      "um_per_px": 0.641,
+      "seconds": 82.8,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:H5.tiff",
+      "status": "ok",
+      "n_frames": 448,
+      "n_detections": 71253,
+      "n_tracks": 1361,
+      "n_clips": 700,
+      "n_static": 62,
+      "um_per_px": 0.641,
+      "seconds": 85.0,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:G6.tiff",
+      "status": "ok",
+      "n_frames": 446,
+      "n_detections": 79550,
+      "n_tracks": 1477,
+      "n_clips": 700,
+      "n_static": 69,
+      "um_per_px": 0.641,
+      "seconds": 147.0,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.0,
+        "reason": ""
+      }
+    },
+    {
+      "key": "R08.zip:H6.tiff",
+      "status": "ok",
+      "n_frames": 441,
+      "n_detections": 170914,
+      "n_tracks": 2877,
+      "n_clips": 700,
+      "n_static": 66,
+      "um_per_px": 0.641,
+      "seconds": 128.5,
+      "qc_verdict": {
+        "pass": true,
+        "fail_fraction": 0.08333333333333333,
+        "reason": "illumination drift"
+      }
     }
   ],
-  "generated_utc": "2026-10-16T00:52:12Z"
+  "generated_utc": "2026-10-16T01:14:02Z"
 }
