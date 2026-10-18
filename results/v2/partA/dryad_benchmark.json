@@ -1,0 +1,19 @@
+{
+  "phase": "F3.1",
+  "analysis": "Dryad M0/M1/M2 BMDM video benchmark, leave-one-batch-out",
+  "planned_as": "the v1 headline Part A result (fixes review finding D2)",
+  "doi": "10.5061/dryad.m0cfxpp8v",
+  "data_dir": "data/raw/dryad_bmdm",
+  "n_files_present": 0,
+  "status": "not_provided",
+  "reason": "The author prerequisite (PLAN_v1.md 2.3, PLAN_v2.md 2.1) was not completed: TiJepa/manual_downloads/ does not exist on the author's Drive and neither Dryad m0cfxpp8v nor LTDB is in the account (checked at the start of the run and again before the evaluations; see results/v2/manual_intake.json). Automated download remains blocked by a proof-of-work interstitial, which PLAN.md Section 2 and Section 9 forbid bypassing, so the run continued per the Section 14 degrade rule.",
+  "consequences": [
+    "Part A has NO video benchmark with activation-state labels, so the frame-shuffle control E5 cannot be evaluated on a labelled video task and Part A's classification evidence rests on static BBBC054 morphology classes.",
+    "The F3.4 forecasting evaluation runs on S-BIAD2196 only, not on Dryad.",
+    "Part C 8.4 (the C3 projection) cannot be performed: it needs image-space M0/M1/M2 centroids with stimuli matched to the omics anchors. See results/v1/partC/c3_projection.json.",
+    "The every-2-hour collapse monitor uses a fixed BBBC054 subset instead of Dryad (results/v2/pretrain_monitor.csv)."
+  ],
+  "first_todo_author": true,
+  "code_path": "this script detects the files and records them; the leave-one-batch-out benchmark itself still has to be written against the deposit's README (condition, batch and magnification encoding), which nobody in this project has seen",
+  "intake_record": "results/v2/manual_intake.json"
+}
