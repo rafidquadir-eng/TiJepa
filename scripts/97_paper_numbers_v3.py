@@ -188,7 +188,11 @@ def association() -> None:
             c = {"position": "pos", "embedding": "emb", "embedding+position": "both"}[cost]
             for m, x in v.items():
                 put(f"as.{k}.{c}.{m.replace('idf1_k9_chain', 'idf1')}", x)
+    for k, t in a.get("tijepa1_vs", {}).items():
+        put(f"as.t1vs.{k}", t["mean"], "{:+.3f}")
+        put(f"as.t1vs.{k}.p", t["p_two_sided"], "{:.3f}")
     for k, t in a["tests_vs_position_only"].items():
+        put(f"as.p.{k}.idf1", t["idf1_k9_chain"]["p_two_sided"], "{:.3f}")
         put(f"as.p.{k}.both9", t["9"]["p_two_sided"], "{:.3f}")
         put(f"as.d.{k}.both9", t["9"]["mean"], "{:+.3f}")
 

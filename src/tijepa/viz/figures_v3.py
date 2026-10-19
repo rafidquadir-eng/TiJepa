@@ -79,8 +79,11 @@ def _log(repo: Path, path: Path) -> dict[str, np.ndarray]:
 
     def col(k):
         return np.array([float(r[k]) if r.get(k) not in ("", None) else np.nan for r in rows])
-    return {k: col(k) for k in ("step", "loss_spatial", "loss_future", "effective_rank",
-                                "std_mean")}
+    out = {k: col(k) for k in ("step", "loss_spatial", "loss_future", "effective_rank",
+                               "std_mean", "loss")}
+    if not np.isfinite(out["loss_spatial"]).any():   # older log: one loss column
+        out["loss_spatial"] = out["loss"]
+    return out
 
 
 def _smooth(x, y, k=40):
@@ -150,7 +153,7 @@ def fig2_training(repo: Path) -> list[str]:
             ax.plot(*_smooth(L["step"], L["loss_future"]), color=c, lw=1.1, ls="--")
     ax.set_xlabel("step")
     ax.set_ylabel("latent L1 loss (moving mean)")
-    ax.set_title("Loss (dashed: future-masked batches)")
+    ax.set_title("Training loss (dashed: future masks)", fontsize=8)
     ax.legend(frameon=False, fontsize=6.5)
     ax = axes[1]
     for k, L in logs.items():
@@ -166,9 +169,9 @@ def fig2_training(repo: Path) -> list[str]:
                 ax.annotate(vid, st[-1], fontsize=6, color=MUTED, xytext=(2, 0),
                             textcoords="offset points")
     ax.set_xlabel("step")
-    ax.set_ylabel("effective rank of pooled embedding")
+    ax.set_ylabel("effective rank")
     ax.set_ylim(bottom=0)
-    ax.set_title("Dimensional collapse during training")
+    ax.set_title("Rank of training-batch embedding", fontsize=8)
     if reid:
         ax = axes[2]
         diag = reid["diagnosis"]
@@ -182,7 +185,7 @@ def fig2_training(repo: Path) -> list[str]:
         ax.set_xlabel("principal component")
         ax.set_ylabel("cumulative variance fraction")
         ax.set_ylim(0, 1.02)
-        ax.set_title("Spectrum on held-out clips")
+        ax.set_title("Spectrum on held-out clips", fontsize=8)
         ax.legend(frameon=False, fontsize=6.3, loc="lower right")
     fig.tight_layout()
     return save(fig, repo, "fig2_training_collapse")
@@ -343,7 +346,8 @@ def fig5_partB(repo: Path) -> list[str]:
                     label=f"{name.replace('_', ' ')}, {lab}")
     ax.axhline(0.8, color=MUTED, lw=0.8, ls=":")
     ax.axvline(2, color=INK, lw=0.8)
-    ax.text(2.3, 0.05, "deposited\n(2 per arm)", fontsize=6.3, color=INK)
+    ax.text(1.3, 0.5, "deposited: 2 per arm", fontsize=6.3, color=INK, rotation=90,
+            ha="right", va="center")
     ax.set_xlabel("wells per arm")
     ax.set_ylabel("power (two-sided, α = 0.05)")
     ax.set_ylim(0, 1.02)
@@ -402,8 +406,8 @@ def fig7_design(repo: Path) -> list[str]:
     steps = [(0.1, "Day 0", "CD14+ monocytes\n(n donors)\nRPMI / β-glucan / LPS\nIFN-γ, IL-4 anchors"),
              (2.1, "Day 1", "wash"),
              (3.6, "Days 1–6", "rest; label-free\ntime-lapse and\nNAD(P)H/FAD imaging\n(days 0, 1, 3, 6)"),
-             (5.9, "Day 6", "LPS restimulation;\ntime-lapse 0–24 h"),
-             (8.0, "Readouts", "TNF/IL-6 protein 4 h, 24 h;\nRNA-seq 4 h; ATAC day 6;\nlactate")]
+             (5.9, "Day 6", "LPS restimulation;\ntime-lapse\n0–24 h"),
+             (8.0, "Readouts", "TNF/IL-6 protein\nat 4 h and 24 h;\nRNA-seq 4 h;\nATAC day 6; lactate")]
     for x, head, body in steps:
         w = 1.8 if head != "Day 1" else 1.2
         ax.add_patch(FancyBboxPatch((x, 0.4), w, 2.1, boxstyle="round,pad=0.03",

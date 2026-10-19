@@ -13,6 +13,25 @@ Shuffling the frames of TiJepa-1's input clips lowers its score to \val{re.E5_fr
 so it uses the order of frames only slightly. Because this set is used to compare training
 recipes, these numbers describe the models; they are not a held-out test.
 
+\subsection{Associating cells across frames}
+\label{sec:association}
+With ground-truth cells in the six held-out movies, centroid distance alone matches
+\val{as.position_only.pos.9} of cells correctly across a 9-frame gap (IDF1 over the movie
+\val{as.position_only.pos.idf1}; Figure~\ref{fig:assoc}). Embeddings alone are worse for
+every encoder: V-JEPA~2 \val{as.E7_vjepa2_vitl.emb.9}, TiJepa-1 \val{as.E4_tijepa1.emb.9},
+DINOv2 \val{as.E3_dinov2_vit_s.emb.9}, random initialisation \val{as.E6_random_init_draw0.emb.9}.
+Adding the embedding to position lowers accuracy for every encoder except V-JEPA~2, whose
+combination (\val{as.E7_vjepa2_vitl.both.9}) is not distinguishable from position alone
+(exact $p=\val{as.p.E7_vjepa2_vitl.both9}$); for TiJepa-1 it falls to
+\val{as.E4_tijepa1.both.9} ($p=\val{as.p.E4_tijepa1.both9}$, the smallest possible with six
+movies). Within the TiJepa family the ordering of the re-identification task recurs: on
+embedding distance alone TiJepa-1 exceeds its frame-shuffled input by
+\val{as.t1vs.E5_frame_shuffled} and the spatial-only ablation by
+\val{as.t1vs.E4s_tijepa1_spatial} (both $p=\val{as.t1vs.E4s_tijepa1_spatial.p}$), and is
+\val{as.t1vs.E7_vjepa2_vitl} below V-JEPA~2. For densely packed migrating neutrophils at an
+8\,s frame interval, position is the identity cue; appearance features of any model we
+tested add nothing to it.
+
 \subsection{Dimensional collapse}
 \label{sec:collapse}
 The effective rank of TiJepa-1's pooled embedding on a fixed set of microglia crops fell
