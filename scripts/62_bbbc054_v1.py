@@ -475,11 +475,13 @@ def main() -> int:
     ap.add_argument("--ckpt", default=None)
     ap.add_argument("--scale-sensitivity", action="store_true")
     ap.add_argument("--encoders", default="",
-                    help="comma-separated subset of E1,E2,E3,E0,E4,E4s,E6 (default all)")
+                    help="comma-separated subset of E1,E2,E3,E0,E4,E4s,E6,E7 (default all)")
     ap.add_argument("--allow-unfinished", action="store_true",
                     help="accept a TiJepa-1 checkpoint that has not reached its planned "
                          "final step (smoke tests only; recorded in the output)")
     ap.add_argument("--out-name", default="bbbc054.json")
+    ap.add_argument("--out-dir", default=str(OUT),
+                    help="results directory (v3 runs write to results/v3/partA)")
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
 
@@ -689,6 +691,19 @@ def main() -> int:
         register("E3_dinov2_vit_s",
                  lambda d, s: embed_timm("vit_small_patch14_dinov2.lvd142m", d["X"]))
 
+    if want("E7"):
+        from tijepa.eval import vjepa2 as VJ2
+
+        def e7_embed(d: dict, seed: int) -> np.ndarray | None:
+            try:
+                return VJ2.embed_frames(d["X"], DEV)
+            except Exception as exc:  # weights or host unavailable: record, continue
+                print(f"    V-JEPA 2: unavailable ({type(exc).__name__}: {exc})")
+                return None
+        register(VJ2.KEY, e7_embed, "frozen V-JEPA 2 ViT-L (general-purpose video model); "
+                 "the image repeated to 16 frames; " + VJ2.LICENCE)
+        result["e7_model"] = VJ2.record()
+
     model = None
     for tag, run, note in (
             ("E4", "tijepa1", "mixed spatial + future masking"),
@@ -778,8 +793,10 @@ def main() -> int:
     problems = PV.check_results(result["encoders"])
     if problems:
         raise SystemExit("provenance check failed: " + "; ".join(problems))
-    (OUT / args.out_name).write_text(json.dumps(result, indent=2, default=float) + "\n")
-    print(f"wrote {OUT / args.out_name}")
+    out_dir = Path(args.out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / args.out_name).write_text(json.dumps(result, indent=2, default=float) + "\n")
+    print(f"wrote {out_dir / args.out_name}")
     return 0
 
 

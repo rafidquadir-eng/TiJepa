@@ -24,3 +24,19 @@ models:
     source: this repository (src/tijepa), trained in this run
     licence: Apache-2.0
     role: E4/E5/E6 video JEPA encoder
+  - key: tijepa1
+    source: this repository (src/tijepa), trained on the frozen v1 corpus to step 117,000
+    licence: Apache-2.0
+    role: E4 video JEPA encoder (mixed spatial + future masking); weights not published
+  - key: tijepa1_spatial
+    source: this repository (src/tijepa), trained on the frozen v1 corpus to step 117,000
+    licence: Apache-2.0
+    role: E4s matched-step spatial-masking-only ablation; weights not published
+  - key: E7_vjepa2_vitl
+    source: huggingface facebook/vjepa2-vitl-fpc64-256
+    revision: b3c1679b7c34d3255ef3547f27c7b226aefab26f
+    file_sha256: {model.safetensors: 25466aef85727d16546c6cf8c99f12fcfad9cbca8225d45f23685e2e025b786b}
+    licence: MIT
+    licence_note: "license: mit in the Hugging Face model card metadata and repository tags, checked 2026-10-19; not gated"
+    role: frozen pretrained general-purpose video encoder baseline E7 (PLAN_v3 H1.3)
+    loaded_with: transformers 4.56.2 (VJEPA2Model)

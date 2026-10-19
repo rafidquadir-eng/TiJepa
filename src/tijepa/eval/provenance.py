@@ -26,6 +26,7 @@ FIXED = {
     "E1_handcrafted": "hand-crafted",
     "E2_imagenet_vit_s": "ImageNet ViT-S",
     "E3_dinov2_vit_s": "DINOv2 ViT-S/14",
+    "E7_vjepa2_vitl": "V-JEPA 2 ViT-L",
     "E5_frame_shuffle": "TiJepa-1, frame-shuffled",
     "copy_last": "copy-last baseline",
     "baseline": "baseline tracker",
