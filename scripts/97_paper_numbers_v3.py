@@ -224,6 +224,13 @@ def flim() -> None:
         for k, r in f["regression"][t].items():
             put(f"fl.{short}.{k}", r["r2_mean"], "{:+.2f}")
             ci(f"fl.{short}.{k}.ci", r["r2_ci95_seed0"], "{:+.2f}")
+    for t, short in (("tau_m_ns", "tau"), ("bound_fraction", "bf")):
+        ref = f.get("condition_mean_reference", {}).get(t)
+        if ref:
+            put(f"fl.ref.{short}", ref["r2_mean"], "{:+.2f}")
+        for k, r in f.get("within_fov_regression", {}).get(t, {}).items():
+            put(f"fl.wf.{short}.{k}", r["r2_mean"], "{:+.2f}")
+            ci(f"fl.wf.{short}.{k}.ci", r["r2_ci95_seed0"], "{:+.2f}")
     c = f["classification"]["ars_vs_dmso"]
     for k, r in c["results"].items():
         put(f"fl.ars.{k.split(' ')[0]}", r["balanced_accuracy_mean"])

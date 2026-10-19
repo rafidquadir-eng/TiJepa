@@ -38,6 +38,23 @@ to it. In the six-class set, where each cell type was imaged in its own session,
 hand-crafted features reach \val{af.B.E1_handcrafted.all} and TiJepa-1
 \val{af.B.E4_tijepa1.all}; that comparison cannot separate cell type from session.
 
+\subsection{NAD(P)H lifetime from the photon image}
+In \val{fl.cells} macrophages from \val{fl.fovs} fields, the per-cell mean NAD(P)H lifetime
+(\val{fl.tau.mean}\,$\pm$\,\val{fl.tau.sd}\,ns; our data check required a median between
+0.3 and 3.5\,ns)
+is predicted from frozen features of the photon-count image with $R^2$ up to
+\val{fl.tau.E4s_tijepa1_spatial} (TiJepa-1 \val{fl.tau.E4_tijepa1}, V-JEPA~2
+\val{fl.tau.E7_vjepa2_vitl}), against \val{fl.tau.intensity_baseline} for intensity statistics.
+That gain does not reflect cell-level metabolism. Lifetime differs between experimental
+arms, and a reference that predicts each cell by its arm's training-fold mean reaches
+$R^2=\val{fl.ref.tau}$, more than any image feature. When targets and features are centred
+on their field's mean, so that only variation between cells of one field counts, TiJepa-1
+reaches \val{fl.wf.tau.E4_tijepa1} (95\% CI \val{fl.wf.tau.E4_tijepa1.ci}), V-JEPA~2
+\val{fl.wf.tau.E7_vjepa2_vitl} and intensity statistics \val{fl.wf.tau.intensity_baseline}
+(\val{fl.wf.tau.intensity_baseline.ci}); the bound fraction behaves the same way. These two
+controls were added after seeing the first result. The frozen features recognise the
+condition a field came from; they do not read a cell's lifetime beyond its brightness.
+
 \subsection{Forecasting is explained by positional structure}
 \label{sec:forecasting}
 TiJepa-1's predictor forecasts its own future latents with an error \val{fc.E4_tijepa1.1.ratio_vs_copy_last}
