@@ -34,7 +34,10 @@ UNICODE = {
 
 
 def esc(s: str) -> str:
-    s = (s or "").replace("&", r"\&").replace("%", r"\%").replace("_", r"\_")
+    import re
+    s = re.sub(r"\s*<[^>]+>\s*", "", s or "")
+    s = re.sub(r"\s+", " ", s).replace("Cell-MICS :", "Cell-MICS:")
+    s = s.replace("&", r"\&").replace("%", r"\%").replace("_", r"\_")
     for k, v in UNICODE.items():
         s = s.replace(k, v)
     bad = sorted({c for c in s if ord(c) > 127})

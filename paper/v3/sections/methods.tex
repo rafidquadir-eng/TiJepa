@@ -41,8 +41,8 @@ momentum rose linearly from 0.996 to 1.0. Both schedules end exactly on the last
 TiJepa-1 used \val{pre.t1.gpuh} and the ablation \val{pre.ts.gpuh} A100-40GB GPU-hours.
 TiJepa-1 was trained in two segments, resumed from a checkpoint with its data stream,
 masks and optimiser state restored. We also report TiJepa-0, an earlier model trained for
-55{,}000 steps with spatial masking only on a smaller corpus from 7 archives without the
-quality filter; it is a historical reference, not an ablation, because its corpus differs.
+55{,}000 steps with spatial masking only on a different corpus (7 archives,
+\val{pre.t0.clips} clips, no quality filter); it is a historical reference, not an ablation, because its corpus differs.
 One pretraining seed was run per recipe.
 
 \subsection{Frozen baselines}
@@ -69,8 +69,8 @@ only with at least 10 groups; comparisons between encoders are paired bootstraps
 same resamples with Benjamini--Hochberg correction within a task. With fewer than 10
 groups we report every group's value and exact sign-flip or permutation tests, whose
 smallest achievable $p$ is stated. Model and recipe choices were made only on a
-label-free validation set that is never used for any reported result
-(Section~\ref{sec:validation}); every reported number comes from a model frozen before its
+label-free validation set that is never used as a test set; the scores reported on it
+describe the models and are not held-out results (Section~\ref{sec:validation}); every reported number comes from a model frozen before its
 test set was used. Every result records the checkpoint (file, step, SHA-256) it came from,
 and every model name in this paper is derived from that record.
 

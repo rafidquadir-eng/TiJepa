@@ -59,6 +59,12 @@ def lab(key: str, rec) -> None:
 
 
 def pretraining() -> None:
+    # TiJepa-0's own summary file was overwritten (reports/V0_ERRATA.md, V2-E1); its corpus
+    # size is taken from the v0 run report, which recorded it at the time.
+    rr = (REPO / "reports" / "RUN_REPORT.md").read_text()
+    m = re.search(r"Pretraining corpus: \*\*([\d,]+) clips\*\*", rr)
+    if m:
+        put("pre.t0.clips", int(m.group(1).replace(",", "")))
     for run, f in (
         ("t1", "pretrain_summary_tijepa1_seed0.json"),
         ("ts", "pretrain_summary_tijepa1_spatial_seed0.json"),
