@@ -11,5 +11,17 @@
  "beta_glucan_early_rna_quote": "the presence of DMI blocked the b-glucan-driven increase of genes from the \u2018\u2018Toll-like receptor,\u2019\u2019 \u2018\u2018TNF,\u2019\u2019 and \u2018\u2018nuclear factor kB (NF-kB)\u2019\u2019 signaling pathways (Figure 2E) [4 h monocyte response, not restimulation]",
  "protein_quote": "DMI-exposed macrophages (DMI-Mfs) showed increased TNF-a and IL-6 secretion after LPS restimulation, in a similar magnitude as the well-described inducer of trained immunity b-glucan (Figure 1D, left panels).",
  "what_the_source_reports_for_TNF_mRNA_after_restimulation": "nothing gene-specific: the main text reports the beta-glucan restimulation transcriptome only as gene groups ('attenuated' and 'trained') and their motif enrichment; no TNF or IL6 transcript value or direction is given. The protein result (higher TNF-a, 24 h) is from a different readout and time point.",
- "consistency_with_our_observation": "The source states that a set of LPS-response genes is attenuated in beta-glucan-trained macrophages at day 6 + 4 h, so an attenuated TNF transcript at 4 h is not contradicted by the source's own RNA analysis; whether TNF is in that set is not stated. The figures were not inspected (text extraction only)."
+ "consistency_with_our_observation": "The source states that a set of LPS-response genes is attenuated in beta-glucan-trained macrophages at day 6 + 4 h, so an attenuated TNF transcript at 4 h is not contradicted by the source's own RNA analysis; whether TNF is in that set is not stated. The figures were not inspected (text extraction only).",
+ "GSE141656_source": {
+  "citation": "Moorlag SJCFM, Khan N, Novakovic B, et al. beta-Glucan Induces Protective Trained Immunity against Mycobacterium tuberculosis Infection: A Key Role for IL-1. Cell Rep 2020;31:107634",
+  "doi": "10.1016/j.celrep.2020.107634",
+  "pmcid": "PMC7242907",
+  "licence": "CC BY-NC-ND 4.0",
+  "text_source": "Europe PMC fullTextXML (retrieved 2026-10-19)",
+  "protein_quote": "Pre-incubation of monocytes with \u03b2-glucan increased the concentration of IL-6, tumor necrosis factor \u03b1 (TNF-\u03b1), and intracellular IL-1\u03b2 upon stimulation with Mtb on day 6 (Figures 1B and S1).",
+  "protein_timing_quote": "On day 6, cells were restimulated with either 200 \u03bcL RPMI or heat-killed Mtb 10 \u03bcg/mL for 24 hr.",
+  "rna_design_quote": "we performed an RNA-seq analysis of human monocytes that were trained with \u03b2-glucan or incubated in RPMI control medium and exposed to heat-killed Mtb for 4 h on day 6.",
+  "what_the_source_reports_for_TNF_mRNA": "no gene-level TNF statement; the transcriptome is described as reprogrammed (PCA, clustering) with IL-1 family genes highlighted",
+  "reading": "same pattern as GSE212282: TNF-a protein after 24 h restimulation is reported higher in beta-glucan-trained cells, while our analysis of the deposited 4 h RNA finds the TNF transcript lower in every donor"
+ }
 }

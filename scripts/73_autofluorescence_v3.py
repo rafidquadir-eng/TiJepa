@@ -1,5 +1,5 @@
 """H5.4 coverage map, immunophenotype / cell identity: label-free two-photon
-autofluorescence of mouse immune cells (Zenodo 15657646, CC BY 4.0; Lemire et al.,
+autofluorescence of mouse immune cells (Zenodo 15657646, CC BY 4.0; images from Lemire et al.; deposit paper Kreiss et al.,
 J Biophotonics 2025, doi 10.1002/jbio.70260).
 
 Each 64 x 64 patch (25.6 um square, one centred cell) has three label-free channels: two

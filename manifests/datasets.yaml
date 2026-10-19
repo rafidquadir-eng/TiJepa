@@ -650,7 +650,7 @@ datasets:
     kind: zenodo
     accession: 15657646
     record_url: "https://zenodo.org/records/15657646"
-    title: Label-free two-photon autofluorescence images of different immune cell types (Lemire et al., doi 10.1002/jbio.70260)
+    title: Label-free two-photon autofluorescence images of different immune cell types (images from Lemire et al.; deposit paper Kreiss et al., J Biophotonics, doi 10.1002/jbio.70260)
     licence_verified: CC BY 4.0
     licence_source: Zenodo record metadata
     role: coverage_map_immunophenotype
