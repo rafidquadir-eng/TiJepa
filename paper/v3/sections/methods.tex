@@ -1,0 +1,155 @@
+% Methods shared by both versions. Numbers come from numbers.tex (\val{...}).
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Pretraining data}
+\label{sec:corpus}
+The pretraining corpus consists of label-free brightfield time-lapse movies of human
+neutrophils migrating in multi-well plates, from the ComplexEye deposit
+\citep{complexeye} (Zenodo 10082674, CC BY 4.0). Ten of the deposit's 21
+archives were used. Every movie was checked for duplication against the held-out
+tracking movies before use (Section~\ref{sec:leakage}), passed a per-frame focus and
+illumination check, was kept at its native pixel size (0.641\,\textmu m/px, within 1.5\%
+of the 0.65\,\textmu m/px target), and was cut into cell-centred clips of 16 frames of
+$96\times96$ pixels that follow a tracked cell. Clips were taken at temporal strides of 1,
+3, 9 and 27 frames (frame interval 8\,s, so a clip spans 2\,min to 60\,min), and 10\% of
+clips were replaced by a single frame repeated 16 times so that the model also sees static
+input. The frozen corpus holds \val{pre.t1.clips} clips from 407 movies; its index and
+shards are fixed by checksum, and every model below was trained on exactly this set.
+
+\subsection{Model}
+TiJepa is a video joint-embedding predictive architecture
+\citep{vjepa}. A ViT-S encoder (12 layers, width 384, 6 heads) embeds
+$2\times8\times8$ tubelets of a $16\times96\times96$ single-channel clip into an
+$8\times12\times12$ token grid with fixed 3-D sine-cosine positional embeddings. A context
+encoder sees only the visible tokens; a target encoder, an exponential moving average
+(EMA) of the context encoder, sees the full clip; a 6-layer predictor of width 192
+receives the context tokens and the positional embeddings of the masked positions and
+predicts the target encoder's layer-normalised tokens there, with an L1 loss. Each batch
+uses one of two masks: with probability 0.5 a \emph{future} mask that hides every spatial
+position of the last two temporal slots (the last 4 frames), otherwise a spatial tube mask
+of 8 random blocks spanning all frames. The \emph{spatial-only} ablation uses only the
+second mask. Representations for every downstream task are the mean-pooled tokens of the
+frozen target encoder.
+
+\subsection{Training}
+Both TiJepa-1 and its spatial-only ablation were trained from scratch for
+\val{pre.t1.steps} steps of batch 128 (\val{pre.t1.epochs} passes over the corpus) with
+AdamW (learning rate $1.5\times10^{-4}$ after 500 warm-up steps, cosine decay to 0, weight
+decay 0.05, $\beta=(0.9, 0.95)$), bf16 autocast and gradient clipping at 1.0; the EMA
+momentum rose linearly from 0.996 to 1.0. Both schedules end exactly on the last step.
+TiJepa-1 used \val{pre.t1.gpuh} and the ablation \val{pre.ts.gpuh} A100-40GB GPU-hours.
+TiJepa-1 was trained in two segments, resumed from a checkpoint with its data stream,
+masks and optimiser state restored. We also report TiJepa-0, an earlier model trained for
+55{,}000 steps with spatial masking only on a smaller corpus from 7 archives without the
+quality filter; it is a historical reference, not an ablation, because its corpus differs.
+One pretraining seed was run per recipe.
+
+\subsection{Frozen baselines}
+All encoders are frozen; only linear probes are fitted. Baselines are an ImageNet-trained
+ViT-S/16 \citep{augreg}, DINOv2 ViT-S/14 \citep{dinov2}, the
+general-purpose video model V-JEPA~2 ViT-L \citep{vjepa2} (MIT licence;
+Hugging Face \texttt{facebook/vjepa2-vitl-fpc64-256} at a pinned revision), the same
+TiJepa architecture at random initialisation (three independent draws), TiJepa-1 with the
+frames of each clip shuffled, and dataset-specific hand-crafted features. Grayscale input
+is replicated to three channels for image and video models and resized to each model's
+native resolution with its own normalisation; still images are repeated over 16 frames for
+video models. Image models see the last frame of a clip.
+
+\subsection{Evaluation protocol}
+\label{sec:protocol}
+Every probe is fitted with group-held-out cross-validation, where the group is the unit
+of acquisition (field of view, movie, well or donor), so no group contributes to both the
+training and the test folds. Unless stated otherwise the probe is standardisation,
+PCA to 64 dimensions and class-balanced logistic regression (ridge regression for
+continuous targets), with three seeds that vary the fold assignment and, where the data
+are subsampled, the subsample. We report balanced accuracy (BA) or $R^2$. Confidence
+intervals are 95\% cluster bootstraps over groups (2{,}000 resamples) and are reported
+only with at least 10 groups; comparisons between encoders are paired bootstraps on the
+same resamples with Benjamini--Hochberg correction within a task. With fewer than 10
+groups we report every group's value and exact sign-flip or permutation tests, whose
+smallest achievable $p$ is stated. Model and recipe choices were made only on a
+label-free validation set that is never used for any reported result
+(Section~\ref{sec:validation}); every reported number comes from a model frozen before its
+test set was used. Every result records the checkpoint (file, step, SHA-256) it came from,
+and every model name in this paper is derived from that record.
+
+\subsection{Leakage control}
+\label{sec:leakage}
+Every corpus movie was fingerprinted (block-averaged frames at the start, middle and end)
+and compared with the six held-out tracking movies; candidate pairs were re-tested at full
+resolution. One corpus movie duplicated a held-out movie and was excluded from the corpus;
+TiJepa-0's older corpus contained it, so that movie is dropped from every TiJepa-0
+tracking summary. The validation movies were checked against both the held-out movies and
+the corpus (Section~\ref{sec:validation}).
+
+\subsection{Benchmarks}
+\paragraph{Validation: cell re-identification.}
+\label{sec:validation}
+Sixty-four movies from a ComplexEye archive that is not in the corpus form the validation
+set. Cells were detected and linked with the same classical pipeline used to build the
+corpus. At four anchor frames per movie, every cell tracked without gaps from 15 frames
+before to 42 frames after the anchor is embedded from the 16-frame clip ending at the
+anchor (the query) and from the clip starting $k\in\{3,9,27\}$ frames later (the gallery;
+query and gallery share no frame). The score is top-1 cosine retrieval of the same cell
+among all cells at that anchor, averaged over $k$; chance is one over the number of cells.
+Its leakage check searched three cell patches from every corpus movie in the validation
+movie at the same time index (no match above normalised cross-correlation 0.78, against
+0.84--1.00 for a patch searched in its own movie) and fingerprinted it against the held-out
+movies.
+
+\paragraph{Microglia morphology (BBBC054).}
+About \val{bb.ncells} annotated mouse microglia per seed from BBBC054
+\citep{bbbc} (CC BY 3.0), sampled with a per-(field, class) cap, are classified as
+ramified, round or amoeboid from a $96\times96$ crop, with 60 fields of view as groups. The
+dataset is an LPS exposure time course, so we also report a probe given only the exposure
+time.
+
+\paragraph{Label-free immune cell identity.}
+Two-photon autofluorescence patches (two band-pass channels for NAD(P)H and FAD, plus a
+Dodt gradient-contrast channel; $64\times64$ pixels, 25.6\,\textmu m) of mouse immune cells
+\citep{kreiss2026cellmics} (Zenodo 15657646, CC BY 4.0). In the primary set, CD4 T cells
+and neutrophils were imaged in the same fields and labelled by an anti-CD3 channel that no
+model sees; we classify them with fields as groups, and separately on the 20 fields that
+contain both types, which removes any field-level shortcut. In a secondary six-class set
+each type was imaged in its own samples, so cell type and session are confounded.
+Encoders embed each channel separately and the three embeddings are concatenated. The
+reference is a probe on per-channel intensity statistics.
+
+\paragraph{NAD(P)H lifetime.}
+Raw two-photon time-correlated single-photon counting data of macrophages
+\citep{musimbi2025flim} (Zenodo 14330511, CC BY 4.0): 227 lifetime bins of 0.055\,ns over
+$512\times512$ pixels, five repeats per field, summed. Cells were segmented on the photon
+image; per cell we computed the first moment of the background-subtracted decay tail from
+0.5\,ns after the peak (mean lifetime) and the bound fraction from a non-negative fit of the
+tail to $e^{-t/0.4\,\mathrm{ns}}$, $e^{-t/3.4\,\mathrm{ns}}$ and a constant (free and
+enzyme-bound NAD(P)H). Encoders see only the photon-count (intensity) crop. The task is
+ridge regression of each cell's lifetime readouts with fields as groups.
+
+\paragraph{Detection-level association.}
+On the six S-BIAD2196 movies of migrating neutrophils with ground-truth instance masks
+(BioImage Archive accession S-BIAD2196), every annotated cell in frames $t$ and $t+k$ ($k\in\{1,3,9\}$) is embedded
+from the 16-frame clip ending at that frame in a fixed window centred on the cell, and
+identities are matched by the Hungarian algorithm on embedding cosine distance, on
+centroid distance, or on both (each cost matrix z-scored and summed with equal weight).
+We report the fraction of cells present in both frames that are matched to themselves, and
+IDF1 over a chain of 9-frame associations through each movie.
+
+\paragraph{Latent forecasting and its controls.}
+On cell-centred clips from the same six movies at strides 1, 3, 9 and 27, each model's
+predictor is given the first 12 frames and predicts its target encoder's latents for the
+last 4, through the future mask. Its L1 error is compared, within the model's own latent
+space, with: copying the last context latent; the mean target latent at each future slot
+(and slot and position), fitted on the other half of the movies; the predictor given the
+context of a different clip from the same movie (context swap); and the predictor on a
+clip made of one frame repeated 16 times (static). A ridge decoder from target latents to
+the future patches' pixels, fitted on the other half of the movies, checks the predictions
+in pixel space. Before running the controls we fixed the criterion for calling this
+forecasting: the predictor must beat both copy-last and the slot mean (exact sign-flip
+$p<0.05$ over movies) and must lose at least half of its advantage over copy-last under
+both the context swap and the static control.
+
+\subsection{Statistics software}
+Analyses used Python with PyTorch, scikit-learn, SciPy, statsmodels and pydeseq2
+\citep{pydeseq2}. Moderated paired tests for expression data follow the
+empirical-Bayes approach of \citet{smyth2004}.

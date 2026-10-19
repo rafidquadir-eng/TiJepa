@@ -28,7 +28,7 @@ from pathlib import Path
 print = functools.partial(print, flush=True)
 
 REPO = Path(__file__).resolve().parents[1]
-OUT = REPO / "results" / "v2"
+OUT = REPO / "results" / "v3"
 CROSSREF = "https://api.crossref.org/works/"
 UA = "TiJepa-reference-check/1.0 (mailto:noreply@anthropic.com)"
 
@@ -55,6 +55,10 @@ TITLE_MUST_CONTAIN: dict[str, tuple[str, ...]] = {
     "ferreira2023": ("dimethyl itaconate", "innate immune"),
     "schrijver2023": ("immunoparalysis", "interleukin-4"),
     "pydeseq2": ("pydeseq2",),
+    "kreiss2026cellmics": ("autofluorescence", "deep learning"),
+    "musimbi2025flim": ("nad(p)h-flim", "macrophages"),
+    "moorlag2020": ("glucan", "tuberculosis"),
+    "cheng2024dectin": ("dectin-1", "training"),
 }
 
 
@@ -113,6 +117,18 @@ CANDIDATES: dict[str, tuple[str | None, str | None, str]] = {
                       "Series_pubmed_id 37291433) and of the sourced IL-4 expectation"),
     "pydeseq2": ("10.1093/bioinformatics/btad547", None,
                  "PyDESeq2, used for the B4 interaction model"),
+    "vjepa2": (None, "2506.09985", "V-JEPA 2, the frozen pretrained video baseline E7"),
+    "vicreg": (None, "2105.04906", "VICReg, the variance-covariance term of recipe S2"),
+    "augreg": (None, "2106.10270", "the AugReg ImageNet ViT-S/16 weights of baseline E2"),
+    "kreiss2026cellmics": ("10.1002/jbio.70260", None,
+                           "the paper named by Zenodo 15657646 (autofluorescence patches)"),
+    "musimbi2025flim": ("10.1038/s41598-025-85780-y", None,
+                        "Musimbi et al., the paper of the Zenodo 14330511 FLIM raw data"),
+    "moorlag2020": ("10.1016/j.celrep.2020.107634", None,
+                    "Moorlag et al. 2020, the source of GSE141656 (Series_pubmed_id "
+                    "32433977) and of the quoted beta-glucan/Mtb TNF-a protein result"),
+    "cheng2024dectin": ("10.1038/s41598-024-51620-8", None,
+                        "the source of GSE242947 (Series_pubmed_id 38228717)"),
 }
 
 # A bibliographic title query was tried for the one reference that had no DOI and
@@ -145,6 +161,24 @@ def summarise(msg: dict) -> dict:
         "type": msg.get("type"),
         "publisher": msg.get("publisher"),
     }
+
+
+def arxiv_meta(aid: str) -> dict:
+    """Title, authors and date from the arXiv abstract page's citation meta tags."""
+    import re
+    try:
+        req = urllib.request.Request(f"https://arxiv.org/abs/{aid}",
+                                     headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            html = r.read().decode("utf-8", "replace")
+    except Exception as exc:
+        return {"arxiv_error": f"{type(exc).__name__}"}
+    meta = re.findall(r'<meta name="citation_([a-z_]+)" content="([^"]*)"', html)
+    authors = [v for k, v in meta if k == "author"]
+    get = {k: v for k, v in meta}
+    return {"title": get.get("title"), "first_author": authors[0] if authors else None,
+            "authors": authors, "year": (get.get("date") or "")[:4] or None,
+            "container": f"arXiv:{aid}", "resolved_via": "arxiv.org abstract page"}
 
 
 def main() -> int:
@@ -203,8 +237,7 @@ def main() -> int:
             time.sleep(0.3)
         elif arxiv:
             rec["status"] = "arxiv_only"
-            rec["note"] = ("cited by arXiv id; no journal DOI was looked up because "
-                           "none is stated in PLAN_v1.md 10.4")
+            rec.update(arxiv_meta(arxiv))
         else:
             rec["status"] = "TODO(verify)"
 
