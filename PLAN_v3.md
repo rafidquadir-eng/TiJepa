@@ -330,7 +330,7 @@ pre-registered design. Inspect every PNG.
 
 ### H7.3 Report
 `reports/RUN_REPORT_v3.md` generated after everything ran: compute per run (incl. the sweep),
-gates and which branch was taken, results with source files, Section 12 table, deviations,
+gates and which branch was taken, results with source files, Section 14 table, deviations,
 TODO(author).
 
 ---
