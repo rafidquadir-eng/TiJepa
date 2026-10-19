@@ -1,0 +1,455 @@
+{
+ "phase": "PLAN_v3 H5.1.3-5",
+ "GSE141656": {
+  "accession": "GSE141656",
+  "licence": "GEO (public, no restrictions stated)",
+  "design": "3 donors x {RPMI, beta-glucan 24 h} x {medium, Mtb 4 h} at day 6",
+  "files_md5": {
+   "GSM4210633_A_BG_MTB.gene.mmseq.txt.gz": "09a4d856f3755e60749c15843cad4d69",
+   "GSM4210634_A_BG_RPMI.gene.mmseq.txt.gz": "846994a5d817c61ab6048052dd5611ee",
+   "GSM4210635_A_RPMI_MTB.gene.mmseq.txt.gz": "6b1c96f5534e8919255cf7131cea3d85",
+   "GSM4210636_A_RPMI_RPMI.gene.mmseq.txt.gz": "2292e551bae9eca6d3195667efb337c2",
+   "GSM4210637_B_BG_MTB.gene.mmseq.txt.gz": "00bfb76a6a107b2c67a9db3b0a72eee8",
+   "GSM4210638_B_BG_RPMI.gene.mmseq.txt.gz": "c5e3009b3059f155922d110b085f7859",
+   "GSM4210639_B_RPMI_MTB.gene.mmseq.txt.gz": "c1f9c1998636fa85e49c1b01d6d27554",
+   "GSM4210640_B_RPMI_RPMI.gene.mmseq.txt.gz": "b1e0ffc4a6a06c81875b6dc6e16b74ed",
+   "GSM4210641_C_BG_MTB.gene.mmseq.txt.gz": "b544799a764a96a2fcebc17164b2afb0",
+   "GSM4210642_C_BG_RPMI.gene.mmseq.txt.gz": "4c9250a3347a5e1912985122c810f4e9",
+   "GSM4210643_C_RPMI_MTB.gene.mmseq.txt.gz": "777827b324a6ddc7615742f14836a0d6",
+   "GSM4210644_C_RPMI_RPMI.gene.mmseq.txt.gz": "650e8e236754ea7e99d72cd03e688057"
+  },
+  "positive_control_restim_vs_unstim_untrained": {
+   "TNF": {
+    "per_donor_log2_difference": [
+     8.241943645193741,
+     8.1548914264265,
+     7.910138212739689
+    ],
+    "mean_difference": 8.102324428119976,
+    "n_donors": 3,
+    "exact_sign_flip_p_two_sided": 0.25,
+    "n_sign_assignments": 8,
+    "minimum_achievable_p": 0.25,
+    "all_donors_same_direction": true,
+    "confidence_interval": null,
+    "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+    "all_same_sign_negative": false,
+    "all_same_sign_positive": true
+   },
+   "IL6": {
+    "per_donor_log2_difference": [
+     13.57247099007192,
+     14.445012950801566,
+     11.019030610252134
+    ],
+    "mean_difference": 13.012171517041873,
+    "n_donors": 3,
+    "exact_sign_flip_p_two_sided": 0.25,
+    "n_sign_assignments": 8,
+    "minimum_achievable_p": 0.25,
+    "all_donors_same_direction": true,
+    "confidence_interval": null,
+    "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+    "all_same_sign_negative": false,
+    "all_same_sign_positive": true
+   },
+   "IL1B": {
+    "per_donor_log2_difference": [
+     9.168572243006315,
+     8.74946933362807,
+     8.351357637094761
+    ],
+    "mean_difference": 8.756466404576383,
+    "n_donors": 3,
+    "exact_sign_flip_p_two_sided": 0.25,
+    "n_sign_assignments": 8,
+    "minimum_achievable_p": 0.25,
+    "all_donors_same_direction": true,
+    "confidence_interval": null,
+    "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+    "all_same_sign_negative": false,
+    "all_same_sign_positive": true
+   }
+  },
+  "positive_control_pass": true,
+  "trained_minus_untrained_after_restim": {
+   "TNF": {
+    "per_donor_log2_difference": [
+     -1.8298278281611076,
+     -1.9699135166314257,
+     -2.0673531396930667
+    ],
+    "mean_difference": -1.9556981614952,
+    "n_donors": 3,
+    "exact_sign_flip_p_two_sided": 0.25,
+    "n_sign_assignments": 8,
+    "minimum_achievable_p": 0.25,
+    "all_donors_same_direction": true,
+    "confidence_interval": null,
+    "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+    "all_same_sign_negative": true,
+    "all_same_sign_positive": false
+   },
+   "IL6": {
+    "per_donor_log2_difference": [
+     -0.34339027363239083,
+     -0.40606094620860844,
+     -0.5479211495792189
+    ],
+    "mean_difference": -0.43245745647340605,
+    "n_donors": 3,
+    "exact_sign_flip_p_two_sided": 0.25,
+    "n_sign_assignments": 8,
+    "minimum_achievable_p": 0.25,
+    "all_donors_same_direction": true,
+    "confidence_interval": null,
+    "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+    "all_same_sign_negative": true,
+    "all_same_sign_positive": false
+   },
+   "IL1B": {
+    "per_donor_log2_difference": [
+     -0.962695973834796,
+     -0.6504679130856061,
+     -0.787567222821286
+    ],
+    "mean_difference": -0.8002437032472294,
+    "n_donors": 3,
+    "exact_sign_flip_p_two_sided": 0.25,
+    "n_sign_assignments": 8,
+    "minimum_achievable_p": 0.25,
+    "all_donors_same_direction": true,
+    "confidence_interval": null,
+    "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+    "all_same_sign_negative": true,
+    "all_same_sign_positive": false
+   }
+  },
+  "trained_minus_untrained_unstimulated": {
+   "TNF": {
+    "per_donor_log2_difference": [
+     -0.5511239325699928,
+     -1.1217819559936226,
+     -0.2744150237274896
+    ],
+    "mean_difference": -0.6491069707637017,
+    "n_donors": 3,
+    "exact_sign_flip_p_two_sided": 0.25,
+    "n_sign_assignments": 8,
+    "minimum_achievable_p": 0.25,
+    "all_donors_same_direction": true,
+    "confidence_interval": null,
+    "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+    "all_same_sign_negative": true,
+    "all_same_sign_positive": false
+   },
+   "IL6": {
+    "per_donor_log2_difference": [
+     2.4475321368681264,
+     0.46202308684469084,
+     -1.226117661350712
+    ],
+    "mean_difference": 0.5611458541207017,
+    "n_donors": 3,
+    "exact_sign_flip_p_two_sided": 0.75,
+    "n_sign_assignments": 8,
+    "minimum_achievable_p": 0.25,
+    "all_donors_same_direction": false,
+    "confidence_interval": null,
+    "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+    "all_same_sign_negative": false,
+    "all_same_sign_positive": false
+   },
+   "IL1B": {
+    "per_donor_log2_difference": [
+     -0.8333295095182827,
+     -1.093115605531159,
+     -0.5784918574956563
+    ],
+    "mean_difference": -0.834978990848366,
+    "n_donors": 3,
+    "exact_sign_flip_p_two_sided": 0.25,
+    "n_sign_assignments": 8,
+    "minimum_achievable_p": 0.25,
+    "all_donors_same_direction": true,
+    "confidence_interval": null,
+    "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+    "all_same_sign_negative": true,
+    "all_same_sign_positive": false
+   }
+  },
+  "donor_genotype": {
+   "genes": {
+    "GSTM1": {
+     "informative": true,
+     "widest_gap_log2": 7.637223591854724,
+     "threshold_log2": -0.2880196379630722,
+     "present_by_donor": {
+      "A": true,
+      "B": true,
+      "C": false
+     },
+     "consistent": true
+    },
+    "HLA-DRB5": {
+     "informative": true,
+     "widest_gap_log2": 8.561755953772884,
+     "threshold_log2": 4.721813190318459,
+     "present_by_donor": {
+      "A": false,
+      "B": true,
+      "C": false
+     },
+     "consistent": true
+    },
+    "HLA-DQA1": {
+     "informative": true,
+     "widest_gap_log2": 6.53559608558232,
+     "threshold_log2": 3.3835454659216815,
+     "present_by_donor": {
+      "A": true,
+      "B": true,
+      "C": false
+     },
+     "consistent": true
+    },
+    "HLA-DQB1": {
+     "informative": true,
+     "widest_gap_log2": 8.798995611686749,
+     "threshold_log2": 3.9640217504460815,
+     "present_by_donor": {
+      "A": false,
+      "B": true,
+      "C": false
+     },
+     "consistent": true
+    },
+    "ERAP2": {
+     "informative": true,
+     "widest_gap_log2": 2.4327733665998323,
+     "threshold_log2": 3.041352629173228,
+     "present_by_donor": {
+      "A": true,
+      "B": false,
+      "C": false
+     },
+     "consistent": true
+    },
+    "CHI3L2": {
+     "informative": false,
+     "widest_gap_log2": 0.4534101974505831
+    }
+   },
+   "consistent": true,
+   "donors_distinguishable": true,
+   "genotype_calls": {
+    "A": [
+     true,
+     false,
+     true,
+     false,
+     true
+    ],
+    "B": [
+     true,
+     true,
+     true,
+     true,
+     false
+    ],
+    "C": [
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  "meets_criteria": true,
+  "restimulus": "M. tuberculosis 4 h (not LPS)",
+  "genotype_calls_vs_GSE212282": {
+   "genes_informative_in_both": [
+    "GSTM1",
+    "HLA-DRB5"
+   ],
+   "GSE141656": {
+    "A": [
+     true,
+     false
+    ],
+    "B": [
+     true,
+     true
+    ],
+    "C": [
+     false,
+     false
+    ]
+   },
+   "GSE212282": {
+    "A": [
+     true,
+     true
+    ],
+    "B": [
+     false,
+     false
+    ],
+    "C": [
+     true,
+     false
+    ]
+   },
+   "note": "calls over the informative genes of each dataset; identical call vectors are compatible with, not proof of, a shared donor",
+   "donors_with_identical_calls": [
+    "A~C",
+    "B~A",
+    "C~B"
+   ]
+  },
+  "donor_overlap_with_GSE212282": {
+   "genes": [
+    "HLA-DRB5",
+    "NPIPB15",
+    "RPSAP15",
+    "GSTM1"
+   ],
+   "GSE141656": {
+    "A": [
+     false,
+     false,
+     true,
+     true
+    ],
+    "B": [
+     true,
+     true,
+     false,
+     true
+    ],
+    "C": [
+     true,
+     false,
+     true,
+     false
+    ]
+   },
+   "GSE212282": {
+    "A": [
+     true,
+     false,
+     true,
+     true
+    ],
+    "B": [
+     false,
+     true,
+     true,
+     false
+    ],
+    "C": [
+     false,
+     false,
+     false,
+     true
+    ]
+   },
+   "agreeing_genes_per_pair": {
+    "A~A": 3,
+    "A~B": 2,
+    "A~C": 3,
+    "B~A": 2,
+    "B~B": 1,
+    "B~C": 2,
+    "C~A": 3,
+    "C~B": 2,
+    "C~C": 1
+   },
+   "possible_shared_donors": []
+  }
+ },
+ "GSE242947": {
+  "accession": "GSE242947",
+  "design": "untrained / beta-glucan (ETSU) / zymosan / depleted zymosan training; LPS 0, 1, 3 h; 2 replicates",
+  "meets_criteria": false,
+  "reason": "2 replicates (< 3 donors)",
+  "positive_control_restim_vs_unstim_untrained": {
+   "TNF": [
+    5.376311868155024,
+    7.707164119446913
+   ],
+   "IL6": [
+    7.251237803333373,
+    8.203737257647735
+   ],
+   "IL1B": [
+    5.64481376884351,
+    9.04495126074915
+   ]
+  },
+  "beta_glucan_minus_untrained": {
+   "0h": {
+    "TNF": [
+     -1.4980634414222553,
+     -0.17599751022680188
+    ],
+    "IL6": [
+     -0.7802969190942541,
+     0.47621036735052263
+    ],
+    "IL1B": [
+     -1.2079443209024743,
+     -0.23237683503471862
+    ]
+   },
+   "1h": {
+    "TNF": [
+     -1.4909393348614728,
+     -0.761141942678508
+    ],
+    "IL6": [
+     -1.6329479441720123,
+     -0.5667296391296226
+    ],
+    "IL1B": [
+     -1.8548442170572166,
+     -0.9307838871202616
+    ]
+   },
+   "3h": {
+    "TNF": [
+     0.4114954602141321,
+     -0.5073289411054134
+    ],
+    "IL6": [
+     0.5032576332795848,
+     0.2734722843527404
+    ],
+    "IL1B": [
+     1.3448656856085321,
+     -0.38768749416377624
+    ]
+   }
+  },
+  "units": "log2(CPM + 1) differences per replicate"
+ },
+ "GSE85246": {
+  "meets_criteria": false,
+  "reason": "SuperSeries; its RNA subseries GSE85243 has no restimulation arm"
+ },
+ "kinetics_hypothesis": "Trained macrophages may reach the TNF transcript peak earlier and resolve it faster, so that a 4 h transcript can be lower while 24 h secreted protein is higher. This is a hypothesis; the test is a 0.5-24 h restimulation time course with paired RNA and protein.",
+ "G_BetaGlucan": {
+  "identity_qc_pass": true,
+  "independent_replication": {
+   "dataset": "GSE141656",
+   "tnf_lower_in_every_donor": true,
+   "positive_control_pass": true,
+   "consistent": true,
+   "independence_caveat": false
+  },
+  "source_rna_reports_it": false,
+  "source_rna_note": "nothing gene-specific: the main text reports the beta-glucan restimulation transcriptome only as gene groups ('attenuated' and 'trained') and their motif enrichment; no TNF or IL6 transcript value or direction is given. The protein result (higher TNF-a, 24 h) is from a different readout and time point.",
+  "decision": "pass: report as a replicated transcript-level observation (GSE141656, Mtb restimulation)"
+ }
+}

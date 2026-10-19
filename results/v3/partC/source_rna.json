@@ -1,0 +1,15 @@
+{
+ "phase": "PLAN_v3 H5.1.2",
+ "source": {
+  "citation": "Ferreira AV, et al. Dimethyl itaconate induces long-term innate immune responses and confers protection against infection. Cell Rep 2023;42:112658",
+  "doi": "10.1016/j.celrep.2023.112658",
+  "licence": "CC BY 4.0",
+  "text_source": "open-access PDF, Radboud repository handle 2066/295307 (retrieved 2026-10-19)"
+ },
+ "rna_design_quote": "Experimental model including the collection time points of 0, 4 h, day 1, day 6, and day 6+4 h and the respective stimuli (n = 3). (Figure 2A legend)",
+ "beta_glucan_restimulation_rna_quote": "Similar to DMI-Mfs, the genes attenuated and trained in b-glucan-Mfs were also enriched for ISRE and IRF motifs (Figures S2D and S2E).",
+ "beta_glucan_early_rna_quote": "the presence of DMI blocked the b-glucan-driven increase of genes from the \u2018\u2018Toll-like receptor,\u2019\u2019 \u2018\u2018TNF,\u2019\u2019 and \u2018\u2018nuclear factor kB (NF-kB)\u2019\u2019 signaling pathways (Figure 2E) [4 h monocyte response, not restimulation]",
+ "protein_quote": "DMI-exposed macrophages (DMI-Mfs) showed increased TNF-a and IL-6 secretion after LPS restimulation, in a similar magnitude as the well-described inducer of trained immunity b-glucan (Figure 1D, left panels).",
+ "what_the_source_reports_for_TNF_mRNA_after_restimulation": "nothing gene-specific: the main text reports the beta-glucan restimulation transcriptome only as gene groups ('attenuated' and 'trained') and their motif enrichment; no TNF or IL6 transcript value or direction is given. The protein result (higher TNF-a, 24 h) is from a different readout and time point.",
+ "consistency_with_our_observation": "The source states that a set of LPS-response genes is attenuated in beta-glucan-trained macrophages at day 6 + 4 h, so an attenuated TNF transcript at 4 h is not contradicted by the source's own RNA analysis; whether TNF is in that set is not stated. The figures were not inspected (text extraction only)."
+}
