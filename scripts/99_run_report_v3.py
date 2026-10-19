@@ -285,7 +285,47 @@ def compute() -> list[str]:
     return out
 
 
+def headline() -> list[str]:
+    """README results table from the generated manuscript numbers."""
+    n = json.loads((REPO / "paper" / "v3" / "numbers.json").read_text())
+
+    def g(k):
+        return n.get(k, "—").replace("{,}", ",")
+    return [
+        "| Test | TiJepa-1 | comparison | reference |", "|---|---|---|---|",
+        f"| Microglia morphology, 3-class BA | {g('bb.E4_tijepa1.3c')} | V-JEPA 2 "
+        f"{g('bb.E7_vjepa2_vitl.3c')} | hand-crafted {g('bb.E1_handcrafted_logreg.3c')} |",
+        f"| T cell vs neutrophil (mixed fields), BA | {g('af.Am.E4_tijepa1.all')} | "
+        f"TiJepa-0 {g('af.Am.E0_tijepa0.all')} | intensity only "
+        f"{g('af.Am.intensity_baseline.all')} |",
+        f"| NAD(P)H lifetime within fields, R2 | {g('fl.wf.tau.E4_tijepa1')} | V-JEPA 2 "
+        f"{g('fl.wf.tau.E7_vjepa2_vitl')} | intensity only "
+        f"{g('fl.wf.tau.intensity_baseline')} |",
+        f"| Re-identification (validation), top-1 | {g('re.E4_tijepa1')} | V-JEPA 2 "
+        f"{g('re.E7_vjepa2_vitl')} | raw pixels {g('re.raw_pixels')} |",
+        f"| Association, 9-frame gap, embedding only | {g('as.E4_tijepa1.emb.9')} | V-JEPA 2 "
+        f"{g('as.E7_vjepa2_vitl.emb.9')} | position only {g('as.position_only.pos.9')} |",
+        f"| Forecasting advantage kept on static clips | {g('fc.E4_tijepa1.1.adv.static')} of "
+        f"{g('fc.E4_tijepa1.1.adv')} | — | criterion: at most half |",
+        f"| NF-κB ligand pair, BA (trace JEPA) | {g('pb.lig.trace_jepa')} | random init "
+        f"{g('pb.lig.trace_jepa_random_init')} | chance {g('pb.lig.chance')} |",
+        f"| β-glucan − untrained TNF after restimulation (log2) | — | GSE212282 "
+        f"{g('pc.212.tnf.d7.mean')}, GSE141656 {g('pc.141.TNF.mean')} | 6/6 donors |",
+    ]
+
+
+def write_readme() -> None:
+    p = REPO / "README.md"
+    s = p.read_text()
+    a, b = "<!-- RESULTS:BEGIN -->", "<!-- RESULTS:END -->"
+    if a in s and b in s:
+        new = a + "\n" + "\n".join(headline()) + "\n" + b
+        s = s[: s.index(a)] + new + s[s.index(b) + len(b):]
+        p.write_text(s)
+
+
 def main() -> int:
+    write_readme()
     cov = J("results/v3/coverage/coverage_map.json")
     lines = [
         "# TiJepa — run report v3",
