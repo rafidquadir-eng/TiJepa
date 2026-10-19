@@ -1,0 +1,42 @@
+\section{Introduction}
+\label{sec:intro}
+Innate immune cells keep a memory of earlier stimuli. Monocytes and macrophages exposed to
+$\beta$-glucan or BCG respond more strongly to an unrelated second stimulus days later
+(trained immunity), while cells exposed to LPS respond less (tolerance); both states are
+carried by epigenetic and metabolic reprogramming rather than by antigen-specific receptors
+\citep{netea2016,saeed2014,novakovic2016}. These states are measured today by restimulating
+cells and assaying cytokines, transcripts or chromatin, which destroys the sample and gives
+one time point. If memory states left a signature in how living cells look and move, label-free
+video could read them out continuously and non-destructively.
+
+Self-supervised video models make that question testable without labels: a joint-embedding
+predictive architecture (JEPA) learns representations by predicting the latent content of
+masked or future parts of a clip \citep{vjepa,vjepa2}. But testing whether such a model
+captures immune state requires paired data, images or video of cells whose molecular or
+functional state was measured, and for trained innate cells none is public. This paper asks
+how far one can get with public data only. We train TiJepa, a video JEPA, on
+\val{pre.t1.clips} unlabelled clips of migrating human neutrophils, and test its frozen
+representations, against strong image and video models, on every public dataset we could
+find that pairs label-free images, video or image-derived dynamics of innate immune cells with a
+molecular, functional or memory readout.
+
+The contribution is an audit rather than a new state of the art, and it has three parts.
+\begin{enumerate}
+\item A \emph{modality coverage map} (Figure~\ref{fig:coverage}, Table~\ref{tab:coverage}):
+for each modality family (immunophenotype, metabolism, signalling, transcriptomics,
+epigenomics, cytokines, integrated omics), the best public pairing with imaging, the level
+at which it is paired (same cell, same condition, different studies), what we tested and
+the result, including the families for which no public pairing exists.
+\item A controlled evaluation of what a video JEPA learns from innate-immune video: a
+matched-step spatial-only ablation, a frozen general-purpose video model (V-JEPA~2), image
+models, random-initialisation and frame-shuffle controls, a label-free validation set used
+for every model choice, controls that separate forecasting from positional structure in the
+latent space, and a diagnosis of the partial dimensional collapse we observed.
+\item From the molecular data that exist without images, a replicated observation that
+constrains what an imaging study of trained cells should measure, and the design of that
+study.
+\end{enumerate}
+Most of our answers are negative or null, and we report them as such. No result in this
+paper shows trained immunity in images: no public image of trained cells exists, and the
+memory-related analyses use the closest public proxies (acute priming and tolerance,
+polarisation, restimulation transcriptomes).

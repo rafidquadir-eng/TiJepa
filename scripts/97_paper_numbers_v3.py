@@ -113,6 +113,10 @@ def autofluorescence() -> None:
     for t, short in (("A_all_fovs", "A"), ("A_mixed_fovs_only", "Am"), ("B_six_types", "B")):
         put(f"af.{short}.n", int(af["tasks"][t]["n_cells"]))
         put(f"af.{short}.fovs", int(af["tasks"][t]["n_fovs"]))
+        frozen = [r["balanced_accuracy_mean"] for k, r in af["results"][t].items()
+                  if k.endswith("|all") and k.startswith(("E2", "E3", "E4", "E7", "E0", "E6"))]
+        put(f"af.{short}.frozen.min", min(frozen))
+        put(f"af.{short}.frozen.max", max(frozen))
         for k, r in af["results"][t].items():
             enc, fs = k.split("|")
             put(f"af.{short}.{enc}.{fs}", r["balanced_accuracy_mean"])
@@ -288,9 +292,25 @@ def partC() -> None:
                                      ["per_donor_log2_difference"]), "{:.1f}")
         put("pc.gate", "passes" if rep["G_BetaGlucan"]["decision"].startswith("pass")
             else "does not pass")
-    v2 = load("v2/partC/restim.json") or load("v2/partC/partC_restim.json")
+    v2 = load("v2/partC/c3_restimulation.json")
     if v2:
-        put("pc.v2.present", "yes")
+        n_src = n_match = 0
+        for g in ("GSE212282", "GSE185433"):
+            for arm, a in v2[g]["arms"].items():
+                for gene, r in a["primary_TNF_IL6"].items():
+                    if not isinstance(r, dict):
+                        continue
+                    put(f"pc.v2.{g}.{arm}.{gene}", r["mean_difference"], "{:+.2f}")
+                    if r["verdict"] != "no sourced expectation":
+                        n_src += 1
+                        n_match += r["verdict"].startswith("matches")
+        put("pc.v2.n_sourced", n_src, "{}")
+        put("pc.v2.n_match", n_match, "{}")
+    if rep:
+        b = rep["GSE242947"]["beta_glucan_minus_untrained"]
+        for t in ("1h", "3h"):
+            v = b[t]["TNF"]
+            put(f"pc.242.tnf.{t}", ", ".join(f"{x:+.2f}" for x in v))
 
 
 def design_power() -> None:

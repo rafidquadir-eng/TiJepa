@@ -1,0 +1,164 @@
+{
+ "phase": "PLAN_v3 H5.2 (findings R14, R15)",
+ "trace_jepa_pretraining": {
+  "steps": 6000,
+  "batch": 512,
+  "n_pool_cells": 118243,
+  "final_loss_last200": 0.24119416438043118,
+  "seconds": 465.9,
+  "mask_ratio": 0.5,
+  "pool_wells": 495,
+  "excluded_wells": 125
+ },
+ "b32_ligand_identity": {
+  "n_classes": 11,
+  "classes": [
+   "CpG->LPS",
+   "CpG->TNF",
+   "CpG->polyIC",
+   "LPS->LPS",
+   "LPS->TNF",
+   "TNF->LPS",
+   "TNF->TNF",
+   "naive->LPS",
+   "naive->TNF",
+   "polyIC->LPS",
+   "polyIC->TNF"
+  ],
+  "n_cells": 32048,
+  "n_wells": 125,
+  "chance_balanced_accuracy": 0.09090909090909091,
+  "results": {
+   "raw_trace": {
+    "balanced_accuracy_mean": 0.2686982783310297,
+    "balanced_accuracy_sd": 0.0052827177785666896,
+    "per_seed": [
+     0.26612784332531475,
+     0.2651926968359088,
+     0.2747742948318656
+    ],
+    "ci95_seed0_well_bootstrap": [
+     0.23853439849182922,
+     0.28451829290385683
+    ]
+   },
+   "handcrafted": {
+    "balanced_accuracy_mean": 0.19827950203853273,
+    "balanced_accuracy_sd": 0.004611465529568256,
+    "per_seed": [
+     0.20240227487744045,
+     0.19913662078773456,
+     0.1932996104504232
+    ],
+    "ci95_seed0_well_bootstrap": [
+     0.17189581993683445,
+     0.21731490468594714
+    ]
+   },
+   "trace_jepa": {
+    "balanced_accuracy_mean": 0.2862360045438763,
+    "balanced_accuracy_sd": 0.002616213676925886,
+    "per_seed": [
+     0.2858099627478014,
+     0.2890390911349671,
+     0.2838589597488604
+    ],
+    "ci95_seed0_well_bootstrap": [
+     0.26272873061717633,
+     0.30528408677544966
+    ]
+   },
+   "trace_jepa_random_init": {
+    "balanced_accuracy_mean": 0.2843986672290405,
+    "balanced_accuracy_sd": 0.0017168620380477225,
+    "per_seed": [
+     0.28301170679444304,
+     0.28386541568171614,
+     0.28631887921096233
+    ],
+    "ci95_seed0_well_bootstrap": [
+     0.24874620988186075,
+     0.3031263616190074
+    ]
+   }
+  },
+  "paired_vs_trace_jepa": {
+   "raw_trace": {
+    "difference": 0.019682119422486655,
+    "ci95": [
+     0.0019677175940289397,
+     0.04287420866144463
+    ],
+    "p_two_sided": 0.038,
+    "n_groups": 125,
+    "q_bh": 0.056999999999999995
+   },
+   "handcrafted": {
+    "difference": 0.08340768787036096,
+    "ci95": [
+     0.06677174500358775,
+     0.10717779184481188
+    ],
+    "p_two_sided": 0.0,
+    "n_groups": 125,
+    "q_bh": 0.0
+   },
+   "trace_jepa_random_init": {
+    "difference": 0.002798255953358364,
+    "ci95": [
+     -0.007893980981637957,
+     0.026718968662234315
+    ],
+    "p_two_sided": 0.497,
+    "n_groups": 125,
+    "q_bh": 0.49700000000000005
+   }
+  }
+ },
+ "b31_power_analysis": {
+  "wells": {},
+  "metrics": {
+   "peak_amplitude": {
+    "per_well_mean": {
+     "TNFLPSfirst_traces.mat|rep1|well13": 0.47940071883725915,
+     "TNFLPSfirst_traces.mat|rep1|well5": 0.4923149592950135,
+     "TNFLPSfirst_traces.mat|rep2|well37": 0.5875607229649445,
+     "TNFLPSfirst_traces.mat|rep2|well45": 0.4329386534087573
+    },
+    "tolerant_wells": [
+     "TNFLPSfirst_traces.mat|rep1|well13",
+     "TNFLPSfirst_traces.mat|rep2|well45"
+    ],
+    "tolerant_minus_naive": -0.08376815500697077,
+    "pooled_between_well_sd": 0.05298697722306572,
+    "df": 2,
+    "effect_size_d": -1.5809196787037272,
+    "wells_per_arm_80pct_power": 8,
+    "sd_upper_80pct": 0.11217006576642025,
+    "wells_per_arm_80pct_power_at_sd_upper": 30
+   },
+   "auc": {
+    "per_well_mean": {
+     "TNFLPSfirst_traces.mat|rep1|well13": 24.039497092158324,
+     "TNFLPSfirst_traces.mat|rep1|well5": 26.736249802296527,
+     "TNFLPSfirst_traces.mat|rep2|well37": 26.325547004601226,
+     "TNFLPSfirst_traces.mat|rep2|well45": 17.690439778407292
+    },
+    "tolerant_wells": [
+     "TNFLPSfirst_traces.mat|rep1|well13",
+     "TNFLPSfirst_traces.mat|rep2|well45"
+    ],
+    "tolerant_minus_naive": -5.665929968166068,
+    "pooled_between_well_sd": 3.1811635277571875,
+    "df": 2,
+    "effect_size_d": -1.7810873030349097,
+    "wells_per_arm_80pct_power": 7,
+    "sd_upper_80pct": 6.734321163860036,
+    "wells_per_arm_80pct_power_at_sd_upper": 24
+   }
+  },
+  "test": "two-sided two-sample t-test on well means, alpha 0.05, power 0.8",
+  "caveat": "the between-well SD rests on 2 wells per arm (df 2); the sd-upper row shows how sensitive the answer is to that"
+ },
+ "seconds": 1395.9
+}

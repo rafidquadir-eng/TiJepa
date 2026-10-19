@@ -1,0 +1,59 @@
+\section{What a video JEPA learns from innate-immune video}
+\label{sec:partA}
+
+\subsection{Morphology of activated microglia}
+On BBBC054, every learned representation separates the three microglia morphology classes
+far better than hand-crafted shape and texture features (\val{bb.E1_handcrafted_logreg.3c})
+or exposure time alone (\val{bb.time.3c}; Figure~\ref{fig:benchmarks}). The pretrained
+video model V-JEPA~2 is the best encoder (\val{bb.E7_vjepa2_vitl.3c}); TiJepa-1
+(\val{bb.E4_tijepa1.3c}) is lower than V-JEPA~2 by \val{bb.d.E4_tijepa1.E7_vjepa2_vitl.3c}
+(95\% CI \val{bb.ci.E4_tijepa1.E7_vjepa2_vitl.3c}) and is not distinguishable from DINOv2
+(\val{bb.E3_dinov2_vit_s.3c}), the ImageNet ViT (\val{bb.E2_imagenet_vit_s.3c}) or
+TiJepa-0 (\val{bb.E0_tijepa0.3c}). Training on cell video therefore did not beat a
+general-purpose video model, and twice as many training steps on a quality-filtered corpus
+did not improve on TiJepa-0. Within the TiJepa recipe, future masking adds
+\val{bb.d.E4_tijepa1.E4s_tijepa1_spatial.3c}
+(\val{bb.ci.E4_tijepa1.E4s_tijepa1_spatial.3c}) over the spatial-only ablation and training
+adds \val{bb.d.E4_tijepa1.E6_random_init.3c} (\val{bb.ci.E4_tijepa1.E6_random_init.3c})
+over a randomly initialised network of the same architecture, which itself reaches
+\val{bb.E6_random_init.3c}. In the round-versus-amoeboid task the ordering is the same at a
+higher level (V-JEPA~2 \val{bb.E7_vjepa2_vitl.ra}, TiJepa-1 \val{bb.E4_tijepa1.ra}, DINOv2
+\val{bb.E3_dinov2_vit_s.ra}). Accuracy depends on apparent cell size: rescaling the crops
+by 0.5, 0.75, 1 and 1.5 before encoding gives \val{bb.scale.0.5}, \val{bb.scale.0.75},
+\val{bb.scale.1.0} and \val{bb.scale.1.5} for TiJepa-1, so differences in magnification
+between pretraining and evaluation data matter.
+
+\subsection{Label-free cell identity}
+On T cells and neutrophils imaged in the same fields, frozen encoders reach balanced
+accuracies of \val{af.Am.frozen.min}--\val{af.Am.frozen.max} on the \val{af.Am.fovs}
+mixed fields, every one of them inside the 95\% CI of a probe on per-channel intensity
+statistics (\val{af.Am.intensity_baseline.all}, CI \val{af.Am.intensity_baseline.all.ci};
+Figure~\ref{fig:benchmarks}). TiJepa-1 reaches
+\val{af.Am.E4_tijepa1.all} and V-JEPA~2 \val{af.Am.E7_vjepa2_vitl.all}; random
+initialisation reaches \val{af.Am.E6_random_init_draw0.all}. On the gradient-contrast
+channel alone, which is closest to the brightfield TiJepa was trained on, TiJepa-1 gives
+\val{af.Am.E4_tijepa1.dodt} and V-JEPA~2 \val{af.Am.E7_vjepa2_vitl.dodt}. Cell identity in
+these data is carried by autofluorescence intensity; frozen image features add nothing measurable
+to it. In the six-class set, where each cell type was imaged in its own session, the
+hand-crafted features reach \val{af.B.E1_handcrafted.all} and TiJepa-1
+\val{af.B.E4_tijepa1.all}; that comparison cannot separate cell type from session.
+
+\subsection{Forecasting is explained by positional structure}
+\label{sec:forecasting}
+TiJepa-1's predictor forecasts its own future latents with an error \val{fc.E4_tijepa1.1.ratio_vs_copy_last}
+times that of copying the last context latent, against \val{fc.E4s_tijepa1_spatial.1.ratio_vs_copy_last}
+for the spatial-only ablation, which never saw a future mask, and the advantage holds at
+every stride (Figure~\ref{fig:assoc}). It also beats a slot-conditional mean fitted on other
+movies (ratio \val{fc.E4_tijepa1.1.ratio_vs_slot_mean}, exact $p=\val{fc.E4_tijepa1.1.p.slot}$,
+the smallest possible with six movies), so its predictions are specific to the clip. But
+the controls show that the advantage over copy-last is not evidence of modelling cell
+dynamics. On static clips, in which nothing moves, the predictor keeps
+\val{fc.E4_tijepa1.1.adv.static} of its \val{fc.E4_tijepa1.1.adv} improvement over
+copy-last; given the context of a different clip from the same movie it keeps
+\val{fc.E4_tijepa1.1.adv.swap}. Copy-last is a weak reference because the target encoder's
+latents change with temporal position even when the image does not, and the predictor
+receives those positions. Decoded to pixels, the predictions are no closer to the future
+frames than the last observed frame (error ratio \val{fc.E4_tijepa1.1.pixel_ratio_decoded_pred_vs_pixel_copy_last}
+at stride 1, \val{fc.E4_tijepa1.27.pixel_ratio_decoded_pred_vs_pixel_copy_last} at stride
+27). Our pre-specified criterion for forecasting \val{fc.pass}, and we make no forecasting
+claim.

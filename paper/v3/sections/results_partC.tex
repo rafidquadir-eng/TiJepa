@@ -1,0 +1,52 @@
+\section{What restimulation transcriptomes say that imaging would need to detect}
+\label{sec:partC}
+No public dataset images trained or tolerised monocytes, but three public datasets measure
+their transcripts after restimulation. We use them to ask which differences an imaging
+study would have to reproduce, with three safeguards: every restimulation label is checked
+against the GEO sample records and against a positive control (restimulated untrained
+cells must exceed unstimulated untrained cells for TNF, IL6 and IL1B in every donor), every
+expected direction is quoted from the dataset's source publication, and sample identity is
+verified before any observation is reported.
+
+\paragraph{Sourced directions.} Of the \val{pc.v2.n_sourced} TNF and IL-6 directions the
+source publications report after restimulation, \val{pc.v2.n_match} agree in sign with the
+deposited transcripts in every donor: dimethyl itaconate (GSE212282) and IL-4 (GSE185433)
+increase TNF and IL6 transcripts, as their source papers report for the secreted proteins
+\citep{ferreira2023,schrijver2023}. The two exceptions are both $\beta$-glucan.
+
+\paragraph{$\beta$-glucan lowers the TNF transcript at 4\,h after restimulation, in two
+independent datasets.} In GSE212282, $\beta$-glucan-trained macrophages restimulated with LPS
+for 4\,h on day 6 have less TNF mRNA than untrained cells in all three donors (log2
+difference \val{pc.212.tnf.d7.min} to \val{pc.212.tnf.d7.max}), although the source paper
+reports more secreted TNF-$\alpha$ after 24\,h of restimulation
+\citep{ferreira2023}. Before reporting this we checked sample identity. All
+\val{qc.212.n} samples agree on sex within each donor; the three donors carry distinct
+presence/absence genotypes at HLA-DRB5 and GSTM1, consistent across every sample of a donor,
+so no sample belongs to another donor; and after removing each donor's mean, every
+$\beta$-glucan sample's profile is most similar to the other donors' $\beta$-glucan samples
+(day-6 restimulated arms: \val{qc.212.d7.match} samples matched to their own arm, the one
+exception being a $\beta$-glucan + DMI sample matched to DMI). Over the protocol the
+$\beta$-glucan effect on TNF reverses: it raises the transcript during the first exposure
+(4\,h: \val{pc.212.tnf.4H.min} to \val{pc.212.tnf.4H.max}; day 1: \val{pc.212.tnf.d1.min} to
+\val{pc.212.tnf.d1.max}), is inconsistent at rest on day 6 (\val{pc.212.tnf.d6.min} to
+\val{pc.212.tnf.d6.max}) and lowers it after restimulation (Figure~\ref{fig:restim}).
+
+The observation replicates in GSE141656, an independent dataset none of whose three donors
+matches a GSE212282 donor at all four genotype-like loci we compared: after 4\,h of heat-killed \emph{M. tuberculosis}
+on day 6, $\beta$-glucan-trained macrophages have less TNF mRNA in every donor
+(\val{pc.141.TNF.min} to \val{pc.141.TNF.max}; restimulation positive control at least
+\val{pc.141.pc.tnf.min} log2 units in every donor), and IL6 (\val{pc.141.IL6.mean}) and
+IL1B (\val{pc.141.IL1B.mean}) move the same way. Its source publication, too, reports more
+TNF-$\alpha$ protein after 24\,h of restimulation \citep{moorlag2020}. A third dataset with
+only two replicates (GSE242947, \citealp{cheng2024dectin}) is consistent at 1\,h of LPS
+(\val{pc.242.tnf.1h}) and inconsistent at 3\,h (\val{pc.242.tnf.3h}).
+
+We therefore report a replicated, transcript-level observation: at 4\,h after
+restimulation, $\beta$-glucan-trained human macrophages have lower TNF mRNA than untrained
+ones, in two datasets and six donors, while the same studies report higher TNF-$\alpha$
+protein at 24\,h. One explanation is kinetic, that trained cells reach their TNF transcript
+peak earlier and resolve it sooner; it is a hypothesis, and the test is a restimulation time
+course from 0.5 to 24\,h with paired RNA and protein. With three donors per dataset no
+confidence interval is reported; the smallest achievable exact $p$ for a three-donor
+sign-flip test is 0.25, so the evidence is the consistency across six of six donors and two
+restimuli, not a $p$-value.
