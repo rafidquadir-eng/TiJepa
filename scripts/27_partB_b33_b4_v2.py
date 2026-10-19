@@ -237,6 +237,7 @@ def mouse_interaction() -> dict:
             "n_lps_induced": int(len(induced)),
             "n_blunted": {k: len(v) for k, v in {**blunted, "both": both}.items()},
             "symbols": syms,
+            "induced_symbols": sorted({to_sym[g] for g in induced} - {"", "nan"}),
             "expressed_universe_symbols": sorted({to_sym[g] for g in sub.columns}
                                                  - {"", "nan"})}
 

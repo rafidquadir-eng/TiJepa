@@ -628,3 +628,124 @@ datasets:
         size_bytes_local: 98406400
         sha256_local: 78b435c5c00092631647313b1b594fa292730ff11afcbd5d3608296f0424d5dd
         status: ok
+
+  # ---- v3 additions (PLAN_v3 H3.1, H5.1, H5.4); raw files may be deleted after use
+  - key: complexeye_validation_384well_n1
+    kind: zenodo
+    accession: 10082674
+    record_url: "https://zenodo.org/records/10082674"
+    title: ComplexEye 384-well_plate_movies_n=1_complexeye.zip (not in the frozen corpus)
+    licence_verified: CC BY 4.0
+    licence_source: Zenodo record metadata
+    role: validation_set_reid (never a test set)
+    status: ok
+    added_in: v3 (2026-10-19)
+    files_used:
+      - file: 384-well_plate_movies_n=1_complexeye.zip
+        size_bytes_local: 9976474817
+        sha256_local: 28135dbf701d7778160fd207ff6eb984746221b9e7bf70df9f16bb900dfea59c
+        md5_record: 6ae275191e4ba918ce4f4ec04a98936a
+        md5_verified: true
+  - key: zenodo_15657646_autofluorescence
+    kind: zenodo
+    accession: 15657646
+    record_url: "https://zenodo.org/records/15657646"
+    title: Label-free two-photon autofluorescence images of different immune cell types (Lemire et al., doi 10.1002/jbio.70260)
+    licence_verified: CC BY 4.0
+    licence_source: Zenodo record metadata
+    role: coverage_map_immunophenotype
+    status: ok
+    added_in: v3 (2026-10-19)
+    files_used:
+      - file: 64x64_patches_Tcells_and_neutrophils_mixed_samples.zip
+        size_bytes_local: 98896442
+        sha256_local: 07d9a103c78e0af1f0ef945bb9a312eb03d713c303caa3516a889231c5124a1d
+        md5_record: ee985f3fcfff79f48edbb9002fbc986e
+        md5_verified: true
+      - file: 64x64_patches_six_cell_types_isolated_samples.zip
+        size_bytes_local: 58617985
+        sha256_local: c3766fdce767f091daffb660de103407f69e49563c89ee52460516bb3bec58dc
+        md5_record: 609dbab10028dd768335de581f2b149a
+        md5_verified: true
+  - key: zenodo_14330511_nadph_flim
+    kind: zenodo
+    accession: 14330511
+    record_url: "https://zenodo.org/records/14330511"
+    title: Raw data of Musimbi et al. 2024, two-photon NAD(P)H-FLIM of macrophages and Ascaris suum larvae
+    licence_verified: CC BY 4.0
+    licence_source: Zenodo record metadata
+    role: coverage_map_metabolism (macrophage folders only)
+    status: ok
+    added_in: v3 (2026-10-19)
+    files_used:
+      - file: Musimbi-et-al_2024_rawdata.zip
+        size_bytes_local: 1828307950
+        sha256_local: 452a5a8c6cb065c1c74d3128bb996a3c3d71774d072bdb28a39ee87b2f659a7a
+        md5_record: e1892af8b2c51fed0d2d60a8ffb1287d
+        md5_verified: true
+  - key: geo_GSE141656
+    kind: geo
+    accession: GSE141656
+    record_url: "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE141656"
+    title: Transcriptomes of human trained macrophages before and after Mtb exposure
+    licence_verified: GEO public data (no use restrictions stated)
+    licence_source: GEO series record
+    role: partC_beta_glucan_replication
+    status: ok
+    added_in: v3 (2026-10-19)
+    files_used:
+      - file: GSM4210633_A_BG_MTB.gene.mmseq.txt.gz
+        size_bytes_local: 2478095
+        sha256_local: eb034da69750ce0818705508e8d621b7ab51504368575a74f440f82cfc034e42
+      - file: GSM4210634_A_BG_RPMI.gene.mmseq.txt.gz
+        size_bytes_local: 2479051
+        sha256_local: a2a9d75ac1396a0525d9144c81bc557db2030606d1217832f4986aa4ae80c991
+      - file: GSM4210635_A_RPMI_MTB.gene.mmseq.txt.gz
+        size_bytes_local: 2482430
+        sha256_local: 5ad075740b2543dc7c106ec304cccb32ffb3423d8e2fdea883ccb0fed91bbeda
+      - file: GSM4210636_A_RPMI_RPMI.gene.mmseq.txt.gz
+        size_bytes_local: 2493920
+        sha256_local: 41d50ad32c2ed1056cbccac87c4e9f6c12c319ed5b10d4b6402455f341bbb712
+      - file: GSM4210637_B_BG_MTB.gene.mmseq.txt.gz
+        size_bytes_local: 2482247
+        sha256_local: 824d73f8625f87ad7dbf87974baee7fad5066ce58d18718059c86616b078274d
+      - file: GSM4210638_B_BG_RPMI.gene.mmseq.txt.gz
+        size_bytes_local: 2496610
+        sha256_local: c56e62bea8c8273523b32b887f1ef598f75a9392f139be675076bb29c4255321
+      - file: GSM4210639_B_RPMI_MTB.gene.mmseq.txt.gz
+        size_bytes_local: 2488558
+        sha256_local: 744dd4f6c5604012810567384148ea38de03510ca55f1079b16a8004e7830fdb
+      - file: GSM4210640_B_RPMI_RPMI.gene.mmseq.txt.gz
+        size_bytes_local: 2499732
+        sha256_local: 2e70800a5b3f97937a07e317f3a5f059bfc8b6715c13930a204ba49ce58923e8
+      - file: GSM4210641_C_BG_MTB.gene.mmseq.txt.gz
+        size_bytes_local: 2492832
+        sha256_local: 782ae76c29b4a89369c29e4c972aa3c5d0808e4ee68853518834dccef04d82a5
+      - file: GSM4210642_C_BG_RPMI.gene.mmseq.txt.gz
+        size_bytes_local: 2519748
+        sha256_local: ad0d141e66fc8f4872e355b8a70944a88485b4b0bb7eec7d3f2b6ef2273a8c75
+      - file: GSM4210643_C_RPMI_MTB.gene.mmseq.txt.gz
+        size_bytes_local: 2501344
+        sha256_local: 7b5052db6a111c31fdf4b4a7a28b7129a2141ab1cfb2f8e1871b4a62988e9f04
+      - file: GSM4210644_C_RPMI_RPMI.gene.mmseq.txt.gz
+        size_bytes_local: 2514326
+        sha256_local: aef8ee7d7795920ec8d429f4f69bcb6a37371eac5cc630a5de76325f6ecc58a2
+  - key: geo_GSE242947
+    kind: geo
+    accession: GSE242947
+    record_url: "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE242947"
+    title: Dectin-1 ligands produce distinct training phenotypes in human monocytes
+    licence_verified: GEO public data (no use restrictions stated)
+    licence_source: GEO series record
+    role: partC_beta_glucan_descriptive (2 replicates; fails the >= 3 donor criterion)
+    status: ok
+    added_in: v3 (2026-10-19)
+    files_used:
+      - file: GSE242947_Cheng_RNAseqCounts.csv.gz
+        size_bytes_local: 6551067
+        sha256_local: a10db721025560749b476313155f1dda0fe9dcd5bcb102d8f1aedbf30db551d4
+  - key: hf_vjepa2_vitl_weights
+    kind: model_weights
+    accession: facebook/vjepa2-vitl-fpc64-256@b3c1679b7c34d3255ef3547f27c7b226aefab26f
+    licence_verified: MIT
+    role: E7 baseline (see manifests/models.yaml)
