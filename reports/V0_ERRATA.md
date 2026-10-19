@@ -172,3 +172,20 @@ were equal and the sd was exactly 0. v2 draws a per-well cell subsample per seed
 
 R05 and R12 had been deleted before the check ran. v2 re-fetches all 10 archives and
 adds a full-resolution comparison (`results/v2/leakage_check_full.json`).
+
+## V2-E1. TiJepa-0's training summary was overwritten by a smoke run
+
+`checkpoints/pretrain_summary_seed0.json` (TiJepa-0) was overwritten on 2026-10-16 by a
+60-step trainer smoke test that used the default run name: the file now describes 60 steps
+on 1,920 clips. The TiJepa-0 checkpoint (`tijepa0_T1_seed0.pt`, step 55,000, sha256
+`f8ed6c89…`) and its training log (`pretrain_log_seed0.csv`, 132,004 bytes, same size as the
+2026-10-15 Drive copy) are intact. The original 997-byte summary exists only on Drive
+(`gdrive:TiJepa/checkpoints_v0/`, md5 `fb09904e16948d7fa0c743f9889820d7`). v3 takes
+TiJepa-0's facts from the checkpoint (step, config) and from `reports/RUN_REPORT.md`
+(55,000 steps, 4.43 GPU-h), never from the overwritten file. New runs use explicit run
+names and write into their own directories.
+
+## V2-E2. A v3 commit lacks the co-author trailer
+
+Commit "chore(v3): fix autofluorescence citation year" was pushed without the
+Co-Authored-By line; history is not rewritten.

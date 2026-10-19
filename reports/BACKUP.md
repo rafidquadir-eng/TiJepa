@@ -72,3 +72,17 @@ written. The md5 check against Drive is re-run as soon as the remote is re-autho
 | `pretrain_summary_tijepa1_spatial_seed0.json` | 3363 | `cf0d61edaaf4e8605f8b02a0148f75bfe767db4ba005e3ed9a2e1ba566d207da` |
 
 TiJepa-0 also has its 2026-10-15 Drive copy (md5-verified, section above).
+
+### Note on `pretrain_summary_seed0.json`
+
+The copy on the persistent filesystem (sha256 `e772aae5…`) is the version overwritten by a
+smoke run (see `reports/V0_ERRATA.md`, V2-E1); the original TiJepa-0 summary is only on
+Drive (`gdrive:TiJepa/checkpoints_v0/`, md5 `fb09904e…`). The checkpoint and log are intact.
+
+### v3 additions
+
+| file | location | sha256 | verified |
+|---|---|---|---|
+| `trace_jepa_v3_seed0.pt` (trace JEPA, 6,000 steps) | persistent filesystem `tijepa_backups/` | `a77a9078606b3abe8fcc24e555aa9291140466cf5578682780b25900b3d7d1c0` | yes |
+
+Sweep snapshots are added when the sweep finishes.

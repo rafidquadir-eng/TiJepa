@@ -252,6 +252,48 @@ def analyse(encoders: str) -> None:
                 "spearman_seed0": float(spearmanr(y, preds[0]).statistic)}
             print(f"  {tname:15s} {key:24s} R2 {np.mean(per):+.3f} CI {ci}")
 
+    # Controls added after seeing the first results (stated as post hoc in the paper):
+    # (a) a condition-mean reference: each cell predicted by the training-fold mean of its
+    #     experimental arm; (b) within-field prediction: targets and features centred on
+    #     their field-of-view means, so only cell-to-cell variation inside a field counts.
+    from sklearn.model_selection import GroupKFold
+    armkey = np.array([f"{r['figure']}|{r['arm']}" for r in rows])
+    ref, within = {}, {}
+    for tname, y in targets.items():
+        r2 = []
+        for s in SEEDS:
+            ug = np.unique(fov)
+            rm = dict(zip(ug, np.random.default_rng(s).permutation(len(ug)), strict=False))
+            g = np.array([rm[f] for f in fov])
+            pr = np.empty(len(y))
+            for tr, te in GroupKFold(5).split(y, y, g):
+                mu = {a: y[tr][armkey[tr] == a].mean() for a in np.unique(armkey[tr])}
+                pr[te] = [mu.get(a, y[tr].mean()) for a in armkey[te]]
+            r2.append(float(r2_score(y, pr)))
+        ref[tname] = {"r2_mean": float(np.mean(r2)), "r2_per_seed": r2}
+        yc = y - np.array([y[fov == f].mean() for f in fov])
+        within[tname] = {}
+        for key, f in feats.items():
+            f = np.asarray(f, np.float64)
+            f = f[:, np.isfinite(f).all(0)]
+            fc = f - np.stack([f[fov == q].mean(0) for q in fov])
+            per, p0 = [], None
+            for s in SEEDS:
+                p = P.grouped_regress(fc, yc, fov, s)
+                p0 = p if p0 is None else p0
+                per.append(float(r2_score(yc, p)))
+            within[tname][key] = {"r2_mean": float(np.mean(per)), "r2_per_seed": per,
+                                  "r2_ci95_seed0": P.cluster_bootstrap(
+                                      yc, P.grouped_regress(fc, yc, fov, 0), fov,
+                                      stat=r2_score)["ci95"]}
+            print(f"  within-FOV {tname:15s} {key:24s} R2 {np.mean(per):+.3f}")
+        print(f"  condition-mean reference {tname}: R2 {ref[tname]['r2_mean']:+.3f}")
+    res["condition_mean_reference"] = ref
+    res["within_fov_regression"] = within
+    res["post_hoc_note"] = ("the condition-mean reference and the within-field regression "
+                            "were added after the first results showed that lifetime differs "
+                            "between experimental arms")
+
     m = (fig == "Fig2_M2-DMSO-ARS") & np.isin(arm, ["porMc_IL4-DMSO",
                                                     "porMc_IL4-DMSO-ARS1uM"])
     yc = np.where(arm[m] == "porMc_IL4-DMSO-ARS1uM", "ARS", "DMSO")

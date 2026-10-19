@@ -97,16 +97,24 @@ def main() -> int:
         enc = [k for k in reg if k.startswith(("E2", "E3", "E4", "E7", "E0"))]
         b = max(enc, key=lambda k: reg[k]["r2_mean"])
         base = reg["intensity_baseline"]
-        ok = reg[b]["r2_ci95_seed0"] and reg[b]["r2_ci95_seed0"][0] > base["r2_mean"] \
-            and reg[b]["r2_ci95_seed0"][0] > 0
+        ref = fl.get("condition_mean_reference", {}).get("tau_m_ns", {}).get("r2_mean")
+        wf = fl.get("within_fov_regression", {}).get("tau_m_ns", {})
+        wb = max((k for k in wf if k.startswith(("E2", "E3", "E4", "E7", "E0"))),
+                 key=lambda k: wf[k]["r2_mean"], default=None)
+        ok = bool(wb and wf[wb]["r2_ci95_seed0"] and wf[wb]["r2_ci95_seed0"][0] > 0
+                  and wf[wb]["r2_ci95_seed0"][0] > wf["intensity_baseline"]["r2_mean"])
+        res = (f"best frozen encoder {nm(b)} R2 {reg[b]['r2_mean']:+.2f}; intensity "
+               f"baseline {base['r2_mean']:+.2f}; knowing only the experimental arm "
+               f"{ref:+.2f}")
+        if wb:
+            res += (f"; within fields: {nm(wb)} {wf[wb]['r2_mean']:+.2f}, intensity "
+                    f"{wf['intensity_baseline']['r2_mean']:+.2f}")
         rows.append({
             "family": "Metabolism (NAD(P)H lifetime)", "pairing": "same cell",
             "dataset": "Zenodo 14330511 (two-photon NAD(P)H-FLIM, macrophages; CC BY 4.0)",
-            "test": "per-cell mean lifetime from the intensity image, FOV-grouped ridge",
-            "result": f"best frozen encoder {nm(b)} R2 {reg[b]['r2_mean']:+.3f}; intensity "
-                      f"baseline {base['r2_mean']:+.3f}",
-            "outcome": "positive" if ok else "null", "short": "NAD(P)H-FLIM lifetime",
-            "evidence": "results/v3/coverage/flim.json"})
+            "test": "per-cell mean lifetime from the photon-count image, FOV-grouped ridge",
+            "result": res, "outcome": "positive" if ok else "null",
+            "short": "NAD(P)H-FLIM lifetime", "evidence": "results/v3/coverage/flim.json"})
     else:
         rows.append({"family": "Metabolism (NAD(P)H lifetime)", "pairing": "same cell",
                      "dataset": "Zenodo 14330511", "test": "-", "result": "not run",

@@ -1,0 +1,36 @@
+\subsection{Re-identifying cells over time}
+\label{sec:reid}
+On the \val{val.movies} held-out validation movies, re-identifying the same cell after 3 to
+27 frames among all cells at that time (chance \val{re.chance}) separates the encoders
+clearly (Figure~\ref{fig:benchmarks}). V-JEPA~2 is best (\val{re.E7_vjepa2_vitl}, 95\% CI
+\val{re.E7_vjepa2_vitl.ci}), followed by the ImageNet ViT (\val{re.E2_imagenet_vit_s}) and
+DINOv2 (\val{re.E3_dinov2_vit_s}); raw downsampled pixels reach \val{re.raw_pixels}
+(\val{re.raw_pixels.ci}). TiJepa-1 reaches \val{re.E4_tijepa1} (\val{re.E4_tijepa1.ci}),
+below raw pixels. Among TiJepa models the training objective matters: the spatial-only
+ablation reaches only \val{re.E4s_tijepa1_spatial} (\val{re.E4s_tijepa1_spatial.ci}), and
+randomly initialised networks \val{re.E6_random_init_draw0}--\val{re.E6_random_init_draw1}.
+Shuffling the frames of TiJepa-1's input clips lowers its score to \val{re.E5_frame_shuffled},
+so it uses the order of frames only slightly. Because this set is used to compare training
+recipes, these numbers describe the models; they are not a held-out test.
+
+\subsection{Dimensional collapse}
+\label{sec:collapse}
+The effective rank of TiJepa-1's pooled embedding on a fixed set of microglia crops fell
+from \val{mon.t1.rank.first} at step 14{,}751 to \val{mon.t1.rank.last} at the end of
+training, and its per-dimension standard deviation from \val{mon.t1.std.first} to
+\val{mon.t1.std.last}; the spatial-only ablation ended at \val{mon.ts.rank.last}
+(Figure~\ref{fig:training}). The collapse is a property of the encoder, not of the probe
+input: on held-out validation clips the pooled target-encoder and context-encoder embeddings
+of TiJepa-1 have the same effective rank (\val{dg.E4_tijepa1.target.rank} and
+\val{dg.E4_tijepa1.context.rank} of 384), the first principal component carries
+\val{dg.E4_tijepa1.target.top1} of the variance and the first eight
+\val{dg.E4_tijepa1.target.top8}. Individual tokens are less collapsed (effective rank
+\val{dg.E4_tijepa1.token.rank}), so the information lost is mostly in what survives mean
+pooling. TiJepa-0's pooled embedding has rank \val{dg.E0_tijepa0.target.rank} on the same
+clips. Across the six pretrained and random networks, effective rank on the validation
+clips is correlated with both the microglia accuracy (Spearman $\rho=\val{dg.rho.bb}$) and
+the re-identification score ($\rho=\val{dg.rho.val}$), which is descriptive with six
+models. In the training logs the rank of the training-batch embedding peaks within the first
+20{,}000 steps and declines while the EMA momentum rises towards 1 and the learning rate
+decays, so the cause cannot be separated from the schedule without changing the recipe;
+Section~\ref{sec:recipe} reports a short recipe study that does so.
