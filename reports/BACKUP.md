@@ -47,3 +47,28 @@ The log CSV (`pretrain_log_tijepa1_seed0.csv`, md5 `6e951a290182b8a5355db55a9470
 in the local frozen copy and on the shared filesystem (md5 equal); it is not on Drive.
 Resumed training writes only `checkpoints/tijepa1_T1_seed0.pt`; the frozen copies are never
 written. The md5 check against Drive is re-run as soon as the remote is re-authorised.
+
+## H0.2 — final checkpoints (v3 instance)
+
+- Timestamp (UTC): 2026-10-19T01:00Z
+- **Second location: Lambda persistent filesystem**, `LambdaFilesystem/transfer/proj2/tijepa_backups/`
+  (PLAN_v3 §3.2 allows it as the second location until Drive works). Copied with `cp` + `sync`,
+  then `sha256sum -c` run inside the backup folder against the hashes of the originals:
+  **all 9 files OK**. The hash list is stored beside the files as `SHA256SUMS`.
+- **Drive: still not possible.** The `gdrive` remote holds no OAuth token. The v2 backup loop
+  (`98_backup_loop_v2.sh`) was stopped, because it could only log "remote unusable". It is
+  re-run by hand once the author re-authorises rclone.
+
+| file | bytes | sha256 (original = backup) |
+|---|---|---|
+| `tijepa0_T1_seed0.pt` | 376538573 | `f8ed6c89bf9a9df0f5d141b5c0a41c13d3295482acc27dba7851f1fbdd27cd92` |
+| `tijepa1_T1_seed0.pt` (step 117,000, final) | 376537518 | `a09e76e91b5c52d884f484cfbf5b00951b162136e1a44f6995dd2829f0289d38` |
+| `tijepa1_spatial_T1_seed0.pt` (step 117,000, final) | 376534574 | `e16cbafdf8ca86bf26c44715ff8aa978dfe20bb52bf96c788c8d5a1686546f13` |
+| `pretrain_log_seed0.csv` | 132004 | `dd8158fe9b20b1032d587fc7a6530a8c3be1948b16b8a76524ab7893778727ec` |
+| `pretrain_log_tijepa1_seed0.csv` | 411247 | `fb2992571f9f77868677d2ccf3753d584f8524516ac61de07f6047a5fcea7109` |
+| `pretrain_log_tijepa1_spatial_seed0.csv` | 361197 | `694cf5df2ef6aa9c1b903ca03fcf671012630a0585edc3e2b6336257de3ceb20` |
+| `pretrain_summary_seed0.json` | 2418 | `e772aae5c2cf4f4466dc48a1927a7b3fae0fb962e3dd601df0cd976691658f37` |
+| `pretrain_summary_tijepa1_seed0.json` | 4663 | `3fc6022f9e464081749fb3aca3059e741fc4c141615568dbf237840127e513a7` |
+| `pretrain_summary_tijepa1_spatial_seed0.json` | 3363 | `cf0d61edaaf4e8605f8b02a0148f75bfe767db4ba005e3ed9a2e1ba566d207da` |
+
+TiJepa-0 also has its 2026-10-15 Drive copy (md5-verified, section above).
