@@ -7,6 +7,86 @@
 > order, respecting the **decision gates** (§2). Section 14 maps every finding (R1–R24) to a
 > fix and an acceptance check; the v3 run report must reproduce it with a status and an
 > evidence file per row.
+>
+> **Read §0A first. It is the author's scope decision of 2026-10-18 and overrides any
+> conflicting instruction elsewhere in this file.**
+
+---
+
+## 0A. Scope and venue — author decision (overrides the rest of this plan where they conflict)
+
+### 0A.1 Goal of the paper
+Use JEPA self-supervised learning on **unlabeled** live-cell video and label-free imaging of
+innate immune cells, and test — **with public data only** — how much molecular, functional
+and memory state can be inferred from those representations, across as many of the
+following modality families as public data allow: transcriptomics, epigenomics,
+proteomics/signalling (incl. cytokines), metabolism, immunophenotyping, integrated
+multi-omics. Trained immunity is the motivating biology; the paper states plainly that no
+public image or video of trained cells exists, so trained immunity itself is addressed
+through the closest public proxies (acute priming/tolerance, polarisation, restimulation
+datasets) and is never claimed to be detected in images.
+
+### 0A.2 What is in and out of scope
+- **In:** every openly accessible dataset. The agent downloads directly to the instance,
+  uses it, may delete raw files afterwards, and records accession, licence, files used and
+  checksums in `manifests/datasets.yaml` and the paper's data-availability section.
+- **Dryad** (`m0cfxpp8v` BMDM movies; `8gtht76q2` human macrophage FLIM) is public but its
+  download pages require a browser (bot check — never bypass it). Check
+  `data/raw/manual/` and Drive for files the author copied; if the author supplies Dryad API
+  credentials, use the official API. Otherwise take the "no" branch for that dataset.
+- **Out:** data requests to labs, new wet-lab experiments. **H6 shrinks** to a ≤ 1-page
+  "Future work: the experiment that would test this directly" subsection of the paper (no
+  separate design document, no power analysis beyond one paragraph).
+- **H3.4 (full TiJepa-2 retrain) is removed** for speed. H3.1–H3.3 (validation task,
+  collapse diagnosis, 5 × 20k-step sweep in the background) stay; if a variant passes
+  G-Recipe, report it as a finding and its 20k-step model as an extra row, not as a new
+  headline model.
+
+### 0A.3 New track: modality coverage map (phase H5.4 — do it)
+Build one table and one figure that are central to the paper: for each modality family in
+0A.1, the best public dataset pairing images/video (or image-derived dynamics) with that
+modality, the pairing level (same cell / same condition / cross-study), what was tested,
+and the result — including "no public pairing exists" rows. Tests to run (frozen encoders
+E2, E3, E4, E4s, E0, E7 where applicable; donor/batch/condition-grouped CV; small-n rules):
+
+| Modality family | Public data (verify licence, download directly) | Test |
+|---|---|---|
+| Immunophenotype / activation state | Dryad `m0cfxpp8v` (BMDM M0/M1/M2 video) if obtainable; BBBC054 (microglia morphology over LPS time) | Already planned (H1.2, BBBC054) |
+| Immunophenotype / cell identity | Zenodo `15657646` (label-free two-photon autofluorescence of macrophages, DCs, neutrophils, T/B cells; cell-type labels) | Cell-type classification from label-free images, grouped by sample/animal |
+| Metabolism | Zenodo `14330511` (raw NAD(P)H FLIM incl. macrophages); Dryad `8gtht76q2` (human M1/M2 macrophage FLIM, CD68/CD163 ground truth) if obtainable | Predict FLIM-derived metabolic readouts (mean lifetime, free/bound fraction) from the **intensity** image's frozen features; M1 vs M2 from intensity alone. Read `.sdt` with the `sdtfile` package; compute lifetimes with a documented fit |
+| Signalling (proteomics/signalling family) | Tay deposit: single-cell NF-κB traces from live imaging, 125 wells | Ligand-pair decoding (B3.2, promoted); acute tolerance (B3.1, unpowered, stated) |
+| Transcriptomics | Tay RNA-seq GSE260996 (condition level, same lab as the imaging); restimulation datasets GSE212282/GSE185433 (no imaging) | Dynamics → RNA (descriptive); restimulation biology incl. β-glucan TNF (H5.1) |
+| Epigenomics | Tay ATAC GSE261647 (condition level) | Dynamics → accessibility (descriptive) |
+| Cytokines | Restimulation datasets (RNA of TNF/IL6; protein only in the source papers) | H5.1; no imaging pairing — stated |
+| Integrated / single-cell multi-omics, spatial, microbiome, clinical, repertoire, Perturb-seq | — | Row states why no public image pairing exists or why it does not apply to in-vitro innate-cell imaging |
+
+Every dataset added here goes through the data-type guard, a positive control appropriate
+to it, and the leakage check if it could overlap the pretraining corpus.
+
+### 0A.4 Venue and manuscript format
+- **Preprint:** bioRxiv (author posts after review of the draft). Non-anonymous.
+- **Primary journal: TMLR (Transactions on Machine Learning Research).** Its acceptance
+  criteria are that claims are supported by accurate, convincing evidence and that some of
+  its audience would be interested — it does not require state-of-the-art results, which
+  suits a rigorous, controlled, partly negative empirical study. Rolling submission.
+  Prepare `paper/v3/tmlr/` with the official TMLR LaTeX template, **anonymised for
+  double-blind review** (no author name, no affiliation, no company, repository linked via
+  an anonymised mirror or "available upon acceptance"), main text focused on: what video
+  JEPA learns from innate-immune video, the forecasting controls, the collapse diagnosis,
+  baselines incl. a pretrained video model, and the modality coverage map. Biology detail
+  goes to appendices.
+- **Fallback (life-science venue, if TMLR rejects):** F1000Research Research Article
+  (publication after pre-publication checks, open peer review, indexed in PubMed once
+  approved) or Frontiers in Immunology (Systems Immunology). Prepare
+  `paper/v3/biorxiv/` (non-anonymous, biology-forward ordering) so either can be submitted
+  with light edits.
+- Do not submit anything; the author submits.
+
+### 0A.5 Speed
+Target: complete v3 in ≤ 3 days of agent time. Priorities, in order: H0 → H2 (controls
+decide the main claim) → H1 (V-JEPA baseline; Dryad if available) → H5.4 coverage map →
+H4 association → H3.1–H3.3 (background) → H5.1–H5.2 → H7 (both manuscript versions) →
+H8–H9. If time runs short, cut H4 and H3.3 before cutting anything else.
 
 ---
 
@@ -69,12 +149,12 @@ audit, an open, rigorously evaluated video SSL model of innate-cell behaviour, a
 |---|---|---|---|
 | **G-Dryad** | Dryad files present and checksum-verified (H1) | Dryad becomes the Part A headline (H1.2) | Part A headline stays BBBC054; the paper states the gap in one sentence; nothing else changes |
 | **G-Forecast** | TiJepa-1 beats copy-last **and** the slot-conditional baseline **and** loses most of its advantage when its context is swapped/static (H2) | Forecasting is reported as a finding, with the controls | Forecasting is reported as "explained by temporal-position structure"; the paper drops the forecasting claim |
-| **G-Recipe** | A recipe variant in the H3 sweep improves the validation score (§6.2) by ≥ 0.02 **and** at least doubles feature effective rank vs the baseline recipe at the same step | Train TiJepa-2 (full budget) + its matched ablation (H3.4) | Stop recipe work; report the collapse diagnosis as a limitation; evaluate existing models only |
+| **G-Recipe** | A recipe variant in the H3 sweep improves the validation score (§6.2) by ≥ 0.02 **and** at least doubles feature effective rank vs the baseline recipe at the same step | Report the variant and its 20k-step model as an extra row (§0A.2: no full TiJepa-2 retrain) | Stop recipe work; report the collapse diagnosis as a limitation; evaluate existing models only |
 | **G-BetaGlucan** | The β-glucan TNF result survives sample-identity QC and is consistent in at least one independent dataset or in the source paper's own RNA data (H5) | Report it as a replicated transcript-level kinetics observation | Report it as a single-dataset observation (if QC passes) or withdraw it (if QC fails) |
 
 ---
 
-## 3. Author actions (only the author can do these)
+## 3. Author actions (only the author can do these) — see also §0A.2 (the agent downloads all open data itself; only Dryad needs the author)
 
 1. **Dryad — copy it straight to the instance (no Drive needed).** On your laptop, open
    `https://datadryad.org/dataset/doi:10.5061/dryad.m0cfxpp8v`, click *Download dataset*,
@@ -204,7 +284,7 @@ p_future 0.5 unless stated. Variants:
 Score every snapshot on the validation score and rank. Apply **G-Recipe** against S0 at
 20k steps.
 
-### H3.4 If G-Recipe passes: TiJepa-2
+### H3.4 If G-Recipe passes: TiJepa-2 — **REMOVED by §0A.2** (kept below for the record only)
 Train the winning recipe to the full step budget (117,000) **and** its matched spatial-only
 ablation with the same recipe (one GPU: sequential, ~24 h; two GPUs: parallel). Keep
 snapshots. Back up per rule 5. Evaluate both on every Part A benchmark. TiJepa-1 remains in
@@ -276,7 +356,7 @@ stimulus-matched omics anchor both exist (they do not, today).
 
 ---
 
-## 10. Phase H6 — The pre-registered experiment (a primary deliverable)
+## 10. Phase H6 — The pre-registered experiment — **REDUCED by §0A.2** to a ≤ 1-page Future-work subsection of the paper; the items below are guidance for that subsection, not a separate deliverable
 
 Write `reports/EXPERIMENT_DESIGN.md` — the imaging study that would actually test whether
 trained immunity has an imaging phenotype. It must be specific enough to execute and fund:
