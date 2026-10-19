@@ -1,0 +1,28 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{Modality coverage map: the best public pairing of each modality family with images, video or image-derived dynamics of innate immune cells, what was tested and the result. BA: balanced accuracy.}
+\label{tab:coverage}
+\begin{tabular}{p{2.6cm}p{1.5cm}p{3.6cm}p{4.9cm}p{1.1cm}}
+\toprule
+Modality family & Pairing & Public data & Test and result & Outcome \\
+\midrule
+Immunophenotype: activation morphology & same cell & BBBC054 (mouse microglia, LPS time course; CC BY 3.0) & 3-class morphology from frozen features, FOV-grouped: best frozen encoder V-JEPA 2 ViT-L BA 0.681 vs hand-crafted 0.499; TiJepa-1 0.595 & positive \\
+Immunophenotype: M0/M1/M2 polarisation (video) & same cell & Dryad m0cfxpp8v (BMDM movies) & polarisation from frozen video features: not obtained: the download requires an interactive browser check & absent \\
+Immunophenotype: cell identity & same cell & Zenodo 15657646 (two-photon autofluorescence, T cells and neutrophils in the same fields; CC BY 4.0) & T cell vs neutrophil, FOV-grouped, mixed fields only: best frozen encoder TiJepa-0 BA 0.721; intensity-only baseline 0.714 (CI 0.663-0.760) & null \\
+Metabolism (NAD(P)H lifetime) & same cell & Zenodo 14330511 (two-photon NAD(P)H-FLIM, macrophages; CC BY 4.0) & per-cell mean lifetime from the photon-count image, FOV-grouped ridge: best frozen encoder TiJepa-1 (spatial-only) $R^2$ +0.32; intensity baseline +0.12; knowing only the experimental arm +0.50; within fields: TiJepa-1 +0.08, intensity +0.08 & null \\
+Metabolism (macrophage M1/M2 FLIM) & same cell & Dryad 8gtht76q2 & not obtained: the download requires an interactive browser check & absent \\
+Signalling (NF-$\kappa$B dynamics) & same cell & Tay lab deposit, Zenodo 14337874 (live-cell NF-$\kappa$B reporter, 125 wells) & 11-way ligand-pair identity from single-cell traces, well-grouped: trace JEPA BA 0.286, raw trace 0.269, hand-crafted 0.198; reference: chance 0.091. Pretraining adds nothing over the same network at random initialisation & positive \\
+Signalling memory (acute tolerance) & same cell & Tay deposit, LPS then LPS (4 wells) & tolerant vs naive from the second response; power analysis: unpowered (2 wells per arm); 8 wells per arm needed for 80\% power at the observed effect & null \\
+Transcriptomics & same condition & Tay RNA-seq GSE260996 (same lab as the imaging; 5 conditions) & condition-level dynamics $\to$ RNA ($Q^2$ vs leave-one-out mean): fraction of top-2,000 genes with $Q^2$ > 0: 0.226 (exact permutation p 0.36; 5 conditions, descriptive) & null \\
+Epigenomics & same condition & Tay ATAC-seq GSE261647 (5 conditions) & condition-level dynamics $\to$ accessibility: fraction of top-2,000 peaks with $Q^2$ > 0: 0.182 (exact permutation p 0.44; 5 conditions, descriptive) & null \\
+Cytokines (restimulation; memory proxies) & no public pairing & GSE212282, GSE185433, GSE141656 (human macrophage training and tolerance, RNA only; no images) & TNF/IL6 transcripts after restimulation, donor-paired: $\beta$-glucan-trained cells: TNF transcript lower at 4 h after LPS (3/3 donors) and after M. tuberculosis (3/3, independent donors) & absent \\
+Cross-species memory signature & cross-study & Tay mouse RNA (priming x LPS) vs GSE185433 human tolerance & overlap of priming-blunted LPS genes among genes induced in both species: overlap 18 vs 24.5 expected, OR 0.58, two-sided p 0.09 & null \\
+Proteomics (beyond signalling reporters) & no public pairing & - & no public dataset pairs images of innate immune cells with proteomics & absent \\
+Integrated single-cell multi-omics & no public pairing & - & no public dataset pairs live-cell imaging of innate cells with single-cell multi-omics of the same cells & absent \\
+Spatial omics / tissue imaging & no public pairing & - & in-tissue data exist but not for the in-vitro cell systems studied here & absent \\
+Perturbation screens (Perturb-seq, optical pooled) & no public pairing & - & no public optical or Perturb-seq screen of trained or tolerised innate cells & absent \\
+Immune repertoire, microbiome, clinical & no public pairing & - & not applicable to in-vitro innate-cell imaging & absent \\
+\bottomrule
+\end{tabular}
+\end{table}
