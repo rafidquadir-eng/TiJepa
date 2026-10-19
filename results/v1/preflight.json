@@ -27,7 +27,7 @@
     "bf16_supported": true
   },
   "disk": {
-    "path": "/home/ubuntu/proj2/data",
+    "path": "data",
     "total_gb": 531.4,
     "used_gb": 293.9,
     "free_gb": 237.5,

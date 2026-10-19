@@ -84,8 +84,8 @@
   "checkpoint": "tijepa1_spatial_T1_seed0.pt",
   "log_csv": "pretrain_log_tijepa1_spatial_seed0.csv",
   "config": {
-    "shard_dir": "/home/ubuntu/proj2/data/processed/v1",
-    "out_dir": "/home/ubuntu/proj2/checkpoints",
+    "shard_dir": "data/processed/v1",
+    "out_dir": "checkpoints",
     "clip_frames": 16,
     "clip_size": 96,
     "batch_size": 128,

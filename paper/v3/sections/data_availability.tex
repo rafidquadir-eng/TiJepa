@@ -1,0 +1,47 @@
+\section*{Data and code availability}
+\label{sec:data}
+Every dataset is public and was downloaded directly from its repository; files were
+checked against the repository's MD5 checksums where it publishes them, and the SHA-256 of
+every file used is recorded with the code. Table~\ref{tab:data} lists accession, licence and
+use. One planned dataset, Dryad \texttt{doi:10.5061/dryad.m0cfxpp8v} (bone-marrow macrophage
+movies with M0/M1/M2 labels, CC0), could not be obtained because its download requires an
+interactive browser check; the macrophage FLIM set \texttt{doi:10.5061/dryad.8gtht76q2} was
+not obtained for the same reason. Model weights: V-JEPA~2 ViT-L (MIT licence), DINOv2
+ViT-S/14 and the AugReg ImageNet ViT-S/16 (Apache-2.0). \CodeAvailability
+
+\begin{table}[h]
+\centering
+\small
+\caption{Datasets used. GEO records carry no licence; their originating publications are
+cited.}
+\label{tab:data}
+\begin{tabular}{p{4.6cm}p{3.1cm}p{2.0cm}p{4.2cm}}
+\toprule
+Dataset & Accession & Licence & Use \\
+\midrule
+ComplexEye neutrophil migration movies \citep{complexeye} & Zenodo 10082674 & CC BY 4.0 &
+pretraining (10 archives); validation set (one further archive) \\
+CellTrack neutrophil movies with instance masks & BioImage Archive S-BIAD2196 & CC BY 4.0 &
+association, forecasting \\
+Microglia LPS time course \citep{bbbc} & BBBC054 & CC BY 3.0 & morphology probe \\
+Label-free autofluorescence of immune cells \citep{kreiss2026cellmics} & Zenodo 15657646 &
+CC BY 4.0 & cell identity \\
+NAD(P)H-FLIM raw data \citep{musimbi2025flim} & Zenodo 14330511 & CC BY 4.0 & lifetime
+prediction \\
+NF-\(\kappa\)B live-cell traces \citep{wang2025} & Zenodo 14337874 & CC BY 4.0 & ligand decoding,
+tolerance power \\
+Matched RNA-seq and ATAC-seq \citep{wang2025} & GEO GSE260996, GSE261647 & GEO & dynamics to
+omics; mouse side of the cross-species test \\
+Training and restimulation RNA-seq \citep{ferreira2023} & GEO GSE212282 & GEO &
+restimulation, sample QC \\
+Tolerance and IL-4 RNA-seq \citep{schrijver2023} & GEO GSE185433 & GEO & restimulation, human
+side of the cross-species test \\
+\(\beta\)-glucan and \emph{M. tuberculosis} RNA-seq \citep{moorlag2020} & GEO GSE141656 & GEO &
+independent replication \\
+Dectin-1 ligand training RNA-seq \citep{cheng2024dectin} & GEO GSE242947 & GEO & descriptive
+(2 replicates) \\
+Mouse--human orthologs \citep{mgi} & MGI HOM\_MouseHumanSequence & MGI terms & cross-species
+test \\
+\bottomrule
+\end{tabular}
+\end{table}

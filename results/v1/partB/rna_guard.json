@@ -40,7 +40,7 @@
   },
   "cross_check_merged_fc": {
     "status": "identical",
-    "source": "/home/ubuntu/proj2/data/interim/tay/tay-lab-macrophage_memory-5242e14/figure6_RNAseq/FC/merged_FC.csv",
+    "source": "data/interim/tay/tay-lab-macrophage_memory-5242e14/figure6_RNAseq/FC/merged_FC.csv",
     "n_shared_genes": 27179,
     "n_shared_samples": 33,
     "n_differing_cells": 0,
