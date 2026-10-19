@@ -15,6 +15,8 @@ import json
 import re
 from pathlib import Path
 
+import numpy as np
+
 REPO = Path(__file__).resolve().parents[1]
 import sys  # noqa: E402
 
@@ -291,8 +293,33 @@ def partC() -> None:
         put("pc.v2.present", "yes")
 
 
+def design_power() -> None:
+    """Donors needed in the proposed study: paired two-sided t-test, alpha 0.05, 80%."""
+    from scipy import stats
+
+    def n_paired(d: float) -> int:
+        for n in range(3, 1000):
+            df = n - 1
+            tc = stats.t.ppf(0.975, df)
+            nc = d * np.sqrt(n)
+            if 1 - stats.nct.cdf(tc, df, nc) + stats.nct.cdf(-tc, df, nc) >= 0.8:
+                return n
+        return -1
+    for d in (0.8, 1.0, 1.5):
+        put(f"ds.n.d{d}", n_paired(d), "{}")
+    rep = load("v3/partC/beta_glucan_replication.json")
+    qc = load("v3/partC/sample_qc.json")
+    if rep and qc:
+        a = rep["GSE141656"]["trained_minus_untrained_after_restim"]["TNF"][
+            "per_donor_log2_difference"]
+        tr = qc["datasets"]["GSE212282"]["cytokine_trajectories"]["TNF"]["d7"]
+        b = [tr[x]["BG_minus_RPMI"] for x in "ABC"]
+        put("ds.tnf.sd141", float(np.std(a, ddof=1)), "{:.2f}")
+        put("ds.tnf.sd212", float(np.std(b, ddof=1)), "{:.2f}")
+
+
 def main() -> int:
-    for f in (pretraining, bbbc054, autofluorescence, forecasting, reid, association,
+    for f in (design_power, pretraining, bbbc054, autofluorescence, forecasting, reid, association,
               recipe, flim, partB, partC):
         f()
     OUT.mkdir(parents=True, exist_ok=True)
