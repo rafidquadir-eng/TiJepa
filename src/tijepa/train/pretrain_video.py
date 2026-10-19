@@ -83,6 +83,13 @@ class PretrainConfig:
     prior_segments_if_missing: list = field(default_factory=list)
     # Benchmark mode: never write the checkpoint, log or summary (G1.2).
     dry_run: bool = False
+    # PLAN_v3 rule 3 / H3.3 recipe variants (all off by default = the TiJepa-1 recipe)
+    snapshot_every: int = 0          # immutable out_dir/<run>/step_XXXXXX.pt snapshots
+    vicreg_var: float = 0.0          # variance hinge on predictor outputs (S2)
+    vicreg_cov: float = 0.0          # off-diagonal covariance penalty (S2)
+    grad_accum: int = 1              # micro-batches per optimiser step (S3)
+    future_strides: list = field(default_factory=list)  # future-mask batches only from
+    #                                  clips with these temporal strides (S4)
 
 
 # --------------------------------------------------------------------------- schedule
@@ -290,6 +297,39 @@ class ShardClipDataset(Dataset):
         return torch.from_numpy(clip)[None]  # (1, T, H, W)
 
 
+def vicreg_terms(pred: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+    """VICReg variance hinge and covariance penalty on predictor outputs (B, N, D)."""
+    z = pred.float().reshape(-1, pred.shape[-1])
+    z = z - z.mean(0)
+    std = torch.sqrt(z.var(0) + 1e-4)
+    var = torch.relu(1.0 - std).mean()
+    cov = (z.T @ z) / max(z.shape[0] - 1, 1)
+    off = cov - torch.diag(torch.diag(cov))
+    return var, (off ** 2).sum() / z.shape[1]
+
+
+class SubsetStreamSampler(Sampler):
+    """StreamSampler over a fixed subset of clip indices (same determinism contract)."""
+
+    def __init__(self, subset: np.ndarray, seed: int, start: int = 0):
+        self.subset = np.asarray(subset)
+        self.inner = StreamSampler(len(self.subset), seed + 104_729, start)
+
+    def __iter__(self) -> Iterator[tuple[int, int]]:
+        for i, pos in self.inner:
+            yield int(self.subset[i]), pos
+
+    def __len__(self) -> int:  # pragma: no cover
+        return 2**62
+
+
+def stride_subset(shard_dir: Path, strides: list) -> np.ndarray:
+    import pandas as pd
+    idx = pd.read_csv(Path(shard_dir) / "pretrain_index.csv", usecols=["stride", "static"])
+    return np.flatnonzero(idx["stride"].isin(list(strides)).to_numpy()
+                          & ~idx["static"].astype(bool).to_numpy())
+
+
 class StreamSampler(Sampler):
     """Endless stream of (clip index, stream position) pairs from position `start`.
 
@@ -438,11 +478,34 @@ def _train(cfg: PretrainConfig, ckpt_path: Path, log_path: Path, summary_path: P
 
     ds = ShardClipDataset(Path(cfg.shard_dir), seed=cfg.seed)
     dl = DataLoader(ds, batch_size=cfg.batch_size,
-                    sampler=StreamSampler(len(ds), cfg.seed, start=step * cfg.batch_size),
+                    sampler=StreamSampler(len(ds), cfg.seed,
+                                         start=step * cfg.batch_size * cfg.grad_accum),
                     num_workers=cfg.num_workers, pin_memory=dev == "cuda",
                     worker_init_fn=_worker_init if cfg.num_workers > 0 else None,
                     persistent_workers=False,
                     prefetch_factor=4 if cfg.num_workers > 0 else None)
+
+    it_future = None
+    if cfg.future_strides:
+        sub = stride_subset(Path(cfg.shard_dir), cfg.future_strides)
+        dl_f = DataLoader(ds, batch_size=cfg.batch_size,
+                          sampler=SubsetStreamSampler(sub, cfg.seed,
+                                                      start=step * cfg.batch_size),
+                          num_workers=cfg.num_workers // 2,
+                          pin_memory=dev == "cuda",
+                          worker_init_fn=_worker_init if cfg.num_workers > 1 else None,
+                          prefetch_factor=4 if cfg.num_workers > 1 else None)
+        it_future = iter(dl_f)
+    snap_dir = Path(cfg.out_dir) / cfg.run_name
+
+    def snapshot() -> None:
+        if cfg.dry_run or not cfg.snapshot_every:
+            return
+        snap_dir.mkdir(parents=True, exist_ok=True)
+        p = snap_dir / f"step_{step:06d}.pt"
+        if not p.exists():  # immutable: never overwritten
+            atomic_torch_save({"model": model.state_dict(), "step": step,
+                               "config": asdict(cfg), "snapshot": True}, p)
 
     if not log_path.exists() and not cfg.dry_run:
         atomic_write_text(log_path, ",".join(LOG_HEADER) + "\n")
@@ -479,11 +542,9 @@ def _train(cfg: PretrainConfig, ckpt_path: Path, log_path: Path, summary_path: P
         if (time.time() - t_loop) / 3600.0 >= cfg.max_hours:
             stop_reason = "max_hours_safety_cap"
             break
-        clips = next(it)
         lr = cosine_lr(step, cfg)
         for g in opt.param_groups:
             g["lr"] = lr
-        clips = clips.to(dev, non_blocking=True)
         mask, kind = sample_mask(
             model.grid, p_future=cfg.p_future, generator=gen,
             n_blocks=cfg.mask_blocks, n_future_slots=cfg.n_future_slots,
@@ -494,19 +555,30 @@ def _train(cfg: PretrainConfig, ckpt_path: Path, log_path: Path, summary_path: P
                 n_blocks=cfg.mask_blocks, n_future_slots=cfg.n_future_slots,
                 context_spatial_mask=cfg.context_spatial_mask)
         mask = mask.to(dev)
-        with torch.autocast("cuda", dtype=amp_dtype, enabled=dev == "cuda"):
-            res = model(clips, mask)
-        loss = res["loss"]
-        loss.backward()
+        src = it_future if (it_future is not None and kind == "future") else it
+        loss_acc = 0.0
+        for _ in range(cfg.grad_accum):
+            clips = next(src).to(dev, non_blocking=True)
+            with torch.autocast("cuda", dtype=amp_dtype, enabled=dev == "cuda"):
+                res = model(clips, mask)
+            loss = res["loss"]
+            total = loss
+            if cfg.vicreg_var or cfg.vicreg_cov:
+                v, c = vicreg_terms(res["pred"])
+                total = loss + cfg.vicreg_var * v + cfg.vicreg_cov * c
+            (total / cfg.grad_accum).backward()
+            loss_acc += float(loss.detach()) / cfg.grad_accum
         torch.nn.utils.clip_grad_norm_(params, 1.0)
         opt.step()
         opt.zero_grad(set_to_none=True)
         m = model.update_target(ema_progress(step, cfg))
-        lv = float(loss.detach())
+        lv = loss_acc
         losses.append(lv)
         losses_by_kind[kind].append(lv)
         kind_counts[kind] += 1
         step += 1
+        if cfg.snapshot_every and step % cfg.snapshot_every == 0:
+            snapshot()
 
         if step % cfg.log_every == 0 or step == cfg.max_steps:
             with torch.no_grad(), torch.autocast("cuda", dtype=amp_dtype,
@@ -537,7 +609,7 @@ def _train(cfg: PretrainConfig, ckpt_path: Path, log_path: Path, summary_path: P
             t_ckpt = time.time()
             print(f"  checkpoint at step {step}", flush=True)
 
-    del it
+    del it, it_future
     save()
     segs = segments_now()
     totals = segment_totals(segs)
@@ -562,7 +634,7 @@ def _train(cfg: PretrainConfig, ckpt_path: Path, log_path: Path, summary_path: P
         "annealed": annealed,
         "final_lr": lr,
         "final_ema_momentum": m,
-        "clips_seen": step * cfg.batch_size,
+        "clips_seen": step * cfg.batch_size * cfg.grad_accum,
         "n_clips_in_corpus": len(ds),
         "n_shards": len(ds.paths),
         "effective_epochs": round(step * cfg.batch_size / max(1, len(ds)), 2),
