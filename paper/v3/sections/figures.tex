@@ -1,0 +1,83 @@
+% Figure environments shared by both versions; graphics from figures/v3/.
+\newcommand{\figcoverage}{%
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig1_coverage_map.pdf}
+\caption{Modality coverage map. Each row is a modality family; the column is the level at
+which the best public dataset pairs it with images, video or image-derived dynamics of
+innate immune cells. Filled circle: frozen image or dynamics features carry information
+beyond the simple baseline of that row; open circle: tested, no such gain; cross: no
+public pairing or data not obtainable. Details, numbers and sources in
+Table~\ref{tab:coverage}.}
+\label{fig:coverage}
+\end{figure}}
+
+\newcommand{\figtraining}{%
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig2_training_collapse.pdf}
+\caption{Training and dimensional collapse. Left: latent loss of TiJepa-0, TiJepa-1 and
+the spatial-only ablation (solid: spatially masked batches; dashed: future-masked batches).
+Middle: effective rank of the pooled target embedding of training batches; grey points:
+the 20,000-step recipe variants scored on the validation set. Right: cumulative variance
+of the leading principal components of the pooled target embedding on held-out
+validation clips.}
+\label{fig:training}
+\end{figure}}
+
+\newcommand{\figbenchmarks}{%
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig3_benchmarks.pdf}
+\caption{Frozen-feature benchmarks. Left: microglia morphology (BBBC054), three-class
+balanced accuracy, one dot per probe seed. Middle: T cells versus neutrophils from
+label-free autofluorescence, on fields that contain both (95\% CI over fields). Right:
+re-identification of the same neutrophil after 3--27 frames on held-out movies (95\% CI
+over movies); this label-free validation set is the only data used to compare training
+recipes.}
+\label{fig:benchmarks}
+\end{figure}}
+
+\newcommand{\figassoc}{%
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig4_association_forecasting.pdf}
+\caption{Association and forecasting. Left: identity matching of ground-truth cells across
+a 9-frame gap from embedding distance alone (filled) and combined with centroid distance
+(open); dashed line: centroid distance alone. Right: latent forecasting error relative to
+copying the last context latent (first, third and fourth groups) or to the slot-conditional
+mean fitted on other movies (second group), at stride 1; dots are movies. A forecasting
+model should lose its advantage under a swapped context and on static clips; TiJepa-1 keeps
+most of it.}
+\label{fig:assoc}
+\end{figure}}
+
+\newcommand{\figsignalling}{%
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig5_signalling.pdf}
+\caption{NF-\(\kappa\)B dynamics. Left: decoding the ordered ligand pair from single-cell
+traces (95\% CI over wells; dotted line: chance). Right: power of a well-level test for
+acute tolerance as a function of wells per arm, at the observed effect (solid) and with the
+between-well SD at the upper limit of its 80\% interval (faint).}
+\label{fig:signalling}
+\end{figure}}
+
+\newcommand{\figrestim}{%
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig6_restimulation.pdf}
+\caption{TNF transcripts in $\beta$-glucan-trained human macrophages. Left: TNF mRNA in
+untrained (grey) and $\beta$-glucan-trained (blue) cells of three donors across the
+training protocol of GSE212282; marker shape identifies the donor. Right: trained-minus-untrained TNF after 4\,h of
+restimulation in two independent datasets; dots are donors, bars means.}
+\label{fig:restim}
+\end{figure}}
+
+\newcommand{\figdesign}{%
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig7_proposed_study.pdf}
+\caption{The proposed imaging study of trained and tolerised human monocytes.}
+\label{fig:design}
+\end{figure}}

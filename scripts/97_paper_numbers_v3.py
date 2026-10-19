@@ -92,6 +92,7 @@ def bbbc054() -> None:
         put(f"bb.{k}.3c", e["three_class_mean"])
         put(f"bb.{k}.3c.sd", e["three_class_sd"])
         put(f"bb.{k}.ra", e["round_vs_amoeboid_mean"])
+        put(f"bb.{k}.3c.wb", e.get("three_class_within_bin_mean"))
     put("bb.time.3c", bb["time_only_baseline"]["three_class"]["mean"])
     put("bb.ncells", int(bb["n_cells_per_seed"][0] if isinstance(bb["n_cells_per_seed"], list)
                          else list(bb["n_cells_per_seed"].values())[0]))
@@ -353,6 +354,26 @@ def main() -> int:
         lines.append(rf"\expandafter\def\csname val@{k}\endcsname{{{V[k]}}}")
     lines.append(r"\makeatother")
     (OUT / "numbers.tex").write_text("\n".join(lines) + "\n")
+    cov = load("v3/coverage/coverage_map.json")
+    if cov:
+        def tex(x: str) -> str:
+            x = x.replace("&", r"\&").replace("%", r"\%").replace("_", r"\_")
+            x = x.replace("κ", r"$\kappa$").replace("β", r"$\beta$").replace("μ", r"$\mu$")
+            return x.replace(" -> ", r" $\to$ ").replace("R2", r"$R^2$").replace("Q2", r"$Q^2$")
+        rows = [r"\begin{table}[t]", r"\centering", r"\scriptsize",
+                r"\caption{Modality coverage map: the best public pairing of each modality "
+                r"family with images, video or image-derived dynamics of innate immune cells, "
+                r"what was tested and the result. BA: balanced accuracy.}",
+                r"\label{tab:coverage}",
+                r"\begin{tabular}{p{2.6cm}p{1.5cm}p{3.6cm}p{4.9cm}p{1.1cm}}", r"\toprule",
+                r"Modality family & Pairing & Public data & Test and result & Outcome \\",
+                r"\midrule"]
+        for r in cov["rows"]:
+            res = r["result"] if r["test"] in ("-", "") else f"{r['test']}: {r['result']}"
+            rows.append(f"{tex(r['family'])} & {tex(r['pairing'])} & {tex(r['dataset'])} & "
+                        f"{tex(res)} & {tex(r['outcome'])} \\\\")
+        rows += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]
+        (OUT / "coverage_table.tex").write_text("\n".join(rows) + "\n")
     (OUT / "numbers.json").write_text(json.dumps(V, indent=1, sort_keys=True))
     (OUT / "labels.json").write_text(json.dumps(LABELS, indent=1, default=str))
     print(f"wrote {len(V)} numbers and {len(LABELS)} labels to {OUT}")

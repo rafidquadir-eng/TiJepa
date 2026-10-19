@@ -25,6 +25,15 @@ def load(rel: str):
     return json.loads(p.read_text()) if p.exists() else None
 
 
+NAMES = {"E2_imagenet_vit_s": "ImageNet ViT-S", "E3_dinov2_vit_s": "DINOv2 ViT-S/14",
+         "E7_vjepa2_vitl": "V-JEPA 2 ViT-L", "E4_tijepa1": "TiJepa-1",
+         "E4s_tijepa1_spatial": "TiJepa-1 (spatial-only)", "E0_tijepa0": "TiJepa-0"}
+
+
+def nm(k: str) -> str:
+    return NAMES.get(k.split("|")[0], k)
+
+
 def best(d: dict, keys, metric):
     ks = [k for k in keys if k in d]
     return max(ks, key=lambda k: d[k][metric]) if ks else None
@@ -41,12 +50,15 @@ def main() -> int:
         hc = e["E1_handcrafted_logreg"]["three_class_mean"]
         pc = bb["pairwise_comparisons"].get(f"three_class:{b}_vs_E1_handcrafted_logreg") or \
             bb["pairwise_comparisons"].get(f"three_class:E1_handcrafted_logreg_vs_{b}")
-        lo = pc["ci95_widest_over_seeds"][0] if pc and pc["encoder_a"] == b else None
+        lo = None
+        if pc:
+            c = pc["ci95_widest_over_seeds"]
+            lo = c[0] if pc["encoder_a"] == b else -c[1]
         rows.append({
             "family": "Immunophenotype: activation morphology", "pairing": "same cell",
             "dataset": "BBBC054 (mouse microglia, LPS time course; CC BY 3.0)",
             "test": "3-class morphology from frozen features, FOV-grouped",
-            "result": f"best frozen encoder {b} BA {e[b]['three_class_mean']:.3f} vs "
+            "result": f"best frozen encoder {nm(b)} BA {e[b]['three_class_mean']:.3f} vs "
                       f"hand-crafted {hc:.3f}; TiJepa-1 {e['E4_tijepa1']['three_class_mean']:.3f}",
             "outcome": "positive" if lo is not None and lo > 0 else "null",
             "short": "BBBC054 morphology", "evidence": "results/v3/partA/bbbc054.json"})
@@ -71,7 +83,7 @@ def main() -> int:
             "dataset": "Zenodo 15657646 (two-photon autofluorescence, T cells and "
                        "neutrophils in the same fields; CC BY 4.0)",
             "test": "T cell vs neutrophil, FOV-grouped, mixed fields only",
-            "result": f"best frozen encoder {b.split('|')[0]} BA "
+            "result": f"best frozen encoder {nm(b)} BA "
                       f"{r[b]['balanced_accuracy_mean']:.3f}; intensity-only baseline "
                       f"{base['balanced_accuracy_mean']:.3f} "
                       f"(CI {base['ci95_seed0'][0]:.3f}-{base['ci95_seed0'][1]:.3f})",
@@ -91,7 +103,7 @@ def main() -> int:
             "family": "Metabolism (NAD(P)H lifetime)", "pairing": "same cell",
             "dataset": "Zenodo 14330511 (two-photon NAD(P)H-FLIM, macrophages; CC BY 4.0)",
             "test": "per-cell mean lifetime from the intensity image, FOV-grouped ridge",
-            "result": f"best frozen encoder {b} R2 {reg[b]['r2_mean']:+.3f}; intensity "
+            "result": f"best frozen encoder {nm(b)} R2 {reg[b]['r2_mean']:+.3f}; intensity "
                       f"baseline {base['r2_mean']:+.3f}",
             "outcome": "positive" if ok else "null", "short": "NAD(P)H-FLIM lifetime",
             "evidence": "results/v3/coverage/flim.json"})
@@ -115,9 +127,11 @@ def main() -> int:
             "family": "Signalling (NF-κB dynamics)", "pairing": "same cell",
             "dataset": "Tay lab deposit, Zenodo 14337874 (live-cell NF-κB reporter, 125 wells)",
             "test": "11-way ligand-pair identity from single-cell traces, well-grouped",
-            "result": f"trace JEPA BA {tj['balanced_accuracy_mean']:.3f}, hand-crafted "
-                      f"{hc['balanced_accuracy_mean']:.3f}, chance "
-                      f"{b['chance_balanced_accuracy']:.3f}",
+            "result": f"trace JEPA BA {tj['balanced_accuracy_mean']:.3f}, raw trace "
+                      f"{b['results']['raw_trace']['balanced_accuracy_mean']:.3f}, hand-crafted "
+                      f"{hc['balanced_accuracy_mean']:.3f}; reference: chance "
+                      f"{b['chance_balanced_accuracy']:.3f}. Pretraining adds nothing over the "
+                      "same network at random initialisation",
             "outcome": "positive" if tj["ci95_seed0_well_bootstrap"][0] >
             b["chance_balanced_accuracy"] else "null",
             "short": "NF-κB ligand decoding", "evidence": "results/v3/partB/partB_v3.json"})

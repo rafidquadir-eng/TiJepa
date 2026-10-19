@@ -1,0 +1,46 @@
+\section{Additional details}
+\label{app:details}
+
+\paragraph{Hand-crafted image features.} For BBBC054 and the autofluorescence and lifetime
+crops, cells were segmented by a classical pipeline (Otsu threshold on edge energy and local
+variance, hole filling, distance-transform watershed, the component nearest the centre); features are shape descriptors, Zernike moments, Haralick texture and
+intensity statistics. A learned segmenter was not used.
+
+\paragraph{Point tracking.} An earlier tracking benchmark followed a cell by patch
+correlation of each encoder's features between consecutive frames. It cannot distinguish
+representations: TiJepa-1 with shuffled frames, TiJepa-1 and randomly initialised networks
+all lost the cell after a median of one to two frames, against twenty for a nearest-detection
+tracker. We report it only to explain why the association benchmark replaces it.
+
+\paragraph{Microglia benchmark.} Crops are $96\times96$ pixels around each annotated cell at
+the native resolution of the images, which state a 20$\times$ objective but no pixel size,
+so no rescaling to the pretraining pixel size was possible; the scale sensitivity in
+Section~\ref{sec:partA} is the consequence. Accuracy computed within each LPS exposure
+time bin is close to the pooled accuracy (TiJepa-1: \val{bb.E4_tijepa1.3c.wb} within bins), so
+exposure time does not explain the morphology result.
+
+\paragraph{Validation set.} The 64 validation movies come from an archive of the
+pretraining source that was not used to build the corpus. Their leakage check is described
+in Section~\ref{sec:validation}; at a threshold below every self-match (0.80) no
+duplicate was found either.
+
+\paragraph{Lifetime readouts.} Without the instrument response, the decay tail from 0.5\,ns
+after the peak is used; the first moment of a truncated multi-exponential tail and the
+two-component fit with fixed lifetimes are relative measures that are comparable between
+cells of one instrument and protocol, which is all the regression requires.
+
+\paragraph{Restimulation datasets.} For GSE212282 and GSE185433 the GEO restimulation
+labels were cross-checked against each sample's characteristics, and all three donors of
+each pass the restimulation positive control. Expected directions were taken only where
+the source publication reports TNF or IL-6 after restimulation for that arm; arms without
+such a statement are not scored. GSE212282's arm labelled DMI is dimethyl itaconate, as in
+its source paper.
+
+\paragraph{Cross-species test.} Mouse: an interaction model of priming (none, CpG,
+polyI:C) by challenge (none, LPS) on the deposited bone-marrow macrophage RNA-seq (three
+replicates per condition; pydeseq2); genes LPS-induced in naive cells (adjusted $p<0.05$,
+log2 fold change $>1$) whose induction is reduced by priming (interaction adjusted
+$p<0.05$). Human: the same rule on GSE185433, with untrained unstimulated, untrained
+restimulated, tolerised unstimulated and tolerised restimulated samples of three donors
+and donor-paired moderated tests \citep{smyth2004}. The universe is one-to-one MGI orthologs
+LPS-induced in both species \citep{mgi}.

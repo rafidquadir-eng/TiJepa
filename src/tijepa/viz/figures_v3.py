@@ -102,7 +102,7 @@ def fig1_coverage(repo: Path) -> list[str]:
     glyph = {"positive": ("●", INK), "null": ("○", MUTED), "negative": ("○", MUTED),
              "not tested": ("–", MUTED), "absent": ("×", MUTED)}
     fig, ax = plt.subplots(figsize=(7.4, 0.36 * len(rows) + 1.0))
-    ax.set_xlim(-0.5, len(levels) - 0.5)
+    ax.set_xlim(-0.75, len(levels) - 0.35)
     ax.set_ylim(len(rows) - 0.5, -0.9)
     ax.grid(False)
     for s in ("left", "bottom"):
@@ -114,12 +114,13 @@ def fig1_coverage(repo: Path) -> list[str]:
     for i, r in enumerate(rows):
         j = levels.index(r["pairing"])
         g, c = glyph.get(r["outcome"], ("?", INK))
-        ax.text(j, i, f"{g} {r['short']}", ha="center", va="center", fontsize=6.6, color=c)
+        ax.text(j, i, f"{g} {r['short']}", ha="center", va="center", fontsize=6.4, color=c,
+                clip_on=False)
         if i % 2 == 0:
             ax.axhspan(i - 0.5, i + 0.5, color=GRID, alpha=0.35, lw=0)
-    ax.text(len(levels) - 0.5, len(rows) - 0.1,
-            "● image features add information beyond the simple baseline   "
-            "○ tested, no gain   – not testable   × no public data",
+    ax.text(len(levels) - 0.35, len(rows) - 0.1,
+            "● the imaging-derived readout predicts the modality beyond the row's reference   "
+            "○ tested, no gain   – not testable   × no public pairing or data",
             ha="right", va="top", fontsize=6.4, color=MUTED)
     fig.tight_layout()
     return save(fig, repo, "fig1_coverage_map")
