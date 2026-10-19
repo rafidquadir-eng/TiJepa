@@ -1,0 +1,174 @@
+{
+ "phase": "PLAN_v3 H5.2 B4 symmetric (finding R16)",
+ "labelled": "EXPLORATORY",
+ "ortholog_positive_control": {
+  "genes": {
+   "Tnf": [
+    "TNF"
+   ],
+   "Il1b": [
+    "IL1B"
+   ],
+   "Il6": [
+    "IL6"
+   ],
+   "Cxcl2": [
+    "CXCL1",
+    "CXCL2",
+    "CXCL3"
+   ],
+   "Ccl4": [
+    "CCL4",
+    "CCL4L1",
+    "CCL4L2"
+   ],
+   "Nfkbia": [
+    "NFKBIA"
+   ],
+   "Tnfaip3": [
+    "TNFAIP3"
+   ]
+  },
+  "status": "PASS"
+ },
+ "orthology": "MGI one-to-one only",
+ "human": {
+  "dataset": "GSE185433",
+  "n_expressed": 10440,
+  "induced_rule": "RPMI_Restim vs RPMI_d6, q < 0.05, log2FC > 1",
+  "blunted_rule": "(LPS_Restim - LPS_d6) - (RPMI_Restim - RPMI_d6) < 0, BH q < 0.05 within the induced genes",
+  "prior_df_induction": 2.62170282805829,
+  "prior_df_interaction": 2.1692761104938483,
+  "induced": 1098,
+  "blunted": 196
+ },
+ "mouse_n_blunted": {
+  "CpG": 777,
+  "polyIC": 486,
+  "both": 373
+ },
+ "tests": {
+  "CpG": {
+   "universe": 343,
+   "universe_rule": "orthologs LPS-induced in both species",
+   "n_mouse_blunted": 185,
+   "n_human_blunted": 75,
+   "n_overlap": 37,
+   "expected": 40.45189504373178,
+   "odds_ratio": 0.7894736842105263,
+   "p_enrichment": 0.8498077524651437,
+   "p_two_sided": 0.43187302584557535,
+   "overlap_genes": [
+    "ACOD1",
+    "ANKRD33B",
+    "BCL2L11",
+    "BCOR",
+    "BTG2",
+    "CCDC50",
+    "CHST7",
+    "CLEC5A",
+    "CSF1",
+    "GADD45B",
+    "HIF1A",
+    "HSPA1B",
+    "ICAM1",
+    "IL12B",
+    "IL1B",
+    "IL1R1",
+    "IL27",
+    "IRAK2",
+    "IRF1",
+    "KDM6B",
+    "LGALS3BP",
+    "MYO1G",
+    "NFKBIZ",
+    "ORAI2",
+    "PDGFB",
+    "PIK3R5",
+    "PVR",
+    "RCAN1",
+    "SDC4",
+    "SKIL",
+    "SLCO3A1",
+    "SOCS3",
+    "STAT5A",
+    "TNF",
+    "TNFAIP2",
+    "TRIM25",
+    "XIRP1"
+   ]
+  },
+  "polyIC": {
+   "universe": 343,
+   "universe_rule": "orthologs LPS-induced in both species",
+   "n_mouse_blunted": 152,
+   "n_human_blunted": 75,
+   "n_overlap": 28,
+   "expected": 33.23615160349854,
+   "odds_ratio": 0.6918325326012355,
+   "p_enrichment": 0.9349171872656823,
+   "p_two_sided": 0.1895068529295485,
+   "overlap_genes": [
+    "ACOD1",
+    "BATF2",
+    "BCL2L11",
+    "CHST7",
+    "CLEC5A",
+    "CSF1",
+    "DUSP1",
+    "EPSTI1",
+    "HSPA1A",
+    "HSPA1B",
+    "ICAM1",
+    "IL12B",
+    "IL18",
+    "IL27",
+    "IRAK2",
+    "IRF1",
+    "ISG20",
+    "LGALS3BP",
+    "NAMPT",
+    "NFKBIZ",
+    "ORAI2",
+    "PIK3R5",
+    "SIGLEC1",
+    "SLCO3A1",
+    "TENT5A",
+    "TMEM229B",
+    "TNF",
+    "TRIM25"
+   ]
+  },
+  "both": {
+   "universe": 343,
+   "universe_rule": "orthologs LPS-induced in both species",
+   "n_mouse_blunted": 112,
+   "n_human_blunted": 75,
+   "n_overlap": 18,
+   "expected": 24.489795918367346,
+   "odds_ratio": 0.5845464725643897,
+   "p_enrichment": 0.9761003060856989,
+   "p_two_sided": 0.09403839307815064,
+   "overlap_genes": [
+    "ACOD1",
+    "BCL2L11",
+    "CHST7",
+    "CLEC5A",
+    "CSF1",
+    "HSPA1B",
+    "ICAM1",
+    "IL12B",
+    "IL27",
+    "IRAK2",
+    "IRF1",
+    "LGALS3BP",
+    "NFKBIZ",
+    "ORAI2",
+    "PIK3R5",
+    "SLCO3A1",
+    "TNF",
+    "TRIM25"
+   ]
+  }
+ }
+}

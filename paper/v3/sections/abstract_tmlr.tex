@@ -1,0 +1,23 @@
+\begin{abstract}
+Can self-supervised video models read the state of innate immune cells from label-free
+video? We train TiJepa, a video joint-embedding predictive architecture, on
+\val{pre.t1.clips} unlabelled clips of migrating human neutrophils, together with a
+matched-step spatial-masking-only ablation, and evaluate frozen features against image
+models, a frozen general-purpose video model (V-JEPA~2), random-initialisation and
+frame-shuffle controls on every public dataset we found that pairs innate-cell imaging with
+a molecular or functional readout, organised as a modality coverage map. Model choices use
+only a label-free re-identification set held out from all tests. On microglia morphology TiJepa-1 is far above hand-crafted features and not
+distinguishable from image models, while V-JEPA~2 exceeds it (balanced accuracy
+\val{bb.E7_vjepa2_vitl.3c} vs \val{bb.E4_tijepa1.3c}); on cell re-identification it is
+below raw pixels. Its predictor's apparent forecasting skill
+is explained by positional structure in the latent space: it keeps \val{fc.E4_tijepa1.1.adv.static}
+of its advantage over copying the last latent on clips in which nothing moves. Position
+alone associates cells across frames better than any embedding; label-free autofluorescence
+identity and NAD(P)H lifetime are predicted no better than by intensity statistics once
+experimental condition is controlled. The representation is partially collapsed (pooled
+effective rank \val{dg.E4_tijepa1.target.rank} of 384), and rank tracks downstream
+performance across models. Public data pair innate-cell imaging with memory-relevant
+readouts nowhere, so we close with a replicated transcript-level observation from
+restimulation datasets and the design of the imaging study that would test memory
+directly.
+\end{abstract}

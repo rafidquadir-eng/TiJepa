@@ -1,0 +1,50 @@
+{
+  "phase": "F1.1 + F4 7.1",
+  "guard_rna": {
+    "accession": "GSE260996",
+    "library_strategy": "RNA-Seq",
+    "organism": "Mus musculus",
+    "n_samples_expected": 33,
+    "n_samples_found": 33,
+    "row_id_class_expected": "entrez",
+    "row_id_class_found": "entrez",
+    "row_id_class_fractions": {
+      "entrez": 1.0
+    },
+    "n_rows": 27179,
+    "passed": true,
+    "notes": [
+      "11 conditions x 3 replicates of RelA-mVenus BMDMs.",
+      "Condition codes are two letters, first stimulus then second: F=media, C=CpG, L=LPS, T=TNF, P=polyI:C (CF CL CT FC FF FL FP FT PF PL PT).",
+      "Processed per-sample files are Rsubread featureCounts objects (GSM*Aligned.RData.gz) whose counts are keyed by Entrez GeneID."
+    ]
+  },
+  "guard_atac": {
+    "accession": "GSE261647",
+    "library_strategy": "ATAC-seq",
+    "organism": "Mus musculus",
+    "n_samples_expected": 18,
+    "n_samples_found": 18,
+    "row_id_class_expected": "interval",
+    "row_id_class_found": "interval",
+    "row_id_class_fractions": {
+      "interval": 1.0
+    },
+    "n_rows": 2000,
+    "passed": true,
+    "notes": [
+      "9 conditions x 2 replicates; condition codes use M for media (CL CT MC ML MM MP MT PL PT), unlike the RNA series which uses F.",
+      "This is the matrix the Tay deposit ships as a bare logCPM.csv at its root, and the one the v0 run mistook for RNA-seq."
+    ],
+    "note": "This is the file the v0 run analysed as if it were RNA-seq. The guard classifies its row IDs as genomic intervals and its sample count as 18, both matching GSE261647 ATAC-seq and neither matching GSE260996."
+  },
+  "cross_check_merged_fc": {
+    "status": "identical",
+    "source": "data/interim/tay/tay-lab-macrophage_memory-5242e14/figure6_RNAseq/FC/merged_FC.csv",
+    "n_shared_genes": 27179,
+    "n_shared_samples": 33,
+    "n_differing_cells": 0,
+    "max_abs_difference": 0
+  },
+  "n_genes_with_symbol": 25848
+}

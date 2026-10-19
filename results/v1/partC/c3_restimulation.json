@@ -1,0 +1,696 @@
+{
+  "phase": "F5 8.3 restimulation test",
+  "framing": "HYPOTHESIS-GENERATING; no image is paired with any molecular sample. This is the restimulation design that trained immunity is actually defined by, unlike the resting scores of 8.2.",
+  "dataset_search": {
+    "order_from_plan": [
+      "GSE212282",
+      "GSE185433",
+      "GSE323311",
+      "GSE242947",
+      "GSE184241"
+    ],
+    "GSE212282": "QUALIFIES (primary): monocytes trained with beta-glucan / itaconate / 4-OI, differentiated 5 days, re-exposed to LPS for 4 h; 3 matched donors; per-sample MMSEQ files deposited",
+    "GSE185433": "QUALIFIES (also reported): adds the TOLERANT arm (LPS-trained -> LPS) plus IL-4-trained -> LPS; 3 matched donors; same restimulation protocol",
+    "GSE323311": "DOES NOT QUALIFY: ATAC-seq only. Scoring an expression signature on an accessibility matrix is the type confusion the data-type guard exists to prevent.",
+    "GSE242947": "not needed; earlier candidates qualified",
+    "GSE184241": "not needed; and it has no in vitro LPS restimulation"
+  },
+  "readouts": {
+    "anchor_IFNg": "the only anchor that passed 8.1's donor-matching and sanity rules. It is M1-like but NOT an LPS-response signature, while the restimulation is LPS - a mismatch stated rather than hidden.",
+    "panel_LPS_NFkB": "pre-specified canonical human LPS/NF-kB genes TNF, IL1B, IL6, CXCL2, CCL4, NFKBIA, TNFAIP3, IL12B, CXCL10, IFIT1, IRF7. The more apt readout for an LPS challenge; pre-specified, not chosen after seeing results."
+  },
+  "statistics": "Exact paired sign-flip permutation over donors. With 3 donors there are 8 assignments and the smallest attainable two-sided p is 0.25, so this design cannot reach significance; the direction is the informative quantity. No CI (rule 3).",
+  "GSE212282": {
+    "status": "ok",
+    "dataset": "GSE212282",
+    "n_samples_scored": 15,
+    "n_genes": 56625,
+    "n_ensembl_mapped_to_symbol": 38984,
+    "arms": {
+      "untrained_restim": [
+        "A",
+        "B",
+        "C"
+      ],
+      "beta_glucan_trained_restim": [
+        "A",
+        "B",
+        "C"
+      ],
+      "itaconate_trained_restim": [
+        "A",
+        "B",
+        "C"
+      ],
+      "4OI_trained_restim": [
+        "A",
+        "B",
+        "C"
+      ],
+      "beta_glucan_plus_4OI_restim": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    "per_sample_scores": {
+      "anchor_IFNg": {
+        "A_d7_RPMI": 0.44820810756572343,
+        "A_d7_BG": 0.4514944812362031,
+        "A_d7_Ita": 0.45103933373469796,
+        "A_d7_DMI": 0.4511776038531005,
+        "A_d7_BG_DMI": 0.45199177202488455,
+        "B_d7_RPMI": 0.4475360224764198,
+        "B_d7_BG": 0.4510880995384307,
+        "B_d7_Ita": 0.44854485249849485,
+        "B_d7_DMI": 0.4514669877583785,
+        "B_d7_BG_DMI": 0.45015151515151514,
+        "C_d7_RPMI": 0.4518372466385711,
+        "C_d7_BG": 0.4515611077664058,
+        "C_d7_Ita": 0.45272185430463574,
+        "C_d7_DMI": 0.45484687938992574,
+        "C_d7_BG_DMI": 0.4535741521171984
+      },
+      "panel_LPS_NFkB": {
+        "A_d7_RPMI": 0.48816777041942605,
+        "A_d7_BG": 0.47683885209713023,
+        "A_d7_Ita": 0.4869545253863135,
+        "A_d7_DMI": 0.4894322295805739,
+        "A_d7_BG_DMI": 0.48222869757174386,
+        "B_d7_RPMI": 0.48342958057395136,
+        "B_d7_BG": 0.4865271523178808,
+        "B_d7_Ita": 0.4836150110375275,
+        "B_d7_DMI": 0.49019690949227374,
+        "B_d7_BG_DMI": 0.4876467991169978,
+        "C_d7_RPMI": 0.4899902869757174,
+        "C_d7_BG": 0.488632229580574,
+        "C_d7_Ita": 0.4883991169977925,
+        "C_d7_DMI": 0.4947902869757174,
+        "C_d7_BG_DMI": 0.4920176600441501
+      },
+      "panel_LPS_NFkB_mean_log_expression": {
+        "A_d7_RPMI": 6.045855,
+        "A_d7_BG": 5.6012118,
+        "A_d7_Ita": 6.209027000000001,
+        "A_d7_DMI": 6.173397,
+        "A_d7_BG_DMI": 5.811854000000001,
+        "B_d7_RPMI": 5.963641000000001,
+        "B_d7_BG": 5.756056,
+        "B_d7_Ita": 6.084995000000001,
+        "B_d7_DMI": 6.281005,
+        "B_d7_BG_DMI": 6.129439,
+        "C_d7_RPMI": 6.20938,
+        "C_d7_BG": 5.852271999999999,
+        "C_d7_Ita": 6.417991000000001,
+        "C_d7_DMI": 6.590674,
+        "C_d7_BG_DMI": 6.253024000000001
+      }
+    },
+    "contrasts": {
+      "beta_glucan_trained_restim_vs_untrained_restim__anchor_IFNg": {
+        "mean_difference": 0.002187437286775081,
+        "per_donor_difference": [
+          0.003286373670479681,
+          0.0035520770620108832,
+          -0.0002761388721653213
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.5,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": false,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "A",
+          "B",
+          "C"
+        ],
+        "readout": "anchor_IFNg",
+        "expected_direction": "higher than untrained (trained immunity)",
+        "direction_observed": "higher",
+        "matches_expectation": true
+      },
+      "beta_glucan_trained_restim_vs_untrained_restim__panel_LPS_NFkB": {
+        "mean_difference": -0.003196467991169923,
+        "per_donor_difference": [
+          -0.011328918322295822,
+          0.0030975717439294392,
+          -0.001358057395143386
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.75,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": false,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "A",
+          "B",
+          "C"
+        ],
+        "readout": "panel_LPS_NFkB",
+        "expected_direction": "higher than untrained (trained immunity)",
+        "direction_observed": "lower",
+        "matches_expectation": false
+      },
+      "beta_glucan_trained_restim_vs_untrained_restim__panel_LPS_NFkB_mean_log_expression": {
+        "mean_difference": -0.33644540000000084,
+        "per_donor_difference": [
+          -0.4446432000000007,
+          -0.2075850000000008,
+          -0.3571080000000011
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.25,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": true,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "A",
+          "B",
+          "C"
+        ],
+        "readout": "panel_LPS_NFkB_mean_log_expression",
+        "expected_direction": "higher than untrained (trained immunity)",
+        "direction_observed": "lower",
+        "matches_expectation": false
+      },
+      "itaconate_trained_restim_vs_untrained_restim__anchor_IFNg": {
+        "mean_difference": 0.0015748879523713917,
+        "per_donor_difference": [
+          0.002831226168974521,
+          0.0010088300220750246,
+          0.0008846076660646296
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.25,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": true,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "A",
+          "B",
+          "C"
+        ],
+        "readout": "anchor_IFNg",
+        "expected_direction": "higher than untrained (trained immunity)",
+        "direction_observed": "higher",
+        "matches_expectation": true
+      },
+      "itaconate_trained_restim_vs_untrained_restim__panel_LPS_NFkB": {
+        "mean_difference": -0.0008729948491537631,
+        "per_donor_difference": [
+          -0.0012132450331125422,
+          0.00018543046357616388,
+          -0.001591169977924911
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.5,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": false,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "A",
+          "B",
+          "C"
+        ],
+        "readout": "panel_LPS_NFkB",
+        "expected_direction": "higher than untrained (trained immunity)",
+        "direction_observed": "lower",
+        "matches_expectation": false
+      },
+      "itaconate_trained_restim_vs_untrained_restim__panel_LPS_NFkB_mean_log_expression": {
+        "mean_difference": 0.16437900000000027,
+        "per_donor_difference": [
+          0.16317200000000032,
+          0.12135400000000018,
+          0.20861100000000032
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.25,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": true,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "A",
+          "B",
+          "C"
+        ],
+        "readout": "panel_LPS_NFkB_mean_log_expression",
+        "expected_direction": "higher than untrained (trained immunity)",
+        "direction_observed": "higher",
+        "matches_expectation": true
+      },
+      "4OI_trained_restim_vs_untrained_restim__anchor_IFNg": {
+        "mean_difference": 0.0033033647735634664,
+        "per_donor_difference": [
+          0.0029694962873770825,
+          0.003930965281958687,
+          0.0030096327513546295
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.25,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": true,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "A",
+          "B",
+          "C"
+        ],
+        "readout": "anchor_IFNg",
+        "expected_direction": "higher than untrained (trained immunity)",
+        "direction_observed": "higher",
+        "matches_expectation": true
+      },
+      "4OI_trained_restim_vs_untrained_restim__panel_LPS_NFkB": {
+        "mean_difference": 0.004277262693156758,
+        "per_donor_difference": [
+          0.0012644591611478684,
+          0.0067673289183223795,
+          0.0048000000000000265
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.25,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": true,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "A",
+          "B",
+          "C"
+        ],
+        "readout": "panel_LPS_NFkB",
+        "expected_direction": "higher than untrained (trained immunity)",
+        "direction_observed": "higher",
+        "matches_expectation": true
+      },
+      "4OI_trained_restim_vs_untrained_restim__panel_LPS_NFkB_mean_log_expression": {
+        "mean_difference": 0.2753999999999994,
+        "per_donor_difference": [
+          0.12754199999999916,
+          0.31736399999999954,
+          0.3812939999999996
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.25,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": true,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "A",
+          "B",
+          "C"
+        ],
+        "readout": "panel_LPS_NFkB_mean_log_expression",
+        "expected_direction": "higher than untrained (trained immunity)",
+        "direction_observed": "higher",
+        "matches_expectation": true
+      },
+      "beta_glucan_plus_4OI_restim_vs_untrained_restim__anchor_IFNg": {
+        "mean_difference": 0.002712020870961248,
+        "per_donor_difference": [
+          0.003783664459161118,
+          0.00261549267509531,
+          0.0017369054786273153
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.25,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": true,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "A",
+          "B",
+          "C"
+        ],
+        "readout": "anchor_IFNg",
+        "expected_direction": "lower than untrained (tolerance)",
+        "direction_observed": "higher",
+        "matches_expectation": false
+      },
+      "beta_glucan_plus_4OI_restim_vs_untrained_restim__panel_LPS_NFkB": {
+        "mean_difference": 0.00010183958793232491,
+        "per_donor_difference": [
+          -0.005939072847682192,
+          0.004217218543046464,
+          0.002027373068432703
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 1.0,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": false,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "A",
+          "B",
+          "C"
+        ],
+        "readout": "panel_LPS_NFkB",
+        "expected_direction": "lower than untrained (tolerance)",
+        "direction_observed": "higher",
+        "matches_expectation": false
+      },
+      "beta_glucan_plus_4OI_restim_vs_untrained_restim__panel_LPS_NFkB_mean_log_expression": {
+        "mean_difference": -0.008186333333333332,
+        "per_donor_difference": [
+          -0.23400099999999924,
+          0.16579799999999878,
+          0.04364400000000046
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 1.0,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": false,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "A",
+          "B",
+          "C"
+        ],
+        "readout": "panel_LPS_NFkB_mean_log_expression",
+        "expected_direction": "lower than untrained (tolerance)",
+        "direction_observed": "lower",
+        "matches_expectation": true
+      }
+    },
+    "anchor_genes_present": 88,
+    "panel_genes_present": 10,
+    "filename_title_correspondence": "Deposited files use d7 where GEO titles say Restim; confirmed by accession: GSM6523220 = Donor_A_Restim_RPMI = A_d7_RPMI."
+  },
+  "GSE185433": {
+    "status": "ok",
+    "dataset": "GSE185433",
+    "n_samples_scored": 12,
+    "n_genes": 56625,
+    "n_ensembl_mapped_to_symbol": 38984,
+    "arms": {
+      "untrained_restim": [
+        "don1",
+        "don2",
+        "don3"
+      ],
+      "LPS_tolerised_restim": [
+        "don1",
+        "don2",
+        "don3"
+      ],
+      "IL4_trained_restim": [
+        "don1",
+        "don2",
+        "don3"
+      ],
+      "IL4_plus_LPS_restim": [
+        "don1",
+        "don2",
+        "don3"
+      ]
+    },
+    "per_sample_scores": {
+      "anchor_IFNg": {
+        "RPMI_Restim_don1": 0.45802388119606663,
+        "LPS_Restim_don1": 0.4588063415613084,
+        "IL4_Restim_don1": 0.454937387116195,
+        "IL4_LPS_Restim_don1": 0.4614216335540839,
+        "RPMI_Restim_don2": 0.4587686132851696,
+        "LPS_Restim_don2": 0.4604270519767208,
+        "IL4_Restim_don2": 0.45597130242825606,
+        "IL4_LPS_Restim_don2": 0.4612452337949026,
+        "RPMI_Restim_don3": 0.4596863335340157,
+        "LPS_Restim_don3": 0.4617981135861931,
+        "IL4_Restim_don3": 0.4560467589805338,
+        "IL4_LPS_Restim_don3": 0.4603112582781457
+      },
+      "panel_LPS_NFkB": {
+        "RPMI_Restim_don1": 0.49449713024282566,
+        "LPS_Restim_don1": 0.48041147902869763,
+        "IL4_Restim_don1": 0.4946966887417218,
+        "IL4_LPS_Restim_don1": 0.48081059602649007,
+        "RPMI_Restim_don2": 0.49435761589403976,
+        "LPS_Restim_don2": 0.48821015452538635,
+        "IL4_Restim_don2": 0.4947125827814569,
+        "IL4_LPS_Restim_don2": 0.4874701986754967,
+        "RPMI_Restim_don3": 0.48397350993377486,
+        "LPS_Restim_don3": 0.48398410596026487,
+        "IL4_Restim_don3": 0.4907037527593819,
+        "IL4_LPS_Restim_don3": 0.48148874172185435
+      },
+      "panel_LPS_NFkB_mean_log_expression": {
+        "RPMI_Restim_don1": 6.6441490000000005,
+        "LPS_Restim_don1": 6.0083044,
+        "IL4_Restim_don1": 6.731684,
+        "IL4_LPS_Restim_don1": 5.902620000000001,
+        "RPMI_Restim_don2": 6.663678,
+        "LPS_Restim_don2": 6.301589,
+        "IL4_Restim_don2": 6.787380000000001,
+        "IL4_LPS_Restim_don2": 6.0626169999999995,
+        "RPMI_Restim_don3": 5.620785,
+        "LPS_Restim_don3": 6.111921,
+        "IL4_Restim_don3": 6.237629,
+        "IL4_LPS_Restim_don3": 5.659292
+      }
+    },
+    "contrasts": {
+      "LPS_tolerised_restim_vs_untrained_restim__anchor_IFNg": {
+        "mean_difference": 0.0015175597029901122,
+        "per_donor_difference": [
+          0.0007824603652417661,
+          0.0016584386915511895,
+          0.002111780052177381
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.25,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": true,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "don1",
+          "don2",
+          "don3"
+        ],
+        "readout": "anchor_IFNg",
+        "expected_direction": "lower than untrained (tolerance)",
+        "direction_observed": "higher",
+        "matches_expectation": false
+      },
+      "LPS_tolerised_restim_vs_untrained_restim__panel_LPS_NFkB": {
+        "mean_difference": -0.006740838852097142,
+        "per_donor_difference": [
+          -0.014085651214128025,
+          -0.006147461368653406,
+          1.0596026490006238e-05
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.5,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": false,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "don1",
+          "don2",
+          "don3"
+        ],
+        "readout": "panel_LPS_NFkB",
+        "expected_direction": "lower than untrained (tolerance)",
+        "direction_observed": "lower",
+        "matches_expectation": true
+      },
+      "LPS_tolerised_restim_vs_untrained_restim__panel_LPS_NFkB_mean_log_expression": {
+        "mean_difference": -0.1689325333333335,
+        "per_donor_difference": [
+          -0.6358446000000004,
+          -0.3620890000000001,
+          0.491136
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.75,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": false,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "don1",
+          "don2",
+          "don3"
+        ],
+        "readout": "panel_LPS_NFkB_mean_log_expression",
+        "expected_direction": "lower than untrained (tolerance)",
+        "direction_observed": "lower",
+        "matches_expectation": true
+      },
+      "IL4_trained_restim_vs_untrained_restim__anchor_IFNg": {
+        "mean_difference": -0.003174459830089016,
+        "per_donor_difference": [
+          -0.0030864940798716045,
+          -0.0027973108569135374,
+          -0.0036395745534819057
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.25,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": true,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "don1",
+          "don2",
+          "don3"
+        ],
+        "readout": "anchor_IFNg",
+        "expected_direction": "higher than untrained (trained immunity)",
+        "direction_observed": "lower",
+        "matches_expectation": false
+      },
+      "IL4_trained_restim_vs_untrained_restim__panel_LPS_NFkB": {
+        "mean_difference": 0.0024282560706401037,
+        "per_donor_difference": [
+          0.0001995584988961352,
+          0.0003549668874171519,
+          0.006730242825607025
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.25,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": true,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "don1",
+          "don2",
+          "don3"
+        ],
+        "readout": "panel_LPS_NFkB",
+        "expected_direction": "higher than untrained (trained immunity)",
+        "direction_observed": "higher",
+        "matches_expectation": true
+      },
+      "IL4_trained_restim_vs_untrained_restim__panel_LPS_NFkB_mean_log_expression": {
+        "mean_difference": 0.276027,
+        "per_donor_difference": [
+          0.08753499999999903,
+          0.12370200000000064,
+          0.6168440000000004
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.25,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": true,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "don1",
+          "don2",
+          "don3"
+        ],
+        "readout": "panel_LPS_NFkB_mean_log_expression",
+        "expected_direction": "higher than untrained (trained immunity)",
+        "direction_observed": "higher",
+        "matches_expectation": true
+      },
+      "IL4_plus_LPS_restim_vs_untrained_restim__anchor_IFNg": {
+        "mean_difference": 0.0021664325372934092,
+        "per_donor_difference": [
+          0.0033977523580172586,
+          0.0024766205097330185,
+          0.000624924744129951
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.25,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": true,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "don1",
+          "don2",
+          "don3"
+        ],
+        "readout": "anchor_IFNg",
+        "expected_direction": "higher than untrained (trained immunity)",
+        "direction_observed": "higher",
+        "matches_expectation": true
+      },
+      "IL4_plus_LPS_restim_vs_untrained_restim__panel_LPS_NFkB": {
+        "mean_difference": -0.007686239882266392,
+        "per_donor_difference": [
+          -0.013686534216335589,
+          -0.006887417218543079,
+          -0.0024847682119205072
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.25,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": true,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "don1",
+          "don2",
+          "don3"
+        ],
+        "readout": "panel_LPS_NFkB",
+        "expected_direction": "higher than untrained (trained immunity)",
+        "direction_observed": "lower",
+        "matches_expectation": false
+      },
+      "IL4_plus_LPS_restim_vs_untrained_restim__panel_LPS_NFkB_mean_log_expression": {
+        "mean_difference": -0.43469433333333346,
+        "per_donor_difference": [
+          -0.7415289999999999,
+          -0.6010610000000005,
+          0.03850700000000007
+        ],
+        "n_donors": 3,
+        "exact_sign_flip_p_two_sided": 0.5,
+        "n_sign_assignments": 8,
+        "minimum_achievable_p": 0.25,
+        "all_donors_same_direction": false,
+        "confidence_interval": null,
+        "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+        "donors": [
+          "don1",
+          "don2",
+          "don3"
+        ],
+        "readout": "panel_LPS_NFkB_mean_log_expression",
+        "expected_direction": "higher than untrained (trained immunity)",
+        "direction_observed": "lower",
+        "matches_expectation": false
+      }
+    },
+    "anchor_genes_present": 88,
+    "panel_genes_present": 10
+  }
+}

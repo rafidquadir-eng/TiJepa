@@ -1,0 +1,24 @@
+{
+  "key": "phagostat_annot",
+  "kind": "zenodo",
+  "record": "10803492",
+  "doi": "10.1038/s41598-024-56081-7",
+  "title": "PhagoStat a scalable and interpretable end to end framework for efficient quantification of cell phagocytosis in neurodegenerative disease studies",
+  "licence_verified": "cc-by-4.0",
+  "licence_source": "https://zenodo.org/api/records/10803492 metadata.license",
+  "role": "pretrain_annot",
+  "files_used": [
+    {
+      "file": "manually_annotated_data.zip",
+      "url": "https://zenodo.org/api/records/10803492/files/manually_annotated_data.zip/content",
+      "size_bytes_record": 497267703,
+      "size_bytes_local": 497267703,
+      "size_match": true,
+      "checksum_record": "md5:ff707ac19b8fbc9ea34591d7b8b141ad",
+      "sha256_local": "c41cca56779becc1cef7abe4f578f57021414ba87de6162bede5ec6cd4a5d732"
+    }
+  ],
+  "total_gb": 0.497,
+  "status": "ok",
+  "retrieved_utc": "2026-10-15T15:31:29Z"
+}

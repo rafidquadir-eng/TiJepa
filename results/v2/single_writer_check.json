@@ -1,0 +1,14 @@
+{
+  "phase": "G0.3",
+  "pgrep_pretrain": "no matching process on this instance",
+  "lock_files": "none under checkpoints/ (local) or the shared-filesystem copy",
+  "local_project": "~/proj2 is on the local ext4 root disk of this instance; the shared filesystem is a separate virtiofs mount (LambdaFilesystem) holding the transfer copy",
+  "observations": [
+    {"utc": "2026-10-16T16:23:18Z", "file": "checkpoints/tijepa1_T1_seed0.pt", "bytes": 376538701, "mtime_epoch": 1792124759},
+    {"utc": "2026-10-16T16:23:18Z", "file": "checkpoints/pretrain_log_tijepa1_seed0.csv", "bytes": 48934, "mtime_epoch": 1792124777},
+    {"utc": "2026-10-16T16:28:26Z", "file": "checkpoints/tijepa1_T1_seed0.pt", "bytes": 376538701, "mtime_epoch": 1792124759},
+    {"utc": "2026-10-16T16:28:26Z", "file": "checkpoints/pretrain_log_tijepa1_seed0.csv", "bytes": 48934, "mtime_epoch": 1792124777}
+  ],
+  "shared_copy": "LambdaFilesystem/transfer/proj2/checkpoints/: same sizes, mtimes 2026-10-16 04:25-04:26 UTC, checkpoint sha256 identical",
+  "decision": "no other writer; training may start"
+}

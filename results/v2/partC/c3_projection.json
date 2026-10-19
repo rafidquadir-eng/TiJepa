@@ -1,0 +1,24 @@
+{
+  "phase": "F5 8.4 / G2.4",
+  "anchors_source": "results/v1/partC/c1_anchors.json (not re-run in v2)",
+  "framing": "HYPOTHESIS-GENERATING ONLY; no image is paired with any molecular sample; cross-study, cross-platform and cross-species",
+  "status": "not_performed",
+  "planned_analysis": "map omics activation coordinates onto TiJepa-1 image-space centroids for Dryad M0/M1/M2 cells, using only axes whose anchor stimulus matches the image stimulus (LPS<->LPS, IL-4<->IL-4)",
+  "blocking_reasons": [
+    {
+      "requirement": "image-space M0/M1/M2 anchors",
+      "met": false,
+      "detail": "Dryad status: not_provided. No other accessible dataset provides images labelled M0/M1/M2, and substituting a different label set - BBBC054's microglial morphology classes - and presenting it as this analysis would misrepresent what was measured."
+    },
+    {
+      "requirement": "an omics anchor whose stimulus matches an image label",
+      "met": false,
+      "detail": "anchor statuses: {'IFNg': 'ok', 'IL4': 'failed_sanity_rule', 'LPS': 'cannot_form_anchor'}. The LPS anchor cannot be formed (2 donor-matched pairs, minimum 3) and the IL-4 anchor fails its canonical-marker sanity rule, so neither stimulus 8.4 names survives. The only usable anchor is ['IFNg'], whose stimulus has no counterpart among the specified image labels."
+    }
+  ],
+  "v0_reduced_one_axis_analysis": {
+    "status": "DELETED",
+    "why": "PLAN_v1.md 8.5. v0, unable to run C3, substituted a one-axis analysis that expressed a human monocyte omics score as an 'equivalent LPS exposure time' on a mouse microglia imaging axis, anchoring that axis at the extremes of the very quantity being mapped. It is circular, it shares no donor, species, platform or experiment across the two sides, and it is removed from code, results, figures and paper rather than relabelled."
+  },
+  "what_would_unblock_it": "Fetching Dryad m0cfxpp8v by hand (the first TODO(author)) supplies the image anchors. The omics side needs an LPS or IL-4 anchor built from at least 3 donor-matched pairs that passes 8.1.4; GSE46903 cannot supply one at GM-CSF 72 h, so that would need a different macrophage atlas."
+}

@@ -1,0 +1,30 @@
+{
+ "fig1_coverage": [
+  "figures/v3/fig1_coverage_map.png",
+  "figures/v3/fig1_coverage_map.pdf"
+ ],
+ "fig2_training": [
+  "figures/v3/fig2_training_collapse.png",
+  "figures/v3/fig2_training_collapse.pdf"
+ ],
+ "fig3_benchmarks": [
+  "figures/v3/fig3_benchmarks.png",
+  "figures/v3/fig3_benchmarks.pdf"
+ ],
+ "fig4_association_forecast": [
+  "figures/v3/fig4_association_forecasting.png",
+  "figures/v3/fig4_association_forecasting.pdf"
+ ],
+ "fig5_partB": [
+  "figures/v3/fig5_signalling.png",
+  "figures/v3/fig5_signalling.pdf"
+ ],
+ "fig6_partC": [
+  "figures/v3/fig6_restimulation.png",
+  "figures/v3/fig6_restimulation.pdf"
+ ],
+ "fig7_design": [
+  "figures/v3/fig7_proposed_study.png",
+  "figures/v3/fig7_proposed_study.pdf"
+ ]
+}

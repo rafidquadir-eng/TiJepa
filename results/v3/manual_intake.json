@@ -1,0 +1,16 @@
+{
+ "phase": "PLAN_v3 H1.1",
+ "checked_utc": "2026-10-19T01:06Z",
+ "datasets": {
+  "dryad m0cfxpp8v (BMDM M0/M1/M2 video)": "absent",
+  "dryad 8gtht76q2 (human macrophage FLIM)": "absent"
+ },
+ "locations": {
+  "data/raw/manual/": "empty or absent",
+  "data/raw/dryad_bmdm/": "empty or absent",
+  "LambdaFilesystem (searched to depth 4 for dryad / m0cfxpp8v / 8gtht76q2)": "empty or absent",
+  "gdrive:TiJepa/manual_downloads/": "not checkable: the rclone gdrive remote has no OAuth token"
+ },
+ "policy": "Dryad download pages require a browser (bot check); never bypassed. No Dryad API credentials were supplied. Re-checked once more before H7, then the G-Dryad 'no' branch is taken.",
+ "G_Dryad": "pending final re-check"
+}

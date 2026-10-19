@@ -1,0 +1,376 @@
+{
+  "phase": "F1.2",
+  "code_mapping": {
+    "source_file": "figure4_5plotting.m",
+    "source_lines": {
+      "1": "line 8: lig1 = 1; %100 nM CpG",
+      "2": "line 9: lig2 = 2; %1 ng LPS",
+      "3": "line 148: lig1 = 3; %1000 ng/mL PIC",
+      "6": "line 149: lig2 = 6; %10 ng/mL TNF"
+    },
+    "codes": {
+      "1": "CpG",
+      "2": "LPS",
+      "3": "polyIC",
+      "6": "TNF"
+    },
+    "doses": {
+      "1": "100 nM",
+      "2": "1 ng/ml",
+      "3": "1000 ng/ml",
+      "6": "10 ng/ml"
+    },
+    "status": "sourced_from_deposit_code",
+    "relation_to_v0": "CONFIRMS v0's inference that code 2 = LPS and code 6 = TNF. CORRECTS v0's inference that code 3 = CpG: code 3 is polyI:C and code 1 is CpG. Every analysis in v1 that depends on a ligand name uses this sourced mapping.",
+    "unresolved_codes": "Codes 4, 5, 7, 17, 19, 20 and 21 also occur. The deposit's human-readable condition labels live in `single_cell_features/`, which was NOT deposited, so these are left unresolved rather than guessed. Code 0 marks wells with no priming stimulus (rawtraceprocessing.m writes ligs(1) into column 126). The analyses below use only codes 0 and 2, both of which are resolved."
+  },
+  "column_128": {
+    "script_reading": "rawtraceprocessing.m lines 77-81 set column 128 to 8 when `ligs` contains a repeated value and to 4 otherwise, which reads as a homologous/heterologous flag.",
+    "empirical_test": "The pair (first=0, second=2) occurs with column 128 equal to both 4 and 8, so the column is not a function of ligand identity. Every heterologous pair occurs at both values; homologous pairs occur only at 8.",
+    "conclusion": "Column 128 is the inter-stimulus interval in hours, as v0 assumed. Homologous restimulation was performed only at the 8 h interval, which is why the matched naive-vs-primed comparison is at 8 h."
+  },
+  "files": [
+    {
+      "file": "CPGLPSscrep_traces.mat",
+      "n_cells": 5482,
+      "n_cols": 131,
+      "n_wells": 32,
+      "layout_verified": true,
+      "first_codes": [
+        1.0,
+        19.0
+      ],
+      "second_codes": [
+        2.0,
+        3.0
+      ],
+      "intervals_h": [
+        4.0
+      ]
+    },
+    {
+      "file": "CPGfirst_TNFblock_traces.mat",
+      "n_cells": 19151,
+      "n_cols": 131,
+      "n_wells": 64,
+      "layout_verified": false,
+      "first_codes": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        17.0,
+        19.0,
+        20.0,
+        21.0
+      ],
+      "second_codes": [
+        4.0,
+        5.0,
+        6.0,
+        7.0
+      ],
+      "intervals_h": [
+        4.0
+      ]
+    },
+    {
+      "file": "CpGfirst_IL10block_traces.mat",
+      "n_cells": 17635,
+      "n_cols": 131,
+      "n_wells": 59,
+      "layout_verified": false,
+      "first_codes": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        7.0,
+        17.0,
+        19.0,
+        20.0,
+        21.0
+      ],
+      "second_codes": [
+        4.0,
+        5.0,
+        6.0,
+        7.0
+      ],
+      "intervals_h": [
+        4.0
+      ]
+    },
+    {
+      "file": "PAMIL1first_traces.mat",
+      "n_cells": 16597,
+      "n_cols": 131,
+      "n_wells": 64,
+      "layout_verified": true,
+      "first_codes": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        17.0
+      ],
+      "second_codes": [
+        2.0,
+        5.0,
+        6.0,
+        7.0
+      ],
+      "intervals_h": [
+        4.0,
+        8.0
+      ]
+    },
+    {
+      "file": "PICCPGfirst_traces.mat",
+      "n_cells": 15722,
+      "n_cols": 131,
+      "n_wells": 64,
+      "layout_verified": true,
+      "first_codes": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        17.0
+      ],
+      "second_codes": [
+        2.0,
+        5.0,
+        6.0,
+        7.0
+      ],
+      "intervals_h": [
+        4.0,
+        8.0
+      ]
+    },
+    {
+      "file": "PICTNFscrep_traces.mat",
+      "n_cells": 8908,
+      "n_cols": 131,
+      "n_wells": 31,
+      "layout_verified": true,
+      "first_codes": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        17.0
+      ],
+      "second_codes": [
+        6.0
+      ],
+      "intervals_h": [
+        4.0
+      ]
+    },
+    {
+      "file": "PICfirst_TNFblock_traces.mat",
+      "n_cells": 39639,
+      "n_cols": 131,
+      "n_wells": 159,
+      "layout_verified": false,
+      "first_codes": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        7.0,
+        17.0,
+        19.0,
+        20.0,
+        21.0
+      ],
+      "second_codes": [
+        4.0,
+        5.0,
+        6.0,
+        7.0
+      ],
+      "intervals_h": [
+        4.0
+      ]
+    },
+    {
+      "file": "TNFLPSfirst_traces.mat",
+      "n_cells": 20571,
+      "n_cols": 131,
+      "n_wells": 64,
+      "layout_verified": true,
+      "first_codes": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        7.0,
+        17.0
+      ],
+      "second_codes": [
+        2.0,
+        6.0
+      ],
+      "intervals_h": [
+        4.0,
+        8.0
+      ]
+    },
+    {
+      "file": "sepsis_traces.mat",
+      "status": "no_131_column_matrix",
+      "note": "excluded: metadata columns absent"
+    }
+  ],
+  "lps_to_lps_wells": [
+    {
+      "file": "TNFLPSfirst_traces.mat",
+      "well": 13.0,
+      "replicate": 1.0,
+      "gap_h": 8.0,
+      "n_cells": 368,
+      "first": 2.0,
+      "second": 2.0,
+      "second_peak_amplitude_mean": 1.1977924517954834,
+      "second_peak_amplitude_median": 1.1154122599742204
+    },
+    {
+      "file": "TNFLPSfirst_traces.mat",
+      "well": 45.0,
+      "replicate": 2.0,
+      "gap_h": 8.0,
+      "n_cells": 352,
+      "first": 2.0,
+      "second": 2.0,
+      "second_peak_amplitude_mean": 0.9192521751146385,
+      "second_peak_amplitude_median": 0.8811862738323437
+    }
+  ],
+  "naive_to_lps_wells": [
+    {
+      "file": "PAMIL1first_traces.mat",
+      "well": 29.0,
+      "replicate": 1.0,
+      "gap_h": 4.0,
+      "n_cells": 254,
+      "first": 0.0,
+      "second": 2.0,
+      "second_peak_amplitude_mean": 2.8193194689425205,
+      "second_peak_amplitude_median": 2.6301034449048313
+    },
+    {
+      "file": "PAMIL1first_traces.mat",
+      "well": 61.0,
+      "replicate": 2.0,
+      "gap_h": 4.0,
+      "n_cells": 270,
+      "first": 0.0,
+      "second": 2.0,
+      "second_peak_amplitude_mean": 2.305014047235307,
+      "second_peak_amplitude_median": 2.3275675846833215
+    },
+    {
+      "file": "PICCPGfirst_traces.mat",
+      "well": 29.0,
+      "replicate": 1.0,
+      "gap_h": 4.0,
+      "n_cells": 264,
+      "first": 0.0,
+      "second": 2.0,
+      "second_peak_amplitude_mean": 2.5669175697100894,
+      "second_peak_amplitude_median": 2.615078139296796
+    },
+    {
+      "file": "PICCPGfirst_traces.mat",
+      "well": 61.0,
+      "replicate": 2.0,
+      "gap_h": 4.0,
+      "n_cells": 204,
+      "first": 0.0,
+      "second": 2.0,
+      "second_peak_amplitude_mean": 2.0581297889130155,
+      "second_peak_amplitude_median": 1.7749528421567624
+    },
+    {
+      "file": "TNFLPSfirst_traces.mat",
+      "well": 5.0,
+      "replicate": 1.0,
+      "gap_h": 8.0,
+      "n_cells": 315,
+      "first": 0.0,
+      "second": 2.0,
+      "second_peak_amplitude_mean": 1.4510959691874126,
+      "second_peak_amplitude_median": 1.3916777178564101
+    },
+    {
+      "file": "TNFLPSfirst_traces.mat",
+      "well": 6.0,
+      "replicate": 1.0,
+      "gap_h": 4.0,
+      "n_cells": 296,
+      "first": 0.0,
+      "second": 2.0,
+      "second_peak_amplitude_mean": 1.372276440888311,
+      "second_peak_amplitude_median": 1.4106781250949418
+    },
+    {
+      "file": "TNFLPSfirst_traces.mat",
+      "well": 37.0,
+      "replicate": 2.0,
+      "gap_h": 8.0,
+      "n_cells": 269,
+      "first": 0.0,
+      "second": 2.0,
+      "second_peak_amplitude_mean": 1.328094594270982,
+      "second_peak_amplitude_median": 1.359930711261882
+    },
+    {
+      "file": "TNFLPSfirst_traces.mat",
+      "well": 38.0,
+      "replicate": 2.0,
+      "gap_h": 4.0,
+      "n_cells": 323,
+      "first": 0.0,
+      "second": 2.0,
+      "second_peak_amplitude_mean": 1.169961011595541,
+      "second_peak_amplitude_median": 1.0784095661069315
+    }
+  ],
+  "tolerance_sanity_check": {
+    "test": "PLAN_v1.md F1.2.2: the NF-kB second-response peak amplitude for LPS->LPS must be LOWER than for naive->LPS (acute endotoxin tolerance). Compared at a matched inter-stimulus interval.",
+    "matched_interval_h": [
+      8.0
+    ],
+    "status": "ok",
+    "interval_used_h": 8.0,
+    "n_wells_lps_to_lps": 2,
+    "n_wells_naive_to_lps": 2,
+    "n_cells_lps_to_lps": 720,
+    "n_cells_naive_to_lps": 584,
+    "mean_amplitude_lps_to_lps": 1.058522313455061,
+    "mean_amplitude_naive_to_lps": 1.3895952817291972,
+    "difference": -0.33107296827413624,
+    "cohens_d_well_level": -2.1746081075701937,
+    "direction": "lower in LPS->LPS (tolerance, as expected)",
+    "expected_direction_observed": true,
+    "exact_permutation_n_assignments": 6,
+    "exact_permutation_p_one_sided": 0.16666666666666666,
+    "minimum_achievable_p": 0.16666666666666666,
+    "note": "With 2 wells per group the exact permutation null has only 6 distinct assignments, so no p below 0.167 is achievable. The direction, not the p-value, is the informative quantity here."
+  },
+  "ligand_code_confirmed_by_sanity": true
+}

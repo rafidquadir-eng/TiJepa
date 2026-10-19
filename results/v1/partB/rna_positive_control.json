@@ -1,0 +1,62 @@
+{
+  "status": "ok",
+  "analysis": "GSE260996 RNA-seq, DESeq2, contrast FL (media->LPS) vs FF (media->media)",
+  "criterion": ">= 5 of 7 canonical LPS/NF-kB targets with log2FC > 1.0 and FDR < 0.05",
+  "genes": [
+    {
+      "gene": "Tnf",
+      "log2FC": 6.095594983581608,
+      "padj": 1.5451310465584734e-94,
+      "baseMean": 11561.819823182142,
+      "passes": true
+    },
+    {
+      "gene": "Il1b",
+      "log2FC": 11.187476740882495,
+      "padj": 4.742015647876462e-23,
+      "baseMean": 9274.292304038408,
+      "passes": true
+    },
+    {
+      "gene": "Il6",
+      "log2FC": 9.214581194682605,
+      "padj": 1.8362199822292536e-17,
+      "baseMean": 142.3365355604661,
+      "passes": true
+    },
+    {
+      "gene": "Cxcl2",
+      "log2FC": 7.586398332693276,
+      "padj": 2.4030364210251783e-11,
+      "baseMean": 3532.8057796925495,
+      "passes": true
+    },
+    {
+      "gene": "Ccl4",
+      "log2FC": 4.0666026701540305,
+      "padj": 8.586165091636719e-41,
+      "baseMean": 15124.319666947558,
+      "passes": true
+    },
+    {
+      "gene": "Nfkbia",
+      "log2FC": 3.266872268619875,
+      "padj": 1.1671765657509425e-10,
+      "baseMean": 7046.357096325511,
+      "passes": true
+    },
+    {
+      "gene": "Tnfaip3",
+      "log2FC": 4.276935295402386,
+      "padj": 1.896442415777861e-111,
+      "baseMean": 2425.882187970616,
+      "passes": true
+    }
+  ],
+  "n_passing": 7,
+  "passed": true,
+  "n_de_genes_total": 2757,
+  "n_up": 1440,
+  "n_down": 1317,
+  "consequence": "Part B RNA analyses may report results."
+}

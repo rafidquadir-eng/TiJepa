@@ -1,0 +1,358 @@
+{
+  "generated_utc": "2026-10-16T17:37:43Z",
+  "resolver": "api.crossref.org/works",
+  "n_resolved": 21,
+  "n_todo_verify": 0,
+  "policy": "A DOI that does not resolve stays TODO(verify) and is never presented as verified. No identifier here was invented: each is stated in PLAN_v1.md 10.4, printed on a dataset record used in the run, or returned by Crossref for a reported title query.",
+  "references": {
+    "vjepa": {
+      "cited_for": "V-JEPA, the architecture TiJepa follows. PLAN_v1.md 10.4 records that v0 wrongly listed Assran as first author; the first author is Bardes A.",
+      "arxiv_id": "2404.08471",
+      "status": "arxiv_only",
+      "note": "cited by arXiv id; no journal DOI was looked up because none is stated in PLAN_v1.md 10.4"
+    },
+    "dinov2": {
+      "cited_for": "DINOv2, baseline encoder E3",
+      "arxiv_id": "2304.07193",
+      "status": "arxiv_only",
+      "note": "cited by arXiv id; no journal DOI was looked up because none is stated in PLAN_v1.md 10.4"
+    },
+    "complexeye": {
+      "cited_for": "ComplexEye: the pretraining corpus, and the source of the verified ComplexEye and Leica pixel sizes",
+      "arxiv_id": null,
+      "doi": "10.1038/s41467-023-43765-3",
+      "title": "ComplexEye: a multi-lens array microscope for high-throughput embedded immune cell migration analysis",
+      "first_author": "Z\u00fclal Cibir",
+      "n_authors": 25,
+      "container": "Nature Communications",
+      "year": 2023,
+      "type": "journal-article",
+      "publisher": "Springer Science and Business Media LLC",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "multi-lens",
+        "migration"
+      ],
+      "title_check": "passed"
+    },
+    "phagostat": {
+      "cited_for": "PhagoStat microglia video (considered for the corpus)",
+      "arxiv_id": null,
+      "doi": "10.1038/s41598-024-56081-7",
+      "title": "PhagoStat a scalable and interpretable end to end framework for efficient quantification of cell phagocytosis in neurodegenerative disease studies",
+      "first_author": "Mehdi Ounissi",
+      "n_authors": 3,
+      "container": "Scientific Reports",
+      "year": 2024,
+      "type": "journal-article",
+      "publisher": "Springer Science and Business Media LLC",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "phago"
+      ],
+      "title_check": "passed"
+    },
+    "bbbc": {
+      "cited_for": "the Broad Bioimage Benchmark Collection, which hosts BBBC054",
+      "arxiv_id": null,
+      "doi": "10.1038/nmeth.2083",
+      "title": "Annotated high-throughput microscopy image sets for validation",
+      "first_author": "Vebjorn Ljosa",
+      "n_authors": 3,
+      "container": "Nature Methods",
+      "year": 2012,
+      "type": "journal-article",
+      "publisher": "Springer Science and Business Media LLC",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "annotated high-throughput microscopy"
+      ],
+      "title_check": "passed"
+    },
+    "saeed2014": {
+      "cited_for": "Saeed et al. 2014, the source of GSE58310 (Part B4, Part C 8.2)",
+      "arxiv_id": null,
+      "doi": "10.1126/science.1251086",
+      "title": "Epigenetic programming of monocyte-to-macrophage differentiation and trained innate immunity",
+      "first_author": "Sadia Saeed",
+      "n_authors": 30,
+      "container": "Science",
+      "year": 2014,
+      "type": "journal-article",
+      "publisher": "American Association for the Advancement of Science (AAAS)",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "epigenetic programming",
+        "monocyte"
+      ],
+      "title_check": "passed"
+    },
+    "novakovic2016": {
+      "cited_for": "Novakovic et al. 2016, beta-glucan reverses LPS tolerance",
+      "arxiv_id": null,
+      "doi": "10.1016/j.cell.2016.09.034",
+      "title": "\u03b2-Glucan Reverses the Epigenetic State of LPS-Induced Immunological Tolerance",
+      "first_author": "Boris Novakovic",
+      "n_authors": 26,
+      "container": "Cell",
+      "year": 2016,
+      "type": "journal-article",
+      "publisher": "Elsevier BV",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "glucan",
+        "tolerance"
+      ],
+      "title_check": "passed"
+    },
+    "xue2014": {
+      "cited_for": "Xue et al. 2014, the source of GSE46903 (Part C anchors)",
+      "arxiv_id": null,
+      "doi": "10.1016/j.immuni.2014.01.006",
+      "title": "Transcriptome-Based Network Analysis Reveals a Spectrum Model of Human Macrophage Activation",
+      "first_author": "Jia Xue",
+      "n_authors": 21,
+      "container": "Immunity",
+      "year": 2014,
+      "type": "journal-article",
+      "publisher": "Elsevier BV",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "macrophage activation"
+      ],
+      "title_check": "passed"
+    },
+    "netea2016": {
+      "cited_for": "Netea et al. 2016, the trained-immunity review",
+      "arxiv_id": null,
+      "doi": "10.1126/science.aaf1098",
+      "title": "Trained immunity: A program of innate immune memory in health and disease",
+      "first_author": "Mihai G. Netea",
+      "n_authors": 8,
+      "container": "Science",
+      "year": 2016,
+      "type": "journal-article",
+      "publisher": "American Association for the Advancement of Science (AAAS)",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "trained immunity"
+      ],
+      "title_check": "passed"
+    },
+    "wang2025": {
+      "cited_for": "Wang AG, Son M, et al., Cell Systems 2025: the Tay-lab NF-kB traces, GSE260996 and GSE261647 used throughout Part B. The DOI was obtained from PMC12147866 via the NCBI ID converter (which also gives PMID 39938520), not guessed and not matched by title.",
+      "arxiv_id": null,
+      "doi": "10.1016/j.cels.2025.101171",
+      "title": "Macrophage memory emerges from coordinated transcription factor and chromatin dynamics",
+      "first_author": "Andrew G. Wang",
+      "n_authors": 9,
+      "container": "Cell Systems",
+      "year": 2025,
+      "type": "journal-article",
+      "publisher": "Elsevier BV",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "macrophage",
+        "memory"
+      ],
+      "title_check": "passed"
+    },
+    "limma": {
+      "cited_for": "limma, the method reimplemented in src/tijepa/omics/moderated.py",
+      "arxiv_id": null,
+      "doi": "10.1093/nar/gkv007",
+      "title": "limma powers differential expression analyses for RNA-sequencing and microarray studies",
+      "first_author": "Matthew E. Ritchie",
+      "n_authors": 7,
+      "container": "Nucleic Acids Research",
+      "year": 2015,
+      "type": "journal-article",
+      "publisher": "Oxford University Press (OUP)",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "limma"
+      ],
+      "title_check": "passed"
+    },
+    "deseq2": {
+      "cited_for": "DESeq2, used via pydeseq2 for the mouse RNA contrasts",
+      "arxiv_id": null,
+      "doi": "10.1186/s13059-014-0550-8",
+      "title": "Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2",
+      "first_author": "Michael I Love",
+      "n_authors": 3,
+      "container": "Genome Biology",
+      "year": 2014,
+      "type": "journal-article",
+      "publisher": "Springer Science and Business Media LLC",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "fold change",
+        "dispersion"
+      ],
+      "title_check": "passed"
+    },
+    "cellpose": {
+      "cited_for": "Cellpose: considered for E1 segmentation; not used, see the run report",
+      "arxiv_id": null,
+      "doi": "10.1038/s41592-020-01018-x",
+      "title": "Cellpose: a generalist algorithm for cellular segmentation",
+      "first_author": "Carsen Stringer",
+      "n_authors": 4,
+      "container": "Nature Methods",
+      "year": 2020,
+      "type": "journal-article",
+      "publisher": "Springer Science and Business Media LLC",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "cellpose"
+      ],
+      "title_check": "passed"
+    },
+    "cotracker": {
+      "cited_for": "CoTracker: not run, host unreachable",
+      "arxiv_id": "2307.07635",
+      "status": "arxiv_only",
+      "note": "cited by arXiv id; no journal DOI was looked up because none is stated in PLAN_v1.md 10.4"
+    },
+    "smyth2004": {
+      "cited_for": "Smyth 2004, the empirical-Bayes moderated t-statistic implemented in src/tijepa/omics/moderated.py",
+      "arxiv_id": null,
+      "doi": "10.2202/1544-6115.1027",
+      "title": "Linear Models and Empirical Bayes Methods for Assessing Differential Expression in Microarray Experiments",
+      "first_author": "Gordon K Smyth",
+      "n_authors": 1,
+      "container": "Statistical Applications in Genetics and Molecular Biology",
+      "year": 2004,
+      "type": "journal-article",
+      "publisher": "Walter de Gruyter GmbH",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "linear model",
+        "microarray"
+      ],
+      "title_check": "passed"
+    },
+    "mgi": {
+      "cited_for": "Mouse Genome Informatics, source of the HOM_MouseHumanSequence ortholog table used in B4. PLAN_v1.md 10.4 asked to remove the spurious author 'Blumberg B' that v0 carried, and suggested 10.1093/nar/gkae733; that DOI resolves to an unrelated correction notice, so it was NOT used. The citation here is the MGI system paper (Baldarelli et al., Genetics 2024), checked against the expected title keywords below.",
+      "arxiv_id": null,
+      "doi": "10.1093/genetics/iyae031",
+      "title": "Mouse Genome Informatics: an integrated knowledgebase system for the laboratory mouse",
+      "first_author": "Richard M Baldarelli",
+      "n_authors": 38,
+      "container": "GENETICS",
+      "year": 2024,
+      "type": "journal-article",
+      "publisher": "Oxford University Press (OUP)",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "mouse genome informatics"
+      ],
+      "title_check": "passed"
+    },
+    "trackpy": {
+      "cited_for": "trackpy, used for detection linking in preprocessing",
+      "arxiv_id": null,
+      "doi": "10.5281/zenodo.1226458",
+      "title": "trackpy: Trackpy v0.4.1",
+      "first_author": "Allan, Daniel B.",
+      "n_authors": 4,
+      "container": "Zenodo",
+      "year": 2018,
+      "type": "Software",
+      "status": "resolved",
+      "resolved_via": "datacite DOI lookup (repository DOI)",
+      "title_keywords_expected": [
+        "trackpy"
+      ],
+      "title_check": "passed"
+    },
+    "scikit_image": {
+      "cited_for": "scikit-image, used for segmentation and texture features",
+      "arxiv_id": null,
+      "doi": "10.7717/peerj.453",
+      "title": "scikit-image: image processing in Python",
+      "first_author": "St\u00e9fan van der Walt",
+      "n_authors": 8,
+      "container": "PeerJ",
+      "year": 2014,
+      "type": "journal-article",
+      "publisher": "PeerJ",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "scikit-image"
+      ],
+      "title_check": "passed"
+    },
+    "ferreira2023": {
+      "cited_for": "Ferreira et al. 2023, the source of GSE212282 (GEO Series_pubmed_id 37330914) and of the sourced Part C expectations",
+      "arxiv_id": null,
+      "doi": "10.1016/j.celrep.2023.112658",
+      "title": "Dimethyl itaconate induces long-term innate immune responses and confers protection against infection",
+      "first_author": "Ana\u00edsa V. Ferreira",
+      "n_authors": 23,
+      "container": "Cell Reports",
+      "year": 2023,
+      "type": "journal-article",
+      "publisher": "Elsevier BV",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "dimethyl itaconate",
+        "innate immune"
+      ],
+      "title_check": "passed"
+    },
+    "schrijver2023": {
+      "cited_for": "Schrijver, Roring et al. 2023, the source of GSE185433 (GEO Series_pubmed_id 37291433) and of the sourced IL-4 expectation",
+      "arxiv_id": null,
+      "doi": "10.1038/s41551-023-01050-0",
+      "title": "Resolving sepsis-induced immunoparalysis via trained immunity by targeting interleukin-4 to myeloid cells",
+      "first_author": "David P. Schrijver",
+      "n_authors": 32,
+      "container": "Nature Biomedical Engineering",
+      "year": 2023,
+      "type": "journal-article",
+      "publisher": "Springer Science and Business Media LLC",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "immunoparalysis",
+        "interleukin-4"
+      ],
+      "title_check": "passed"
+    },
+    "pydeseq2": {
+      "cited_for": "PyDESeq2, used for the B4 interaction model",
+      "arxiv_id": null,
+      "doi": "10.1093/bioinformatics/btad547",
+      "title": "PyDESeq2: a python package for bulk RNA-seq differential expression analysis",
+      "first_author": "Boris Muzellec",
+      "n_authors": 4,
+      "container": "Bioinformatics",
+      "year": 2023,
+      "type": "journal-article",
+      "publisher": "Oxford University Press (OUP)",
+      "status": "resolved",
+      "resolved_via": "crossref DOI lookup",
+      "title_keywords_expected": [
+        "pydeseq2"
+      ],
+      "title_check": "passed"
+    }
+  }
+}

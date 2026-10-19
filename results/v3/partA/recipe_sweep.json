@@ -1,0 +1,987 @@
+{
+ "phase": "PLAN_v3 H3.3",
+ "variants": {
+  "S0": {
+   "description": "baseline (TiJepa-1 recipe, 20k-step schedule)",
+   "overrides": {},
+   "snapshots": {
+    "5000": {
+     "validation_score": 0.3578905811570311,
+     "ci95_over_movies": [
+      0.3324427947188604,
+      0.3831866430293863
+     ],
+     "per_gap": {
+      "3": 0.3899164461546115,
+      "9": 0.36488227792040584,
+      "27": 0.31887301939607615
+     },
+     "effective_rank": 21.546610931737654,
+     "sha256": "e29b0452a8e3498f04186df47ab4cf4c7c5b4e697ea9e28cc4073aae8f76de13"
+    },
+    "10000": {
+     "validation_score": 0.3562481824020095,
+     "ci95_over_movies": [
+      0.3309278413822338,
+      0.3830911363015242
+     ],
+     "per_gap": {
+      "3": 0.388737757462291,
+      "9": 0.36527487592600794,
+      "27": 0.31473191381772947
+     },
+     "effective_rank": 39.27180477617696,
+     "sha256": "f1ea3241ae3b27ac93121fdafe0a9dc1d6439ae6456ce69492edcc4693ac85d8"
+    },
+    "15000": {
+     "validation_score": 0.36497259907954305,
+     "ci95_over_movies": [
+      0.341860183258248,
+      0.3902796644130413
+     ],
+     "per_gap": {
+      "3": 0.38969574312600075,
+      "9": 0.369949998166378,
+      "27": 0.3352720559462502
+     },
+     "effective_rank": 44.92358194861827,
+     "sha256": "5f2b9df1eb509aa3828ebfa1aff5001e3f478d9ff822336f60aa936d719cf715"
+    },
+    "20000": {
+     "validation_score": 0.35909109581408283,
+     "ci95_over_movies": [
+      0.33545860218908446,
+      0.3852443736466687
+     ],
+     "per_gap": {
+      "3": 0.3887304800684439,
+      "9": 0.3612144982739691,
+      "27": 0.32732830909983546
+     },
+     "effective_rank": 45.19062021091573,
+     "sha256": "f03238b7fd81c411fa9dd231d70ece5e8bbab9b04b2c2323ebae88d121d377ec"
+    }
+   },
+   "summary": {
+    "run_name": "sweep_S0",
+    "objective": "mixed masking: future mask with probability 0.5 (last 2 temporal slots as targets), spatial tube mask otherwise",
+    "mask_kind_counts_this_segment": {
+     "spatial": 10016,
+     "future": 9984
+    },
+    "final_loss_spatial_last500": 0.3570922101140022,
+    "final_loss_future_last500": 0.3635384259223938,
+    "shards_frozen_at_start": [
+     "pretrain_shard_0000.npy",
+     "pretrain_shard_0001.npy",
+     "pretrain_shard_0002.npy",
+     "pretrain_shard_0003.npy",
+     "pretrain_shard_0004.npy",
+     "pretrain_shard_0005.npy",
+     "pretrain_shard_0006.npy",
+     "pretrain_shard_0007.npy",
+     "pretrain_shard_0008.npy",
+     "pretrain_shard_0009.npy",
+     "pretrain_shard_0010.npy",
+     "pretrain_shard_0011.npy",
+     "pretrain_shard_0012.npy",
+     "pretrain_shard_0013.npy",
+     "pretrain_shard_0014.npy",
+     "pretrain_shard_0015.npy",
+     "pretrain_shard_0016.npy",
+     "pretrain_shard_0017.npy",
+     "pretrain_shard_0018.npy",
+     "pretrain_shard_0019.npy",
+     "pretrain_shard_0020.npy",
+     "pretrain_shard_0021.npy",
+     "pretrain_shard_0022.npy",
+     "pretrain_shard_0023.npy",
+     "pretrain_shard_0024.npy",
+     "pretrain_shard_0025.npy",
+     "pretrain_shard_0026.npy",
+     "pretrain_shard_0027.npy",
+     "pretrain_shard_0028.npy",
+     "pretrain_shard_0029.npy",
+     "pretrain_shard_0030.npy",
+     "pretrain_shard_0031.npy",
+     "pretrain_shard_0032.npy",
+     "pretrain_shard_0033.npy",
+     "pretrain_shard_0034.npy",
+     "pretrain_shard_0035.npy",
+     "pretrain_shard_0036.npy",
+     "pretrain_shard_0037.npy",
+     "pretrain_shard_0038.npy",
+     "pretrain_shard_0039.npy",
+     "pretrain_shard_0040.npy",
+     "pretrain_shard_0041.npy",
+     "pretrain_shard_0042.npy"
+    ],
+    "steps": 20000,
+    "planned_final_step": 20000,
+    "annealed": true,
+    "final_lr": 0.0,
+    "final_ema_momentum": 1.0,
+    "clips_seen": 2560000,
+    "n_clips_in_corpus": 279647,
+    "n_shards": 43,
+    "effective_epochs": 9.15,
+    "final_loss_mean_last500": 0.3608635739684105,
+    "gpu_seconds_total": 12307.9,
+    "wall_seconds_total": 12312.3,
+    "steps_total": 20000,
+    "gpu_hours": 3.419,
+    "segments": [
+     {
+      "host": "132-145-134-44",
+      "gpu_name": "NVIDIA A100-SXM4-40GB",
+      "torch_version": "2.11.0+cu128",
+      "start_step": 0,
+      "start_utc": "2026-10-19T02:58:23Z",
+      "end_step": 20000,
+      "seconds": 12312.3,
+      "gpu_seconds": 12307.9,
+      "end_utc": "2026-10-19T06:23:31Z"
+     }
+    ],
+    "resume": null,
+    "stop_reason": "max_steps",
+    "checkpoint": "sweep_S0_T1_seed0.pt",
+    "log_csv": "pretrain_log_sweep_S0_seed0.csv",
+    "config": {
+     "shard_dir": "/home/ubuntu/proj2/data/processed/v1",
+     "out_dir": "/home/ubuntu/proj2/checkpoints/sweep",
+     "clip_frames": 16,
+     "clip_size": 96,
+     "batch_size": 128,
+     "lr": 0.00015,
+     "min_lr": 0.0,
+     "weight_decay": 0.05,
+     "warmup_steps": 500,
+     "max_steps": 20000,
+     "max_hours": 8.0,
+     "ema_start": 0.996,
+     "ema_end": 1.0,
+     "mask_blocks": 8,
+     "p_future": 0.5,
+     "n_future_slots": 2,
+     "context_spatial_mask": 0.0,
+     "run_name": "sweep_S0",
+     "seed": 0,
+     "num_workers": 28,
+     "log_every": 50,
+     "ckpt_minutes": 30.0,
+     "amp_dtype": "bfloat16",
+     "model_dim": 384,
+     "model_depth": 12,
+     "model_heads": 6,
+     "pred_dim": 192,
+     "pred_depth": 6,
+     "prior_segments_if_missing": [],
+     "dry_run": false,
+     "snapshot_every": 5000,
+     "vicreg_var": 0.0,
+     "vicreg_cov": 0.0,
+     "grad_accum": 1,
+     "future_strides": []
+    },
+    "device": "NVIDIA A100-SXM4-40GB",
+    "torch_version": "2.11.0+cu128"
+   }
+  },
+  "S1": {
+   "description": "EMA 0.996 -> 0.9995",
+   "overrides": {
+    "ema_end": 0.9995
+   },
+   "snapshots": {
+    "5000": {
+     "validation_score": 0.3708561807387975,
+     "ci95_over_movies": [
+      0.3456563619454397,
+      0.397476019031889
+     ],
+     "per_gap": {
+      "3": 0.40121869099633267,
+      "9": 0.37607946073519904,
+      "27": 0.3352703904848608
+     },
+     "effective_rank": 21.420934895665045,
+     "sha256": "e9061259f6cb9f543031b9c49ec30eea5138a236820b405ecd1539f11f2cfb64"
+    },
+    "10000": {
+     "validation_score": 0.39369426699638843,
+     "ci95_over_movies": [
+      0.36608850956822664,
+      0.4219003500790921
+     ],
+     "per_gap": {
+      "3": 0.4253447370654769,
+      "9": 0.39430139919425067,
+      "27": 0.3614366647294377
+     },
+     "effective_rank": 35.36197235616147,
+     "sha256": "cd97347e9ebf1bec565e05b87cb85c2fea9abdebbd9411aedbf2cd8486227a07"
+    },
+    "15000": {
+     "validation_score": 0.37739050017161774,
+     "ci95_over_movies": [
+      0.3515332670016627,
+      0.4063301936975469
+     ],
+     "per_gap": {
+      "3": 0.4204325300174532,
+      "9": 0.3796109819037684,
+      "27": 0.3321279885936317
+     },
+     "effective_rank": 43.74799231859316,
+     "sha256": "a92ccbc543d3d84123cd0d1c90fd16d4ddd5a19f91a1f2b2fcaeac9c0db3c932"
+    },
+    "20000": {
+     "validation_score": 0.3699629508350617,
+     "ci95_over_movies": [
+      0.34397409891108605,
+      0.3972023902054374
+     ],
+     "per_gap": {
+      "3": 0.4068969223848671,
+      "9": 0.3663595947147107,
+      "27": 0.3366323354056072
+     },
+     "effective_rank": 44.50053550787724,
+     "sha256": "cbcf7eec99b0ba4d6247b65239ec5daa9c26eceac4ddfe919ecc1e0c4f68ff79"
+    }
+   },
+   "summary": {
+    "run_name": "sweep_S1",
+    "objective": "mixed masking: future mask with probability 0.5 (last 2 temporal slots as targets), spatial tube mask otherwise",
+    "mask_kind_counts_this_segment": {
+     "spatial": 10016,
+     "future": 9984
+    },
+    "final_loss_spatial_last500": 0.36113914906978606,
+    "final_loss_future_last500": 0.3809922327399254,
+    "shards_frozen_at_start": [
+     "pretrain_shard_0000.npy",
+     "pretrain_shard_0001.npy",
+     "pretrain_shard_0002.npy",
+     "pretrain_shard_0003.npy",
+     "pretrain_shard_0004.npy",
+     "pretrain_shard_0005.npy",
+     "pretrain_shard_0006.npy",
+     "pretrain_shard_0007.npy",
+     "pretrain_shard_0008.npy",
+     "pretrain_shard_0009.npy",
+     "pretrain_shard_0010.npy",
+     "pretrain_shard_0011.npy",
+     "pretrain_shard_0012.npy",
+     "pretrain_shard_0013.npy",
+     "pretrain_shard_0014.npy",
+     "pretrain_shard_0015.npy",
+     "pretrain_shard_0016.npy",
+     "pretrain_shard_0017.npy",
+     "pretrain_shard_0018.npy",
+     "pretrain_shard_0019.npy",
+     "pretrain_shard_0020.npy",
+     "pretrain_shard_0021.npy",
+     "pretrain_shard_0022.npy",
+     "pretrain_shard_0023.npy",
+     "pretrain_shard_0024.npy",
+     "pretrain_shard_0025.npy",
+     "pretrain_shard_0026.npy",
+     "pretrain_shard_0027.npy",
+     "pretrain_shard_0028.npy",
+     "pretrain_shard_0029.npy",
+     "pretrain_shard_0030.npy",
+     "pretrain_shard_0031.npy",
+     "pretrain_shard_0032.npy",
+     "pretrain_shard_0033.npy",
+     "pretrain_shard_0034.npy",
+     "pretrain_shard_0035.npy",
+     "pretrain_shard_0036.npy",
+     "pretrain_shard_0037.npy",
+     "pretrain_shard_0038.npy",
+     "pretrain_shard_0039.npy",
+     "pretrain_shard_0040.npy",
+     "pretrain_shard_0041.npy",
+     "pretrain_shard_0042.npy"
+    ],
+    "steps": 20000,
+    "planned_final_step": 20000,
+    "annealed": true,
+    "final_lr": 0.0,
+    "final_ema_momentum": 0.9995,
+    "clips_seen": 2560000,
+    "n_clips_in_corpus": 279647,
+    "n_shards": 43,
+    "effective_epochs": 9.15,
+    "final_loss_mean_last500": 0.37192025262117384,
+    "gpu_seconds_total": 7149.2,
+    "wall_seconds_total": 7151.8,
+    "steps_total": 20000,
+    "gpu_hours": 1.986,
+    "segments": [
+     {
+      "host": "132-145-134-44",
+      "gpu_name": "NVIDIA A100-SXM4-40GB",
+      "torch_version": "2.11.0+cu128",
+      "start_step": 0,
+      "start_utc": "2026-10-19T06:23:35Z",
+      "end_step": 20000,
+      "seconds": 7151.8,
+      "gpu_seconds": 7149.2,
+      "end_utc": "2026-10-19T08:22:44Z"
+     }
+    ],
+    "resume": null,
+    "stop_reason": "max_steps",
+    "checkpoint": "sweep_S1_T1_seed0.pt",
+    "log_csv": "pretrain_log_sweep_S1_seed0.csv",
+    "config": {
+     "shard_dir": "/home/ubuntu/proj2/data/processed/v1",
+     "out_dir": "/home/ubuntu/proj2/checkpoints/sweep",
+     "clip_frames": 16,
+     "clip_size": 96,
+     "batch_size": 128,
+     "lr": 0.00015,
+     "min_lr": 0.0,
+     "weight_decay": 0.05,
+     "warmup_steps": 500,
+     "max_steps": 20000,
+     "max_hours": 8.0,
+     "ema_start": 0.996,
+     "ema_end": 0.9995,
+     "mask_blocks": 8,
+     "p_future": 0.5,
+     "n_future_slots": 2,
+     "context_spatial_mask": 0.0,
+     "run_name": "sweep_S1",
+     "seed": 0,
+     "num_workers": 28,
+     "log_every": 50,
+     "ckpt_minutes": 30.0,
+     "amp_dtype": "bfloat16",
+     "model_dim": 384,
+     "model_depth": 12,
+     "model_heads": 6,
+     "pred_dim": 192,
+     "pred_depth": 6,
+     "prior_segments_if_missing": [],
+     "dry_run": false,
+     "snapshot_every": 5000,
+     "vicreg_var": 0.0,
+     "vicreg_cov": 0.0,
+     "grad_accum": 1,
+     "future_strides": []
+    },
+    "device": "NVIDIA A100-SXM4-40GB",
+    "torch_version": "2.11.0+cu128"
+   }
+  },
+  "S2": {
+   "description": "VICReg on predictor outputs (var 0.04, cov 0.001)",
+   "overrides": {
+    "vicreg_var": 0.04,
+    "vicreg_cov": 0.001
+   },
+   "snapshots": {
+    "5000": {
+     "validation_score": 0.35411508925548363,
+     "ci95_over_movies": [
+      0.32834751670187845,
+      0.3811783079532706
+     ],
+     "per_gap": {
+      "3": 0.38300802330286154,
+      "9": 0.3693130793258736,
+      "27": 0.3100241651377158
+     },
+     "effective_rank": 20.632862623447796,
+     "sha256": "8e5cbde06c224430c9f1ed598a6f51d3b865918e88484509bf90e309b70337ff"
+    },
+    "10000": {
+     "validation_score": 0.3838772686791214,
+     "ci95_over_movies": [
+      0.35923720121164515,
+      0.40906008819612916
+     ],
+     "per_gap": {
+      "3": 0.4151482918142197,
+      "9": 0.3924432493097635,
+      "27": 0.34404026491338113
+     },
+     "effective_rank": 38.605828220211386,
+     "sha256": "202fe4db7553af1e32096f07b5e73df6b0f3c8138dd4c5a0154ae64fe75a412b"
+    },
+    "15000": {
+     "validation_score": 0.3877237450126849,
+     "ci95_over_movies": [
+      0.363090962293522,
+      0.41409008079216275
+     ],
+     "per_gap": {
+      "3": 0.4270664368412706,
+      "9": 0.3931885499496721,
+      "27": 0.3429162482471119
+     },
+     "effective_rank": 45.328511519704875,
+     "sha256": "d115567e811af45240a425e8283f7cabf18cde6f296ea5c76357a5ca55ce12a4"
+    },
+    "20000": {
+     "validation_score": 0.3771418322868654,
+     "ci95_over_movies": [
+      0.35118230730860944,
+      0.40404550228861075
+     ],
+     "per_gap": {
+      "3": 0.4098762561514249,
+      "9": 0.38471644343466904,
+      "27": 0.3368327972745021
+     },
+     "effective_rank": 45.94512611368073,
+     "sha256": "30c12fd17110a15a78717cf1c592e9580dc5b61a5280292733d018233be2a2d2"
+    }
+   },
+   "summary": {
+    "run_name": "sweep_S2",
+    "objective": "mixed masking: future mask with probability 0.5 (last 2 temporal slots as targets), spatial tube mask otherwise",
+    "mask_kind_counts_this_segment": {
+     "spatial": 10016,
+     "future": 9984
+    },
+    "final_loss_spatial_last500": 0.35877370047569274,
+    "final_loss_future_last500": 0.36713629376888274,
+    "shards_frozen_at_start": [
+     "pretrain_shard_0000.npy",
+     "pretrain_shard_0001.npy",
+     "pretrain_shard_0002.npy",
+     "pretrain_shard_0003.npy",
+     "pretrain_shard_0004.npy",
+     "pretrain_shard_0005.npy",
+     "pretrain_shard_0006.npy",
+     "pretrain_shard_0007.npy",
+     "pretrain_shard_0008.npy",
+     "pretrain_shard_0009.npy",
+     "pretrain_shard_0010.npy",
+     "pretrain_shard_0011.npy",
+     "pretrain_shard_0012.npy",
+     "pretrain_shard_0013.npy",
+     "pretrain_shard_0014.npy",
+     "pretrain_shard_0015.npy",
+     "pretrain_shard_0016.npy",
+     "pretrain_shard_0017.npy",
+     "pretrain_shard_0018.npy",
+     "pretrain_shard_0019.npy",
+     "pretrain_shard_0020.npy",
+     "pretrain_shard_0021.npy",
+     "pretrain_shard_0022.npy",
+     "pretrain_shard_0023.npy",
+     "pretrain_shard_0024.npy",
+     "pretrain_shard_0025.npy",
+     "pretrain_shard_0026.npy",
+     "pretrain_shard_0027.npy",
+     "pretrain_shard_0028.npy",
+     "pretrain_shard_0029.npy",
+     "pretrain_shard_0030.npy",
+     "pretrain_shard_0031.npy",
+     "pretrain_shard_0032.npy",
+     "pretrain_shard_0033.npy",
+     "pretrain_shard_0034.npy",
+     "pretrain_shard_0035.npy",
+     "pretrain_shard_0036.npy",
+     "pretrain_shard_0037.npy",
+     "pretrain_shard_0038.npy",
+     "pretrain_shard_0039.npy",
+     "pretrain_shard_0040.npy",
+     "pretrain_shard_0041.npy",
+     "pretrain_shard_0042.npy"
+    ],
+    "steps": 20000,
+    "planned_final_step": 20000,
+    "annealed": true,
+    "final_lr": 0.0,
+    "final_ema_momentum": 1.0,
+    "clips_seen": 2560000,
+    "n_clips_in_corpus": 279647,
+    "n_shards": 43,
+    "effective_epochs": 9.15,
+    "final_loss_mean_last500": 0.36340516275167467,
+    "gpu_seconds_total": 7234.6,
+    "wall_seconds_total": 7235.2,
+    "steps_total": 20000,
+    "gpu_hours": 2.01,
+    "segments": [
+     {
+      "host": "132-145-134-44",
+      "gpu_name": "NVIDIA A100-SXM4-40GB",
+      "torch_version": "2.11.0+cu128",
+      "start_step": 0,
+      "start_utc": "2026-10-19T08:22:45Z",
+      "end_step": 20000,
+      "seconds": 7235.2,
+      "gpu_seconds": 7234.6,
+      "end_utc": "2026-10-19T10:23:20Z"
+     }
+    ],
+    "resume": null,
+    "stop_reason": "max_steps",
+    "checkpoint": "sweep_S2_T1_seed0.pt",
+    "log_csv": "pretrain_log_sweep_S2_seed0.csv",
+    "config": {
+     "shard_dir": "/home/ubuntu/proj2/data/processed/v1",
+     "out_dir": "/home/ubuntu/proj2/checkpoints/sweep",
+     "clip_frames": 16,
+     "clip_size": 96,
+     "batch_size": 128,
+     "lr": 0.00015,
+     "min_lr": 0.0,
+     "weight_decay": 0.05,
+     "warmup_steps": 500,
+     "max_steps": 20000,
+     "max_hours": 8.0,
+     "ema_start": 0.996,
+     "ema_end": 1.0,
+     "mask_blocks": 8,
+     "p_future": 0.5,
+     "n_future_slots": 2,
+     "context_spatial_mask": 0.0,
+     "run_name": "sweep_S2",
+     "seed": 0,
+     "num_workers": 28,
+     "log_every": 50,
+     "ckpt_minutes": 30.0,
+     "amp_dtype": "bfloat16",
+     "model_dim": 384,
+     "model_depth": 12,
+     "model_heads": 6,
+     "pred_dim": 192,
+     "pred_depth": 6,
+     "prior_segments_if_missing": [],
+     "dry_run": false,
+     "snapshot_every": 5000,
+     "vicreg_var": 0.04,
+     "vicreg_cov": 0.001,
+     "grad_accum": 1,
+     "future_strides": []
+    },
+    "device": "NVIDIA A100-SXM4-40GB",
+    "torch_version": "2.11.0+cu128"
+   }
+  },
+  "S3": {
+   "description": "batch 256 (2 x 128 accumulated), LR 3e-4",
+   "overrides": {
+    "grad_accum": 2,
+    "lr": 0.0003
+   },
+   "snapshots": {
+    "5000": {
+     "validation_score": 0.4240640615728667,
+     "ci95_over_movies": [
+      0.3976297165175257,
+      0.4526212516464198
+     ],
+     "per_gap": {
+      "3": 0.4651050003878131,
+      "9": 0.4395245093082061,
+      "27": 0.3675626750225809
+     },
+     "effective_rank": 29.096952710061657,
+     "sha256": "cc9b5684688af77ba2547c5fd7d60fdf81025c4892a7bd2c14f08ff40f493e30"
+    },
+    "10000": {
+     "validation_score": 0.38521057450422747,
+     "ci95_over_movies": [
+      0.3595280581500652,
+      0.4133964589578363
+     ],
+     "per_gap": {
+      "3": 0.4070858068427826,
+      "9": 0.39743133254667695,
+      "27": 0.3511145841232227
+     },
+     "effective_rank": 50.65906763176847,
+     "sha256": "31238808d7cf9d380f0d3331d5376b9ae14b81073ca4595b13ba6f8701a85ccb"
+    },
+    "15000": {
+     "validation_score": 0.3580599723005102,
+     "ci95_over_movies": [
+      0.3338241593721429,
+      0.3840255586533825
+     ],
+     "per_gap": {
+      "3": 0.38955001785113974,
+      "9": 0.36461372562601113,
+      "27": 0.3200161734243798
+     },
+     "effective_rank": 58.17348899899476,
+     "sha256": "ef5efb3941e4d376322e99effbf5bdd9479e6b52ee525ac2790c782b549611cb"
+    },
+    "20000": {
+     "validation_score": 0.3655824850992942,
+     "ci95_over_movies": [
+      0.3407661367814741,
+      0.39229079802763983
+     ],
+     "per_gap": {
+      "3": 0.4014743417235149,
+      "9": 0.38157588735371717,
+      "27": 0.31369722622065055
+     },
+     "effective_rank": 57.8246180630537,
+     "sha256": "29014382f79074993f2639637618d5e92068aa1ae46e586284e89cee7a84de52"
+    }
+   },
+   "summary": {
+    "run_name": "sweep_S3",
+    "objective": "mixed masking: future mask with probability 0.5 (last 2 temporal slots as targets), spatial tube mask otherwise",
+    "mask_kind_counts_this_segment": {
+     "spatial": 10016,
+     "future": 9984
+    },
+    "final_loss_spatial_last500": 0.36693385043740273,
+    "final_loss_future_last500": 0.3815483948290348,
+    "shards_frozen_at_start": [
+     "pretrain_shard_0000.npy",
+     "pretrain_shard_0001.npy",
+     "pretrain_shard_0002.npy",
+     "pretrain_shard_0003.npy",
+     "pretrain_shard_0004.npy",
+     "pretrain_shard_0005.npy",
+     "pretrain_shard_0006.npy",
+     "pretrain_shard_0007.npy",
+     "pretrain_shard_0008.npy",
+     "pretrain_shard_0009.npy",
+     "pretrain_shard_0010.npy",
+     "pretrain_shard_0011.npy",
+     "pretrain_shard_0012.npy",
+     "pretrain_shard_0013.npy",
+     "pretrain_shard_0014.npy",
+     "pretrain_shard_0015.npy",
+     "pretrain_shard_0016.npy",
+     "pretrain_shard_0017.npy",
+     "pretrain_shard_0018.npy",
+     "pretrain_shard_0019.npy",
+     "pretrain_shard_0020.npy",
+     "pretrain_shard_0021.npy",
+     "pretrain_shard_0022.npy",
+     "pretrain_shard_0023.npy",
+     "pretrain_shard_0024.npy",
+     "pretrain_shard_0025.npy",
+     "pretrain_shard_0026.npy",
+     "pretrain_shard_0027.npy",
+     "pretrain_shard_0028.npy",
+     "pretrain_shard_0029.npy",
+     "pretrain_shard_0030.npy",
+     "pretrain_shard_0031.npy",
+     "pretrain_shard_0032.npy",
+     "pretrain_shard_0033.npy",
+     "pretrain_shard_0034.npy",
+     "pretrain_shard_0035.npy",
+     "pretrain_shard_0036.npy",
+     "pretrain_shard_0037.npy",
+     "pretrain_shard_0038.npy",
+     "pretrain_shard_0039.npy",
+     "pretrain_shard_0040.npy",
+     "pretrain_shard_0041.npy",
+     "pretrain_shard_0042.npy"
+    ],
+    "steps": 20000,
+    "planned_final_step": 20000,
+    "annealed": true,
+    "final_lr": 0.0,
+    "final_ema_momentum": 1.0,
+    "clips_seen": 5120000,
+    "n_clips_in_corpus": 279647,
+    "n_shards": 43,
+    "effective_epochs": 9.15,
+    "final_loss_mean_last500": 0.37516180929541587,
+    "gpu_seconds_total": 14087.5,
+    "wall_seconds_total": 14088.0,
+    "steps_total": 20000,
+    "gpu_hours": 3.913,
+    "segments": [
+     {
+      "host": "132-145-134-44",
+      "gpu_name": "NVIDIA A100-SXM4-40GB",
+      "torch_version": "2.11.0+cu128",
+      "start_step": 0,
+      "start_utc": "2026-10-19T10:23:21Z",
+      "end_step": 20000,
+      "seconds": 14088.0,
+      "gpu_seconds": 14087.5,
+      "end_utc": "2026-10-19T14:18:08Z"
+     }
+    ],
+    "resume": null,
+    "stop_reason": "max_steps",
+    "checkpoint": "sweep_S3_T1_seed0.pt",
+    "log_csv": "pretrain_log_sweep_S3_seed0.csv",
+    "config": {
+     "shard_dir": "/home/ubuntu/proj2/data/processed/v1",
+     "out_dir": "/home/ubuntu/proj2/checkpoints/sweep",
+     "clip_frames": 16,
+     "clip_size": 96,
+     "batch_size": 128,
+     "lr": 0.0003,
+     "min_lr": 0.0,
+     "weight_decay": 0.05,
+     "warmup_steps": 500,
+     "max_steps": 20000,
+     "max_hours": 8.0,
+     "ema_start": 0.996,
+     "ema_end": 1.0,
+     "mask_blocks": 8,
+     "p_future": 0.5,
+     "n_future_slots": 2,
+     "context_spatial_mask": 0.0,
+     "run_name": "sweep_S3",
+     "seed": 0,
+     "num_workers": 28,
+     "log_every": 50,
+     "ckpt_minutes": 30.0,
+     "amp_dtype": "bfloat16",
+     "model_dim": 384,
+     "model_depth": 12,
+     "model_heads": 6,
+     "pred_dim": 192,
+     "pred_depth": 6,
+     "prior_segments_if_missing": [],
+     "dry_run": false,
+     "snapshot_every": 5000,
+     "vicreg_var": 0.0,
+     "vicreg_cov": 0.0,
+     "grad_accum": 2,
+     "future_strides": []
+    },
+    "device": "NVIDIA A100-SXM4-40GB",
+    "torch_version": "2.11.0+cu128"
+   }
+  },
+  "S4": {
+   "description": "future targets from stride-9/27 clips; predictor depth 8",
+   "overrides": {
+    "future_strides": [
+     9,
+     27
+    ],
+    "pred_depth": 8
+   },
+   "snapshots": {
+    "5000": {
+     "validation_score": 0.3723054075962433,
+     "ci95_over_movies": [
+      0.348402186519011,
+      0.39468084243458834
+     ],
+     "per_gap": {
+      "3": 0.4045436292688652,
+      "9": 0.3862057178675413,
+      "27": 0.3261668756523233
+     },
+     "effective_rank": 21.784390799140404,
+     "sha256": "83e2dbe06242244bd5715bf43ede1eac00e8959ff55c6c9c8daa67a4b07de82c"
+    },
+    "10000": {
+     "validation_score": 0.3698800966480764,
+     "ci95_over_movies": [
+      0.3455312823355844,
+      0.3959751475569852
+     ],
+     "per_gap": {
+      "3": 0.38673306346295744,
+      "9": 0.3938462979243517,
+      "27": 0.32906092855691993
+     },
+     "effective_rank": 46.811697744173344,
+     "sha256": "6a140f6a7d9d902286686607c7f0e9b5d7610c7ad98f27636f1183986715eed2"
+    },
+    "15000": {
+     "validation_score": 0.35687598015401245,
+     "ci95_over_movies": [
+      0.3334381532782595,
+      0.38290039401550485
+     ],
+     "per_gap": {
+      "3": 0.37763875861222074,
+      "9": 0.36964535110621355,
+      "27": 0.3233438307436032
+     },
+     "effective_rank": 57.512387060900494,
+     "sha256": "a447aa7b0a9c898faed09519dbb874e21c6ce38625033690d48574dc0420b3d5"
+    },
+    "20000": {
+     "validation_score": 0.3485332480601146,
+     "ci95_over_movies": [
+      0.3222116161169962,
+      0.3764444160811265
+     ],
+     "per_gap": {
+      "3": 0.3679635988259645,
+      "9": 0.36650056787698937,
+      "27": 0.3111355774773899
+     },
+     "effective_rank": 59.40017636880956,
+     "sha256": "d44216a99b1d019a81553c7fa61f28be9f1d087c937065e1808680889a677b8c"
+    }
+   },
+   "summary": {
+    "run_name": "sweep_S4",
+    "objective": "mixed masking: future mask with probability 0.5 (last 2 temporal slots as targets), spatial tube mask otherwise",
+    "mask_kind_counts_this_segment": {
+     "spatial": 10016,
+     "future": 9984
+    },
+    "final_loss_spatial_last500": 0.42510109412670133,
+    "final_loss_future_last500": 0.3700024653077126,
+    "shards_frozen_at_start": [
+     "pretrain_shard_0000.npy",
+     "pretrain_shard_0001.npy",
+     "pretrain_shard_0002.npy",
+     "pretrain_shard_0003.npy",
+     "pretrain_shard_0004.npy",
+     "pretrain_shard_0005.npy",
+     "pretrain_shard_0006.npy",
+     "pretrain_shard_0007.npy",
+     "pretrain_shard_0008.npy",
+     "pretrain_shard_0009.npy",
+     "pretrain_shard_0010.npy",
+     "pretrain_shard_0011.npy",
+     "pretrain_shard_0012.npy",
+     "pretrain_shard_0013.npy",
+     "pretrain_shard_0014.npy",
+     "pretrain_shard_0015.npy",
+     "pretrain_shard_0016.npy",
+     "pretrain_shard_0017.npy",
+     "pretrain_shard_0018.npy",
+     "pretrain_shard_0019.npy",
+     "pretrain_shard_0020.npy",
+     "pretrain_shard_0021.npy",
+     "pretrain_shard_0022.npy",
+     "pretrain_shard_0023.npy",
+     "pretrain_shard_0024.npy",
+     "pretrain_shard_0025.npy",
+     "pretrain_shard_0026.npy",
+     "pretrain_shard_0027.npy",
+     "pretrain_shard_0028.npy",
+     "pretrain_shard_0029.npy",
+     "pretrain_shard_0030.npy",
+     "pretrain_shard_0031.npy",
+     "pretrain_shard_0032.npy",
+     "pretrain_shard_0033.npy",
+     "pretrain_shard_0034.npy",
+     "pretrain_shard_0035.npy",
+     "pretrain_shard_0036.npy",
+     "pretrain_shard_0037.npy",
+     "pretrain_shard_0038.npy",
+     "pretrain_shard_0039.npy",
+     "pretrain_shard_0040.npy",
+     "pretrain_shard_0041.npy",
+     "pretrain_shard_0042.npy"
+    ],
+    "steps": 20000,
+    "planned_final_step": 20000,
+    "annealed": true,
+    "final_lr": 0.0,
+    "final_ema_momentum": 1.0,
+    "clips_seen": 2560000,
+    "n_clips_in_corpus": 279647,
+    "n_shards": 43,
+    "effective_epochs": 9.15,
+    "final_loss_mean_last500": 0.39656545680761335,
+    "gpu_seconds_total": 7623.7,
+    "wall_seconds_total": 7625.0,
+    "steps_total": 20000,
+    "gpu_hours": 2.118,
+    "segments": [
+     {
+      "host": "132-145-134-44",
+      "gpu_name": "NVIDIA A100-SXM4-40GB",
+      "torch_version": "2.11.0+cu128",
+      "start_step": 0,
+      "start_utc": "2026-10-19T14:18:10Z",
+      "end_step": 20000,
+      "seconds": 7625.0,
+      "gpu_seconds": 7623.7,
+      "end_utc": "2026-10-19T16:25:14Z"
+     }
+    ],
+    "resume": null,
+    "stop_reason": "max_steps",
+    "checkpoint": "sweep_S4_T1_seed0.pt",
+    "log_csv": "pretrain_log_sweep_S4_seed0.csv",
+    "config": {
+     "shard_dir": "/home/ubuntu/proj2/data/processed/v1",
+     "out_dir": "/home/ubuntu/proj2/checkpoints/sweep",
+     "clip_frames": 16,
+     "clip_size": 96,
+     "batch_size": 128,
+     "lr": 0.00015,
+     "min_lr": 0.0,
+     "weight_decay": 0.05,
+     "warmup_steps": 500,
+     "max_steps": 20000,
+     "max_hours": 8.0,
+     "ema_start": 0.996,
+     "ema_end": 1.0,
+     "mask_blocks": 8,
+     "p_future": 0.5,
+     "n_future_slots": 2,
+     "context_spatial_mask": 0.0,
+     "run_name": "sweep_S4",
+     "seed": 0,
+     "num_workers": 28,
+     "log_every": 50,
+     "ckpt_minutes": 30.0,
+     "amp_dtype": "bfloat16",
+     "model_dim": 384,
+     "model_depth": 12,
+     "model_heads": 6,
+     "pred_dim": 192,
+     "pred_depth": 8,
+     "prior_segments_if_missing": [],
+     "dry_run": false,
+     "snapshot_every": 5000,
+     "vicreg_var": 0.0,
+     "vicreg_cov": 0.0,
+     "grad_accum": 1,
+     "future_strides": [
+      9,
+      27
+     ]
+    },
+    "device": "NVIDIA A100-SXM4-40GB",
+    "torch_version": "2.11.0+cu128"
+   }
+  }
+ },
+ "steps": 20000,
+ "snapshot_every": 5000,
+ "selection_data": "label-free validation set only (results/v3/validation_set.json)",
+ "gate_rule": "validation score >= S0 + 0.02 AND effective rank >= 2.0 x S0, both at 20000 steps",
+ "G_Recipe": {
+  "per_variant": {
+   "S1": {
+    "score_gain": 0.010871855020978871,
+    "rank_ratio": 0.984729470411831,
+    "pass": false
+   },
+   "S2": {
+    "score_gain": 0.018050736472782547,
+    "rank_ratio": 1.0166960731949137,
+    "pass": false
+   },
+   "S3": {
+    "score_gain": 0.006491389285211369,
+    "rank_ratio": 1.2795712427307258,
+    "pass": false
+   },
+   "S4": {
+    "score_gain": -0.01055784775396823,
+    "rank_ratio": 1.3144359624093305,
+    "pass": false
+   }
+  },
+  "passing": [],
+  "decision": "fail: stop recipe work; the collapse diagnosis is reported as a limitation"
+ }
+}

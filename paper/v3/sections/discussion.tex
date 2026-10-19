@@ -1,0 +1,30 @@
+\section{Discussion}
+\label{sec:discussion}
+\paragraph{What the video JEPA learned.} Trained on \val{pre.t1.clips} clips of one cell type
+from one instrument, TiJepa-1 learned representations that classify microglia morphology
+far better than hand-crafted features. Image models trained on millions of natural images
+do as well, and a general-purpose video model used frozen and off the shelf, V-JEPA~2,
+does better. On the label-free validation task TiJepa-1 is below raw pixels.
+Future masking helps relative to the matched spatial-only ablation, modestly on morphology
+and strongly on re-identification, but the predictor's apparent forecasting skill is
+explained by the positional structure of its own target latents: it persists on clips in
+which nothing moves. The representation is partially collapsed, and rank and downstream
+performance move together across models. A practitioner who wants frozen features of
+innate-cell video today should start from a large pretrained video model.
+
+\paragraph{What public data can and cannot answer.} The coverage map makes the central gap
+concrete: every public pairing of innate-cell imaging with a molecular or functional readout
+is either at the same-cell level for states that are not memory (morphology classes, cell
+type, metabolic lifetime, stimulus identity), or at the condition level with five conditions.
+Where a simple measured reference exists (autofluorescence intensity for cell identity,
+the photon image for lifetime) the learned features did not add to it. The memory states
+themselves are measured only by restimulation assays that have never been imaged.
+
+\paragraph{A constraint for the experiment that is missing.} The replicated observation
+that $\beta$-glucan-trained human macrophages have less TNF transcript than untrained cells
+4\,h after restimulation, in two datasets with different restimuli and donors, while the
+same studies report more TNF-$\alpha$ protein at 24\,h, means that a single readout time can
+show training as either enhanced or reduced. An imaging study of trained immunity therefore
+needs its molecular ground truth at more than one time after restimulation, and its
+imaging window should cover the hours in which the transcript and protein responses
+diverge (Section~\ref{sec:future}).

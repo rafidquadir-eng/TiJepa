@@ -1,0 +1,89 @@
+{
+  "status": "not_performed",
+  "framing": "HYPOTHESIS-GENERATING ONLY; no image is paired with any molecular sample; cross-study, cross-platform and cross-species",
+  "planned_analysis": "bilinear map of (M1-like, M2-like) omics coordinates onto image-space centroids c_M0, c_M1, c_M2 (PLAN.md C3)",
+  "reason": "The planned two-axis projection requires image-space centroids for M0, M1 and M2 cells. The only public dataset providing images with those labels is Dryad doi:10.5061/dryad.m0cfxpp8v, which was unreachable in this run (an Anubis proof-of-work challenge on every official download endpoint; see reports/MANUAL_DOWNLOADS.md). No accessible dataset substitutes for it: BBBC054 carries microglial morphology classes and LPS exposure time, not macrophage polarization states. Substituting it and presenting the result as the planned analysis would misrepresent what was measured, so the two-axis projection is left undone.",
+  "omics_coordinates_available": {
+    "LPS_tolerised": {
+      "n_samples": 4,
+      "donors": [
+        "BC11",
+        "BC12",
+        "BC8",
+        "BC9"
+      ],
+      "M1_like": 0.0013947076652890966,
+      "M1_like_ci": [
+        -0.00293679170604805,
+        0.005757746974062936
+      ],
+      "M2_like": -0.000977695123609179,
+      "M2_like_ci": [
+        -0.008323626317370741,
+        0.00651718246728292
+      ]
+    },
+    "beta_glucan_trained": {
+      "n_samples": 4,
+      "donors": [
+        "BC11",
+        "BC12",
+        "BC8",
+        "BC9"
+      ],
+      "M1_like": -0.0092060121403994,
+      "M1_like_ci": [
+        -0.013518581009946363,
+        -0.004108907740930209
+      ],
+      "M2_like": -0.004197445180536469,
+      "M2_like_ci": [
+        -0.011920911458027365,
+        0.0036290812127560135
+      ]
+    },
+    "control": {
+      "n_samples": 4,
+      "donors": [
+        "BC11",
+        "BC12",
+        "BC8",
+        "BC9"
+      ],
+      "M1_like": 0.0,
+      "M1_like_ci": [
+        -0.0028462759569926775,
+        0.00326031724693865
+      ],
+      "M2_like": 0.0,
+      "M2_like_ci": [
+        -0.009834438030913661,
+        0.009512945578608073
+      ]
+    },
+    "naive_monocyte": {
+      "n_samples": 4,
+      "donors": [
+        "BC11",
+        "BC12",
+        "BC8",
+        "BC9"
+      ],
+      "M1_like": 0.019138655167057206,
+      "M1_like_ci": [
+        0.011874142506979726,
+        0.025932295976650786
+      ],
+      "M2_like": -0.026875076579124496,
+      "M2_like_ci": [
+        -0.04138545693190043,
+        -0.015157313103576398
+      ]
+    }
+  },
+  "reduced_one_axis_analysis_removed": {
+    "was_present": true,
+    "why": "PLAN_v1.md 8.5 / review finding C8. The analysis expressed a human monocyte omics score as an 'equivalent LPS exposure time' on a mouse microglia imaging axis whose endpoints were set from the very quantity being mapped, which is circular. It is removed from code, results, figures and paper. The surrounding v0 record is kept.",
+    "replacement": "results/v1/partC/c3_projection.json records the refusal and the two independent reasons C3 cannot be run."
+  }
+}

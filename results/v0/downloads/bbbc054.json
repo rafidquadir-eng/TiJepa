@@ -1,0 +1,31 @@
+{
+  "key": "bbbc054",
+  "kind": "bbbc",
+  "record_url": "https://bbbc.broadinstitute.org/BBBC054",
+  "licence_verified": "CC BY 3.0 Unported (commercial use allowed)",
+  "licence_source": "BBBC054 page, Copyright section",
+  "role": "partA_eval_morphology_and_lps_time",
+  "imaging": "Leica DMI 6000, 20x objective, Andor AND-DG-152V-C1E-FI camera, Metamorph Premiere; TIFF",
+  "fov_time_mapping": "each FOV = one LPS exposure time, 30 min intervals, 0-30 h (verified from the BBBC054 page)",
+  "files_used": [
+    {
+      "file": "Replicate1annotation.csv",
+      "url": "https://data.broadinstitute.org/bbbc/BBBC054/Replicate1annotation.csv",
+      "size_bytes_local": 3195702,
+      "sha256_local": "1f4acdd04c7b6854e7de76816e0dd4fa1e5ec06f562c6a81aa5c98549022f59c",
+      "status": "ok",
+      "note": "no publisher checksum available for BBBC files"
+    },
+    {
+      "file": "Replicate_1.zip",
+      "url": "https://data.broadinstitute.org/bbbc/BBBC054/Replicate_1.zip",
+      "size_bytes_local": 157736365,
+      "sha256_local": "9661739a008117dee26ad1879d68888e4d05a06cc2aa31668869f2c241208085",
+      "status": "ok",
+      "note": "no publisher checksum available for BBBC files"
+    }
+  ],
+  "total_gb": 0.161,
+  "status": "ok",
+  "retrieved_utc": "2026-10-15T15:36:10Z"
+}

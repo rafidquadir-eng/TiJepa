@@ -1,0 +1,39 @@
+\section{Signalling dynamics: what live-cell traces encode}
+\label{sec:partB}
+The Tay-lab deposit \citep{wang2025} is the one public resource in which live-cell
+dynamics of macrophages, here single-cell NF-\(\kappa\)B reporter traces, are paired at the
+condition level with transcriptome and chromatin data, and it includes sequential
+stimulations, which is the structure innate memory has.
+
+\paragraph{Ligand-pair identity is decodable from dynamics.} Across \val{pb.lig.wells}
+wells and \val{pb.lig.n} cells, the identity of the ordered pair of stimuli
+(\val{pb.lig.classes} classes, chance \val{pb.lig.chance}) is decoded from single-cell
+traces well above chance, with wells as groups (Figure~\ref{fig:signalling}): the raw trace
+reaches \val{pb.lig.raw_trace} (95\% CI \val{pb.lig.raw_trace.ci}), hand-crafted trace
+features \val{pb.lig.handcrafted} (\val{pb.lig.handcrafted.ci}), and a trace JEPA, pretrained
+without labels on \val{pb.pre.cells} traces from \val{pb.pre.wells} wells that are not
+evaluated, \val{pb.lig.trace_jepa} (\val{pb.lig.trace_jepa.ci}). The pretraining is not
+what helps: the same network at random initialisation reaches
+\val{pb.lig.trace_jepa_random_init} (difference \val{pb.lig.d.trace_jepa_random_init},
+95\% CI \val{pb.lig.d.trace_jepa_random_init.ci}), and its advantage over the raw trace
+(\val{pb.lig.d.raw_trace}, \val{pb.lig.d.raw_trace.ci}) does not survive correction for
+multiple comparisons. Hand-crafted summaries lose information that the full trace carries
+(\val{pb.lig.d.handcrafted}, \val{pb.lig.d.handcrafted.ci}).
+
+\paragraph{Acute tolerance cannot be tested with the deposited wells.} The deposit has two
+wells of LPS-then-LPS and two of naive-then-LPS cells, so a well-level test of tolerance
+from dynamics has no power. From the observed well means of the second response's peak
+amplitude (standardised effect \val{pb.pow.peak_amplitude.d}) and their between-well SD, a
+two-sided test at $\alpha=0.05$ needs \val{pb.pow.peak_amplitude.n} wells per arm for 80\%
+power, and \val{pb.pow.peak_amplitude.nhi} if the SD is at the upper limit of its 80\%
+interval; for the response's area under the curve the numbers are \val{pb.pow.auc.n} and
+\val{pb.pow.auc.nhi}. Because that SD rests on four wells, we read this as a lower bound on
+what a tolerance-from-dynamics study needs, not as a precise design.
+
+\paragraph{Dynamics to omics and across species.} With five matched conditions, condition-
+level dynamics do not predict held-out transcript or accessibility profiles better than the
+leave-one-out mean (Table~\ref{tab:coverage}), and among \val{b4.both.uni} orthologs induced
+by LPS in both mouse macrophages and human macrophages, the genes blunted by heterologous
+priming in mouse overlap the genes blunted by homologous tolerance in human no more than
+expected by chance (\val{b4.both.k} observed, \val{b4.both.exp} expected, odds ratio
+\val{b4.both.or}, two-sided $p=\val{b4.both.p}$). Both analyses are exploratory.

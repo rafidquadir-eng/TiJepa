@@ -1,0 +1,63 @@
+\documentclass[10pt]{article}
+\usepackage{tmlr}
+% anonymous submission: no [accepted]/[preprint] option
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{textcomp}
+\graphicspath{{figures/}{../../../figures/v3/}}
+
+\input{../numbers.tex}
+\input{../sections/figures.tex}
+\newcommand{\CodeAvailability}{Code, configuration and the analysis records behind every
+number will be released on acceptance; for review they are available as an anonymised
+supplement.}
+
+\title{What can self-supervised video models see of innate immune state?\\
+A public-data audit with a video JEPA}
+
+\author{\name Anonymous authors \email anonymous@example.com \\
+\addr Paper under double-blind review}
+
+\def\month{MM}
+\def\year{YYYY}
+\def\openreview{\url{https://openreview.net/forum?id=XXXX}}
+
+\begin{document}
+\maketitle
+
+\input{../sections/abstract_tmlr.tex}
+
+\input{../sections/intro.tex}
+\figcoverage
+\input{../sections/related.tex}
+\input{../sections/methods.tex}
+\input{../sections/results_partA.tex}
+\input{../sections/results_partA2.tex}
+\figtraining
+\figbenchmarks
+\figassoc
+\input{../sections/coverage.tex}
+\input{../coverage_table.tex}
+\input{../sections/discussion.tex}
+\input{../sections/future.tex}
+\figdesign
+\input{../sections/limitations.tex}
+\input{../sections/data_availability.tex}
+
+\bibliography{../refs}
+\bibliographystyle{tmlr}
+
+\appendix
+\input{../sections/results_partB.tex}
+\figsignalling
+\input{../sections/results_partC.tex}
+\figrestim
+\input{../sections/appendix_details.tex}
+
+\end{document}

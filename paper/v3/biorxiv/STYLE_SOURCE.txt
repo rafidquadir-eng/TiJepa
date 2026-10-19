@@ -1,0 +1,1 @@
+Style files (tmlr.sty, tmlr.bst, fancyhdr.sty) from github.com/JmlrOrg/tmlr-style-file at commit 7bf90efe3a0debbba703c05c43f3ff7e4d4a2992 (Apache-2.0, see LICENSE-tmlr-style).

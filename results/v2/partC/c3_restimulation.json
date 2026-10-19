@@ -1,0 +1,1235 @@
+{
+  "phase": "G5",
+  "framing": "HYPOTHESIS-GENERATING; condition-level, cross-study",
+  "expectations": "results/v2/partC/arm_expectations.json",
+  "statistics": "exact paired sign-flip over 3 donors (8 assignments, two-sided floor p = 0.25); no CI (rule 3)",
+  "readouts": {
+    "primary": [
+      "TNF",
+      "IL6"
+    ],
+    "secondary_nfkb_panel": [
+      "TNF",
+      "IL1B",
+      "IL6",
+      "CXCL2",
+      "CCL4",
+      "NFKBIA",
+      "TNFAIP3",
+      "IL12B"
+    ],
+    "secondary_isg_panel": [
+      "CXCL10",
+      "IFIT1",
+      "IRF7"
+    ],
+    "note": "the v1 panel mixed NF-kB targets with interferon-stimulated genes; they are now reported separately"
+  },
+  "GSE212282": {
+    "dataset": "GSE212282",
+    "donors": [
+      "A",
+      "B",
+      "C"
+    ],
+    "samples": {
+      "A_d7_RPMI": {
+        "gsm": "GSM6523220",
+        "characteristics": [
+          "individual: Donor_A",
+          "cell type: Monocyte",
+          "treatment: RPMI media only for 6 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Donor_A_Restim_RPMI",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "B_d7_RPMI": {
+        "gsm": "GSM6523245",
+        "characteristics": [
+          "individual: Donor_B",
+          "cell type: Monocyte",
+          "treatment: RPMI media only for 6 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Donor_B_Restim_RPMI",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "C_d7_RPMI": {
+        "gsm": "GSM6523270",
+        "characteristics": [
+          "individual: Donor_C",
+          "cell type: Monocyte",
+          "treatment: RPMI media only for 6 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Donor_C_Restim_RPMI",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "A_d6_RPMI": {
+        "gsm": "GSM6523215",
+        "characteristics": [
+          "individual: Donor_A",
+          "cell type: Monocyte",
+          "treatment: RPMI media only, collected at 6 days post culture"
+        ],
+        "title": "Donor_A_d6_RPMI",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "B_d6_RPMI": {
+        "gsm": "GSM6523240",
+        "characteristics": [
+          "individual: Donor_B",
+          "cell type: Monocyte",
+          "treatment: RPMI media only, collected at 6 days post culture"
+        ],
+        "title": "Donor_B_d6_RPMI",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "C_d6_RPMI": {
+        "gsm": "GSM6523265",
+        "characteristics": [
+          "individual: Donor_C",
+          "cell type: Monocyte",
+          "treatment: RPMI media only, collected at 6 days post culture"
+        ],
+        "title": "Donor_C_d6_RPMI",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "A_d7_BG": {
+        "gsm": "GSM6523221",
+        "characteristics": [
+          "individual: Donor_A",
+          "cell type: Monocyte",
+          "treatment: BG exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Donor_A_Restim_BG",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "B_d7_BG": {
+        "gsm": "GSM6523246",
+        "characteristics": [
+          "individual: Donor_B",
+          "cell type: Monocyte",
+          "treatment: BG exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Donor_B_Restim_BG",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "C_d7_BG": {
+        "gsm": "GSM6523271",
+        "characteristics": [
+          "individual: Donor_C",
+          "cell type: Monocyte",
+          "treatment: BG exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Donor_C_Restim_BG",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "A_d7_Ita": {
+        "gsm": "GSM6523223",
+        "characteristics": [
+          "individual: Donor_A",
+          "cell type: Monocyte",
+          "treatment: Itaconate exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Donor_A_Restim_itaconate",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "B_d7_Ita": {
+        "gsm": "GSM6523248",
+        "characteristics": [
+          "individual: Donor_B",
+          "cell type: Monocyte",
+          "treatment: Itaconate exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Donor_B_Restim_itaconate",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "C_d7_Ita": {
+        "gsm": "GSM6523273",
+        "characteristics": [
+          "individual: Donor_C",
+          "cell type: Monocyte",
+          "treatment: Itaconate exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Donor_C_Restim_itaconate",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "A_d7_DMI": {
+        "gsm": "GSM6523222",
+        "characteristics": [
+          "individual: Donor_A",
+          "cell type: Monocyte",
+          "treatment: DMI exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Donor_A_Restim_DMI",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "B_d7_DMI": {
+        "gsm": "GSM6523247",
+        "characteristics": [
+          "individual: Donor_B",
+          "cell type: Monocyte",
+          "treatment: DMI exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Donor_B_Restim_DMI",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "C_d7_DMI": {
+        "gsm": "GSM6523272",
+        "characteristics": [
+          "individual: Donor_C",
+          "cell type: Monocyte",
+          "treatment: DMI exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Donor_C_Restim_DMI",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "A_d7_BG_DMI": {
+        "gsm": "GSM6523224",
+        "characteristics": [
+          "individual: Donor_A",
+          "cell type: Monocyte",
+          "treatment: BG and DMI exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Donor_A_Restim_BG_DMI",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "B_d7_BG_DMI": {
+        "gsm": "GSM6523249",
+        "characteristics": [
+          "individual: Donor_B",
+          "cell type: Monocyte",
+          "treatment: BG and DMI exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Donor_B_Restim_BG_DMI",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "C_d7_BG_DMI": {
+        "gsm": "GSM6523274",
+        "characteristics": [
+          "individual: Donor_C",
+          "cell type: Monocyte",
+          "treatment: BG and DMI exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Donor_C_Restim_BG_DMI",
+        "source": "Adult Human Peripheral Blood"
+      }
+    },
+    "restimulation_labels": {
+      "A_d7_RPMI": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "B_d7_RPMI": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "C_d7_RPMI": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "A_d6_RPMI": {
+        "scored_as": "non-restimulated day-6 control",
+        "geo_text_mentions_restimulation": false
+      },
+      "B_d6_RPMI": {
+        "scored_as": "non-restimulated day-6 control",
+        "geo_text_mentions_restimulation": false
+      },
+      "C_d6_RPMI": {
+        "scored_as": "non-restimulated day-6 control",
+        "geo_text_mentions_restimulation": false
+      },
+      "A_d7_BG": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "B_d7_BG": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "C_d7_BG": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "A_d7_Ita": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "B_d7_Ita": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "C_d7_Ita": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "A_d7_DMI": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "B_d7_DMI": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "C_d7_DMI": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "A_d7_BG_DMI": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "B_d7_BG_DMI": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "C_d7_BG_DMI": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      }
+    },
+    "positive_control": {
+      "rule": "untrained LPS-restimulated minus untrained non-restimulated day-6, same donor: TNF, IL6 and IL1B higher in every donor with mean log2 difference > 1",
+      "geo_labels_consistent": true,
+      "genes": {
+        "TNF": {
+          "per_donor_log2_difference": [
+            8.739081929333668,
+            10.469825462086524,
+            8.265113327550418
+          ],
+          "mean_difference": 9.158006906323536,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.25,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": true,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "IL6": {
+          "per_donor_log2_difference": [
+            13.062348450563992,
+            12.804293588600181,
+            10.980149978900176
+          ],
+          "mean_difference": 12.28226400602145,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.25,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": true,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "IL1B": {
+          "per_donor_log2_difference": [
+            7.9954447705074525,
+            10.476303162820116,
+            8.289884401402482
+          ],
+          "mean_difference": 8.920544111576683,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.25,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": true,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        }
+      },
+      "status": "PASS"
+    },
+    "arms": {
+      "beta_glucan": {
+        "primary_TNF_IL6": {
+          "TNF": {
+            "per_donor_log2_difference": [
+              -2.0691997893454044,
+              -2.2029953274374474,
+              -2.004393928108673
+            ],
+            "mean_difference": -2.092196348297175,
+            "n_donors": 3,
+            "exact_sign_flip_p_two_sided": 0.25,
+            "n_sign_assignments": 8,
+            "minimum_achievable_p": 0.25,
+            "all_donors_same_direction": true,
+            "confidence_interval": null,
+            "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+            "sourced_expectation": "higher",
+            "verdict": "opposite to the sourced direction"
+          },
+          "IL6": {
+            "per_donor_log2_difference": [
+              -1.3822028378244902,
+              -0.7309991502680289,
+              -0.5406788204739552
+            ],
+            "mean_difference": -0.8846269361888247,
+            "n_donors": 3,
+            "exact_sign_flip_p_two_sided": 0.25,
+            "n_sign_assignments": 8,
+            "minimum_achievable_p": 0.25,
+            "all_donors_same_direction": true,
+            "confidence_interval": null,
+            "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+            "sourced_expectation": "higher",
+            "verdict": "opposite to the sourced direction"
+          }
+        },
+        "secondary_nfkb_panel": {
+          "genes": [
+            "TNF",
+            "IL1B",
+            "IL6",
+            "CXCL2",
+            "NFKBIA",
+            "TNFAIP3",
+            "IL12B"
+          ],
+          "per_donor_mean_log2_difference": [
+            -1.0083473791129371,
+            -0.39797979298671216,
+            -0.49451464015842816
+          ],
+          "mean_difference": -0.6336139374193591,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.25,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": true,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "secondary_isg_panel": {
+          "genes": [
+            "CXCL10",
+            "IFIT1",
+            "IRF7"
+          ],
+          "per_donor_mean_log2_difference": [
+            0.214528752580188,
+            -0.06965331657411866,
+            -0.5634589751695938
+          ],
+          "mean_difference": -0.13952784638784146,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.75,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": false,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "expectation_source": {
+          "where": "Ferreira 2023, Figure 1D (left panels)",
+          "quote": "DMI-exposed macrophages (DMI-Mfs) showed increased TNF-a and IL-6 secretion after LPS restimulation, in a similar magnitude as the well-described inducer of trained immunity b-glucan (Figure 1D, left panels)."
+        }
+      },
+      "itaconate": {
+        "primary_TNF_IL6": {
+          "TNF": {
+            "per_donor_log2_difference": [
+              -0.4150777902141627,
+              -0.14350487571722503,
+              -0.0032893446932256154
+            ],
+            "mean_difference": -0.18729067020820445,
+            "n_donors": 3,
+            "exact_sign_flip_p_two_sided": 0.25,
+            "n_sign_assignments": 8,
+            "minimum_achievable_p": 0.25,
+            "all_donors_same_direction": true,
+            "confidence_interval": null,
+            "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+            "sourced_expectation": "no sourced expectation",
+            "verdict": "no sourced expectation"
+          },
+          "IL6": {
+            "per_donor_log2_difference": [
+              0.7912893760267767,
+              0.5542978616599488,
+              0.8702047947634064
+            ],
+            "mean_difference": 0.738597344150044,
+            "n_donors": 3,
+            "exact_sign_flip_p_two_sided": 0.25,
+            "n_sign_assignments": 8,
+            "minimum_achievable_p": 0.25,
+            "all_donors_same_direction": true,
+            "confidence_interval": null,
+            "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+            "sourced_expectation": "higher",
+            "verdict": "matches the sourced direction"
+          }
+        },
+        "secondary_nfkb_panel": {
+          "genes": [
+            "TNF",
+            "IL1B",
+            "IL6",
+            "CXCL2",
+            "NFKBIA",
+            "TNFAIP3",
+            "IL12B"
+          ],
+          "per_donor_mean_log2_difference": [
+            0.07300449105481199,
+            0.08573936628003231,
+            0.14660254806930517
+          ],
+          "mean_difference": 0.1017821351347165,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.25,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": true,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "secondary_isg_panel": {
+          "genes": [
+            "CXCL10",
+            "IFIT1",
+            "IRF7"
+          ],
+          "per_donor_mean_log2_difference": [
+            0.6143476382452171,
+            0.3835308586533923,
+            0.6611342384212442
+          ],
+          "mean_difference": 0.5530042451066178,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.25,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": true,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "expectation_source": {
+          "where": "Ferreira 2023, Figures 1B and 1C",
+          "quote": "exposure to ITA led to increased production of interleukin-6 (IL-6), and OI treatment led to enhanced tumor necrosis factor a (TNF-a) secretion, both upon restimulation (Figures 1B and 1C).",
+          "note": "the TNF increase is reported for 4-octyl itaconate (OI), which is not an arm of GSE212282"
+        }
+      },
+      "DMI": {
+        "primary_TNF_IL6": {
+          "TNF": {
+            "per_donor_log2_difference": [
+              0.5324554587408912,
+              0.15699407434953727,
+              0.27060630881954495
+            ],
+            "mean_difference": 0.32001861396999115,
+            "n_donors": 3,
+            "exact_sign_flip_p_two_sided": 0.25,
+            "n_sign_assignments": 8,
+            "minimum_achievable_p": 0.25,
+            "all_donors_same_direction": true,
+            "confidence_interval": null,
+            "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+            "sourced_expectation": "higher",
+            "verdict": "matches the sourced direction"
+          },
+          "IL6": {
+            "per_donor_log2_difference": [
+              -0.31466621536829287,
+              0.7303355105492209,
+              1.1619033050807452
+            ],
+            "mean_difference": 0.5258575334205577,
+            "n_donors": 3,
+            "exact_sign_flip_p_two_sided": 0.5,
+            "n_sign_assignments": 8,
+            "minimum_achievable_p": 0.25,
+            "all_donors_same_direction": false,
+            "confidence_interval": null,
+            "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+            "sourced_expectation": "higher",
+            "verdict": "matches the sourced direction"
+          }
+        },
+        "secondary_nfkb_panel": {
+          "genes": [
+            "TNF",
+            "IL1B",
+            "IL6",
+            "CXCL2",
+            "NFKBIA",
+            "TNFAIP3",
+            "IL12B"
+          ],
+          "per_donor_mean_log2_difference": [
+            0.2970797628198554,
+            0.5851097057475076,
+            0.7316937048805716
+          ],
+          "mean_difference": 0.5379610578159782,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.25,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": true,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "secondary_isg_panel": {
+          "genes": [
+            "CXCL10",
+            "IFIT1",
+            "IRF7"
+          ],
+          "per_donor_mean_log2_difference": [
+            -0.07983874356279586,
+            0.16094224977810256,
+            0.12635123168105622
+          ],
+          "mean_difference": 0.06915157929878764,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.5,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": false,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "expectation_source": {
+          "where": "Ferreira 2023, Figure 1D (left panels)",
+          "quote": "DMI-exposed macrophages (DMI-Mfs) showed increased TNF-a and IL-6 secretion after LPS restimulation"
+        }
+      },
+      "beta_glucan_plus_DMI": {
+        "primary_TNF_IL6": {
+          "TNF": {
+            "per_donor_log2_difference": [
+              -1.2310372514401422,
+              -0.5577026219564463,
+              -0.4604794031509378
+            ],
+            "mean_difference": -0.7497397588491754,
+            "n_donors": 3,
+            "exact_sign_flip_p_two_sided": 0.25,
+            "n_sign_assignments": 8,
+            "minimum_achievable_p": 0.25,
+            "all_donors_same_direction": true,
+            "confidence_interval": null,
+            "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+            "sourced_expectation": "no sourced expectation",
+            "verdict": "no sourced expectation"
+          },
+          "IL6": {
+            "per_donor_log2_difference": [
+              -0.3007730621245326,
+              0.711840160125023,
+              0.707930456564215
+            ],
+            "mean_difference": 0.37299918485490186,
+            "n_donors": 3,
+            "exact_sign_flip_p_two_sided": 0.5,
+            "n_sign_assignments": 8,
+            "minimum_achievable_p": 0.25,
+            "all_donors_same_direction": false,
+            "confidence_interval": null,
+            "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+            "sourced_expectation": "no sourced expectation",
+            "verdict": "no sourced expectation"
+          }
+        },
+        "secondary_nfkb_panel": {
+          "genes": [
+            "TNF",
+            "IL1B",
+            "IL6",
+            "CXCL2",
+            "NFKBIA",
+            "TNFAIP3",
+            "IL12B"
+          ],
+          "per_donor_mean_log2_difference": [
+            -0.38675768656151277,
+            0.29470549898113596,
+            0.15169732255655966
+          ],
+          "mean_difference": 0.019881711658727614,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 1.0,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": false,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "secondary_isg_panel": {
+          "genes": [
+            "CXCL10",
+            "IFIT1",
+            "IRF7"
+          ],
+          "per_donor_mean_log2_difference": [
+            -0.22287233889999847,
+            0.10967367700837904,
+            -0.14407714475011169
+          ],
+          "mean_difference": -0.08575860221391036,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.5,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": false,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "expectation_source": {
+          "where": "Ferreira 2023, Figure 2B-2E and Figure S4",
+          "quote": "the transcriptional response triggered by the combined exposure of DMI and b-glucan was largely similar to the individual DMI or b-glucan treatment",
+          "note": "no TNF/IL-6 restimulation result is reported for the combination; the paper recalls earlier work in which DMI blunted b-glucan training, and reports that DMI blocked the early (4 h) b-glucan-driven increase of TLR, TNF and NF-kB pathway genes"
+        }
+      }
+    },
+    "beta_glucan_opposite": {
+      "statement": "beta-glucan points opposite to its sourced direction on the primary readouts",
+      "candidate_explanations": [
+        "readout and timing: the sourced result is cytokine protein after 24 h of LPS; the deposited samples are RNA after 4 h of LPS, when TNF transcripts may already be past their peak",
+        "readout depth: one bulk RNA-seq library per donor and arm, against an ELISA on pooled independent experiments (n = 9-12) in the source",
+        "donor number: 3 donors here, with a two-sided permutation floor of 0.25"
+      ],
+      "asserted": null
+    },
+    "status": "ok"
+  },
+  "GSE185433": {
+    "dataset": "GSE185433",
+    "donors": [
+      "don1",
+      "don2",
+      "don3"
+    ],
+    "samples": {
+      "RPMI_Restim_don1": {
+        "gsm": "GSM5614989",
+        "characteristics": [
+          "individual: Donor_1",
+          "cell type: Monocyte",
+          "treatment: RPMI media only for 6 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Don1_d6_RPMI_Restim",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "RPMI_Restim_don2": {
+        "gsm": "GSM5615002",
+        "characteristics": [
+          "individual: Donor_2",
+          "cell type: Monocyte",
+          "treatment: RPMI media only for 6 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Don2_d6_RPMI_Restim",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "RPMI_Restim_don3": {
+        "gsm": "GSM5615015",
+        "characteristics": [
+          "individual: Donor_3",
+          "cell type: Monocyte",
+          "treatment: RPMI media only for 6 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Don3_d6_RPMI_Restim",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "RPMI_d6_don1": {
+        "gsm": "GSM5614985",
+        "characteristics": [
+          "individual: Donor_1",
+          "cell type: Monocyte",
+          "treatment: RPMI media only, collected at 6 days post culture"
+        ],
+        "title": "Don1_d6_RPMI",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "RPMI_d6_don2": {
+        "gsm": "GSM5614998",
+        "characteristics": [
+          "individual: Donor_2",
+          "cell type: Monocyte",
+          "treatment: RPMI media only, collected at 6 days post culture"
+        ],
+        "title": "Don2_d6_RPMI",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "RPMI_d6_don3": {
+        "gsm": "GSM5615011",
+        "characteristics": [
+          "individual: Donor_3",
+          "cell type: Monocyte",
+          "treatment: RPMI media only, collected at 6 days post culture"
+        ],
+        "title": "Don3_d6_RPMI",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "LPS_Restim_don1": {
+        "gsm": "GSM5614990",
+        "characteristics": [
+          "individual: Donor_1",
+          "cell type: Monocyte",
+          "treatment: LPS exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Don1_d6_LPS_Restim",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "LPS_Restim_don2": {
+        "gsm": "GSM5615003",
+        "characteristics": [
+          "individual: Donor_2",
+          "cell type: Monocyte",
+          "treatment: LPS exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Don2_d6_LPS_Restim",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "LPS_Restim_don3": {
+        "gsm": "GSM5615016",
+        "characteristics": [
+          "individual: Donor_3",
+          "cell type: Monocyte",
+          "treatment: LPS exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Don3_d6_LPS_Restim",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "IL4_Restim_don1": {
+        "gsm": "GSM5614991",
+        "characteristics": [
+          "individual: Donor_1",
+          "cell type: Monocyte",
+          "treatment: IL4 exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Don1_d6_IL4_Restim",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "IL4_Restim_don2": {
+        "gsm": "GSM5615004",
+        "characteristics": [
+          "individual: Donor_2",
+          "cell type: Monocyte",
+          "treatment: IL4 exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Don2_d6_IL4_Restim",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "IL4_Restim_don3": {
+        "gsm": "GSM5615017",
+        "characteristics": [
+          "individual: Donor_3",
+          "cell type: Monocyte",
+          "treatment: IL4 exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Don3_d6_IL4_Restim",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "IL4_LPS_Restim_don1": {
+        "gsm": "GSM5614992",
+        "characteristics": [
+          "individual: Donor_1",
+          "cell type: Monocyte",
+          "treatment: IL4 and LPS co-exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Don1_d6_LPS_IL4_Restim",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "IL4_LPS_Restim_don2": {
+        "gsm": "GSM5615005",
+        "characteristics": [
+          "individual: Donor_2",
+          "cell type: Monocyte",
+          "treatment: IL4 and LPS co-exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Don2_d6_LPS_IL4_Restim",
+        "source": "Adult Human Peripheral Blood"
+      },
+      "IL4_LPS_Restim_don3": {
+        "gsm": "GSM5615018",
+        "characteristics": [
+          "individual: Donor_3",
+          "cell type: Monocyte",
+          "treatment: IL4 and LPS co-exposed for 24 hours, rested in media alone for 5 days, then exposed to LPS for 4 hours"
+        ],
+        "title": "Don3_d6_LPS_IL4_Restim",
+        "source": "Adult Human Peripheral Blood"
+      }
+    },
+    "restimulation_labels": {
+      "RPMI_Restim_don1": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "RPMI_Restim_don2": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "RPMI_Restim_don3": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "RPMI_d6_don1": {
+        "scored_as": "non-restimulated day-6 control",
+        "geo_text_mentions_restimulation": false
+      },
+      "RPMI_d6_don2": {
+        "scored_as": "non-restimulated day-6 control",
+        "geo_text_mentions_restimulation": false
+      },
+      "RPMI_d6_don3": {
+        "scored_as": "non-restimulated day-6 control",
+        "geo_text_mentions_restimulation": false
+      },
+      "LPS_Restim_don1": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "LPS_Restim_don2": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "LPS_Restim_don3": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "IL4_Restim_don1": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "IL4_Restim_don2": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "IL4_Restim_don3": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "IL4_LPS_Restim_don1": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "IL4_LPS_Restim_don2": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      },
+      "IL4_LPS_Restim_don3": {
+        "scored_as": "LPS-restimulated",
+        "geo_text_mentions_restimulation": true
+      }
+    },
+    "positive_control": {
+      "rule": "untrained LPS-restimulated minus untrained non-restimulated day-6, same donor: TNF, IL6 and IL1B higher in every donor with mean log2 difference > 1",
+      "geo_labels_consistent": true,
+      "genes": {
+        "TNF": {
+          "per_donor_log2_difference": [
+            9.37457466789485,
+            9.937168026039908,
+            7.944904277835031
+          ],
+          "mean_difference": 9.08554899058993,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.25,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": true,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "IL6": {
+          "per_donor_log2_difference": [
+            11.05734137706294,
+            9.082241371759519,
+            12.211749881406266
+          ],
+          "mean_difference": 10.783777543409576,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.25,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": true,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "IL1B": {
+          "per_donor_log2_difference": [
+            8.430417325335476,
+            8.20037960106573,
+            8.269080738912862
+          ],
+          "mean_difference": 8.299959221771356,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.25,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": true,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        }
+      },
+      "status": "PASS"
+    },
+    "arms": {
+      "LPS_tolerised": {
+        "primary_TNF_IL6": {
+          "TNF": {
+            "per_donor_log2_difference": [
+              -2.9852534325082623,
+              -2.17346335995045,
+              0.057188431420838626
+            ],
+            "mean_difference": -1.700509453679291,
+            "n_donors": 3,
+            "exact_sign_flip_p_two_sided": 0.5,
+            "n_sign_assignments": 8,
+            "minimum_achievable_p": 0.25,
+            "all_donors_same_direction": false,
+            "confidence_interval": null,
+            "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+            "sourced_expectation": "no sourced expectation",
+            "verdict": "no sourced expectation"
+          },
+          "IL6": {
+            "per_donor_log2_difference": [
+              -0.7843211589792833,
+              -0.7840326199711072,
+              2.27456742841595
+            ],
+            "mean_difference": 0.2354045498218532,
+            "n_donors": 3,
+            "exact_sign_flip_p_two_sided": 1.0,
+            "n_sign_assignments": 8,
+            "minimum_achievable_p": 0.25,
+            "all_donors_same_direction": false,
+            "confidence_interval": null,
+            "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+            "sourced_expectation": "no sourced expectation",
+            "verdict": "no sourced expectation"
+          }
+        },
+        "secondary_nfkb_panel": {
+          "genes": [
+            "TNF",
+            "IL1B",
+            "IL6",
+            "CXCL2",
+            "NFKBIA",
+            "TNFAIP3",
+            "IL12B"
+          ],
+          "per_donor_mean_log2_difference": [
+            -1.3451886416568595,
+            -0.9108475750581633,
+            0.6854244139263468
+          ],
+          "mean_difference": -0.5235372675962253,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.5,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": false,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "secondary_isg_panel": {
+          "genes": [
+            "CXCL10",
+            "IFIT1",
+            "IRF7"
+          ],
+          "per_donor_mean_log2_difference": [
+            0.08100732654591525,
+            0.3840309929342318,
+            0.7625412728453309
+          ],
+          "mean_difference": 0.409193197441826,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.25,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": true,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "expectation_source": {
+          "note": "the source paper's in vitro experiments do not report TNF/IL-6 for monocytes pre-exposed to LPS in vitro and restimulated on day 6; LPS pre-exposure appears only in the ex vivo endotoxaemia arm ('LPS (to assess initial immune tolerance)'), restimulated on day 3 rather than day 6"
+        }
+      },
+      "IL4": {
+        "primary_TNF_IL6": {
+          "TNF": {
+            "per_donor_log2_difference": [
+              0.2613297797066263,
+              0.31708994303698823,
+              1.45481367923243
+            ],
+            "mean_difference": 0.6777444673253482,
+            "n_donors": 3,
+            "exact_sign_flip_p_two_sided": 0.25,
+            "n_sign_assignments": 8,
+            "minimum_achievable_p": 0.25,
+            "all_donors_same_direction": true,
+            "confidence_interval": null,
+            "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+            "sourced_expectation": "higher",
+            "verdict": "matches the sourced direction"
+          },
+          "IL6": {
+            "per_donor_log2_difference": [
+              0.5406066857219134,
+              0.8298958953209681,
+              2.096423444766981
+            ],
+            "mean_difference": 1.1556420086032875,
+            "n_donors": 3,
+            "exact_sign_flip_p_two_sided": 0.25,
+            "n_sign_assignments": 8,
+            "minimum_achievable_p": 0.25,
+            "all_donors_same_direction": true,
+            "confidence_interval": null,
+            "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+            "sourced_expectation": "higher",
+            "verdict": "matches the sourced direction"
+          }
+        },
+        "secondary_nfkb_panel": {
+          "genes": [
+            "TNF",
+            "IL1B",
+            "IL6",
+            "CXCL2",
+            "NFKBIA",
+            "TNFAIP3",
+            "IL12B"
+          ],
+          "per_donor_mean_log2_difference": [
+            0.20615699935720144,
+            0.3294414735799087,
+            1.1906912541252268
+          ],
+          "mean_difference": 0.575429909020779,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.25,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": true,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "secondary_isg_panel": {
+          "genes": [
+            "CXCL10",
+            "IFIT1",
+            "IRF7"
+          ],
+          "per_donor_mean_log2_difference": [
+            -0.060078630486085416,
+            -0.17381589852630164,
+            0.18811300638151174
+          ],
+          "mean_difference": -0.015260507543625105,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 1.0,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": false,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "expectation_source": {
+          "where": "Schrijver 2023, Figure 1e",
+          "quote": "Contrary to our initial hypothesis, exposing monocytes to IL4 alone for 24 h induced a trained immunity phenotype on day 6 (Fig. 1e). Besides enhanced production of pro-inflammatory cytokines, ..."
+        }
+      },
+      "IL4_plus_LPS": {
+        "primary_TNF_IL6": {
+          "TNF": {
+            "per_donor_log2_difference": [
+              -2.0907680802066952,
+              -1.3197629964548128,
+              -0.017947126308659023
+            ],
+            "mean_difference": -1.1428260676567223,
+            "n_donors": 3,
+            "exact_sign_flip_p_two_sided": 0.25,
+            "n_sign_assignments": 8,
+            "minimum_achievable_p": 0.25,
+            "all_donors_same_direction": true,
+            "confidence_interval": null,
+            "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+            "sourced_expectation": "no sourced expectation",
+            "verdict": "no sourced expectation"
+          },
+          "IL6": {
+            "per_donor_log2_difference": [
+              -2.280583466736455,
+              -1.9704328868461456,
+              0.3730665106234783
+            ],
+            "mean_difference": -1.2926499476530406,
+            "n_donors": 3,
+            "exact_sign_flip_p_two_sided": 0.5,
+            "n_sign_assignments": 8,
+            "minimum_achievable_p": 0.25,
+            "all_donors_same_direction": false,
+            "confidence_interval": null,
+            "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)",
+            "sourced_expectation": "no sourced expectation",
+            "verdict": "no sourced expectation"
+          }
+        },
+        "secondary_nfkb_panel": {
+          "genes": [
+            "TNF",
+            "IL1B",
+            "IL6",
+            "CXCL2",
+            "NFKBIA",
+            "TNFAIP3",
+            "IL12B"
+          ],
+          "per_donor_mean_log2_difference": [
+            -1.6721536261494396,
+            -1.304635308454639,
+            -0.13848223598201503
+          ],
+          "mean_difference": -1.038423723528698,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.25,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": true,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "secondary_isg_panel": {
+          "genes": [
+            "CXCL10",
+            "IFIT1",
+            "IRF7"
+          ],
+          "per_donor_mean_log2_difference": [
+            0.33569109109751594,
+            0.15365663982161415,
+            0.5083047437564083
+          ],
+          "mean_difference": 0.3325508248918461,
+          "n_donors": 3,
+          "exact_sign_flip_p_two_sided": 0.25,
+          "n_sign_assignments": 8,
+          "minimum_achievable_p": 0.25,
+          "all_donors_same_direction": true,
+          "confidence_interval": null,
+          "confidence_interval_reason": "3 donors is far below the 10-group minimum (PLAN_v1.md rule 3)"
+        },
+        "expectation_source": {
+          "note": "the paper reports IL-4 + LPS only as an acute (24 h) co-stimulation, where IL-4 inhibited TNF and IL-6 (Figure 1b), not after a rest and restimulation"
+        }
+      }
+    },
+    "status": "ok"
+  }
+}

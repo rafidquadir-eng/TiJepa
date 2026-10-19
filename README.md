@@ -1,76 +1,68 @@
 # TiJepa
 
-Self-supervised imaging / video modelling of **trained immunity** and innate immune
-activation states (monocytes, macrophages, neutrophils, NK cells, dendritic cells),
-linked to **iMEMORY**, a multi-omic model of immune disease.
+A self-supervised video model of innate immune cell behaviour (a video joint-embedding
+predictive architecture, JEPA), and a public-data audit of how much molecular, functional
+and memory state can be read from label-free images and video of innate immune cells.
 
-Target states: naive · trained (β-glucan, BCG, oxLDL) · tolerant (LPS pre-exposure) ·
-classically activated / polarized (LPS, IFN-γ, IL-4, M1/M2).
+**What this repository does not show:** trained immunity in images. No public image or
+video of trained or tolerised cells exists; the memory-related analyses use the closest
+public proxies (acute priming and tolerance, polarisation, restimulation transcriptomes).
 
-## Current contents
+## What is here
 
-This repo currently holds the landscape review that determines whether the imaging data
-we need already exists or must be generated.
-
-| Path | What it is |
+| | |
 |---|---|
-| [`PLAN.md`](PLAN.md) | Execution plan for TiJepa-0, a computational-only preprint built on existing public data |
-| [`reports/Trained immunity imaging datasets.md`](reports/Trained%20immunity%20imaging%20datasets.md) | The synthesized report (~8.5k words): deposit tables, accession tables, licence constraints, gaps, recommendations |
-| `research_notes/Trained immunity imaging datasets/` | Raw per-stream research notes behind the report |
+| Model | TiJepa-1: ViT-S video JEPA, 16 x 96 x 96 single-channel clips, mixed spatial and future masking, 117,000 steps on 279,647 clips of migrating human neutrophils (ComplexEye, CC BY 4.0); a matched-step spatial-only ablation; TiJepa-0 (earlier corpus) as a historical reference |
+| Baselines | ImageNet ViT-S/16, DINOv2 ViT-S/14, V-JEPA 2 ViT-L (frozen, MIT licence), random initialisation (3 draws), frame-shuffled input, hand-crafted features |
+| Benchmarks | microglia morphology (BBBC054), label-free immune cell identity (two-photon autofluorescence), NAD(P)H lifetime from the photon image (FLIM), cell re-identification (validation only), detection-level association, latent forecasting with controls, NF-κB ligand decoding, restimulation transcriptomes |
+| Manuscripts | `paper/v3/tmlr/` (anonymised, TMLR style) and `paper/v3/biorxiv/` (named, biology-first); figures in `figures/v3/` |
+| Report | `reports/RUN_REPORT_v3.md`: compute, decision outcomes, modality coverage map, findings table |
 
-### Research notes
+## Headline results
 
-| File | Scope |
-|---|---|
-| `imaging_of_trained_cells.md` | Papers/labs imaging trained or tolerant innate cells; deposit status per data-availability statement |
-| `labelfree_qpi_imaging.md` | Brightfield / phase / QPI / holographic / Raman imaging of macrophage activation; repository sweep |
-| `flim_autofluorescence.md` | NAD(P)H / FAD autofluorescence and FLIM metabolic imaging of innate immune activation |
-| `trained_immunity_omics.md` | Public trained-immunity omics accessions (GEO/EGA/PRIDE/Metabolomics Workbench) for target signatures |
-| `timelapse_video_datasets.md` | Downloadable immune time-lapse / video corpora for pretraining and point tracking |
+<!-- RESULTS:BEGIN -->
+| Test | TiJepa-1 | comparison | reference |
+|---|---|---|---|
+| Microglia morphology, 3-class BA | 0.595 | V-JEPA 2 0.681 | hand-crafted 0.499 |
+| T cell vs neutrophil (mixed fields), BA | 0.714 | TiJepa-0 0.721 | intensity only 0.714 |
+| NAD(P)H lifetime within fields, R2 | +0.08 | V-JEPA 2 +0.04 | intensity only +0.08 |
+| Re-identification (validation), top-1 | 0.501 | V-JEPA 2 0.667 | raw pixels 0.555 |
+| Association, 9-frame gap, embedding only | 0.404 | V-JEPA 2 0.751 | position only 0.883 |
+| Forecasting advantage kept on static clips | 0.79 of 0.83 | — | criterion: at most half |
+| NF-κB ligand pair, BA (trace JEPA) | 0.286 | random init 0.284 | chance 0.091 |
+| β-glucan − untrained TNF after restimulation (log2) | — | GSE212282 -2.09, GSE141656 -1.96 | 6/6 donors |
+<!-- RESULTS:END -->
 
-## Headline finding
+## Reproduce
 
-**No public imaging or video dataset of trained, tolerant, or innate-memory immune cells
-exists.** The imaging + training/tolerance dataset has to be generated in-house.
+```bash
+python -m venv ~/venv && ~/venv/bin/pip install -r requirements-lock.txt
+scripts/run_all_v3.sh            # every v3 result, figure and manuscript
+RETRAIN=1 scripts/run_all_v3.sh  # also retrain (about 21 GPU-hours plus the recipe sweep)
+```
 
-Load-bearing evidence:
+The frozen corpus (`data/processed/v1`) and the checkpoints are not rebuilt; their
+checksums are in `results/v2/corpus_shards_sha256.json` and `reports/BACKUP.md`. Raw data
+are downloaded by `scripts/1x_*`; every dataset, licence and checksum is listed in
+`manifests/datasets.yaml`, model weights and licences in `manifests/models.yaml`. Scripts
+from earlier iterations are in `legacy/` with a map to their replacements.
 
-- Europe PMC full-text search for `"trained immunity"` × (BioImage Archive / IDR / `S-BIAD` / `idr00`) → **0 hits**
-- BioImage Archive: 59 macrophage/monocyte/neutrophil studies, **none** a β-glucan, BCG, oxLDL, MDP or LPS-tolerance study
-- All **147 IDR projects + 105 screens** enumerated → no innate-immune training study, and no innate-immune time-lapse at all
+## Data licences
 
-Two partial exceptions (detailed in the report, not treated as a flat zero):
+ComplexEye, S-BIAD2196, the autofluorescence (Zenodo 15657646) and FLIM (Zenodo 14330511)
+records and the Tay-lab traces are CC BY 4.0; BBBC054 is CC BY 3.0; GEO records carry no
+licence and their source publications are cited. V-JEPA 2 weights are MIT; DINOv2 and the
+AugReg ViT are Apache-2.0. Trained TiJepa weights are not published.
 
-1. **Carlile et al., *iScience* 2024** (McLoughlin + Monaghan, TCD) — NAD(P)H 2P-FLIM of human
-   MDMs trained with heat-killed *S. aureus*, days 3 and 7. Real training biology, real
-   label-free imaging; data "on request" only, with a self-contradictory availability statement.
-2. **BioImage Archive `S-BIAD829`** — the one deposited image set labelled *trained immunity*
-   (67 files, CC0), but fixed mouse brain immunofluorescence, not live cells under a
-   prime–rest–restimulate design.
+## Limitations
 
-What *is* reusable: the trained-immunity omics canon is almost entirely open in GEO on matched
-donors, and ~290 GB of permissively licensed (CC BY 4.0 / MIT) innate-immune video exists for
-self-supervised pretraining.
+One pretraining seed per recipe; a single-source pretraining corpus of one cell type; small
+groups in several analyses (six tracking movies, four tolerance wells, three donors per
+restimulation dataset); a partially collapsed representation. See the Limitations section
+of either manuscript.
 
-## Two caveats that shape experimental design
+## Proposed experiment
 
-- **Donor variance is the binding constraint, not class separability.** Across every published
-  label-free classifier, ~98% same-donor accuracy collapses to 72–85% multi-donor / multi-class.
-  Budget donors accordingly.
-- **Licence traps.** The only video dataset carrying per-cell activation labels
-  (Zenodo `10.5281/zenodo.16319732`) is CC BY-**ND** — no-derivatives blocks training on it
-  without an author query. DeepCell DynamicNuclearNet and the Cellpose training set are
-  non-commercial and access-gated.
-
-## Caveat on completeness
-
-Several items remain **unverified** behind publisher blocks and are flagged as such in the
-report's gaps section. Highest priority: **Fanucchi et al., *Nature Genetics* 2019**
-(Mhlanga lab, UMLILO immuno-RNA-FISH) — the best remaining candidate for deposited
-trained-immunity microscopy.
-
-Correction carried forward: there is no "Mulder et al. *Cell* 2021 (300BCG)". The 300BCG
-flagship is **Moorlag et al., *Immunity* 2024** (PMID 38198850); Mulder K. et al.,
-*Immunity* 2021 (PMID 34331874) is a separate cross-tissue monocyte/macrophage atlas.
-Also: BioStudies `S-EPMC*` records are PubMed Central literature stubs, **not** image
-deposits — only `S-BIAD*`, `S-BSST*`, `EMPIAR-*` and `idr####` are.
+The imaging study that would test innate immune memory directly (primary human monocytes,
+training/tolerance/polarisation arms, rest-period time-lapse and NAD(P)H imaging, cytokines
+at two times after restimulation) is described in the Future-work section of the manuscripts.

@@ -1,0 +1,181 @@
+{
+  "key": "s-biad2196",
+  "kind": "biostudies",
+  "accession": "S-BIAD2196",
+  "record_url": "https://www.ebi.ac.uk/biostudies/studies/S-BIAD2196",
+  "title": "CellTrack: Benchmark dataset for 2D cell tracking",
+  "licence_verified": "CC BY 4.0",
+  "licence_source": "BioStudies API study S-BIAD2196 attributes",
+  "role": "pretrain_and_tracking_eval",
+  "n_files_in_record": 12,
+  "files_used": [
+    {
+      "file": "Celltrack_data/02_F8.ome.zarr.zip",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/196/S-BIAD2196/Files/Celltrack_data/02_F8.ome.zarr.zip",
+      "size_bytes_record": 262170372,
+      "size_bytes_local": 262170372,
+      "pixel_size": "0.641 x 0.641",
+      "time_interval_s": "8",
+      "annotation_type": null,
+      "source_image": null,
+      "status": "ok"
+    },
+    {
+      "file": "Celltrack_data/02_F8.ome.zarr.zip",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/196/S-BIAD2196/Files/Celltrack_data/02_F8.ome.zarr.zip",
+      "size_bytes_record": 262170372,
+      "size_bytes_local": 262170372,
+      "pixel_size": "0.641 x 0.641",
+      "time_interval_s": "8",
+      "annotation_type": null,
+      "source_image": null,
+      "status": "ok"
+    },
+    {
+      "file": "Celltrack_data/02_F8.ome.zarr.zip",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/196/S-BIAD2196/Files/Celltrack_data/02_F8.ome.zarr.zip",
+      "size_bytes_record": 262170372,
+      "size_bytes_local": 262170372,
+      "pixel_size": "0.641 x 0.641",
+      "time_interval_s": "8",
+      "annotation_type": null,
+      "source_image": null,
+      "status": "ok"
+    },
+    {
+      "file": "Celltrack_data/01_A3.ome.zarr.zip",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/196/S-BIAD2196/Files/Celltrack_data/01_A3.ome.zarr.zip",
+      "size_bytes_record": 265814203,
+      "size_bytes_local": 265814203,
+      "pixel_size": "0.641 x 0.641",
+      "time_interval_s": "8",
+      "annotation_type": null,
+      "source_image": null,
+      "status": "ok"
+    },
+    {
+      "file": "Celltrack_data/01_A3.ome.zarr.zip",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/196/S-BIAD2196/Files/Celltrack_data/01_A3.ome.zarr.zip",
+      "size_bytes_record": 265814203,
+      "size_bytes_local": 265814203,
+      "pixel_size": "0.641 x 0.641",
+      "time_interval_s": "8",
+      "annotation_type": null,
+      "source_image": null,
+      "status": "ok"
+    },
+    {
+      "file": "Celltrack_data/01_A3.ome.zarr.zip",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/196/S-BIAD2196/Files/Celltrack_data/01_A3.ome.zarr.zip",
+      "size_bytes_record": 265814203,
+      "size_bytes_local": 265814203,
+      "pixel_size": "0.641 x 0.641",
+      "time_interval_s": "8",
+      "annotation_type": null,
+      "source_image": null,
+      "status": "ok"
+    },
+    {
+      "file": "Celltrack_data/01_A1.ome.zarr.zip",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/196/S-BIAD2196/Files/Celltrack_data/01_A1.ome.zarr.zip",
+      "size_bytes_record": 286234317,
+      "size_bytes_local": 286234317,
+      "pixel_size": "0.641 x 0.641",
+      "time_interval_s": "8",
+      "annotation_type": null,
+      "source_image": null,
+      "status": "ok"
+    },
+    {
+      "file": "Celltrack_data/01_A1.ome.zarr.zip",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/196/S-BIAD2196/Files/Celltrack_data/01_A1.ome.zarr.zip",
+      "size_bytes_record": 286234317,
+      "size_bytes_local": 286234317,
+      "pixel_size": "0.641 x 0.641",
+      "time_interval_s": "8",
+      "annotation_type": null,
+      "source_image": null,
+      "status": "ok"
+    },
+    {
+      "file": "Celltrack_data/01_A1.ome.zarr.zip",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/196/S-BIAD2196/Files/Celltrack_data/01_A1.ome.zarr.zip",
+      "size_bytes_record": 286234317,
+      "size_bytes_local": 286234317,
+      "pixel_size": "0.641 x 0.641",
+      "time_interval_s": "8",
+      "annotation_type": null,
+      "source_image": null,
+      "status": "ok"
+    },
+    {
+      "file": "Celltrack_data/03_F2.ome.zarr.zip",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/196/S-BIAD2196/Files/Celltrack_data/03_F2.ome.zarr.zip",
+      "size_bytes_record": 292992796,
+      "size_bytes_local": 292992796,
+      "pixel_size": "0.641 x 0.641",
+      "time_interval_s": "8",
+      "annotation_type": null,
+      "source_image": null,
+      "status": "ok"
+    },
+    {
+      "file": "Celltrack_data/03_F2.ome.zarr.zip",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/196/S-BIAD2196/Files/Celltrack_data/03_F2.ome.zarr.zip",
+      "size_bytes_record": 292992796,
+      "size_bytes_local": 292992796,
+      "pixel_size": "0.641 x 0.641",
+      "time_interval_s": "8",
+      "annotation_type": null,
+      "source_image": null,
+      "status": "ok"
+    },
+    {
+      "file": "Celltrack_data/03_F2.ome.zarr.zip",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/196/S-BIAD2196/Files/Celltrack_data/03_F2.ome.zarr.zip",
+      "size_bytes_record": 292992796,
+      "size_bytes_local": 292992796,
+      "pixel_size": "0.641 x 0.641",
+      "time_interval_s": "8",
+      "annotation_type": null,
+      "source_image": null,
+      "status": "ok"
+    },
+    {
+      "file": "Celltrack_data/01_A2.ome.zarr.zip",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/196/S-BIAD2196/Files/Celltrack_data/01_A2.ome.zarr.zip",
+      "size_bytes_record": 323753779,
+      "size_bytes_local": 323753779,
+      "pixel_size": "0.641 x 0.641",
+      "time_interval_s": "8",
+      "annotation_type": null,
+      "source_image": null,
+      "status": "ok"
+    },
+    {
+      "file": "Celltrack_data/01_A2.ome.zarr.zip",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/196/S-BIAD2196/Files/Celltrack_data/01_A2.ome.zarr.zip",
+      "size_bytes_record": 323753779,
+      "size_bytes_local": 323753779,
+      "pixel_size": "0.641 x 0.641",
+      "time_interval_s": "8",
+      "annotation_type": null,
+      "source_image": null,
+      "status": "ok"
+    },
+    {
+      "file": "Celltrack_data/01_A2.ome.zarr.zip",
+      "url": "https://ftp.ebi.ac.uk/biostudies/fire/S-BIAD/196/S-BIAD2196/Files/Celltrack_data/01_A2.ome.zarr.zip",
+      "size_bytes_record": 323753779,
+      "size_bytes_local": 323753779,
+      "pixel_size": "0.641 x 0.641",
+      "time_interval_s": "8",
+      "annotation_type": null,
+      "source_image": null,
+      "status": "ok"
+    }
+  ],
+  "total_gb": 4.293,
+  "status": "ok",
+  "retrieved_utc": "2026-10-15T16:05:28Z"
+}

@@ -1,0 +1,166 @@
+{
+ "phase": "PLAN_v3 H5.4",
+ "outcome_codes": "\"positive\" = learned image/dynamics features carry information about the\nmodality beyond the simple baseline named in the row (CI excludes zero gain, or exact\ntest p < 0.05 with every group in the same direction); \"null\" = tested, no such gain;\n\"not tested\" = data exist but the test could not be run; \"absent\" = no public pairing.",
+ "rows": [
+  {
+   "family": "Immunophenotype: activation morphology",
+   "pairing": "same cell",
+   "dataset": "BBBC054 (mouse microglia, LPS time course; CC BY 3.0)",
+   "test": "3-class morphology from frozen features, FOV-grouped",
+   "result": "best frozen encoder V-JEPA 2 ViT-L BA 0.681 vs hand-crafted 0.499; TiJepa-1 0.595",
+   "outcome": "positive",
+   "short": "BBBC054 morphology",
+   "evidence": "results/v3/partA/bbbc054.json"
+  },
+  {
+   "family": "Immunophenotype: M0/M1/M2 polarisation (video)",
+   "pairing": "same cell",
+   "dataset": "Dryad m0cfxpp8v (BMDM movies)",
+   "test": "polarisation from frozen video features",
+   "result": "not obtained: the download requires an interactive browser check",
+   "outcome": "absent",
+   "short": "Dryad BMDM (not obtained)",
+   "evidence": "results/v3/manual_intake.json"
+  },
+  {
+   "family": "Immunophenotype: cell identity",
+   "pairing": "same cell",
+   "dataset": "Zenodo 15657646 (two-photon autofluorescence, T cells and neutrophils in the same fields; CC BY 4.0)",
+   "test": "T cell vs neutrophil, FOV-grouped, mixed fields only",
+   "result": "best frozen encoder TiJepa-0 BA 0.721; intensity-only baseline 0.714 (CI 0.663-0.760)",
+   "outcome": "null",
+   "short": "autofluorescence identity",
+   "evidence": "results/v3/coverage/autofluorescence.json"
+  },
+  {
+   "family": "Metabolism (NAD(P)H lifetime)",
+   "pairing": "same cell",
+   "dataset": "Zenodo 14330511 (two-photon NAD(P)H-FLIM, macrophages; CC BY 4.0)",
+   "test": "per-cell mean lifetime from the photon-count image, FOV-grouped ridge",
+   "result": "best frozen encoder TiJepa-1 (spatial-only) R2 +0.32; intensity baseline +0.12; knowing only the experimental arm +0.50; within fields: TiJepa-1 +0.08, intensity +0.08",
+   "outcome": "null",
+   "short": "NAD(P)H-FLIM lifetime",
+   "evidence": "results/v3/coverage/flim.json"
+  },
+  {
+   "family": "Metabolism (macrophage M1/M2 FLIM)",
+   "pairing": "same cell",
+   "dataset": "Dryad 8gtht76q2",
+   "test": "-",
+   "result": "not obtained: the download requires an interactive browser check",
+   "outcome": "absent",
+   "short": "Dryad FLIM (not obtained)",
+   "evidence": "results/v3/manual_intake.json"
+  },
+  {
+   "family": "Signalling (NF-\u03baB dynamics)",
+   "pairing": "same cell",
+   "dataset": "Tay lab deposit, Zenodo 14337874 (live-cell NF-\u03baB reporter, 125 wells)",
+   "test": "11-way ligand-pair identity from single-cell traces, well-grouped",
+   "result": "trace JEPA BA 0.286, raw trace 0.269, hand-crafted 0.198; reference: chance 0.091. Pretraining adds nothing over the same network at random initialisation",
+   "outcome": "positive",
+   "short": "NF-\u03baB ligand decoding",
+   "evidence": "results/v3/partB/partB_v3.json"
+  },
+  {
+   "family": "Signalling memory (acute tolerance)",
+   "pairing": "same cell",
+   "dataset": "Tay deposit, LPS then LPS (4 wells)",
+   "test": "tolerant vs naive from the second response; power analysis",
+   "result": "unpowered (2 wells per arm); 8 wells per arm needed for 80% power at the observed effect",
+   "outcome": "null",
+   "short": "acute tolerance (4 wells)",
+   "evidence": "results/v3/partB/partB_v3.json"
+  },
+  {
+   "family": "Transcriptomics",
+   "pairing": "same condition",
+   "dataset": "Tay RNA-seq GSE260996 (same lab as the imaging; 5 conditions)",
+   "test": "condition-level dynamics -> RNA (Q2 vs leave-one-out mean)",
+   "result": "fraction of top-2,000 genes with Q2 > 0: 0.226 (exact permutation p 0.36; 5 conditions, descriptive)",
+   "outcome": "null",
+   "short": "Tay RNA (5 conditions)",
+   "evidence": "results/v2/partB/b33_b4.json"
+  },
+  {
+   "family": "Epigenomics",
+   "pairing": "same condition",
+   "dataset": "Tay ATAC-seq GSE261647 (5 conditions)",
+   "test": "condition-level dynamics -> accessibility",
+   "result": "fraction of top-2,000 peaks with Q2 > 0: 0.182 (exact permutation p 0.44; 5 conditions, descriptive)",
+   "outcome": "null",
+   "short": "Tay ATAC (5 conditions)",
+   "evidence": "results/v2/partB/b33_b4.json"
+  },
+  {
+   "family": "Cytokines (restimulation; memory proxies)",
+   "pairing": "no public pairing",
+   "dataset": "GSE212282, GSE185433, GSE141656 (human macrophage training and tolerance, RNA only; no images)",
+   "test": "TNF/IL6 transcripts after restimulation, donor-paired",
+   "result": "\u03b2-glucan-trained cells: TNF transcript lower at 4 h after LPS (3/3 donors) and after M. tuberculosis (3/3, independent donors)",
+   "outcome": "absent",
+   "short": "restimulation RNA (no images)",
+   "evidence": "results/v3/partC/beta_glucan_replication.json"
+  },
+  {
+   "family": "Cross-species memory signature",
+   "pairing": "cross-study",
+   "dataset": "Tay mouse RNA (priming x LPS) vs GSE185433 human tolerance",
+   "test": "overlap of priming-blunted LPS genes among genes induced in both species",
+   "result": "overlap 18 vs 24.5 expected, OR 0.58, two-sided p 0.09",
+   "outcome": "null",
+   "short": "mouse-human overlap",
+   "evidence": "results/v3/partB/b4_symmetric.json"
+  },
+  {
+   "family": "Proteomics (beyond signalling reporters)",
+   "pairing": "no public pairing",
+   "dataset": "-",
+   "test": "-",
+   "result": "no public dataset pairs images of innate immune cells with proteomics",
+   "outcome": "absent",
+   "short": "none",
+   "evidence": "search recorded in this file"
+  },
+  {
+   "family": "Integrated single-cell multi-omics",
+   "pairing": "no public pairing",
+   "dataset": "-",
+   "test": "-",
+   "result": "no public dataset pairs live-cell imaging of innate cells with single-cell multi-omics of the same cells",
+   "outcome": "absent",
+   "short": "none",
+   "evidence": "search recorded in this file"
+  },
+  {
+   "family": "Spatial omics / tissue imaging",
+   "pairing": "no public pairing",
+   "dataset": "-",
+   "test": "-",
+   "result": "in-tissue data exist but not for the in-vitro cell systems studied here",
+   "outcome": "absent",
+   "short": "none",
+   "evidence": "search recorded in this file"
+  },
+  {
+   "family": "Perturbation screens (Perturb-seq, optical pooled)",
+   "pairing": "no public pairing",
+   "dataset": "-",
+   "test": "-",
+   "result": "no public optical or Perturb-seq screen of trained or tolerised innate cells",
+   "outcome": "absent",
+   "short": "none",
+   "evidence": "search recorded in this file"
+  },
+  {
+   "family": "Immune repertoire, microbiome, clinical",
+   "pairing": "no public pairing",
+   "dataset": "-",
+   "test": "-",
+   "result": "not applicable to in-vitro innate-cell imaging",
+   "outcome": "absent",
+   "short": "none",
+   "evidence": "search recorded in this file"
+  }
+ ]
+}

@@ -1,0 +1,360 @@
+{
+  "phase": "F4 7.2-7.3",
+  "positive_controls": {
+    "rna": "results/v1/partB/rna_positive_control.json",
+    "atac": "results/v1/partB/atac_positive_control.json",
+    "traces": "results/v1/partB/ligand_codes.json (tolerance direction)"
+  },
+  "b31_tolerance": {
+    "name": "B3.1 acute endotoxin tolerance from single-cell NF-kB dynamics",
+    "framing": "ACUTE ENDOTOXIN TOLERANCE: LPS then LPS, 8 h apart, mouse BMDM. Not trained immunity; not the 6-day human tolerance of B4.",
+    "primary_endpoint": true,
+    "n_cells": 1304,
+    "n_wells": 4,
+    "wells": [
+      "TNFLPSfirst_traces.mat|rep1|well13",
+      "TNFLPSfirst_traces.mat|rep1|well5",
+      "TNFLPSfirst_traces.mat|rep2|well37",
+      "TNFLPSfirst_traces.mat|rep2|well45"
+    ],
+    "n_cells_tolerant": 720,
+    "n_cells_naive": 584,
+    "response_window_frames": [
+      83,
+      126
+    ],
+    "interval_h": 8.0,
+    "results": {
+      "raw_trace": {
+        "per_seed": [
+          {
+            "seed": 0,
+            "n_cells_subsampled": 1000,
+            "cell_balanced_accuracy": 0.544,
+            "well_balanced_accuracy": 0.5
+          },
+          {
+            "seed": 1,
+            "n_cells_subsampled": 1000,
+            "cell_balanced_accuracy": 0.552,
+            "well_balanced_accuracy": 0.5
+          },
+          {
+            "seed": 2,
+            "n_cells_subsampled": 1000,
+            "cell_balanced_accuracy": 0.544,
+            "well_balanced_accuracy": 0.5
+          }
+        ],
+        "cell_balanced_accuracy_mean": 0.5466666666666667,
+        "cell_balanced_accuracy_sd": 0.004618802153517011,
+        "per_well": {
+          "TNFLPSfirst_traces.mat|rep1|well13": [
+            {
+              "seed": 0,
+              "n_cells": 250,
+              "true_label": "LPS->LPS",
+              "fraction_predicted_tolerant": 0.816
+            },
+            {
+              "seed": 1,
+              "n_cells": 250,
+              "true_label": "LPS->LPS",
+              "fraction_predicted_tolerant": 0.812
+            },
+            {
+              "seed": 2,
+              "n_cells": 250,
+              "true_label": "LPS->LPS",
+              "fraction_predicted_tolerant": 0.82
+            }
+          ],
+          "TNFLPSfirst_traces.mat|rep1|well5": [
+            {
+              "seed": 0,
+              "n_cells": 250,
+              "true_label": "naive->LPS",
+              "fraction_predicted_tolerant": 0.684
+            },
+            {
+              "seed": 1,
+              "n_cells": 250,
+              "true_label": "naive->LPS",
+              "fraction_predicted_tolerant": 0.704
+            },
+            {
+              "seed": 2,
+              "n_cells": 250,
+              "true_label": "naive->LPS",
+              "fraction_predicted_tolerant": 0.708
+            }
+          ],
+          "TNFLPSfirst_traces.mat|rep2|well37": [
+            {
+              "seed": 0,
+              "n_cells": 250,
+              "true_label": "naive->LPS",
+              "fraction_predicted_tolerant": 0.756
+            },
+            {
+              "seed": 1,
+              "n_cells": 250,
+              "true_label": "naive->LPS",
+              "fraction_predicted_tolerant": 0.708
+            },
+            {
+              "seed": 2,
+              "n_cells": 250,
+              "true_label": "naive->LPS",
+              "fraction_predicted_tolerant": 0.744
+            }
+          ],
+          "TNFLPSfirst_traces.mat|rep2|well45": [
+            {
+              "seed": 0,
+              "n_cells": 250,
+              "true_label": "LPS->LPS",
+              "fraction_predicted_tolerant": 0.8
+            },
+            {
+              "seed": 1,
+              "n_cells": 250,
+              "true_label": "LPS->LPS",
+              "fraction_predicted_tolerant": 0.808
+            },
+            {
+              "seed": 2,
+              "n_cells": 250,
+              "true_label": "LPS->LPS",
+              "fraction_predicted_tolerant": 0.808
+            }
+          ]
+        },
+        "exact_permutation": {
+          "observed": 0.5607781582952815,
+          "n_distinct_assignments": 6,
+          "p_exact": 0.3333333333333333,
+          "minimum_achievable_p": 0.16666666666666666,
+          "null_mean": 0.4160427644948183,
+          "null_max": 0.5607781582952815,
+          "note": "Exact enumeration over all distinct well-label assignments (PLAN_v1.md Section 9). No bootstrap CI is reported, because 4 groups is below the 10-group minimum (rule 3)."
+        },
+        "confidence_interval": null,
+        "confidence_interval_reason": "4 grouping units is below the 10-group minimum (PLAN_v1.md rule 3), so no bootstrap CI is reported. v0 reported one.",
+        "seed_varies": "a different stratified per-well cell subsample per seed (F3.5); the protocol is otherwise deterministic, so without this the sd would be exactly 0 and the seed claim would have to be withdrawn under rule 4."
+      },
+      "handcrafted": {
+        "per_seed": [
+          {
+            "seed": 0,
+            "n_cells_subsampled": 1000,
+            "cell_balanced_accuracy": 0.514,
+            "well_balanced_accuracy": 0.5
+          },
+          {
+            "seed": 1,
+            "n_cells_subsampled": 1000,
+            "cell_balanced_accuracy": 0.509,
+            "well_balanced_accuracy": 0.5
+          },
+          {
+            "seed": 2,
+            "n_cells_subsampled": 1000,
+            "cell_balanced_accuracy": 0.526,
+            "well_balanced_accuracy": 0.5
+          }
+        ],
+        "cell_balanced_accuracy_mean": 0.5163333333333334,
+        "cell_balanced_accuracy_sd": 0.008736894948054113,
+        "per_well": {
+          "TNFLPSfirst_traces.mat|rep1|well13": [
+            {
+              "seed": 0,
+              "n_cells": 250,
+              "true_label": "LPS->LPS",
+              "fraction_predicted_tolerant": 0.248
+            },
+            {
+              "seed": 1,
+              "n_cells": 250,
+              "true_label": "LPS->LPS",
+              "fraction_predicted_tolerant": 0.216
+            },
+            {
+              "seed": 2,
+              "n_cells": 250,
+              "true_label": "LPS->LPS",
+              "fraction_predicted_tolerant": 0.26
+            }
+          ],
+          "TNFLPSfirst_traces.mat|rep1|well5": [
+            {
+              "seed": 0,
+              "n_cells": 250,
+              "true_label": "naive->LPS",
+              "fraction_predicted_tolerant": 0.808
+            },
+            {
+              "seed": 1,
+              "n_cells": 250,
+              "true_label": "naive->LPS",
+              "fraction_predicted_tolerant": 0.832
+            },
+            {
+              "seed": 2,
+              "n_cells": 250,
+              "true_label": "naive->LPS",
+              "fraction_predicted_tolerant": 0.204
+            }
+          ],
+          "TNFLPSfirst_traces.mat|rep2|well37": [
+            {
+              "seed": 0,
+              "n_cells": 250,
+              "true_label": "naive->LPS",
+              "fraction_predicted_tolerant": 0.208
+            },
+            {
+              "seed": 1,
+              "n_cells": 250,
+              "true_label": "naive->LPS",
+              "fraction_predicted_tolerant": 0.172
+            },
+            {
+              "seed": 2,
+              "n_cells": 250,
+              "true_label": "naive->LPS",
+              "fraction_predicted_tolerant": 0.2
+            }
+          ],
+          "TNFLPSfirst_traces.mat|rep2|well45": [
+            {
+              "seed": 0,
+              "n_cells": 250,
+              "true_label": "LPS->LPS",
+              "fraction_predicted_tolerant": 0.824
+            },
+            {
+              "seed": 1,
+              "n_cells": 250,
+              "true_label": "LPS->LPS",
+              "fraction_predicted_tolerant": 0.824
+            },
+            {
+              "seed": 2,
+              "n_cells": 250,
+              "true_label": "LPS->LPS",
+              "fraction_predicted_tolerant": 0.248
+            }
+          ]
+        },
+        "exact_permutation": {
+          "observed": 0.3636415525114155,
+          "n_distinct_assignments": 6,
+          "p_exact": 0.6666666666666666,
+          "minimum_achievable_p": 0.16666666666666666,
+          "null_mean": 0.3845461742907295,
+          "null_max": 0.48929724173215167,
+          "note": "Exact enumeration over all distinct well-label assignments (PLAN_v1.md Section 9). No bootstrap CI is reported, because 4 groups is below the 10-group minimum (rule 3)."
+        },
+        "confidence_interval": null,
+        "confidence_interval_reason": "4 grouping units is below the 10-group minimum (PLAN_v1.md rule 3), so no bootstrap CI is reported. v0 reported one.",
+        "seed_varies": "a different stratified per-well cell subsample per seed (F3.5); the protocol is otherwise deterministic, so without this the sd would be exactly 0 and the seed claim would have to be withdrawn under rule 4."
+      }
+    },
+    "interpretation": "The design supplies 4 wells, so the exact permutation null has 6 distinct assignments and no p below 0.167 is achievable. The contrast therefore CANNOT reach conventional significance, whatever the classifier does. This is a limitation of the public deposit, not of the analysis.",
+    "status": "ok"
+  },
+  "b31_sensitivity_all_wells": {
+    "status": "ok",
+    "label": "SENSITIVITY ANALYSIS, NOT the primary endpoint: it pools naive->LPS wells across deposit files and across the 4 h and 8 h intervals, so priming is confounded with both file and interval. Reported because the matched design has only 4 wells, not because it is cleaner.",
+    "n_wells": 10,
+    "n_cells": 2915,
+    "wells": [
+      "PAMIL1first_traces.mat|rep1|well29",
+      "PAMIL1first_traces.mat|rep2|well61",
+      "PICCPGfirst_traces.mat|rep1|well29",
+      "PICCPGfirst_traces.mat|rep2|well61",
+      "TNFLPSfirst_traces.mat|rep1|well13",
+      "TNFLPSfirst_traces.mat|rep1|well5",
+      "TNFLPSfirst_traces.mat|rep1|well6",
+      "TNFLPSfirst_traces.mat|rep2|well37",
+      "TNFLPSfirst_traces.mat|rep2|well38",
+      "TNFLPSfirst_traces.mat|rep2|well45"
+    ],
+    "per_seed": [
+      {
+        "seed": 0,
+        "cell_balanced_accuracy": 0.5792251961528727,
+        "well_balanced_accuracy": 0.625
+      },
+      {
+        "seed": 1,
+        "cell_balanced_accuracy": 0.5792251961528727,
+        "well_balanced_accuracy": 0.625
+      },
+      {
+        "seed": 2,
+        "cell_balanced_accuracy": 0.5792251961528727,
+        "well_balanced_accuracy": 0.625
+      }
+    ],
+    "cell_balanced_accuracy_mean": 0.5792251961528727,
+    "cell_balanced_accuracy_sd": 0.0,
+    "exact_permutation": {
+      "observed": 0.5792251961528727,
+      "n_distinct_assignments": 45,
+      "p_exact": 0.15555555555555556,
+      "minimum_achievable_p": 0.022222222222222223,
+      "null_mean": 0.43731478207782765,
+      "null_max": 0.7075339068596118,
+      "note": "Exact enumeration over all distinct well-label assignments (PLAN_v1.md Section 9). No bootstrap CI is reported, because 10 groups is below the 10-group minimum (rule 3)."
+    },
+    "confidence_interval": null,
+    "confidence_interval_reason": "10 grouping units is still below the 10-group minimum."
+  },
+  "b32_ligand_identity": {
+    "status": "ok",
+    "name": "B3.2 ligand-pair identity from the NF-kB trace",
+    "primary_endpoint": false,
+    "n_classes": 11,
+    "classes": [
+      "CpG->LPS",
+      "CpG->TNF",
+      "CpG->polyIC",
+      "LPS->LPS",
+      "LPS->TNF",
+      "TNF->LPS",
+      "TNF->TNF",
+      "naive->LPS",
+      "naive->TNF",
+      "polyIC->LPS",
+      "polyIC->TNF"
+    ],
+    "n_cells": 32048,
+    "n_wells": 125,
+    "chance_balanced_accuracy": 0.09090909090909091,
+    "per_seed": [
+      {
+        "seed": 0,
+        "n_cells_subsampled": 14954,
+        "balanced_accuracy": 0.26612784332531475
+      },
+      {
+        "seed": 1,
+        "n_cells_subsampled": 14954,
+        "balanced_accuracy": 0.2651926968359088
+      },
+      {
+        "seed": 2,
+        "n_cells_subsampled": 14954,
+        "balanced_accuracy": 0.2747742948318656
+      }
+    ],
+    "balanced_accuracy_mean": 0.2686982783310297,
+    "balanced_accuracy_sd": 0.0052827177785666896,
+    "cells_per_well_subsampled": 120,
+    "seed_varies": "a different stratified per-well cell subsample AND a different StratifiedGroupKFold fold assignment per seed, so the sd reflects real variation rather than being cosmetic",
+    "class_set_note": "Only ligand codes resolvable from the deposit (CpG, LPS, polyI:C, TNF and the naive control) are used, so this class set differs from the published one, which also covers the unresolved codes 4, 5, 7 and 17."
+  }
+}

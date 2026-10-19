@@ -1,0 +1,28 @@
+{
+  "phase": "F0.3",
+  "timestamp_utc": "2026-10-15T23:42Z",
+  "drive_remote_type": "drive",
+  "expected_path": "<remote>:TiJepa/manual_downloads/",
+  "expected_path_exists": false,
+  "rclone_error": "directory not found",
+  "search_performed": "rclone lsf <remote>: --recursive --max-depth 4 filtered for dryad|ltdb|m0cfx|manual; also inspected every top-level Drive folder listing",
+  "datasets": {
+    "dryad_m0cfxpp8v": {
+      "doi": "10.5061/dryad.m0cfxpp8v",
+      "status": "not_provided",
+      "note": "Author prerequisite PLAN_v1.md §2.3 was not completed before this run. Not present at TiJepa/manual_downloads/dryad_m0cfxpp8v/ nor anywhere else in the Drive account. Automated download remains blocked by an Anubis proof-of-work interstitial, which PLAN.md §2/§9 and PLAN_v1.md §14 forbid bypassing.",
+      "dependent_analyses": [
+        "F3.1 Dryad M0/M1/M2 leave-one-batch-out headline benchmark (finding D2)",
+        "F5 8.4 Part C3 projection with matched stimuli",
+        "F3.4 forecasting on Dryad (the S-BIAD2196 and ComplexEye arms still run)",
+        "F2.2 the every-2h linear-probe collapse monitor (substituted, see RUN_REPORT_v1 deviations)"
+      ]
+    },
+    "ltdb": {
+      "doi": "10.6084/m9.figshare.c.3827890",
+      "status": "not_provided",
+      "note": "Not present on the Drive remote. ndownloader.figshare.com was unreachable from this instance in v0 preflight and is re-tested in F0.2.",
+      "dependent_analyses": ["F3.3 tracking on LTDB 2D max projections"]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+\section{Limitations}
+\label{sec:limitations}
+\paragraph{Cell types.} The model is pretrained on human neutrophil migration, evaluated on
+neutrophils, mouse microglia, mouse immune cells and FLIM-imaged macrophages, and the
+memory biology concerns human monocyte-derived macrophages. Every transfer across that
+chain is an assumption the data cannot check; the activation-labelled macrophage movies
+that would have tested it directly could not be obtained.
+
+\paragraph{Seeds and scale.} One pretraining seed was run per recipe on one GPU, so
+differences between pretrained models carry no seed-to-seed uncertainty; the probe seeds
+reported vary only the folds and subsamples. TiJepa is a ViT-S trained for about
+\val{pre.t1.gpuh} GPU-hours on a single-source corpus; V-JEPA~2 is a ViT-L trained on
+orders of magnitude more video.
+
+\paragraph{Collapse.} Feature effective rank fell throughout training for every recipe we
+trained to completion (Section~\ref{sec:collapse}); our 20{,}000-step recipe study
+(Section~\ref{sec:recipe}) ends before the collapse sets in and does not establish its cause.
+
+\paragraph{Small groups.} Six tracking movies, four tolerance wells, five matched omics
+conditions and three donors per restimulation dataset are below the size at which we
+report confidence intervals; those analyses give per-group values and exact tests, and the
+tolerance and dynamics-to-omics analyses are descriptive.
+
+\paragraph{Readouts.} The restimulation observation is at the transcript level at 4\,h; the
+24\,h protein results it contrasts with are those reported by the source publications, not
+re-measured. The NAD(P)H lifetime readouts are computed without deconvolving the
+instrument response and are relative measures.

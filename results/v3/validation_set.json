@@ -1,0 +1,1905 @@
+{
+ "phase": "PLAN_v3 H3.1",
+ "archive": {
+  "file": "384-well_plate_movies_n=1_complexeye.zip",
+  "zenodo_record": "10082674",
+  "licence": "CC BY 4.0",
+  "md5": "6ae275191e4ba918ce4f4ec04a98936a",
+  "md5_verified": true,
+  "in_frozen_corpus": false
+ },
+ "deviation": "PLAN_v3 prefers R01.zip; this archive is equally outside the corpus and already on the instance",
+ "leakage_rules": {
+  "evaluation": "corpus-builder fingerprint rule (same shape and r >= 0.9, or identical frame-0 SHA-1) against all 6 S-BIAD2196 movies",
+  "corpus": "3 stride-1 non-static clip patches per ComplexEye corpus movie, searched at the same time index; duplicate if >= 2 match at NCC > 0.95"
+ },
+ "reid_design": {
+  "gaps_frames": [
+   3,
+   9,
+   27
+  ],
+  "anchors_per_movie": 4,
+  "max_cells_per_anchor": 64,
+  "query": "16-frame track-following clip ending at the anchor",
+  "gallery": "16-frame clip starting at anchor + k (no shared frame)",
+  "image_encoders": "last query frame vs first gallery frame"
+ },
+ "n_members": 64,
+ "n_ok": 64,
+ "n_cells_total": 5799,
+ "status_counts": {
+  "ok": 64
+ },
+ "movies": [
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:A1.tiff",
+   "shape": [
+    432,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.4685,
+     0.74,
+     0.4954
+    ]
+   },
+   "corpus_check_max_ncc": 0.74,
+   "corpus_check_positive_control_ncc": 0.9658,
+   "status": "ok",
+   "n_tracks": 243,
+   "n_cells": 132,
+   "cells_per_anchor": [
+    27,
+    29,
+    33,
+    43
+   ],
+   "file": "data/interim/val_reid/A1.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:A2.tiff",
+   "shape": [
+    433,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.6116,
+     0.6998,
+     0.4196
+    ]
+   },
+   "corpus_check_max_ncc": 0.6998,
+   "corpus_check_positive_control_ncc": 0.966,
+   "status": "ok",
+   "n_tracks": 178,
+   "n_cells": 131,
+   "cells_per_anchor": [
+    21,
+    26,
+    37,
+    47
+   ],
+   "file": "data/interim/val_reid/A2.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:A3.tiff",
+   "shape": [
+    432,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.4515,
+     0.7298,
+     0.5062
+    ]
+   },
+   "corpus_check_max_ncc": 0.7298,
+   "corpus_check_positive_control_ncc": 0.9897,
+   "status": "ok",
+   "n_tracks": 203,
+   "n_cells": 115,
+   "cells_per_anchor": [
+    25,
+    24,
+    33,
+    33
+   ],
+   "file": "data/interim/val_reid/A3.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:A4.tiff",
+   "shape": [
+    433,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.4194,
+     0.6079,
+     0.5142
+    ]
+   },
+   "corpus_check_max_ncc": 0.6079,
+   "corpus_check_positive_control_ncc": 0.9911,
+   "status": "ok",
+   "n_tracks": 305,
+   "n_cells": 148,
+   "cells_per_anchor": [
+    24,
+    25,
+    48,
+    51
+   ],
+   "file": "data/interim/val_reid/A4.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:A5.tiff",
+   "shape": [
+    432,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.7291,
+     0.7371,
+     0.4007
+    ]
+   },
+   "corpus_check_max_ncc": 0.7371,
+   "corpus_check_positive_control_ncc": 0.9546,
+   "status": "ok",
+   "n_tracks": 248,
+   "n_cells": 190,
+   "cells_per_anchor": [
+    31,
+    53,
+    51,
+    55
+   ],
+   "file": "data/interim/val_reid/A5.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:A6.tiff",
+   "shape": [
+    433,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.6333,
+     0.7392,
+     0.5954
+    ]
+   },
+   "corpus_check_max_ncc": 0.7392,
+   "corpus_check_positive_control_ncc": 0.9836,
+   "status": "ok",
+   "n_tracks": 253,
+   "n_cells": 135,
+   "cells_per_anchor": [
+    30,
+    27,
+    32,
+    46
+   ],
+   "file": "data/interim/val_reid/A6.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:A7.tiff",
+   "shape": [
+    432,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.4906,
+     0.7299,
+     0.4732
+    ]
+   },
+   "corpus_check_max_ncc": 0.7299,
+   "corpus_check_positive_control_ncc": 0.9994,
+   "status": "ok",
+   "n_tracks": 319,
+   "n_cells": 182,
+   "cells_per_anchor": [
+    38,
+    45,
+    49,
+    50
+   ],
+   "file": "data/interim/val_reid/A7.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:A8.tiff",
+   "shape": [
+    433,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.6232,
+     0.7528,
+     0.4497
+    ]
+   },
+   "corpus_check_max_ncc": 0.7528,
+   "corpus_check_positive_control_ncc": 0.9896,
+   "status": "ok",
+   "n_tracks": 325,
+   "n_cells": 154,
+   "cells_per_anchor": [
+    37,
+    34,
+    36,
+    47
+   ],
+   "file": "data/interim/val_reid/A8.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:B1.tiff",
+   "shape": [
+    432,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5735,
+     0.7304,
+     0.3757
+    ]
+   },
+   "corpus_check_max_ncc": 0.7304,
+   "corpus_check_positive_control_ncc": 0.9629,
+   "status": "ok",
+   "n_tracks": 181,
+   "n_cells": 168,
+   "cells_per_anchor": [
+    26,
+    45,
+    48,
+    49
+   ],
+   "file": "data/interim/val_reid/B1.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:B2.tiff",
+   "shape": [
+    437,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.6534,
+     0.7534,
+     0.3633
+    ]
+   },
+   "corpus_check_max_ncc": 0.7534,
+   "corpus_check_positive_control_ncc": 0.9307,
+   "status": "ok",
+   "n_tracks": 250,
+   "n_cells": 196,
+   "cells_per_anchor": [
+    43,
+    48,
+    52,
+    53
+   ],
+   "file": "data/interim/val_reid/B2.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:B3.tiff",
+   "shape": [
+    432,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.6932,
+     0.6816,
+     0.3942
+    ]
+   },
+   "corpus_check_max_ncc": 0.6932,
+   "corpus_check_positive_control_ncc": 0.9781,
+   "status": "ok",
+   "n_tracks": 240,
+   "n_cells": 204,
+   "cells_per_anchor": [
+    53,
+    50,
+    50,
+    51
+   ],
+   "file": "data/interim/val_reid/B3.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:B4.tiff",
+   "shape": [
+    437,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5593,
+     0.718,
+     0.4754
+    ]
+   },
+   "corpus_check_max_ncc": 0.718,
+   "corpus_check_positive_control_ncc": 0.9374,
+   "status": "ok",
+   "n_tracks": 267,
+   "n_cells": 164,
+   "cells_per_anchor": [
+    34,
+    39,
+    51,
+    40
+   ],
+   "file": "data/interim/val_reid/B4.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:B5.tiff",
+   "shape": [
+    432,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.6165,
+     0.7206,
+     0.4041
+    ]
+   },
+   "corpus_check_max_ncc": 0.7206,
+   "corpus_check_positive_control_ncc": 0.9775,
+   "status": "ok",
+   "n_tracks": 253,
+   "n_cells": 124,
+   "cells_per_anchor": [
+    21,
+    42,
+    22,
+    39
+   ],
+   "file": "data/interim/val_reid/B5.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:B6.tiff",
+   "shape": [
+    437,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5792,
+     0.7276,
+     0.4232
+    ]
+   },
+   "corpus_check_max_ncc": 0.7276,
+   "corpus_check_positive_control_ncc": 0.9719,
+   "status": "ok",
+   "n_tracks": 264,
+   "n_cells": 179,
+   "cells_per_anchor": [
+    28,
+    49,
+    49,
+    53
+   ],
+   "file": "data/interim/val_reid/B6.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:B7.tiff",
+   "shape": [
+    432,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.6436,
+     0.7178,
+     0.4126
+    ]
+   },
+   "corpus_check_max_ncc": 0.7178,
+   "corpus_check_positive_control_ncc": 0.9598,
+   "status": "ok",
+   "n_tracks": 343,
+   "n_cells": 188,
+   "cells_per_anchor": [
+    43,
+    48,
+    46,
+    51
+   ],
+   "file": "data/interim/val_reid/B7.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:B8.tiff",
+   "shape": [
+    437,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5521,
+     0.6595,
+     0.4321
+    ]
+   },
+   "corpus_check_max_ncc": 0.6595,
+   "corpus_check_positive_control_ncc": 0.9122,
+   "status": "ok",
+   "n_tracks": 299,
+   "n_cells": 195,
+   "cells_per_anchor": [
+    43,
+    52,
+    51,
+    49
+   ],
+   "file": "data/interim/val_reid/B8.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:C1.tiff",
+   "shape": [
+    440,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5062,
+     0.7509,
+     0.4759
+    ]
+   },
+   "corpus_check_max_ncc": 0.7509,
+   "corpus_check_positive_control_ncc": 0.9942,
+   "status": "ok",
+   "n_tracks": 140,
+   "n_cells": 19,
+   "cells_per_anchor": [
+    3,
+    2,
+    6,
+    8
+   ],
+   "file": "data/interim/val_reid/C1.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:C2.tiff",
+   "shape": [
+    439,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5433,
+     0.7149,
+     0.5379
+    ]
+   },
+   "corpus_check_max_ncc": 0.7149,
+   "corpus_check_positive_control_ncc": 0.986,
+   "status": "ok",
+   "n_tracks": 148,
+   "n_cells": 27,
+   "cells_per_anchor": [
+    5,
+    2,
+    10,
+    10
+   ],
+   "file": "data/interim/val_reid/C2.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:C3.tiff",
+   "shape": [
+    437,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5198,
+     0.7241,
+     0.4595
+    ]
+   },
+   "corpus_check_max_ncc": 0.7241,
+   "corpus_check_positive_control_ncc": 0.9966,
+   "status": "ok",
+   "n_tracks": 112,
+   "n_cells": 18,
+   "cells_per_anchor": [
+    5,
+    3,
+    6,
+    4
+   ],
+   "file": "data/interim/val_reid/C3.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:C4.tiff",
+   "shape": [
+    436,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.4764,
+     0.7013,
+     0.4951
+    ]
+   },
+   "corpus_check_max_ncc": 0.7013,
+   "corpus_check_positive_control_ncc": 0.9929,
+   "status": "ok",
+   "n_tracks": 96,
+   "n_cells": 18,
+   "cells_per_anchor": [
+    4,
+    5,
+    4,
+    5
+   ],
+   "file": "data/interim/val_reid/C4.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:C5.tiff",
+   "shape": [
+    440,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.466,
+     0.6899,
+     0.4591
+    ]
+   },
+   "corpus_check_max_ncc": 0.6899,
+   "corpus_check_positive_control_ncc": 0.9985,
+   "status": "ok",
+   "n_tracks": 96,
+   "n_cells": 24,
+   "cells_per_anchor": [
+    6,
+    9,
+    7,
+    2
+   ],
+   "file": "data/interim/val_reid/C5.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:C6.tiff",
+   "shape": [
+    441,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5079,
+     0.7316,
+     0.3725
+    ]
+   },
+   "corpus_check_max_ncc": 0.7316,
+   "corpus_check_positive_control_ncc": 0.9651,
+   "status": "ok",
+   "n_tracks": 140,
+   "n_cells": 13,
+   "cells_per_anchor": [
+    2,
+    1,
+    7,
+    3
+   ],
+   "file": "data/interim/val_reid/C6.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:C7.tiff",
+   "shape": [
+    432,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.6822,
+     0.7065,
+     0.3687
+    ]
+   },
+   "corpus_check_max_ncc": 0.7065,
+   "corpus_check_positive_control_ncc": 0.907,
+   "status": "ok",
+   "n_tracks": 145,
+   "n_cells": 26,
+   "cells_per_anchor": [
+    7,
+    6,
+    8,
+    5
+   ],
+   "file": "data/interim/val_reid/C7.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:C8.tiff",
+   "shape": [
+    433,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.4465,
+     0.7478,
+     0.4294
+    ]
+   },
+   "corpus_check_max_ncc": 0.7478,
+   "corpus_check_positive_control_ncc": 0.9827,
+   "status": "ok",
+   "n_tracks": 117,
+   "n_cells": 17,
+   "cells_per_anchor": [
+    8,
+    3,
+    2,
+    4
+   ],
+   "file": "data/interim/val_reid/C8.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:D1.tiff",
+   "shape": [
+    440,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.4846,
+     0.7627,
+     0.4076
+    ]
+   },
+   "corpus_check_max_ncc": 0.7627,
+   "corpus_check_positive_control_ncc": 0.9747,
+   "status": "ok",
+   "n_tracks": 126,
+   "n_cells": 15,
+   "cells_per_anchor": [
+    8,
+    2,
+    4,
+    1
+   ],
+   "file": "data/interim/val_reid/D1.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:D2.tiff",
+   "shape": [
+    441,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5776,
+     0.7542,
+     0.4757
+    ]
+   },
+   "corpus_check_max_ncc": 0.7542,
+   "corpus_check_positive_control_ncc": 0.9951,
+   "status": "ok",
+   "n_tracks": 159,
+   "n_cells": 36,
+   "cells_per_anchor": [
+    9,
+    11,
+    8,
+    8
+   ],
+   "file": "data/interim/val_reid/D2.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:D3.tiff",
+   "shape": [
+    435,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.6161,
+     0.7658,
+     0.3562
+    ]
+   },
+   "corpus_check_max_ncc": 0.7658,
+   "corpus_check_positive_control_ncc": 0.9772,
+   "status": "ok",
+   "n_tracks": 146,
+   "n_cells": 19,
+   "cells_per_anchor": [
+    11,
+    4,
+    2,
+    2
+   ],
+   "file": "data/interim/val_reid/D3.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:D4.tiff",
+   "shape": [
+    438,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5831,
+     0.7191,
+     0.3437
+    ]
+   },
+   "corpus_check_max_ncc": 0.7191,
+   "corpus_check_positive_control_ncc": 0.8355,
+   "status": "ok",
+   "n_tracks": 147,
+   "n_cells": 22,
+   "cells_per_anchor": [
+    10,
+    7,
+    4,
+    1
+   ],
+   "file": "data/interim/val_reid/D4.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:D5.tiff",
+   "shape": [
+    441,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.6386,
+     0.7179,
+     0.4061
+    ]
+   },
+   "corpus_check_max_ncc": 0.7179,
+   "corpus_check_positive_control_ncc": 0.9264,
+   "status": "ok",
+   "n_tracks": 164,
+   "n_cells": 32,
+   "cells_per_anchor": [
+    14,
+    5,
+    3,
+    10
+   ],
+   "file": "data/interim/val_reid/D5.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:D6.tiff",
+   "shape": [
+    441,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5663,
+     0.7465,
+     0.4329
+    ]
+   },
+   "corpus_check_max_ncc": 0.7465,
+   "corpus_check_positive_control_ncc": 0.9712,
+   "status": "ok",
+   "n_tracks": 122,
+   "n_cells": 22,
+   "cells_per_anchor": [
+    7,
+    4,
+    5,
+    6
+   ],
+   "file": "data/interim/val_reid/D6.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:D7.tiff",
+   "shape": [
+    432,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5063,
+     0.7491,
+     0.4021
+    ]
+   },
+   "corpus_check_max_ncc": 0.7491,
+   "corpus_check_positive_control_ncc": 0.9758,
+   "status": "ok",
+   "n_tracks": 130,
+   "n_cells": 19,
+   "cells_per_anchor": [
+    9,
+    4,
+    3,
+    3
+   ],
+   "file": "data/interim/val_reid/D7.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:D8.tiff",
+   "shape": [
+    437,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.4648,
+     0.7439,
+     0.4096
+    ]
+   },
+   "corpus_check_max_ncc": 0.7439,
+   "corpus_check_positive_control_ncc": 0.98,
+   "status": "ok",
+   "n_tracks": 116,
+   "n_cells": 20,
+   "cells_per_anchor": [
+    10,
+    6,
+    0,
+    4
+   ],
+   "file": "data/interim/val_reid/D8.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:E1.tiff",
+   "shape": [
+    448,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5794,
+     0.7528,
+     0.3997
+    ]
+   },
+   "corpus_check_max_ncc": 0.7528,
+   "corpus_check_positive_control_ncc": 0.9918,
+   "status": "ok",
+   "n_tracks": 366,
+   "n_cells": 87,
+   "cells_per_anchor": [
+    10,
+    49,
+    9,
+    19
+   ],
+   "file": "data/interim/val_reid/E1.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:E2.tiff",
+   "shape": [
+    449,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5919,
+     0.76,
+     0.399
+    ]
+   },
+   "corpus_check_max_ncc": 0.76,
+   "corpus_check_positive_control_ncc": 0.9969,
+   "status": "ok",
+   "n_tracks": 372,
+   "n_cells": 31,
+   "cells_per_anchor": [
+    23,
+    5,
+    1,
+    2
+   ],
+   "file": "data/interim/val_reid/E2.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:E3.tiff",
+   "shape": [
+    443,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.559,
+     0.7335,
+     0.5136
+    ]
+   },
+   "corpus_check_max_ncc": 0.7335,
+   "corpus_check_positive_control_ncc": 1.0009,
+   "status": "ok",
+   "n_tracks": 369,
+   "n_cells": 165,
+   "cells_per_anchor": [
+    38,
+    41,
+    40,
+    46
+   ],
+   "file": "data/interim/val_reid/E3.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:E4.tiff",
+   "shape": [
+    445,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.3832,
+     0.7416,
+     0.4912
+    ]
+   },
+   "corpus_check_max_ncc": 0.7416,
+   "corpus_check_positive_control_ncc": 0.9963,
+   "status": "ok",
+   "n_tracks": 429,
+   "n_cells": 84,
+   "cells_per_anchor": [
+    37,
+    13,
+    15,
+    19
+   ],
+   "file": "data/interim/val_reid/E4.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:E5.tiff",
+   "shape": [
+    446,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.4645,
+     0.7757,
+     0.5252
+    ]
+   },
+   "corpus_check_max_ncc": 0.7757,
+   "corpus_check_positive_control_ncc": 0.9997,
+   "status": "ok",
+   "n_tracks": 443,
+   "n_cells": 78,
+   "cells_per_anchor": [
+    10,
+    45,
+    10,
+    13
+   ],
+   "file": "data/interim/val_reid/E5.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:E6.tiff",
+   "shape": [
+    448,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5034,
+     0.7633,
+     0.5116
+    ]
+   },
+   "corpus_check_max_ncc": 0.7633,
+   "corpus_check_positive_control_ncc": 0.9951,
+   "status": "ok",
+   "n_tracks": 425,
+   "n_cells": 89,
+   "cells_per_anchor": [
+    22,
+    9,
+    18,
+    40
+   ],
+   "file": "data/interim/val_reid/E6.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:E7.tiff",
+   "shape": [
+    446,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5685,
+     0.7118,
+     0.44
+    ]
+   },
+   "corpus_check_max_ncc": 0.7118,
+   "corpus_check_positive_control_ncc": 0.965,
+   "status": "ok",
+   "n_tracks": 256,
+   "n_cells": 180,
+   "cells_per_anchor": [
+    40,
+    52,
+    47,
+    41
+   ],
+   "file": "data/interim/val_reid/E7.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:E8.tiff",
+   "shape": [
+    447,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5354,
+     0.7309,
+     0.4205
+    ]
+   },
+   "corpus_check_max_ncc": 0.7309,
+   "corpus_check_positive_control_ncc": 0.9871,
+   "status": "ok",
+   "n_tracks": 313,
+   "n_cells": 151,
+   "cells_per_anchor": [
+    28,
+    52,
+    28,
+    43
+   ],
+   "file": "data/interim/val_reid/E8.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:F1.tiff",
+   "shape": [
+    449,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5557,
+     0.7428,
+     0.4476
+    ]
+   },
+   "corpus_check_max_ncc": 0.7428,
+   "corpus_check_positive_control_ncc": 0.9594,
+   "status": "ok",
+   "n_tracks": 407,
+   "n_cells": 31,
+   "cells_per_anchor": [
+    7,
+    6,
+    8,
+    10
+   ],
+   "file": "data/interim/val_reid/F1.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:F2.tiff",
+   "shape": [
+    448,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5181,
+     0.7391,
+     0.3501
+    ]
+   },
+   "corpus_check_max_ncc": 0.7391,
+   "corpus_check_positive_control_ncc": 0.9387,
+   "status": "ok",
+   "n_tracks": 305,
+   "n_cells": 201,
+   "cells_per_anchor": [
+    48,
+    49,
+    52,
+    52
+   ],
+   "file": "data/interim/val_reid/F2.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:F3.tiff",
+   "shape": [
+    442,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5699,
+     0.7541,
+     0.4144
+    ]
+   },
+   "corpus_check_max_ncc": 0.7541,
+   "corpus_check_positive_control_ncc": 0.9593,
+   "status": "ok",
+   "n_tracks": 273,
+   "n_cells": 211,
+   "cells_per_anchor": [
+    41,
+    54,
+    55,
+    61
+   ],
+   "file": "data/interim/val_reid/F3.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:F4.tiff",
+   "shape": [
+    442,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.6347,
+     0.7401,
+     0.4094
+    ]
+   },
+   "corpus_check_max_ncc": 0.7401,
+   "corpus_check_positive_control_ncc": 0.9906,
+   "status": "ok",
+   "n_tracks": 251,
+   "n_cells": 212,
+   "cells_per_anchor": [
+    51,
+    54,
+    54,
+    53
+   ],
+   "file": "data/interim/val_reid/F4.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:F5.tiff",
+   "shape": [
+    445,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5857,
+     0.746,
+     0.3815
+    ]
+   },
+   "corpus_check_max_ncc": 0.746,
+   "corpus_check_positive_control_ncc": 0.9743,
+   "status": "ok",
+   "n_tracks": 283,
+   "n_cells": 51,
+   "cells_per_anchor": [
+    18,
+    11,
+    6,
+    16
+   ],
+   "file": "data/interim/val_reid/F5.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:F6.tiff",
+   "shape": [
+    444,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.6019,
+     0.7551,
+     0.4665
+    ]
+   },
+   "corpus_check_max_ncc": 0.7551,
+   "corpus_check_positive_control_ncc": 0.9895,
+   "status": "ok",
+   "n_tracks": 360,
+   "n_cells": 136,
+   "cells_per_anchor": [
+    14,
+    17,
+    49,
+    56
+   ],
+   "file": "data/interim/val_reid/F6.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:F7.tiff",
+   "shape": [
+    446,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.6543,
+     0.6602,
+     0.4436
+    ]
+   },
+   "corpus_check_max_ncc": 0.6602,
+   "corpus_check_positive_control_ncc": 0.9597,
+   "status": "ok",
+   "n_tracks": 308,
+   "n_cells": 155,
+   "cells_per_anchor": [
+    34,
+    34,
+    37,
+    50
+   ],
+   "file": "data/interim/val_reid/F7.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:F8.tiff",
+   "shape": [
+    446,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5725,
+     0.7025,
+     0.4112
+    ]
+   },
+   "corpus_check_max_ncc": 0.7025,
+   "corpus_check_positive_control_ncc": 0.9931,
+   "status": "ok",
+   "n_tracks": 445,
+   "n_cells": 182,
+   "cells_per_anchor": [
+    46,
+    44,
+    47,
+    45
+   ],
+   "file": "data/interim/val_reid/F8.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:G1.tiff",
+   "shape": [
+    448,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.545,
+     0.7152,
+     0.4427
+    ]
+   },
+   "corpus_check_max_ncc": 0.7152,
+   "corpus_check_positive_control_ncc": 0.9623,
+   "status": "ok",
+   "n_tracks": 144,
+   "n_cells": 13,
+   "cells_per_anchor": [
+    1,
+    9,
+    1,
+    2
+   ],
+   "file": "data/interim/val_reid/G1.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:G2.tiff",
+   "shape": [
+    449,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.4989,
+     0.7432,
+     0.4177
+    ]
+   },
+   "corpus_check_max_ncc": 0.7432,
+   "corpus_check_positive_control_ncc": 0.9821,
+   "status": "ok",
+   "n_tracks": 170,
+   "n_cells": 13,
+   "cells_per_anchor": [
+    2,
+    8,
+    0,
+    3
+   ],
+   "file": "data/interim/val_reid/G2.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:G3.tiff",
+   "shape": [
+    448,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5763,
+     0.7253,
+     0.4316
+    ]
+   },
+   "corpus_check_max_ncc": 0.7253,
+   "corpus_check_positive_control_ncc": 0.9947,
+   "status": "ok",
+   "n_tracks": 247,
+   "n_cells": 66,
+   "cells_per_anchor": [
+    7,
+    12,
+    19,
+    28
+   ],
+   "file": "data/interim/val_reid/G3.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:G4.tiff",
+   "shape": [
+    449,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.4365,
+     0.7436,
+     0.4908
+    ]
+   },
+   "corpus_check_max_ncc": 0.7436,
+   "corpus_check_positive_control_ncc": 0.9895,
+   "status": "ok",
+   "n_tracks": 316,
+   "n_cells": 59,
+   "cells_per_anchor": [
+    3,
+    7,
+    15,
+    34
+   ],
+   "file": "data/interim/val_reid/G4.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:G5.tiff",
+   "shape": [
+    448,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.6813,
+     0.6837,
+     0.3563
+    ]
+   },
+   "corpus_check_max_ncc": 0.6837,
+   "corpus_check_positive_control_ncc": 0.975,
+   "status": "ok",
+   "n_tracks": 263,
+   "n_cells": 58,
+   "cells_per_anchor": [
+    18,
+    16,
+    14,
+    10
+   ],
+   "file": "data/interim/val_reid/G5.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:G6.tiff",
+   "shape": [
+    449,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5522,
+     0.7492,
+     0.3941
+    ]
+   },
+   "corpus_check_max_ncc": 0.7492,
+   "corpus_check_positive_control_ncc": 0.9781,
+   "status": "ok",
+   "n_tracks": 187,
+   "n_cells": 15,
+   "cells_per_anchor": [
+    5,
+    2,
+    3,
+    5
+   ],
+   "file": "data/interim/val_reid/G6.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:G7.tiff",
+   "shape": [
+    433,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5548,
+     0.7398,
+     0.3711
+    ]
+   },
+   "corpus_check_max_ncc": 0.7398,
+   "corpus_check_positive_control_ncc": 0.9774,
+   "status": "ok",
+   "n_tracks": 261,
+   "n_cells": 65,
+   "cells_per_anchor": [
+    17,
+    9,
+    19,
+    20
+   ],
+   "file": "data/interim/val_reid/G7.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:G8.tiff",
+   "shape": [
+    433,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.3925,
+     0.756,
+     0.4585
+    ]
+   },
+   "corpus_check_max_ncc": 0.756,
+   "corpus_check_positive_control_ncc": 0.9932,
+   "status": "ok",
+   "n_tracks": 240,
+   "n_cells": 43,
+   "cells_per_anchor": [
+    9,
+    5,
+    7,
+    22
+   ],
+   "file": "data/interim/val_reid/G8.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:H1.tiff",
+   "shape": [
+    449,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5843,
+     0.7142,
+     0.3775
+    ]
+   },
+   "corpus_check_max_ncc": 0.7142,
+   "corpus_check_positive_control_ncc": 0.9847,
+   "status": "ok",
+   "n_tracks": 259,
+   "n_cells": 22,
+   "cells_per_anchor": [
+    11,
+    2,
+    2,
+    7
+   ],
+   "file": "data/interim/val_reid/H1.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:H2.tiff",
+   "shape": [
+    448,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5268,
+     0.7469,
+     0.4617
+    ]
+   },
+   "corpus_check_max_ncc": 0.7469,
+   "corpus_check_positive_control_ncc": 0.9841,
+   "status": "ok",
+   "n_tracks": 306,
+   "n_cells": 66,
+   "cells_per_anchor": [
+    18,
+    15,
+    22,
+    11
+   ],
+   "file": "data/interim/val_reid/H2.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:H3.tiff",
+   "shape": [
+    449,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5949,
+     0.7239,
+     0.4396
+    ]
+   },
+   "corpus_check_max_ncc": 0.7239,
+   "corpus_check_positive_control_ncc": 0.9962,
+   "status": "ok",
+   "n_tracks": 257,
+   "n_cells": 24,
+   "cells_per_anchor": [
+    0,
+    6,
+    10,
+    8
+   ],
+   "file": "data/interim/val_reid/H3.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:H4.tiff",
+   "shape": [
+    448,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5492,
+     0.7223,
+     0.3239
+    ]
+   },
+   "corpus_check_max_ncc": 0.7223,
+   "corpus_check_positive_control_ncc": 0.8892,
+   "status": "ok",
+   "n_tracks": 318,
+   "n_cells": 77,
+   "cells_per_anchor": [
+    10,
+    15,
+    24,
+    28
+   ],
+   "file": "data/interim/val_reid/H4.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:H5.tiff",
+   "shape": [
+    449,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5271,
+     0.7024,
+     0.3362
+    ]
+   },
+   "corpus_check_max_ncc": 0.7024,
+   "corpus_check_positive_control_ncc": 0.9703,
+   "status": "ok",
+   "n_tracks": 295,
+   "n_cells": 30,
+   "cells_per_anchor": [
+    16,
+    3,
+    3,
+    8
+   ],
+   "file": "data/interim/val_reid/H5.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:H6.tiff",
+   "shape": [
+    448,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5662,
+     0.6601,
+     0.3649
+    ]
+   },
+   "corpus_check_max_ncc": 0.6601,
+   "corpus_check_positive_control_ncc": 0.8831,
+   "status": "ok",
+   "n_tracks": 291,
+   "n_cells": 100,
+   "cells_per_anchor": [
+    23,
+    25,
+    26,
+    26
+   ],
+   "file": "data/interim/val_reid/H6.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:H7.tiff",
+   "shape": [
+    433,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.5738,
+     0.6618,
+     0.3716
+    ]
+   },
+   "corpus_check_max_ncc": 0.6618,
+   "corpus_check_positive_control_ncc": 0.994,
+   "status": "ok",
+   "n_tracks": 274,
+   "n_cells": 66,
+   "cells_per_anchor": [
+    23,
+    9,
+    18,
+    16
+   ],
+   "file": "data/interim/val_reid/H7.npz"
+  },
+  {
+   "key": "384-well_plate_movies_n=1_complexeye.zip:H8.tiff",
+   "shape": [
+    438,
+    800,
+    1280
+   ],
+   "corpus_check_best": {
+    "key": "384-well_plate_movies_n=16_complexeye.zip:A2.tiff",
+    "n_match": 0,
+    "ncc": [
+     0.6401,
+     0.6841,
+     0.3678
+    ]
+   },
+   "corpus_check_max_ncc": 0.6841,
+   "corpus_check_positive_control_ncc": 0.991,
+   "status": "ok",
+   "n_tracks": 378,
+   "n_cells": 86,
+   "cells_per_anchor": [
+    11,
+    16,
+    28,
+    31
+   ],
+   "file": "data/interim/val_reid/H8.npz"
+  }
+ ],
+ "seconds": 650.0,
+ "leakage_summary": {
+  "duplicates_found": 0,
+  "positive_control": {
+   "rule": "self-match NCC > 0.95",
+   "n_pass": 55,
+   "n_movies": 64,
+   "min_ncc": 0.8355,
+   "reason_for_misses": "the stored patch is percentile-clipped to uint8 while the search frame is raw, which lowers NCC for movies with saturated pixels"
+  },
+  "max_corpus_ncc_any_movie": 0.7757,
+  "post_hoc_sensitivity": "stated after seeing the positive control: at a threshold of 0.80 (below every self-match, min 0.8355) there is still no duplicate, since the best corpus match in any movie is 0.7757"
+ }
+}

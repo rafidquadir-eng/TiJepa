@@ -1,0 +1,57 @@
+\documentclass[10pt]{article}
+\usepackage[preprint]{tmlr}
+% preprint option: de-anonymised, no journal header
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{textcomp}
+\graphicspath{{figures/}{../../../figures/v3/}}
+
+\input{../numbers.tex}
+\input{../sections/figures.tex}
+\newcommand{\CodeAvailability}{Code, configuration and the analysis records behind every
+number are in the project repository, which will be linked here when it is made public.}
+
+\title{Can imaging see innate immune memory? A public-data audit with a
+self-supervised video model of innate-cell behaviour}
+
+\author{\name Rafid Quadir \email rafidquadir@gmail.com}
+
+\begin{document}
+\maketitle
+
+\input{../sections/abstract_biorxiv.tex}
+
+\input{../sections/intro.tex}
+\figcoverage
+\input{../sections/coverage.tex}
+\input{../coverage_table.tex}
+\input{../sections/results_partC.tex}
+\figrestim
+\input{../sections/results_partB.tex}
+\figsignalling
+\input{../sections/results_partA.tex}
+\input{../sections/results_partA2.tex}
+\figbenchmarks
+\figassoc
+\figtraining
+\input{../sections/discussion.tex}
+\input{../sections/future.tex}
+\figdesign
+\input{../sections/limitations.tex}
+\input{../sections/related.tex}
+\input{../sections/methods.tex}
+\input{../sections/data_availability.tex}
+
+\bibliography{../refs}
+\bibliographystyle{tmlr}
+
+\appendix
+\input{../sections/appendix_details.tex}
+
+\end{document}

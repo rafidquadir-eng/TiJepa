@@ -1,0 +1,25 @@
+\section{Related work}
+\label{sec:related}
+\paragraph{Self-supervised video representation learning.}
+JEPA-style video models predict masked spatio-temporal regions in latent space rather than
+pixels \citep{vjepa}; V-JEPA~2 scales the approach to over a million hours of video and adds
+action-conditioned prediction \citep{vjepa2}. Image self-supervision (DINOv2,
+\citealp{dinov2}) and supervised ImageNet ViTs \citep{augreg} are the usual frozen
+baselines. Variance and covariance regularisation counteracts
+dimensional collapse in joint-embedding training \citep{vicreg}.
+
+\paragraph{Label-free imaging of immune cell state.}
+Label-free two-photon autofluorescence of NAD(P)H and FAD has been used to classify immune
+cell types \citep{kreiss2026cellmics}, and NAD(P)H lifetime imaging reports the metabolic
+state of macrophages \citep{musimbi2025flim}. High-throughput migration imaging of
+neutrophils in multi-well plates is available at scale \citep{complexeye}. Live-cell
+NF-\(\kappa\)B reporter dynamics of macrophages exposed to sequential ligand pairs have been
+deposited together with transcriptome and chromatin measurements of the same conditions
+\citep{wang2025}.
+
+\paragraph{Innate immune memory.}
+Trained immunity and tolerance are defined functionally by the response to restimulation
+\citep{netea2016} and are accompanied by epigenetic and transcriptional reprogramming of
+monocytes and macrophages \citep{saeed2014,novakovic2016}. Public restimulation datasets
+measure transcripts and, in their source publications, secreted cytokines
+\citep{ferreira2023,schrijver2023,moorlag2020}; none includes images.

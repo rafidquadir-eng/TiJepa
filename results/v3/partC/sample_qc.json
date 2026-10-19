@@ -1,0 +1,2027 @@
+{
+ "phase": "PLAN_v3 H5.1.1 (finding R13)",
+ "datasets": {
+  "GSE212282": {
+   "n_samples": 75,
+   "sex": {
+    "per_donor_calls": {
+     "A": [
+      "M"
+     ],
+     "B": [
+      "M"
+     ],
+     "C": [
+      "M"
+     ]
+    },
+    "consistent": true,
+    "per_sample": {
+     "A_D0": {
+      "call": "M",
+      "XIST_log2": -4.425986408141616,
+      "Y_genes_mean_log2": 3.937179687862822
+     },
+     "A_4H_RPMI": {
+      "call": "M",
+      "XIST_log2": -4.577079859773916,
+      "Y_genes_mean_log2": 4.1383202304635605
+     },
+     "A_4H_LPS": {
+      "call": "M",
+      "XIST_log2": -4.831023040871192,
+      "Y_genes_mean_log2": 3.583999285682958
+     },
+     "A_4H_BG": {
+      "call": "M",
+      "XIST_log2": -4.84637331610625,
+      "Y_genes_mean_log2": 3.810604838450428
+     },
+     "A_4H_DMI": {
+      "call": "M",
+      "XIST_log2": -4.822049477716862,
+      "Y_genes_mean_log2": 4.053363526243212
+     },
+     "A_4H_Ita": {
+      "call": "M",
+      "XIST_log2": -4.662804799103538,
+      "Y_genes_mean_log2": 4.077795566760666
+     },
+     "A_4H_LPS_DMI": {
+      "call": "M",
+      "XIST_log2": -4.861088805523318,
+      "Y_genes_mean_log2": 3.3794655243460476
+     },
+     "A_4H_BG_DMI": {
+      "call": "M",
+      "XIST_log2": -4.82116943374192,
+      "Y_genes_mean_log2": 3.851864473924812
+     },
+     "A_d1_RPMI": {
+      "call": "M",
+      "XIST_log2": -4.998649777672081,
+      "Y_genes_mean_log2": 3.718482628635744
+     },
+     "A_d1_LPS": {
+      "call": "M",
+      "XIST_log2": -4.835307845142632,
+      "Y_genes_mean_log2": 3.222604538614033
+     },
+     "A_d1_BG": {
+      "call": "M",
+      "XIST_log2": -4.938720225673553,
+      "Y_genes_mean_log2": 3.25945782275978
+     },
+     "A_d1_DMI": {
+      "call": "M",
+      "XIST_log2": -4.922576468166006,
+      "Y_genes_mean_log2": 3.3838188566319305
+     },
+     "A_d1_Ita": {
+      "call": "M",
+      "XIST_log2": -4.6894225226079405,
+      "Y_genes_mean_log2": 3.5259199900743705
+     },
+     "A_d1_LPS_DMI": {
+      "call": "M",
+      "XIST_log2": -4.214299764791978,
+      "Y_genes_mean_log2": 2.8127294673910748
+     },
+     "A_d1_BG_DMI": {
+      "call": "M",
+      "XIST_log2": -4.908438056765294,
+      "Y_genes_mean_log2": 2.971808236074696
+     },
+     "A_d6_RPMI": {
+      "call": "M",
+      "XIST_log2": -4.840025457926339,
+      "Y_genes_mean_log2": 3.2528968063875783
+     },
+     "A_d6_BG": {
+      "call": "M",
+      "XIST_log2": -4.780110332878221,
+      "Y_genes_mean_log2": 3.5238024744281056
+     },
+     "A_d6_DMI": {
+      "call": "M",
+      "XIST_log2": -4.79414775562607,
+      "Y_genes_mean_log2": 3.369556734131462
+     },
+     "A_d6_Ita": {
+      "call": "M",
+      "XIST_log2": -4.879396605592199,
+      "Y_genes_mean_log2": 3.476705334144525
+     },
+     "A_d6_BG_DMI": {
+      "call": "M",
+      "XIST_log2": -4.92888104549469,
+      "Y_genes_mean_log2": 3.506881825641039
+     },
+     "A_d7_RPMI": {
+      "call": "M",
+      "XIST_log2": -4.857092540260056,
+      "Y_genes_mean_log2": 2.4985829829112634
+     },
+     "A_d7_BG": {
+      "call": "M",
+      "XIST_log2": -4.837587303307236,
+      "Y_genes_mean_log2": 3.439456751557573
+     },
+     "A_d7_DMI": {
+      "call": "M",
+      "XIST_log2": -4.867710775760998,
+      "Y_genes_mean_log2": 3.0913467010989137
+     },
+     "A_d7_Ita": {
+      "call": "M",
+      "XIST_log2": -4.856674158698198,
+      "Y_genes_mean_log2": 2.940899937518691
+     },
+     "A_d7_BG_DMI": {
+      "call": "M",
+      "XIST_log2": -4.914410814234574,
+      "Y_genes_mean_log2": 3.2277473857610417
+     },
+     "B_D0": {
+      "call": "M",
+      "XIST_log2": -4.476913543084995,
+      "Y_genes_mean_log2": 4.563644762205638
+     },
+     "B_4H_RPMI": {
+      "call": "M",
+      "XIST_log2": -4.879108066584021,
+      "Y_genes_mean_log2": 3.993033626370838
+     },
+     "B_4H_LPS": {
+      "call": "M",
+      "XIST_log2": -5.053919424688536,
+      "Y_genes_mean_log2": 2.9879289609559154
+     },
+     "B_4H_BG": {
+      "call": "M",
+      "XIST_log2": -4.9246828029257035,
+      "Y_genes_mean_log2": 3.375939938339875
+     },
+     "B_4H_DMI": {
+      "call": "M",
+      "XIST_log2": -4.737983637684263,
+      "Y_genes_mean_log2": 3.8872317821784446
+     },
+     "B_4H_Ita": {
+      "call": "M",
+      "XIST_log2": -4.747591986656583,
+      "Y_genes_mean_log2": 4.095854501934994
+     },
+     "B_4H_LPS_DMI": {
+      "call": "M",
+      "XIST_log2": -4.534982018480776,
+      "Y_genes_mean_log2": 2.8210880096494733
+     },
+     "B_4H_BG_DMI": {
+      "call": "M",
+      "XIST_log2": -4.9579080697173765,
+      "Y_genes_mean_log2": 3.3025550910424966
+     },
+     "B_d1_RPMI": {
+      "call": "M",
+      "XIST_log2": -4.526773083698118,
+      "Y_genes_mean_log2": 3.846780055926959
+     },
+     "B_d1_LPS": {
+      "call": "M",
+      "XIST_log2": -4.84117961395905,
+      "Y_genes_mean_log2": 3.2659870998410843
+     },
+     "B_d1_BG": {
+      "call": "M",
+      "XIST_log2": -4.8978053943139415,
+      "Y_genes_mean_log2": 3.443786279375281
+     },
+     "B_d1_DMI": {
+      "call": "M",
+      "XIST_log2": -4.651032407569885,
+      "Y_genes_mean_log2": 3.0356717649780958
+     },
+     "B_d1_Ita": {
+      "call": "M",
+      "XIST_log2": -4.827877965682053,
+      "Y_genes_mean_log2": 4.108856790991005
+     },
+     "B_d1_LPS_DMI": {
+      "call": "M",
+      "XIST_log2": -4.777196088895625,
+      "Y_genes_mean_log2": 2.7986141391110175
+     },
+     "B_d1_BG_DMI": {
+      "call": "M",
+      "XIST_log2": -4.816639371313529,
+      "Y_genes_mean_log2": 3.0806898735056274
+     },
+     "B_d6_RPMI": {
+      "call": "M",
+      "XIST_log2": -4.7136309453940575,
+      "Y_genes_mean_log2": 3.1823645278597974
+     },
+     "B_d6_BG": {
+      "call": "M",
+      "XIST_log2": -4.830503670656472,
+      "Y_genes_mean_log2": 3.534693379291776
+     },
+     "B_d6_DMI": {
+      "call": "M",
+      "XIST_log2": -4.807838931564106,
+      "Y_genes_mean_log2": 3.4267397554458974
+     },
+     "B_d6_Ita": {
+      "call": "M",
+      "XIST_log2": -5.008027295437858,
+      "Y_genes_mean_log2": 3.117376526374153
+     },
+     "B_d6_BG_DMI": {
+      "call": "M",
+      "XIST_log2": -4.8818347602113015,
+      "Y_genes_mean_log2": 3.4761448471211396
+     },
+     "B_d7_RPMI": {
+      "call": "M",
+      "XIST_log2": -4.9580234853206475,
+      "Y_genes_mean_log2": 2.4211250468396948
+     },
+     "B_d7_BG": {
+      "call": "M",
+      "XIST_log2": -4.913848163168627,
+      "Y_genes_mean_log2": 3.4484090349600494
+     },
+     "B_d7_DMI": {
+      "call": "M",
+      "XIST_log2": -4.846099204048482,
+      "Y_genes_mean_log2": 2.962167787137716
+     },
+     "B_d7_Ita": {
+      "call": "M",
+      "XIST_log2": -4.936729306517126,
+      "Y_genes_mean_log2": 2.8845107591505053
+     },
+     "B_d7_BG_DMI": {
+      "call": "M",
+      "XIST_log2": -4.968742709474452,
+      "Y_genes_mean_log2": 2.961306137524545
+     },
+     "C_D0": {
+      "call": "M",
+      "XIST_log2": -4.7966868988980345,
+      "Y_genes_mean_log2": 4.515859095713793
+     },
+     "C_4H_RPMI": {
+      "call": "M",
+      "XIST_log2": -4.898079506371711,
+      "Y_genes_mean_log2": 3.8516650213354087
+     },
+     "C_4H_LPS": {
+      "call": "M",
+      "XIST_log2": -4.8693121672563855,
+      "Y_genes_mean_log2": 3.217030866660438
+     },
+     "C_4H_BG": {
+      "call": "M",
+      "XIST_log2": -4.845017182767815,
+      "Y_genes_mean_log2": 3.7198239743500103
+     },
+     "C_4H_DMI": {
+      "call": "M",
+      "XIST_log2": -4.966751790318026,
+      "Y_genes_mean_log2": 3.7059008851841515
+     },
+     "C_4H_Ita": {
+      "call": "M",
+      "XIST_log2": -4.840818940198828,
+      "Y_genes_mean_log2": 4.000674139307385
+     },
+     "C_4H_LPS_DMI": {
+      "call": "M",
+      "XIST_log2": -4.848133404056135,
+      "Y_genes_mean_log2": 2.872793911375925
+     },
+     "C_4H_BG_DMI": {
+      "call": "M",
+      "XIST_log2": -4.920773099364895,
+      "Y_genes_mean_log2": 3.4102144051000347
+     },
+     "C_d1_RPMI": {
+      "call": "M",
+      "XIST_log2": -4.898959550346653,
+      "Y_genes_mean_log2": 3.7497259931149953
+     },
+     "C_d1_LPS": {
+      "call": "M",
+      "XIST_log2": -4.8880383488871235,
+      "Y_genes_mean_log2": 2.675384538824685
+     },
+     "C_d1_BG": {
+      "call": "M",
+      "XIST_log2": -5.011504190486401,
+      "Y_genes_mean_log2": 3.1174003669097035
+     },
+     "C_d1_DMI": {
+      "call": "M",
+      "XIST_log2": -4.915074453953383,
+      "Y_genes_mean_log2": 3.406936962640895
+     },
+     "C_d1_Ita": {
+      "call": "M",
+      "XIST_log2": -4.763403924304726,
+      "Y_genes_mean_log2": 3.8262710638994415
+     },
+     "C_d1_LPS_DMI": {
+      "call": "M",
+      "XIST_log2": -5.015226343691895,
+      "Y_genes_mean_log2": 2.6840720876871584
+     },
+     "C_d1_BG_DMI": {
+      "call": "M",
+      "XIST_log2": -4.806425090424035,
+      "Y_genes_mean_log2": 2.9746017625497454
+     },
+     "C_d6_RPMI": {
+      "call": "M",
+      "XIST_log2": -4.835408833795494,
+      "Y_genes_mean_log2": 2.8038280389887897
+     },
+     "C_d6_BG": {
+      "call": "M",
+      "XIST_log2": -4.822251455022587,
+      "Y_genes_mean_log2": 3.5608321280426027
+     },
+     "C_d6_DMI": {
+      "call": "M",
+      "XIST_log2": -4.91226119862365,
+      "Y_genes_mean_log2": 3.180513910796097
+     },
+     "C_d6_Ita": {
+      "call": "M",
+      "XIST_log2": -4.921855120645561,
+      "Y_genes_mean_log2": 3.2740820617155117
+     },
+     "C_d6_BG_DMI": {
+      "call": "M",
+      "XIST_log2": -4.869730548818243,
+      "Y_genes_mean_log2": 3.28464403210986
+     },
+     "C_d7_RPMI": {
+      "call": "M",
+      "XIST_log2": -4.819755592601849,
+      "Y_genes_mean_log2": 2.6664993407416104
+     },
+     "C_d7_BG": {
+      "call": "M",
+      "XIST_log2": -4.785001069066834,
+      "Y_genes_mean_log2": 3.1691815412499147
+     },
+     "C_d7_DMI": {
+      "call": "M",
+      "XIST_log2": -4.8269257869550675,
+      "Y_genes_mean_log2": 2.934466924263991
+     },
+     "C_d7_Ita": {
+      "call": "M",
+      "XIST_log2": -4.8636568026961005,
+      "Y_genes_mean_log2": 2.7305600499897236
+     },
+     "C_d7_BG_DMI": {
+      "call": "M",
+      "XIST_log2": -4.9948987705657695,
+      "Y_genes_mean_log2": 3.0259720573423112
+     }
+    }
+   },
+   "donor_identity": {
+    "genes_used": [
+     "GSTM1",
+     "HLA-DRB5",
+     "HLA-DQA1",
+     "HLA-DQB1",
+     "ERAP2",
+     "CHI3L2",
+     "XIST",
+     "RPS4Y1",
+     "DDX3Y",
+     "KDM5D",
+     "UTY"
+    ],
+    "n_samples": 75,
+    "n_misassigned": 10,
+    "misassigned": [
+     {
+      "sample": "A_d1_DMI",
+      "label": "A",
+      "nearest": "C"
+     },
+     {
+      "sample": "A_d7_RPMI",
+      "label": "A",
+      "nearest": "C"
+     },
+     {
+      "sample": "C_D0",
+      "label": "C",
+      "nearest": "A"
+     },
+     {
+      "sample": "C_4H_RPMI",
+      "label": "C",
+      "nearest": "A"
+     },
+     {
+      "sample": "C_4H_BG",
+      "label": "C",
+      "nearest": "A"
+     },
+     {
+      "sample": "C_4H_Ita",
+      "label": "C",
+      "nearest": "A"
+     },
+     {
+      "sample": "C_d1_DMI",
+      "label": "C",
+      "nearest": "B"
+     },
+     {
+      "sample": "C_d1_Ita",
+      "label": "C",
+      "nearest": "A"
+     },
+     {
+      "sample": "C_d1_BG_DMI",
+      "label": "C",
+      "nearest": "B"
+     },
+     {
+      "sample": "C_d6_BG",
+      "label": "C",
+      "nearest": "A"
+     }
+    ]
+   },
+   "donor_genotype": {
+    "genes": {
+     "GSTM1": {
+      "informative": true,
+      "widest_gap_log2": 2.64069457589275,
+      "threshold_log2": -2.2662070106539973,
+      "present_by_donor": {
+       "A": true,
+       "B": false,
+       "C": true
+      },
+      "consistent": true
+     },
+     "HLA-DRB5": {
+      "informative": true,
+      "widest_gap_log2": 9.047602263827773,
+      "threshold_log2": 1.653963302676743,
+      "present_by_donor": {
+       "A": true,
+       "B": false,
+       "C": false
+      },
+      "consistent": true
+     },
+     "HLA-DQA1": {
+      "informative": false,
+      "widest_gap_log2": 0.5027070869977595
+     },
+     "HLA-DQB1": {
+      "informative": false,
+      "widest_gap_log2": 1.277376616153497
+     },
+     "ERAP2": {
+      "informative": false,
+      "widest_gap_log2": 0.6498893923742104
+     },
+     "CHI3L2": {
+      "informative": false,
+      "widest_gap_log2": 0.8925521409467749
+     }
+    },
+    "consistent": true,
+    "donors_distinguishable": true,
+    "genotype_calls": {
+     "A": [
+      true,
+      true
+     ],
+     "B": [
+      false,
+      false
+     ],
+     "C": [
+      true,
+      false
+     ]
+    }
+   },
+   "arm_labels": {
+    "4H": {
+     "arms": [
+      "BG",
+      "BG_DMI",
+      "DMI",
+      "Ita",
+      "LPS",
+      "LPS_DMI",
+      "RPMI"
+     ],
+     "n_samples": 21,
+     "n_best_match_same_arm": 21,
+     "per_sample": {
+      "A_4H_RPMI": {
+       "best_match": "C_4H_RPMI",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.9137925341311685
+      },
+      "A_4H_LPS": {
+       "best_match": "B_4H_LPS",
+       "best_match_arm": "LPS",
+       "same_arm": true,
+       "r": 0.8683887923650705
+      },
+      "A_4H_BG": {
+       "best_match": "B_4H_BG",
+       "best_match_arm": "BG",
+       "same_arm": true,
+       "r": 0.48701071111261635
+      },
+      "A_4H_DMI": {
+       "best_match": "C_4H_DMI",
+       "best_match_arm": "DMI",
+       "same_arm": true,
+       "r": 0.842628356114304
+      },
+      "A_4H_Ita": {
+       "best_match": "C_4H_Ita",
+       "best_match_arm": "Ita",
+       "same_arm": true,
+       "r": 0.8792456040720925
+      },
+      "A_4H_LPS_DMI": {
+       "best_match": "C_4H_LPS_DMI",
+       "best_match_arm": "LPS_DMI",
+       "same_arm": true,
+       "r": 0.8365497120969304
+      },
+      "A_4H_BG_DMI": {
+       "best_match": "B_4H_BG_DMI",
+       "best_match_arm": "BG_DMI",
+       "same_arm": true,
+       "r": 0.7772112382659546
+      },
+      "B_4H_RPMI": {
+       "best_match": "C_4H_RPMI",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.9028790660445019
+      },
+      "B_4H_LPS": {
+       "best_match": "C_4H_LPS",
+       "best_match_arm": "LPS",
+       "same_arm": true,
+       "r": 0.8786574452165056
+      },
+      "B_4H_BG": {
+       "best_match": "C_4H_BG",
+       "best_match_arm": "BG",
+       "same_arm": true,
+       "r": 0.6367517873398401
+      },
+      "B_4H_DMI": {
+       "best_match": "A_4H_DMI",
+       "best_match_arm": "DMI",
+       "same_arm": true,
+       "r": 0.819653503880087
+      },
+      "B_4H_Ita": {
+       "best_match": "C_4H_Ita",
+       "best_match_arm": "Ita",
+       "same_arm": true,
+       "r": 0.9085399208569465
+      },
+      "B_4H_LPS_DMI": {
+       "best_match": "A_4H_LPS_DMI",
+       "best_match_arm": "LPS_DMI",
+       "same_arm": true,
+       "r": 0.6766822979366894
+      },
+      "B_4H_BG_DMI": {
+       "best_match": "A_4H_BG_DMI",
+       "best_match_arm": "BG_DMI",
+       "same_arm": true,
+       "r": 0.7772112382659546
+      },
+      "C_4H_RPMI": {
+       "best_match": "A_4H_RPMI",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.9137925341311685
+      },
+      "C_4H_LPS": {
+       "best_match": "B_4H_LPS",
+       "best_match_arm": "LPS",
+       "same_arm": true,
+       "r": 0.8786574452165056
+      },
+      "C_4H_BG": {
+       "best_match": "B_4H_BG",
+       "best_match_arm": "BG",
+       "same_arm": true,
+       "r": 0.6367517873398401
+      },
+      "C_4H_DMI": {
+       "best_match": "A_4H_DMI",
+       "best_match_arm": "DMI",
+       "same_arm": true,
+       "r": 0.842628356114304
+      },
+      "C_4H_Ita": {
+       "best_match": "B_4H_Ita",
+       "best_match_arm": "Ita",
+       "same_arm": true,
+       "r": 0.9085399208569465
+      },
+      "C_4H_LPS_DMI": {
+       "best_match": "A_4H_LPS_DMI",
+       "best_match_arm": "LPS_DMI",
+       "same_arm": true,
+       "r": 0.8365497120969304
+      },
+      "C_4H_BG_DMI": {
+       "best_match": "A_4H_BG_DMI",
+       "best_match_arm": "BG_DMI",
+       "same_arm": true,
+       "r": 0.7136765691153334
+      }
+     }
+    },
+    "d1": {
+     "arms": [
+      "BG",
+      "BG_DMI",
+      "DMI",
+      "Ita",
+      "LPS",
+      "LPS_DMI",
+      "RPMI"
+     ],
+     "n_samples": 21,
+     "n_best_match_same_arm": 20,
+     "per_sample": {
+      "A_d1_RPMI": {
+       "best_match": "C_d1_RPMI",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.8705999450212173
+      },
+      "A_d1_LPS": {
+       "best_match": "C_d1_LPS",
+       "best_match_arm": "LPS",
+       "same_arm": true,
+       "r": 0.8959246000205239
+      },
+      "A_d1_BG": {
+       "best_match": "B_d1_BG",
+       "best_match_arm": "BG",
+       "same_arm": true,
+       "r": 0.6131707625946627
+      },
+      "A_d1_DMI": {
+       "best_match": "C_d1_DMI",
+       "best_match_arm": "DMI",
+       "same_arm": true,
+       "r": 0.8901263781705793
+      },
+      "A_d1_Ita": {
+       "best_match": "B_d1_Ita",
+       "best_match_arm": "Ita",
+       "same_arm": true,
+       "r": 0.8514727471272373
+      },
+      "A_d1_LPS_DMI": {
+       "best_match": "B_d1_LPS_DMI",
+       "best_match_arm": "LPS_DMI",
+       "same_arm": true,
+       "r": 0.7592045410201266
+      },
+      "A_d1_BG_DMI": {
+       "best_match": "C_d1_BG_DMI",
+       "best_match_arm": "BG_DMI",
+       "same_arm": true,
+       "r": 0.8353316968006655
+      },
+      "B_d1_RPMI": {
+       "best_match": "C_d1_RPMI",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.8527590670872942
+      },
+      "B_d1_LPS": {
+       "best_match": "C_d1_LPS",
+       "best_match_arm": "LPS",
+       "same_arm": true,
+       "r": 0.9128986870011131
+      },
+      "B_d1_BG": {
+       "best_match": "C_d1_BG",
+       "best_match_arm": "BG",
+       "same_arm": true,
+       "r": 0.6949913891271239
+      },
+      "B_d1_DMI": {
+       "best_match": "C_d1_DMI",
+       "best_match_arm": "DMI",
+       "same_arm": true,
+       "r": 0.8740455460143313
+      },
+      "B_d1_Ita": {
+       "best_match": "C_d1_Ita",
+       "best_match_arm": "Ita",
+       "same_arm": true,
+       "r": 0.8576870592103352
+      },
+      "B_d1_LPS_DMI": {
+       "best_match": "C_d1_LPS_DMI",
+       "best_match_arm": "LPS_DMI",
+       "same_arm": true,
+       "r": 0.878255744198422
+      },
+      "B_d1_BG_DMI": {
+       "best_match": "C_d1_BG_DMI",
+       "best_match_arm": "BG_DMI",
+       "same_arm": true,
+       "r": 0.8414220935030772
+      },
+      "C_d1_RPMI": {
+       "best_match": "A_d1_RPMI",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.8705999450212173
+      },
+      "C_d1_LPS": {
+       "best_match": "B_d1_LPS",
+       "best_match_arm": "LPS",
+       "same_arm": true,
+       "r": 0.9128986870011131
+      },
+      "C_d1_BG": {
+       "best_match": "B_d1_BG",
+       "best_match_arm": "BG",
+       "same_arm": true,
+       "r": 0.6949913891271239
+      },
+      "C_d1_DMI": {
+       "best_match": "A_d1_DMI",
+       "best_match_arm": "DMI",
+       "same_arm": true,
+       "r": 0.8901263781705793
+      },
+      "C_d1_Ita": {
+       "best_match": "B_d1_Ita",
+       "best_match_arm": "Ita",
+       "same_arm": true,
+       "r": 0.8576870592103352
+      },
+      "C_d1_LPS_DMI": {
+       "best_match": "B_d1_LPS_DMI",
+       "best_match_arm": "LPS_DMI",
+       "same_arm": true,
+       "r": 0.878255744198422
+      },
+      "C_d1_BG_DMI": {
+       "best_match": "A_d1_DMI",
+       "best_match_arm": "DMI",
+       "same_arm": false,
+       "r": 0.8444070916348181
+      }
+     }
+    },
+    "d6": {
+     "arms": [
+      "BG",
+      "BG_DMI",
+      "DMI",
+      "Ita",
+      "RPMI"
+     ],
+     "n_samples": 15,
+     "n_best_match_same_arm": 13,
+     "per_sample": {
+      "A_d6_RPMI": {
+       "best_match": "B_d6_RPMI",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.5162519979780427
+      },
+      "A_d6_BG": {
+       "best_match": "C_d6_BG",
+       "best_match_arm": "BG",
+       "same_arm": true,
+       "r": 0.24317347469489528
+      },
+      "A_d6_DMI": {
+       "best_match": "C_d6_DMI",
+       "best_match_arm": "DMI",
+       "same_arm": true,
+       "r": 0.5831889789826656
+      },
+      "A_d6_Ita": {
+       "best_match": "C_d6_Ita",
+       "best_match_arm": "Ita",
+       "same_arm": true,
+       "r": 0.5687323415653247
+      },
+      "A_d6_BG_DMI": {
+       "best_match": "B_d6_BG_DMI",
+       "best_match_arm": "BG_DMI",
+       "same_arm": true,
+       "r": 0.6205671457129287
+      },
+      "B_d6_RPMI": {
+       "best_match": "A_d6_RPMI",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.5162519979780427
+      },
+      "B_d6_BG": {
+       "best_match": "C_d6_BG",
+       "best_match_arm": "BG",
+       "same_arm": true,
+       "r": 0.379012330173879
+      },
+      "B_d6_DMI": {
+       "best_match": "C_d6_DMI",
+       "best_match_arm": "DMI",
+       "same_arm": true,
+       "r": 0.5149441442453964
+      },
+      "B_d6_Ita": {
+       "best_match": "C_d6_RPMI",
+       "best_match_arm": "RPMI",
+       "same_arm": false,
+       "r": 0.4820398310556006
+      },
+      "B_d6_BG_DMI": {
+       "best_match": "A_d6_BG_DMI",
+       "best_match_arm": "BG_DMI",
+       "same_arm": true,
+       "r": 0.6205671457129287
+      },
+      "C_d6_RPMI": {
+       "best_match": "A_d6_Ita",
+       "best_match_arm": "Ita",
+       "same_arm": false,
+       "r": 0.5162329132076969
+      },
+      "C_d6_BG": {
+       "best_match": "B_d6_BG",
+       "best_match_arm": "BG",
+       "same_arm": true,
+       "r": 0.379012330173879
+      },
+      "C_d6_DMI": {
+       "best_match": "A_d6_DMI",
+       "best_match_arm": "DMI",
+       "same_arm": true,
+       "r": 0.5831889789826656
+      },
+      "C_d6_Ita": {
+       "best_match": "A_d6_Ita",
+       "best_match_arm": "Ita",
+       "same_arm": true,
+       "r": 0.5687323415653247
+      },
+      "C_d6_BG_DMI": {
+       "best_match": "A_d6_BG_DMI",
+       "best_match_arm": "BG_DMI",
+       "same_arm": true,
+       "r": 0.5314262931324473
+      }
+     }
+    },
+    "d7": {
+     "arms": [
+      "BG",
+      "BG_DMI",
+      "DMI",
+      "Ita",
+      "RPMI"
+     ],
+     "n_samples": 15,
+     "n_best_match_same_arm": 14,
+     "per_sample": {
+      "A_d7_RPMI": {
+       "best_match": "B_d7_RPMI",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.5853071643573304
+      },
+      "A_d7_BG": {
+       "best_match": "B_d7_BG",
+       "best_match_arm": "BG",
+       "same_arm": true,
+       "r": 0.488788287034727
+      },
+      "A_d7_DMI": {
+       "best_match": "B_d7_DMI",
+       "best_match_arm": "DMI",
+       "same_arm": true,
+       "r": 0.657573849268112
+      },
+      "A_d7_Ita": {
+       "best_match": "C_d7_Ita",
+       "best_match_arm": "Ita",
+       "same_arm": true,
+       "r": 0.6651058849778025
+      },
+      "A_d7_BG_DMI": {
+       "best_match": "C_d7_BG_DMI",
+       "best_match_arm": "BG_DMI",
+       "same_arm": true,
+       "r": 0.5475876320249274
+      },
+      "B_d7_RPMI": {
+       "best_match": "C_d7_RPMI",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.621038294790562
+      },
+      "B_d7_BG": {
+       "best_match": "C_d7_BG",
+       "best_match_arm": "BG",
+       "same_arm": true,
+       "r": 0.6597899293936741
+      },
+      "B_d7_DMI": {
+       "best_match": "A_d7_DMI",
+       "best_match_arm": "DMI",
+       "same_arm": true,
+       "r": 0.657573849268112
+      },
+      "B_d7_Ita": {
+       "best_match": "C_d7_Ita",
+       "best_match_arm": "Ita",
+       "same_arm": true,
+       "r": 0.6733690195752768
+      },
+      "B_d7_BG_DMI": {
+       "best_match": "A_d7_BG_DMI",
+       "best_match_arm": "BG_DMI",
+       "same_arm": true,
+       "r": 0.5452364322887394
+      },
+      "C_d7_RPMI": {
+       "best_match": "B_d7_RPMI",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.621038294790562
+      },
+      "C_d7_BG": {
+       "best_match": "B_d7_BG",
+       "best_match_arm": "BG",
+       "same_arm": true,
+       "r": 0.6597899293936741
+      },
+      "C_d7_DMI": {
+       "best_match": "B_d7_DMI",
+       "best_match_arm": "DMI",
+       "same_arm": true,
+       "r": 0.6428867913082416
+      },
+      "C_d7_Ita": {
+       "best_match": "B_d7_Ita",
+       "best_match_arm": "Ita",
+       "same_arm": true,
+       "r": 0.6733690195752768
+      },
+      "C_d7_BG_DMI": {
+       "best_match": "A_d7_DMI",
+       "best_match_arm": "DMI",
+       "same_arm": false,
+       "r": 0.6389062314792121
+      }
+     }
+    }
+   },
+   "cytokine_trajectories": {
+    "TNF": {
+     "4H": {
+      "A": {
+       "RPMI": 6.786841426953132,
+       "BG": 8.798910492679335,
+       "LPS": 11.49201817940758,
+       "BG_minus_RPMI": 2.0120690657262026
+      },
+      "B": {
+       "RPMI": 6.907869113933308,
+       "BG": 9.72848218837532,
+       "LPS": 11.517481746879271,
+       "BG_minus_RPMI": 2.8206130744420124
+      },
+      "C": {
+       "RPMI": 5.889110010809566,
+       "BG": 8.881735614976769,
+       "LPS": 11.167960019323102,
+       "BG_minus_RPMI": 2.992625604167203
+      }
+     },
+     "D0": {
+      "A": {
+       "none": 4.845464418230491
+      },
+      "B": {
+       "none": 4.524767737591283
+      },
+      "C": {
+       "none": 4.767847425030664
+      }
+     },
+     "d1": {
+      "A": {
+       "RPMI": 3.7952545632153694,
+       "BG": 6.5779680389332285,
+       "LPS": 5.636825929009314,
+       "BG_minus_RPMI": 2.782713475717859
+      },
+      "B": {
+       "RPMI": 2.8872944392319004,
+       "BG": 6.020135574423102,
+       "LPS": 6.232269453235416,
+       "BG_minus_RPMI": 3.1328411351912013
+      },
+      "C": {
+       "RPMI": 3.2715562633726756,
+       "BG": 5.658639478027555,
+       "LPS": 5.260138253833205,
+       "BG_minus_RPMI": 2.3870832146548797
+      }
+     },
+     "d6": {
+      "A": {
+       "RPMI": 2.7024419236427972,
+       "BG": 3.3839854879091527,
+       "BG_minus_RPMI": 0.6815435642663554
+      },
+      "B": {
+       "RPMI": 1.514512400024416,
+       "BG": 0.9830538435567806,
+       "BG_minus_RPMI": -0.5314585564676353
+      },
+      "C": {
+       "RPMI": 3.5554930743700326,
+       "BG": 1.9429495463172113,
+       "BG_minus_RPMI": -1.6125435280528213
+      }
+     },
+     "d7": {
+      "A": {
+       "RPMI": 11.441523852976466,
+       "BG": 9.372324063631062,
+       "BG_minus_RPMI": -2.0691997893454044
+      },
+      "B": {
+       "RPMI": 11.984337862110939,
+       "BG": 9.781342534673492,
+       "BG_minus_RPMI": -2.2029953274374474
+      },
+      "C": {
+       "RPMI": 11.82060640192045,
+       "BG": 9.816212473811778,
+       "BG_minus_RPMI": -2.004393928108673
+      }
+     }
+    },
+    "IL6": {
+     "4H": {
+      "A": {
+       "RPMI": 1.1632940631001614,
+       "BG": 6.2774546619160585,
+       "LPS": 13.07873746622849,
+       "BG_minus_RPMI": 5.114160598815897
+      },
+      "B": {
+       "RPMI": 2.075562074475725,
+       "BG": 8.07889025167247,
+       "LPS": 13.325366183468457,
+       "BG_minus_RPMI": 6.003328177196746
+      },
+      "C": {
+       "RPMI": 3.82617151794162,
+       "BG": 7.313280847373516,
+       "LPS": 13.479402732984171,
+       "BG_minus_RPMI": 3.487109329431896
+      }
+     },
+     "D0": {
+      "A": {
+       "none": -3.828537537808678
+      },
+      "B": {
+       "none": -2.5607404167266834
+      },
+      "C": {
+       "none": 1.6473557593894719
+      }
+     },
+     "d1": {
+      "A": {
+       "RPMI": -1.8179833018754095,
+       "BG": 9.25178689296479,
+       "LPS": 9.933835400495456,
+       "BG_minus_RPMI": 11.0697701948402
+      },
+      "B": {
+       "RPMI": -2.6315334623831053,
+       "BG": 6.387113911974027,
+       "LPS": 9.990057226238898,
+       "BG_minus_RPMI": 9.018647374357133
+      },
+      "C": {
+       "RPMI": 0.7968278822887515,
+       "BG": 4.248506064211456,
+       "LPS": 10.167350019813743,
+       "BG_minus_RPMI": 3.4516781819227043
+      }
+     },
+     "d6": {
+      "A": {
+       "RPMI": -4.224499618731063,
+       "BG": -4.150936598596134,
+       "BG_minus_RPMI": 0.07356302013492844
+      },
+      "B": {
+       "RPMI": -4.268617233081447,
+       "BG": -2.9819640878150344,
+       "BG_minus_RPMI": 1.286653145266413
+      },
+      "C": {
+       "RPMI": -1.7675899640971582,
+       "BG": -3.088896644245724,
+       "BG_minus_RPMI": -1.3213066801485658
+      }
+     },
+     "d7": {
+      "A": {
+       "RPMI": 8.837848831832929,
+       "BG": 7.455645994008439,
+       "BG_minus_RPMI": -1.3822028378244902
+      },
+      "B": {
+       "RPMI": 8.535676355518735,
+       "BG": 7.804677205250706,
+       "BG_minus_RPMI": -0.7309991502680289
+      },
+      "C": {
+       "RPMI": 9.212560014803017,
+       "BG": 8.671881194329062,
+       "BG_minus_RPMI": -0.5406788204739552
+      }
+     }
+    },
+    "IL1B": {
+     "4H": {
+      "A": {
+       "RPMI": 11.320726997202835,
+       "BG": 13.326029823187268,
+       "LPS": 15.331808738535193,
+       "BG_minus_RPMI": 2.005302825984433
+      },
+      "B": {
+       "RPMI": 11.081802271481214,
+       "BG": 14.385155533555082,
+       "LPS": 15.482137561795824,
+       "BG_minus_RPMI": 3.303353262073868
+      },
+      "C": {
+       "RPMI": 10.787506910090274,
+       "BG": 14.104248382143592,
+       "LPS": 15.255922979384433,
+       "BG_minus_RPMI": 3.3167414720533177
+      }
+     },
+     "D0": {
+      "A": {
+       "none": 3.703023069251338
+      },
+      "B": {
+       "none": 4.627444343651351
+      },
+      "C": {
+       "none": 4.2925082629585685
+      }
+     },
+     "d1": {
+      "A": {
+       "RPMI": 4.0634227174158095,
+       "BG": 13.512310606866851,
+       "LPS": 14.164307776695798,
+       "BG_minus_RPMI": 9.448887889451042
+      },
+      "B": {
+       "RPMI": 2.7470500543070844,
+       "BG": 11.456210488492717,
+       "LPS": 13.955131422717308,
+       "BG_minus_RPMI": 8.709160434185632
+      },
+      "C": {
+       "RPMI": 5.769885692630503,
+       "BG": 10.2096354114622,
+       "LPS": 14.212753476168851,
+       "BG_minus_RPMI": 4.439749718831697
+      }
+     },
+     "d6": {
+      "A": {
+       "RPMI": 4.253685339408246,
+       "BG": 4.932761895154681,
+       "BG_minus_RPMI": 0.6790765557464349
+      },
+      "B": {
+       "RPMI": 1.884462689359573,
+       "BG": 1.1400522459914404,
+       "BG_minus_RPMI": -0.7444104433681327
+      },
+      "C": {
+       "RPMI": 3.604544705760257,
+       "BG": 2.549934630870425,
+       "BG_minus_RPMI": -1.054610074889832
+      }
+     },
+     "d7": {
+      "A": {
+       "RPMI": 12.249130109915699,
+       "BG": 11.438075811828742,
+       "BG_minus_RPMI": -0.8110542980869564
+      },
+      "B": {
+       "RPMI": 12.36076585217969,
+       "BG": 11.81115674940263,
+       "BG_minus_RPMI": -0.54960910277706
+      },
+      "C": {
+       "RPMI": 11.89442910716274,
+       "BG": 11.801822512488078,
+       "BG_minus_RPMI": -0.09260659467466148
+      }
+     }
+    }
+   },
+   "trained_vs_untrained_arms": [
+    "RPMI",
+    "BG"
+   ],
+   "identity_qc_pass": true
+  },
+  "GSE185433": {
+   "n_samples": 39,
+   "sex": {
+    "per_donor_calls": {
+     "don1": [
+      "F"
+     ],
+     "don2": [
+      "M"
+     ],
+     "don3": [
+      "F"
+     ]
+    },
+    "consistent": true,
+    "per_sample": {
+     "d0_don1": {
+      "call": "F",
+      "XIST_log2": 5.632166024027242,
+      "Y_genes_mean_log2": -4.397190215125471
+     },
+     "RPMI_4h_don1": {
+      "call": "F",
+      "XIST_log2": 4.934983645517651,
+      "Y_genes_mean_log2": -4.973240311264424
+     },
+     "LPS_4h_don1": {
+      "call": "F",
+      "XIST_log2": 5.061652270107702,
+      "Y_genes_mean_log2": -5.465210140420367
+     },
+     "IL4_4h_don1": {
+      "call": "F",
+      "XIST_log2": 4.709663534031612,
+      "Y_genes_mean_log2": -4.66233592321525
+     },
+     "IL4_LPS_4h_don1": {
+      "call": "F",
+      "XIST_log2": 5.042781818972874,
+      "Y_genes_mean_log2": -6.479702472960679
+     },
+     "RPMI_d6_don1": {
+      "call": "F",
+      "XIST_log2": 4.931160503659295,
+      "Y_genes_mean_log2": -5.487748643696656
+     },
+     "LPS_d6_don1": {
+      "call": "F",
+      "XIST_log2": 5.363103398901451,
+      "Y_genes_mean_log2": -6.25222192565091
+     },
+     "IL4_d6_don1": {
+      "call": "F",
+      "XIST_log2": 4.283938654415688,
+      "Y_genes_mean_log2": -6.236024067079329
+     },
+     "IL4_LPS_d6_don1": {
+      "call": "F",
+      "XIST_log2": 5.182954069145646,
+      "Y_genes_mean_log2": -5.160188341400418
+     },
+     "RPMI_Restim_don1": {
+      "call": "F",
+      "XIST_log2": 4.201416498076839,
+      "Y_genes_mean_log2": -6.413832624131292
+     },
+     "LPS_Restim_don1": {
+      "call": "F",
+      "XIST_log2": 4.245490831575998,
+      "Y_genes_mean_log2": -4.141018070190023
+     },
+     "IL4_Restim_don1": {
+      "call": "F",
+      "XIST_log2": 4.031207337152759,
+      "Y_genes_mean_log2": -6.196050594233898
+     },
+     "IL4_LPS_Restim_don1": {
+      "call": "F",
+      "XIST_log2": 4.303213060161965,
+      "Y_genes_mean_log2": -3.253803900894537
+     },
+     "d0_don2": {
+      "call": "M",
+      "XIST_log2": -4.4024127711734895,
+      "Y_genes_mean_log2": 5.689372489136091
+     },
+     "RPMI_4h_don2": {
+      "call": "M",
+      "XIST_log2": -4.079754025278673,
+      "Y_genes_mean_log2": 4.87915495417285
+     },
+     "LPS_4h_don2": {
+      "call": "M",
+      "XIST_log2": -4.43100698688391,
+      "Y_genes_mean_log2": 3.9579530537565817
+     },
+     "IL4_4h_don2": {
+      "call": "M",
+      "XIST_log2": -5.014533850072268,
+      "Y_genes_mean_log2": 4.5337990085472475
+     },
+     "IL4_LPS_4h_don2": {
+      "call": "M",
+      "XIST_log2": -3.9603565836947023,
+      "Y_genes_mean_log2": 3.8268777171641353
+     },
+     "RPMI_d6_don2": {
+      "call": "M",
+      "XIST_log2": -5.30282760009311,
+      "Y_genes_mean_log2": 3.97383856885181
+     },
+     "LPS_d6_don2": {
+      "call": "M",
+      "XIST_log2": -3.762260127630239,
+      "Y_genes_mean_log2": 4.49803459848361
+     },
+     "IL4_d6_don2": {
+      "call": "M",
+      "XIST_log2": -5.534495569759059,
+      "Y_genes_mean_log2": 3.8606519294188666
+     },
+     "IL4_LPS_d6_don2": {
+      "call": "M",
+      "XIST_log2": -5.359309110943912,
+      "Y_genes_mean_log2": 4.3987952133584605
+     },
+     "RPMI_Restim_don2": {
+      "call": "M",
+      "XIST_log2": -2.7174603790184513,
+      "Y_genes_mean_log2": 3.382085819214062
+     },
+     "LPS_Restim_don2": {
+      "call": "M",
+      "XIST_log2": -1.3495229097582724,
+      "Y_genes_mean_log2": 4.024329288545322
+     },
+     "IL4_Restim_don2": {
+      "call": "M",
+      "XIST_log2": -5.43600277931757,
+      "Y_genes_mean_log2": 3.3591736579221845
+     },
+     "IL4_LPS_Restim_don2": {
+      "call": "M",
+      "XIST_log2": -5.277277470918966,
+      "Y_genes_mean_log2": 3.8338105881831264
+     },
+     "d0_don3": {
+      "call": "F",
+      "XIST_log2": 6.14827574795486,
+      "Y_genes_mean_log2": -6.477848609833137
+     },
+     "RPMI_4h_don3": {
+      "call": "F",
+      "XIST_log2": 5.171556778322623,
+      "Y_genes_mean_log2": -6.7239687770711924
+     },
+     "LPS_4h_don3": {
+      "call": "F",
+      "XIST_log2": 5.279427086529891,
+      "Y_genes_mean_log2": -6.7179347050626745
+     },
+     "IL4_4h_don3": {
+      "call": "F",
+      "XIST_log2": 5.399733425989622,
+      "Y_genes_mean_log2": -6.662758833223875
+     },
+     "IL4_LPS_4h_don3": {
+      "call": "F",
+      "XIST_log2": 5.18589716702906,
+      "Y_genes_mean_log2": -6.7131702046901385
+     },
+     "RPMI_d6_don3": {
+      "call": "F",
+      "XIST_log2": 4.620519407455084,
+      "Y_genes_mean_log2": -6.8309446143531085
+     },
+     "LPS_d6_don3": {
+      "call": "F",
+      "XIST_log2": 4.764038710122717,
+      "Y_genes_mean_log2": -6.737497649817128
+     },
+     "IL4_d6_don3": {
+      "call": "F",
+      "XIST_log2": 4.343507532653994,
+      "Y_genes_mean_log2": -6.73045729801759
+     },
+     "IL4_LPS_d6_don3": {
+      "call": "F",
+      "XIST_log2": 4.285395776406986,
+      "Y_genes_mean_log2": -6.748516233191917
+     },
+     "RPMI_Restim_don3": {
+      "call": "F",
+      "XIST_log2": 3.690731307502964,
+      "Y_genes_mean_log2": -6.703139867418358
+     },
+     "LPS_Restim_don3": {
+      "call": "F",
+      "XIST_log2": 4.320179153842819,
+      "Y_genes_mean_log2": -6.311513085093844
+     },
+     "IL4_Restim_don3": {
+      "call": "F",
+      "XIST_log2": 4.071530663545606,
+      "Y_genes_mean_log2": -6.788403144334895
+     },
+     "IL4_LPS_Restim_don3": {
+      "call": "F",
+      "XIST_log2": 3.8070413816994324,
+      "Y_genes_mean_log2": -6.822237949781343
+     }
+    }
+   },
+   "donor_identity": {
+    "genes_used": [
+     "GSTM1",
+     "HLA-DRB5",
+     "HLA-DQA1",
+     "HLA-DQB1",
+     "ERAP2",
+     "CHI3L2",
+     "XIST",
+     "RPS4Y1",
+     "DDX3Y",
+     "KDM5D",
+     "UTY"
+    ],
+    "n_samples": 39,
+    "n_misassigned": 0,
+    "misassigned": []
+   },
+   "donor_genotype": {
+    "genes": {
+     "GSTM1": {
+      "informative": true,
+      "widest_gap_log2": 3.6080374704542497,
+      "threshold_log2": -1.0738549053877706,
+      "present_by_donor": {
+       "don1": true,
+       "don2": false,
+       "don3": true
+      },
+      "consistent": true
+     },
+     "HLA-DRB5": {
+      "informative": true,
+      "widest_gap_log2": 7.052239606675067,
+      "threshold_log2": -0.500658460039697,
+      "present_by_donor": {
+       "don1": true,
+       "don2": true,
+       "don3": false
+      },
+      "consistent": true
+     },
+     "HLA-DQA1": {
+      "informative": false,
+      "widest_gap_log2": 1.558774283878888
+     },
+     "HLA-DQB1": {
+      "informative": false,
+      "widest_gap_log2": 1.4285407598428022
+     },
+     "ERAP2": {
+      "informative": false,
+      "widest_gap_log2": 0.9997155285840074
+     },
+     "CHI3L2": {
+      "informative": false,
+      "widest_gap_log2": 0.6714879798313591
+     }
+    },
+    "consistent": true,
+    "donors_distinguishable": true,
+    "genotype_calls": {
+     "don1": [
+      true,
+      true
+     ],
+     "don2": [
+      false,
+      true
+     ],
+     "don3": [
+      true,
+      false
+     ]
+    }
+   },
+   "arm_labels": {
+    "4h": {
+     "arms": [
+      "IL4",
+      "IL4_LPS",
+      "LPS",
+      "RPMI"
+     ],
+     "n_samples": 12,
+     "n_best_match_same_arm": 12,
+     "per_sample": {
+      "RPMI_4h_don1": {
+       "best_match": "RPMI_4h_don2",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.9070379163457983
+      },
+      "LPS_4h_don1": {
+       "best_match": "LPS_4h_don2",
+       "best_match_arm": "LPS",
+       "same_arm": true,
+       "r": 0.9282497742924988
+      },
+      "IL4_4h_don1": {
+       "best_match": "IL4_4h_don2",
+       "best_match_arm": "IL4",
+       "same_arm": true,
+       "r": 0.9209807425473251
+      },
+      "IL4_LPS_4h_don1": {
+       "best_match": "IL4_LPS_4h_don2",
+       "best_match_arm": "IL4_LPS",
+       "same_arm": true,
+       "r": 0.9024942497362342
+      },
+      "RPMI_4h_don2": {
+       "best_match": "RPMI_4h_don1",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.9070379163457983
+      },
+      "LPS_4h_don2": {
+       "best_match": "LPS_4h_don1",
+       "best_match_arm": "LPS",
+       "same_arm": true,
+       "r": 0.9282497742924988
+      },
+      "IL4_4h_don2": {
+       "best_match": "IL4_4h_don1",
+       "best_match_arm": "IL4",
+       "same_arm": true,
+       "r": 0.9209807425473251
+      },
+      "IL4_LPS_4h_don2": {
+       "best_match": "IL4_LPS_4h_don1",
+       "best_match_arm": "IL4_LPS",
+       "same_arm": true,
+       "r": 0.9024942497362342
+      },
+      "RPMI_4h_don3": {
+       "best_match": "RPMI_4h_don2",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.8356196038530548
+      },
+      "LPS_4h_don3": {
+       "best_match": "LPS_4h_don2",
+       "best_match_arm": "LPS",
+       "same_arm": true,
+       "r": 0.8377444034399985
+      },
+      "IL4_4h_don3": {
+       "best_match": "IL4_4h_don2",
+       "best_match_arm": "IL4",
+       "same_arm": true,
+       "r": 0.8341673740552679
+      },
+      "IL4_LPS_4h_don3": {
+       "best_match": "IL4_LPS_4h_don2",
+       "best_match_arm": "IL4_LPS",
+       "same_arm": true,
+       "r": 0.8061012339827746
+      }
+     }
+    },
+    "Restim": {
+     "arms": [
+      "IL4",
+      "IL4_LPS",
+      "LPS",
+      "RPMI"
+     ],
+     "n_samples": 12,
+     "n_best_match_same_arm": 12,
+     "per_sample": {
+      "RPMI_Restim_don1": {
+       "best_match": "RPMI_Restim_don2",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.8579020751778819
+      },
+      "LPS_Restim_don1": {
+       "best_match": "LPS_Restim_don2",
+       "best_match_arm": "LPS",
+       "same_arm": true,
+       "r": 0.9178747595591272
+      },
+      "IL4_Restim_don1": {
+       "best_match": "IL4_Restim_don2",
+       "best_match_arm": "IL4",
+       "same_arm": true,
+       "r": 0.9111930269457374
+      },
+      "IL4_LPS_Restim_don1": {
+       "best_match": "IL4_LPS_Restim_don2",
+       "best_match_arm": "IL4_LPS",
+       "same_arm": true,
+       "r": 0.7752457826084477
+      },
+      "RPMI_Restim_don2": {
+       "best_match": "RPMI_Restim_don1",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.8579020751778819
+      },
+      "LPS_Restim_don2": {
+       "best_match": "LPS_Restim_don1",
+       "best_match_arm": "LPS",
+       "same_arm": true,
+       "r": 0.9178747595591272
+      },
+      "IL4_Restim_don2": {
+       "best_match": "IL4_Restim_don1",
+       "best_match_arm": "IL4",
+       "same_arm": true,
+       "r": 0.9111930269457374
+      },
+      "IL4_LPS_Restim_don2": {
+       "best_match": "IL4_LPS_Restim_don1",
+       "best_match_arm": "IL4_LPS",
+       "same_arm": true,
+       "r": 0.7752457826084477
+      },
+      "RPMI_Restim_don3": {
+       "best_match": "RPMI_Restim_don2",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.6308409126332353
+      },
+      "LPS_Restim_don3": {
+       "best_match": "LPS_Restim_don2",
+       "best_match_arm": "LPS",
+       "same_arm": true,
+       "r": 0.8831483045528999
+      },
+      "IL4_Restim_don3": {
+       "best_match": "IL4_Restim_don1",
+       "best_match_arm": "IL4",
+       "same_arm": true,
+       "r": 0.874915924839659
+      },
+      "IL4_LPS_Restim_don3": {
+       "best_match": "IL4_LPS_Restim_don2",
+       "best_match_arm": "IL4_LPS",
+       "same_arm": true,
+       "r": 0.6274233085693529
+      }
+     }
+    },
+    "d6": {
+     "arms": [
+      "IL4",
+      "IL4_LPS",
+      "LPS",
+      "RPMI"
+     ],
+     "n_samples": 12,
+     "n_best_match_same_arm": 12,
+     "per_sample": {
+      "RPMI_d6_don1": {
+       "best_match": "RPMI_d6_don2",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.8169160135257703
+      },
+      "LPS_d6_don1": {
+       "best_match": "LPS_d6_don2",
+       "best_match_arm": "LPS",
+       "same_arm": true,
+       "r": 0.8844455977961145
+      },
+      "IL4_d6_don1": {
+       "best_match": "IL4_d6_don2",
+       "best_match_arm": "IL4",
+       "same_arm": true,
+       "r": 0.8482425045461278
+      },
+      "IL4_LPS_d6_don1": {
+       "best_match": "IL4_LPS_d6_don2",
+       "best_match_arm": "IL4_LPS",
+       "same_arm": true,
+       "r": 0.7847881051224715
+      },
+      "RPMI_d6_don2": {
+       "best_match": "RPMI_d6_don1",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.8169160135257703
+      },
+      "LPS_d6_don2": {
+       "best_match": "LPS_d6_don1",
+       "best_match_arm": "LPS",
+       "same_arm": true,
+       "r": 0.8844455977961145
+      },
+      "IL4_d6_don2": {
+       "best_match": "IL4_d6_don1",
+       "best_match_arm": "IL4",
+       "same_arm": true,
+       "r": 0.8482425045461278
+      },
+      "IL4_LPS_d6_don2": {
+       "best_match": "IL4_LPS_d6_don1",
+       "best_match_arm": "IL4_LPS",
+       "same_arm": true,
+       "r": 0.7847881051224715
+      },
+      "RPMI_d6_don3": {
+       "best_match": "RPMI_d6_don1",
+       "best_match_arm": "RPMI",
+       "same_arm": true,
+       "r": 0.67148328843409
+      },
+      "LPS_d6_don3": {
+       "best_match": "LPS_d6_don2",
+       "best_match_arm": "LPS",
+       "same_arm": true,
+       "r": 0.8810960464900418
+      },
+      "IL4_d6_don3": {
+       "best_match": "IL4_d6_don1",
+       "best_match_arm": "IL4",
+       "same_arm": true,
+       "r": 0.8260496115226192
+      },
+      "IL4_LPS_d6_don3": {
+       "best_match": "IL4_LPS_d6_don1",
+       "best_match_arm": "IL4_LPS",
+       "same_arm": true,
+       "r": 0.6931955779189282
+      }
+     }
+    }
+   },
+   "cytokine_trajectories": {
+    "TNF": {
+     "4h": {
+      "don1": {
+       "RPMI": 5.223623642348306,
+       "LPS": 11.148180670312515,
+       "LPS_minus_RPMI": 5.924557027964209
+      },
+      "don2": {
+       "RPMI": 5.8225584885733594,
+       "LPS": 11.924393883162002,
+       "LPS_minus_RPMI": 6.101835394588643
+      },
+      "don3": {
+       "RPMI": 6.938713933907514,
+       "LPS": 11.426765082708172,
+       "LPS_minus_RPMI": 4.4880511488006585
+      }
+     },
+     "Restim": {
+      "don1": {
+       "RPMI": 11.868374034724285,
+       "LPS": 8.883120602216023,
+       "LPS_minus_RPMI": -2.9852534325082623
+      },
+      "don2": {
+       "RPMI": 11.743653048439432,
+       "LPS": 9.570189688488982,
+       "LPS_minus_RPMI": -2.17346335995045
+      },
+      "don3": {
+       "RPMI": 9.247516515643758,
+       "LPS": 9.304704947064597,
+       "LPS_minus_RPMI": 0.057188431420838626
+      }
+     },
+     "d0": {
+      "don1": {
+       "none": 4.457538148685857
+      },
+      "don2": {
+       "none": 4.877463394237408
+      },
+      "don3": {
+       "none": 5.158283983946444
+      }
+     },
+     "d6": {
+      "don1": {
+       "RPMI": 2.4937993668294354,
+       "LPS": 3.412045906454443,
+       "LPS_minus_RPMI": 0.9182465396250077
+      },
+      "don2": {
+       "RPMI": 1.8064850223995244,
+       "LPS": 5.015904410361113,
+       "LPS_minus_RPMI": 3.2094193879615887
+      },
+      "don3": {
+       "RPMI": 1.3026122378087268,
+       "LPS": 2.7388844003756527,
+       "LPS_minus_RPMI": 1.436272162566926
+      }
+     }
+    },
+    "IL6": {
+     "4h": {
+      "don1": {
+       "RPMI": 1.2192533183461627,
+       "LPS": 13.68484250680676,
+       "LPS_minus_RPMI": 12.465589188460598
+      },
+      "don2": {
+       "RPMI": 2.777548627471477,
+       "LPS": 13.675133169181578,
+       "LPS_minus_RPMI": 10.897584541710101
+      },
+      "don3": {
+       "RPMI": 6.22442119221298,
+       "LPS": 12.575078200503741,
+       "LPS_minus_RPMI": 6.350657008290761
+      }
+     },
+     "Restim": {
+      "don1": {
+       "RPMI": 10.195771112119255,
+       "LPS": 9.411449953139972,
+       "LPS_minus_RPMI": -0.7843211589792833
+      },
+      "don2": {
+       "RPMI": 10.708375087097513,
+       "LPS": 9.924342467126406,
+       "LPS_minus_RPMI": -0.7840326199711072
+      },
+      "don3": {
+       "RPMI": 7.13455978570819,
+       "LPS": 9.40912721412414,
+       "LPS_minus_RPMI": 2.27456742841595
+      }
+     },
+     "d0": {
+      "don1": {
+       "none": 1.485009286438237
+      },
+      "don2": {
+       "none": -1.1762581207375897
+      },
+      "don3": {
+       "none": 0.07254173631548295
+      }
+     },
+     "d6": {
+      "don1": {
+       "RPMI": -0.8615702649436846,
+       "LPS": -0.588724893420682,
+       "LPS_minus_RPMI": 0.2728453715230026
+      },
+      "don2": {
+       "RPMI": 1.6261337153379953,
+       "LPS": 3.9261070034239984,
+       "LPS_minus_RPMI": 2.299973288086003
+      },
+      "don3": {
+       "RPMI": -5.077190095698076,
+       "LPS": -0.6630092610760547,
+       "LPS_minus_RPMI": 4.414180834622021
+      }
+     }
+    },
+    "IL1B": {
+     "4h": {
+      "don1": {
+       "RPMI": 11.604447403944057,
+       "LPS": 15.490938001545246,
+       "LPS_minus_RPMI": 3.8864905976011883
+      },
+      "don2": {
+       "RPMI": 12.0522743715864,
+       "LPS": 15.52844807260836,
+       "LPS_minus_RPMI": 3.4761737010219598
+      },
+      "don3": {
+       "RPMI": 13.837191103124635,
+       "LPS": 15.39759563239973,
+       "LPS_minus_RPMI": 1.560404529275095
+      }
+     },
+     "Restim": {
+      "don1": {
+       "RPMI": 12.015197109035554,
+       "LPS": 10.897238294900289,
+       "LPS_minus_RPMI": -1.1179588141352657
+      },
+      "don2": {
+       "RPMI": 11.852360119770417,
+       "LPS": 10.845835070593415,
+       "LPS_minus_RPMI": -1.006525049177002
+      },
+      "don3": {
+       "RPMI": 10.535727771554331,
+       "LPS": 10.759879300057248,
+       "LPS_minus_RPMI": 0.22415152850291697
+      }
+     },
+     "d0": {
+      "don1": {
+       "none": 5.2727185545897575
+      },
+      "don2": {
+       "none": 5.002631615984934
+      },
+      "don3": {
+       "none": 7.916154251060195
+      }
+     },
+     "d6": {
+      "don1": {
+       "RPMI": 3.5847797837000788,
+       "LPS": 4.623130685479092,
+       "LPS_minus_RPMI": 1.0383509017790131
+      },
+      "don2": {
+       "RPMI": 3.6519805187046863,
+       "LPS": 5.865060284477947,
+       "LPS_minus_RPMI": 2.2130797657732604
+      },
+      "don3": {
+       "RPMI": 2.2666470326414685,
+       "LPS": 4.483578794173903,
+       "LPS_minus_RPMI": 2.2169317615324347
+      }
+     }
+    }
+   },
+   "trained_vs_untrained_arms": [
+    "RPMI",
+    "LPS"
+   ],
+   "identity_qc_pass": true
+  }
+ }
+}

@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "TiJepa: self-supervised video representations of innate immune activation"
+authors:
+  - family-names: Quadir
+    given-names: Rafid
+version: 0.1.0
+date-released: "2026-10-15"
+license: Apache-2.0
+repository-code: "https://github.com/rafidquadir-eng/TiJepa"
+abstract: >-
+  Self-supervised video (JEPA) representations of innate immune cell activation,
+  with a hypothesis-generating bridge from single-cell signalling dynamics to
+  chromatin and transcriptional states of LPS tolerance.
