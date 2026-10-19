@@ -95,7 +95,7 @@ def section14() -> list[tuple[str, str, str, str]]:
     mi = J("results/v3/manual_intake.json")
     row(
         "R1",
-        "done (no branch)" if mi else "open",
+        "done ('no' branch)" if mi else "open",
         "results/v3/manual_intake.json",
         "Dryad still absent; G-Dryad 'no' branch taken",
     )
