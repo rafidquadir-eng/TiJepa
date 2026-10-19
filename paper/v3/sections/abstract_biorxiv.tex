@@ -1,0 +1,21 @@
+\begin{abstract}
+Trained immunity and tolerance change how monocytes and macrophages respond to a second
+stimulus, but they are measured by destructive restimulation assays. Whether these memory
+states leave a signature that label-free imaging could read has not been tested, because no
+public dataset images trained or tolerised cells. We asked how far public data can take the
+question. We trained a self-supervised video model of innate-cell behaviour on
+\val{pre.t1.clips} clips of migrating human neutrophils and tested it, with strong image and
+video baselines, on every public dataset that pairs innate-cell imaging or live-cell dynamics
+with a molecular, metabolic, signalling or functional readout, summarised as a modality
+coverage map. Imaging features separate microglia activation morphologies, and NF-\(\kappa\)B
+reporter dynamics encode stimulus identity, but frozen image features did not predict cell
+identity or NAD(P)H lifetime beyond simple intensity statistics, and a general-purpose
+video model outperformed the cell-specific one. Memory states themselves are paired with
+imaging in no public resource. From the restimulation transcriptomes that do exist, after
+sample-identity checks, we find that $\beta$-glucan-trained human macrophages have lower TNF
+mRNA than untrained cells 4\,h after restimulation in two independent datasets (six of six
+donors; \val{pc.212.tnf.d7.mean} and \val{pc.141.TNF.mean} log2), although the same studies
+report higher TNF-$\alpha$ protein at 24\,h. A single readout time can therefore show
+training as either enhanced or reduced, which shapes the imaging study we propose to test
+innate immune memory directly.
+\end{abstract}

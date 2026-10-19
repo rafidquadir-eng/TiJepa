@@ -9,6 +9,7 @@ The validation score is the mean top-1 over k in {3, 9, 27}, averaged over ancho
 at least MIN_CELLS cells. It is the only quantity, with effective rank, used to compare
 training recipes (PLAN_v3 rule 1).
 """
+
 from __future__ import annotations
 
 import numpy as np

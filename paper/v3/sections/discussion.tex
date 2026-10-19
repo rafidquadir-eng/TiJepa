@@ -2,9 +2,9 @@
 \label{sec:discussion}
 \paragraph{What the video JEPA learned.} Trained on \val{pre.t1.clips} clips of one cell type
 from one instrument, TiJepa-1 learned representations that classify microglia morphology
-far better than hand-crafted features and as well as image models trained on millions of
-natural images, but not as well as a general-purpose video model, V-JEPA~2, used
-frozen and off the shelf. On the label-free validation task TiJepa-1 is below raw pixels.
+far better than hand-crafted features. Image models trained on millions of natural images
+do as well, and a general-purpose video model used frozen and off the shelf, V-JEPA~2,
+does better. On the label-free validation task TiJepa-1 is below raw pixels.
 Future masking helps relative to the matched spatial-only ablation, modestly on morphology
 and strongly on re-identification, but the predictor's apparent forecasting skill is
 explained by the positional structure of its own target latents: it persists on clips in

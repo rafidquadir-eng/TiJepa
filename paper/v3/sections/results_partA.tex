@@ -5,11 +5,11 @@
 On BBBC054, every learned representation separates the three microglia morphology classes
 far better than hand-crafted shape and texture features (\val{bb.E1_handcrafted_logreg.3c})
 or exposure time alone (\val{bb.time.3c}; Figure~\ref{fig:benchmarks}). The pretrained
-video model V-JEPA~2 is the best encoder (\val{bb.E7_vjepa2_vitl.3c}); TiJepa-1
-(\val{bb.E4_tijepa1.3c}) is lower than V-JEPA~2 by \val{bb.d.E4_tijepa1.E7_vjepa2_vitl.3c}
-(95\% CI \val{bb.ci.E4_tijepa1.E7_vjepa2_vitl.3c}) and is not distinguishable from DINOv2
-(\val{bb.E3_dinov2_vit_s.3c}), the ImageNet ViT (\val{bb.E2_imagenet_vit_s.3c}) or
-TiJepa-0 (\val{bb.E0_tijepa0.3c}). Training on cell video therefore did not beat a
+video model V-JEPA~2 is the best encoder (\val{bb.E7_vjepa2_vitl.3c}). TiJepa-1
+(\val{bb.E4_tijepa1.3c}) is not distinguishable from DINOv2 (\val{bb.E3_dinov2_vit_s.3c}),
+the ImageNet ViT (\val{bb.E2_imagenet_vit_s.3c}) or TiJepa-0 (\val{bb.E0_tijepa0.3c});
+V-JEPA~2 exceeds it by \val{bb.d.E4_tijepa1.E7_vjepa2_vitl.3c.abs} (95\% CI
+\val{bb.ci.E4_tijepa1.E7_vjepa2_vitl.3c.abs}). Training on cell video therefore did not beat a
 general-purpose video model, and twice as many training steps on a quality-filtered corpus
 did not improve on TiJepa-0. Within the TiJepa recipe, future masking adds
 \val{bb.d.E4_tijepa1.E4s_tijepa1_spatial.3c}

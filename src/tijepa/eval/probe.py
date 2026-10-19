@@ -5,6 +5,7 @@ class-balanced logistic regression), fitted with StratifiedGroupKFold so no grou
 sample, well) is in both the training and the test folds. Confidence intervals are
 cluster bootstraps over groups and are reported only with >= 10 groups (PLAN_v1 rule 3).
 """
+
 from __future__ import annotations
 
 import numpy as np
@@ -26,8 +27,9 @@ def pipeline(n_features: int, seed: int, clf):
     return make_pipeline(*steps, clf)
 
 
-def grouped_predict(z: np.ndarray, y: np.ndarray, groups: np.ndarray, seed: int,
-                    n_splits: int = 5) -> np.ndarray:
+def grouped_predict(
+    z: np.ndarray, y: np.ndarray, groups: np.ndarray, seed: int, n_splits: int = 5
+) -> np.ndarray:
     z = np.asarray(z, np.float64)
     z = z[:, np.isfinite(z).all(0)]
     pred = np.empty(len(y), dtype=y.dtype)
@@ -37,15 +39,22 @@ def grouped_predict(z: np.ndarray, y: np.ndarray, groups: np.ndarray, seed: int,
         if len(np.unique(y[tr])) < 2:
             pred[te] = y[tr][0]
             continue
-        clf = LogisticRegression(max_iter=3000, class_weight="balanced", C=1.0,
-                                 random_state=seed)
+        clf = LogisticRegression(
+            max_iter=3000, class_weight="balanced", C=1.0, random_state=seed
+        )
         m = pipeline(z.shape[1], seed, clf).fit(z[tr], y[tr])
         pred[te] = m.predict(z[te])
     return pred
 
 
-def grouped_regress(z: np.ndarray, y: np.ndarray, groups: np.ndarray, seed: int,
-                    n_splits: int = 5, alpha: float = 10.0) -> np.ndarray:
+def grouped_regress(
+    z: np.ndarray,
+    y: np.ndarray,
+    groups: np.ndarray,
+    seed: int,
+    n_splits: int = 5,
+    alpha: float = 10.0,
+) -> np.ndarray:
     z = np.asarray(z, np.float64)
     z = z[:, np.isfinite(z).all(0)]
     pred = np.empty(len(y), dtype=float)
@@ -60,8 +69,9 @@ def grouped_regress(z: np.ndarray, y: np.ndarray, groups: np.ndarray, seed: int,
     return pred
 
 
-def cluster_bootstrap(y, pred, groups, stat=balanced_accuracy_score, n_boot: int = 2000,
-                      seed: int = 0) -> dict:
+def cluster_bootstrap(
+    y, pred, groups, stat=balanced_accuracy_score, n_boot: int = 2000, seed: int = 0
+) -> dict:
     ug = np.unique(groups)
     if len(ug) < MIN_GROUPS_FOR_CI:
         return {"ci95": None, "reason": f"{len(ug)} groups < {MIN_GROUPS_FOR_CI}"}
@@ -77,14 +87,19 @@ def cluster_bootstrap(y, pred, groups, stat=balanced_accuracy_score, n_boot: int
     return {"ci95": [float(lo), float(hi)], "n_groups": int(len(ug)), "n_boot": n_boot}
 
 
-def paired_bootstrap(y, pred_a, pred_b, groups, stat=balanced_accuracy_score,
-                     n_boot: int = 2000, seed: int = 0) -> dict:
+def paired_bootstrap(
+    y, pred_a, pred_b, groups, stat=balanced_accuracy_score, n_boot: int = 2000, seed: int = 0
+) -> dict:
     """Cluster bootstrap of stat(a) - stat(b), both scored on the same resample."""
     ug = np.unique(groups)
     obs = float(stat(y, pred_a) - stat(y, pred_b))
     if len(ug) < MIN_GROUPS_FOR_CI:
-        return {"difference": obs, "ci95": None, "p_two_sided": None,
-                "reason": f"{len(ug)} groups < {MIN_GROUPS_FOR_CI}"}
+        return {
+            "difference": obs,
+            "ci95": None,
+            "p_two_sided": None,
+            "reason": f"{len(ug)} groups < {MIN_GROUPS_FOR_CI}",
+        }
     idx = {g: np.flatnonzero(groups == g) for g in ug}
     rng = np.random.default_rng(seed)
     d = []
@@ -95,9 +110,12 @@ def paired_bootstrap(y, pred_a, pred_b, groups, stat=balanced_accuracy_score,
         d.append(stat(y[take], pred_a[take]) - stat(y[take], pred_b[take]))
     d = np.asarray(d)
     p = float(min(1.0, 2 * min((d <= 0).mean(), (d >= 0).mean())))
-    return {"difference": obs, "ci95": [float(np.percentile(d, 2.5)),
-                                        float(np.percentile(d, 97.5))],
-            "p_two_sided": p, "n_groups": int(len(ug))}
+    return {
+        "difference": obs,
+        "ci95": [float(np.percentile(d, 2.5)), float(np.percentile(d, 97.5))],
+        "p_two_sided": p,
+        "n_groups": int(len(ug)),
+    }
 
 
 def bh(pvals: list[float | None]) -> list[float | None]:

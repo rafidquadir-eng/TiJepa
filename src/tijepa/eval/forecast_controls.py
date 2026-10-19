@@ -9,6 +9,7 @@ explanations; the G-Forecast gate is fixed here, before any result is seen.
 All L1 values are within one model's latent space; only ratios are compared across
 models.
 """
+
 from __future__ import annotations
 
 import itertools
@@ -34,8 +35,8 @@ def slot_means(targets: list[np.ndarray]) -> dict[str, np.ndarray]:
     broadcastable against one clip's (n_slots, n_pos, dim) targets.
     """
     t = np.concatenate([x.astype(np.float32) for x in targets], axis=0)
-    per_pos = t.mean(axis=0)                                   # (S, P, D)
-    per_slot = per_pos.mean(axis=1, keepdims=True)             # (S, 1, D)
+    per_pos = t.mean(axis=0)  # (S, P, D)
+    per_slot = per_pos.mean(axis=1, keepdims=True)  # (S, 1, D)
     return {"slot_position": per_pos, "slot": per_slot}
 
 
@@ -53,18 +54,30 @@ def sign_flip(values: list[float]) -> dict:
     if len(d) == 0:
         return {"n": 0, "mean": None, "p_two_sided": None, "minimum_achievable_p": None}
     obs = float(d.mean())
-    flips = np.array([np.mean(d * np.array(s))
-                      for s in itertools.product([1, -1], repeat=len(d))])
-    return {"n": int(len(d)), "mean": obs,
-            "p_two_sided": float(np.mean(np.abs(flips) >= abs(obs) - 1e-12)),
-            "minimum_achievable_p": float(2.0 / len(flips))}
+    flips = np.array(
+        [np.mean(d * np.array(s)) for s in itertools.product([1, -1], repeat=len(d))]
+    )
+    return {
+        "n": int(len(d)),
+        "mean": obs,
+        "p_two_sided": float(np.mean(np.abs(flips) >= abs(obs) - 1e-12)),
+        "minimum_achievable_p": float(2.0 / len(flips)),
+    }
 
 
-def movie_scores(pred: np.ndarray, tgt: np.ndarray, copy: np.ndarray,
-                 pred_swap: np.ndarray, means: dict[str, np.ndarray]) -> dict:
+def movie_scores(
+    pred: np.ndarray,
+    tgt: np.ndarray,
+    copy: np.ndarray,
+    pred_swap: np.ndarray,
+    means: dict[str, np.ndarray],
+) -> dict:
     """Per-movie L1s for one model; arrays are (n_clips, n_slots, n_pos, dim)."""
-    s = {"l1_predictor": l1(pred, tgt), "l1_copy_last": l1(copy, tgt),
-         "l1_context_swap": l1(pred_swap, tgt)}
+    s = {
+        "l1_predictor": l1(pred, tgt),
+        "l1_copy_last": l1(copy, tgt),
+        "l1_context_swap": l1(pred_swap, tgt),
+    }
     for k, m in means.items():
         s[f"l1_mean_{k}"] = l1(np.broadcast_to(m, tgt.shape), tgt)
     s["l1_slot_mean_best"] = min(s["l1_mean_slot"], s["l1_mean_slot_position"])
@@ -93,8 +106,9 @@ def gate(per_movie: dict[str, dict], static_ratio: dict[str, float]) -> dict:
     lr_slot = [float(np.log(per_movie[m]["ratio_vs_slot_mean"])) for m in movies]
     t_copy, t_slot = sign_flip(lr_copy), sign_flip(lr_slot)
     adv = float(np.mean([advantage(per_movie[m]["ratio_vs_copy_last"]) for m in movies]))
-    adv_swap = float(np.mean([advantage(per_movie[m]["swap_ratio_vs_copy_last"])
-                              for m in movies]))
+    adv_swap = float(
+        np.mean([advantage(per_movie[m]["swap_ratio_vs_copy_last"]) for m in movies])
+    )
     sm = [m for m in movies if m in static_ratio]
     adv_static = float(np.mean([advantage(static_ratio[m]) for m in sm])) if sm else None
     beats_copy = t_copy["mean"] < 0 and t_copy["p_two_sided"] < GATE_ALPHA
@@ -104,14 +118,17 @@ def gate(per_movie: dict[str, dict], static_ratio: dict[str, float]) -> dict:
     static_kills = adv > 0 and adv_static is not None and adv_static <= lim
     return {
         "rule": "pass iff beats copy-last and the slot-conditional mean (mean log ratio < 0, "
-                f"exact sign-flip p < {GATE_ALPHA} over movies) and the context-swap and "
-                f"static-clip controls each leave <= {GATE_RESIDUAL_FRACTION} of the "
-                "advantage over copy-last",
+        f"exact sign-flip p < {GATE_ALPHA} over movies) and the context-swap and "
+        f"static-clip controls each leave <= {GATE_RESIDUAL_FRACTION} of the "
+        "advantage over copy-last",
         "n_movies": len(movies),
-        "log_ratio_vs_copy_last": t_copy, "log_ratio_vs_slot_mean": t_slot,
-        "advantage_real": adv, "advantage_context_swap": adv_swap,
+        "log_ratio_vs_copy_last": t_copy,
+        "log_ratio_vs_slot_mean": t_slot,
+        "advantage_real": adv,
+        "advantage_context_swap": adv_swap,
         "advantage_static": adv_static,
-        "beats_copy_last": bool(beats_copy), "beats_slot_mean": bool(beats_slot),
+        "beats_copy_last": bool(beats_copy),
+        "beats_slot_mean": bool(beats_slot),
         "context_swap_removes_most": bool(swap_kills),
         "static_removes_most": bool(static_kills),
         "pass": bool(beats_copy and beats_slot and swap_kills and static_kills),

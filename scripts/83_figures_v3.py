@@ -1,5 +1,6 @@
 """Render figures/v3/ from results (src/tijepa/viz/figures_v3.py); a figure whose inputs
 do not exist is skipped and reported. Writes results/v3/figures.json."""
+
 from __future__ import annotations
 
 import json

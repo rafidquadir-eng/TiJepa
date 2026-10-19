@@ -1,0 +1,34 @@
+{
+ "manuscripts": {
+  "tmlr": {
+   "undefined_numbers": [],
+   "banned": [],
+   "grammar": [],
+   "banned_v3": [],
+   "detection_claims": [],
+   "anonymity": [],
+   "directional_violations": [],
+   "n_numbers_used": 110,
+   "n_sentences": 192,
+   "status": "ok"
+  },
+  "biorxiv": {
+   "undefined_numbers": [],
+   "banned": [],
+   "grammar": [],
+   "banned_v3": [],
+   "detection_claims": [],
+   "anonymity": [],
+   "directional_violations": [],
+   "n_numbers_used": 160,
+   "n_sentences": 221,
+   "status": "ok"
+  }
+ },
+ "labels": {
+  "n": 7,
+  "problems": []
+ },
+ "n_comparisons": 95,
+ "status": "ok"
+}

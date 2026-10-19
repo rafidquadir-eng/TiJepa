@@ -8,8 +8,9 @@ can be reported, the samples must be shown to be who and what they are labelled 
 Checks, on every sample of GSE212282 (75 samples) and GSE185433 (39):
 1. sex genes (XIST; RPS4Y1, DDX3Y, KDM5D, UTY) per sample: every donor's samples must
    agree on sex;
-2. donor identity. Pre-specified: genes with common deletion / strong cis-eQTL polymorphisms (GSTM1,
-   GSTT1, HLA-DRB4, HLA-DRB5, HLA-DQA1, HLA-DQB1, ERAP2, CHI3L2) plus the sex genes: each
+2. donor identity. Pre-specified: genes with common deletion / strong cis-eQTL
+   polymorphisms (GSTM1, GSTT1, HLA-DRB4, HLA-DRB5, HLA-DQA1, HLA-DQB1, ERAP2, CHI3L2)
+   plus the sex genes: each
    sample is assigned to the nearest donor centroid computed without it; the assignment
    must equal its label. This rule misassigned 10 of 75 GSE212282 samples, all at
    time points whose cell state shifts HLA class II and GSTM1 expression, so a
@@ -23,6 +24,7 @@ Checks, on every sample of GSE212282 (75 samples) and GSE185433 (39):
    time point, so the restimulation result can be read against the pre-restimulation
    baseline (day 6) and the first-exposure response (4 h).
 """
+
 from __future__ import annotations
 
 import importlib.util
@@ -39,8 +41,9 @@ sys.path.insert(0, str(REPO / "src"))
 
 from tijepa.omics import signatures as S  # noqa: E402
 
-_spec = importlib.util.spec_from_file_location("restim_v1", REPO / "scripts" /
-                                               "43_partC_restim.py")
+_spec = importlib.util.spec_from_file_location(
+    "restim_v1", REPO / "scripts" / "43_partC_restim.py"
+)
 V1 = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(V1)
 
@@ -48,8 +51,16 @@ RESTIM = REPO / "data" / "interim" / "restim"
 HGNC = REPO / "data" / "raw" / "maps" / "hgnc_complete_set.txt"
 OUT = REPO / "results" / "v3" / "partC" / "sample_qc.json"
 SEX_F, SEX_M = ["XIST"], ["RPS4Y1", "DDX3Y", "KDM5D", "UTY"]
-IDENTITY = ["GSTM1", "GSTT1", "HLA-DRB4", "HLA-DRB5", "HLA-DQA1", "HLA-DQB1", "ERAP2",
-            "CHI3L2"]
+IDENTITY = [
+    "GSTM1",
+    "GSTT1",
+    "HLA-DRB4",
+    "HLA-DRB5",
+    "HLA-DQA1",
+    "HLA-DQB1",
+    "ERAP2",
+    "CHI3L2",
+]
 CYTO = ["TNF", "IL6", "IL1B"]
 PARSE = {
     "GSE212282": re.compile(r"^(?P<donor>[ABC])_(?P<time>D0|4H|d1|d6|d7)(?:_(?P<arm>.+))?$"),
@@ -70,8 +81,14 @@ def load_all(gse: str, ens2sym: dict) -> tuple[pd.DataFrame, pd.DataFrame]:
     for lab in mat.columns:
         m = PARSE[gse].match(lab)
         d = m.groupdict()
-        rows.append({"label": lab, "donor": d["donor"], "time": d["time"],
-                     "arm": d.get("arm") or "none"})
+        rows.append(
+            {
+                "label": lab,
+                "donor": d["donor"],
+                "time": d["time"],
+                "arm": d.get("arm") or "none",
+            }
+        )
     return mat, pd.DataFrame(rows).set_index("label")
 
 
@@ -81,10 +98,18 @@ def sex_check(mat, meta) -> dict:
     call = np.where(f - m > 0, "F", "M")
     per = pd.DataFrame({"donor": meta["donor"], "call": call, "XIST": f, "Ymean": m})
     by = {d: sorted(set(g["call"])) for d, g in per.groupby("donor")}
-    return {"per_donor_calls": by, "consistent": all(len(v) == 1 for v in by.values()),
-            "per_sample": {s: {"call": r.call, "XIST_log2": float(r.XIST),
-                               "Y_genes_mean_log2": float(r.Ymean)}
-                           for s, r in per.iterrows()}}
+    return {
+        "per_donor_calls": by,
+        "consistent": all(len(v) == 1 for v in by.values()),
+        "per_sample": {
+            s: {
+                "call": r.call,
+                "XIST_log2": float(r.XIST),
+                "Y_genes_mean_log2": float(r.Ymean),
+            }
+            for s, r in per.iterrows()
+        },
+    }
 
 
 def donor_check(mat, meta) -> dict:
@@ -98,8 +123,12 @@ def donor_check(mat, meta) -> dict:
         best = cent.sub(x.loc[s]).pow(2).sum(1).idxmin()
         if best != meta.loc[s, "donor"]:
             wrong.append({"sample": s, "label": meta.loc[s, "donor"], "nearest": best})
-    return {"genes_used": genes, "n_samples": int(len(x)), "n_misassigned": len(wrong),
-            "misassigned": wrong}
+    return {
+        "genes_used": genes,
+        "n_samples": int(len(x)),
+        "n_misassigned": len(wrong),
+        "misassigned": wrong,
+    }
 
 
 def genotype_check(mat, meta) -> dict:
@@ -122,17 +151,25 @@ def genotype_check(mat, meta) -> dict:
             continue
         thr = float((v.iloc[i] + v.iloc[i + 1]) / 2)
         present = mat.loc[g].clip(lower=-5.0) > thr
-        per = {d: sorted({bool(present[s]) for s in grp.index})
-               for d, grp in meta.groupby("donor")}
+        per = {
+            d: sorted({bool(present[s]) for s in grp.index})
+            for d, grp in meta.groupby("donor")
+        }
         ok = all(len(x) == 1 for x in per.values())
         out["consistent"] &= ok
-        out["genes"][g] = {"informative": True, "widest_gap_log2": float(gaps[i]),
-                           "threshold_log2": thr,
-                           "present_by_donor": {d: x[0] if len(x) == 1 else "mixed"
-                                                for d, x in per.items()},
-                           "consistent": ok}
-    calls = {d: tuple(v["present_by_donor"][d] for v in out["genes"].values()
-                      if v.get("informative")) for d in sorted(set(meta["donor"]))}
+        out["genes"][g] = {
+            "informative": True,
+            "widest_gap_log2": float(gaps[i]),
+            "threshold_log2": thr,
+            "present_by_donor": {d: x[0] if len(x) == 1 else "mixed" for d, x in per.items()},
+            "consistent": ok,
+        }
+    calls = {
+        d: tuple(
+            v["present_by_donor"][d] for v in out["genes"].values() if v.get("informative")
+        )
+        for d in sorted(set(meta["donor"]))
+    }
     out["donors_distinguishable"] = len(set(calls.values())) == len(calls)
     out["genotype_calls"] = {d: list(c) for d, c in calls.items()}
     return out
@@ -143,8 +180,9 @@ def arm_check(mat, meta) -> dict:
     for t, g in meta.groupby("time"):
         arms = sorted(set(g["arm"]))
         donors = sorted(set(g["donor"]))
-        full = all(((g["arm"] == a) & (g["donor"] == d)).sum() == 1
-                   for a in arms for d in donors)
+        full = all(
+            ((g["arm"] == a) & (g["donor"] == d)).sum() == 1 for a in arms for d in donors
+        )
         if len(arms) < 2 or not full:
             continue
         sub = mat[g.index]
@@ -160,12 +198,18 @@ def arm_check(mat, meta) -> dict:
         for s in g.index:
             others = [o for o in g.index if g.loc[o, "donor"] != g.loc[s, "donor"]]
             best = c.loc[s, others].idxmax()
-            res[s] = {"best_match": best, "best_match_arm": g.loc[best, "arm"],
-                      "same_arm": bool(g.loc[best, "arm"] == g.loc[s, "arm"]),
-                      "r": float(c.loc[s, best])}
-        out[t] = {"arms": arms, "n_samples": int(len(g)),
-                  "n_best_match_same_arm": int(sum(v["same_arm"] for v in res.values())),
-                  "per_sample": res}
+            res[s] = {
+                "best_match": best,
+                "best_match_arm": g.loc[best, "arm"],
+                "same_arm": bool(g.loc[best, "arm"] == g.loc[s, "arm"]),
+                "r": float(c.loc[s, best]),
+            }
+        out[t] = {
+            "arms": arms,
+            "n_samples": int(len(g)),
+            "n_best_match_same_arm": int(sum(v["same_arm"] for v in res.values())),
+            "per_sample": res,
+        }
     return out
 
 
@@ -190,20 +234,35 @@ def main() -> int:
     res = {"phase": "PLAN_v3 H5.1.1 (finding R13)", "datasets": {}}
     for gse in ("GSE212282", "GSE185433"):
         mat, meta = load_all(gse, ens2sym)
-        r = {"n_samples": int(mat.shape[1]), "sex": sex_check(mat, meta),
-             "donor_identity": donor_check(mat, meta),
-             "donor_genotype": genotype_check(mat, meta), "arm_labels": arm_check(mat, meta),
-             "cytokine_trajectories": trajectories(gse, mat, meta),
-             "trained_vs_untrained_arms": TRAINED[gse]}
-        ok = (r["sex"]["consistent"] and r["donor_genotype"]["consistent"]
-              and r["donor_genotype"]["donors_distinguishable"])
+        r = {
+            "n_samples": int(mat.shape[1]),
+            "sex": sex_check(mat, meta),
+            "donor_identity": donor_check(mat, meta),
+            "donor_genotype": genotype_check(mat, meta),
+            "arm_labels": arm_check(mat, meta),
+            "cytokine_trajectories": trajectories(gse, mat, meta),
+            "trained_vs_untrained_arms": TRAINED[gse],
+        }
+        ok = (
+            r["sex"]["consistent"]
+            and r["donor_genotype"]["consistent"]
+            and r["donor_genotype"]["donors_distinguishable"]
+        )
         r["identity_qc_pass"] = bool(ok)
         res["datasets"][gse] = r
-        print(gse, "sex consistent", r["sex"]["consistent"], r["sex"]["per_donor_calls"],
-              "| donor misassigned", r["donor_identity"]["n_misassigned"],
-              "| arm best-match same arm:",
-              {t: f"{v['n_best_match_same_arm']}/{v['n_samples']}"
-               for t, v in r["arm_labels"].items()})
+        print(
+            gse,
+            "sex consistent",
+            r["sex"]["consistent"],
+            r["sex"]["per_donor_calls"],
+            "| donor misassigned",
+            r["donor_identity"]["n_misassigned"],
+            "| arm best-match same arm:",
+            {
+                t: f"{v['n_best_match_same_arm']}/{v['n_samples']}"
+                for t, v in r["arm_labels"].items()
+            },
+        )
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(res, indent=1, default=float))
     print(f"wrote {OUT}")

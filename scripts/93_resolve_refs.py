@@ -16,6 +16,7 @@ Nothing here invents an identifier: every DOI is one stated in the plan, printed
 dataset record used in the run, or returned by Crossref for a title query whose result
 is reported along with its match score so a weak match can be judged.
 """
+
 from __future__ import annotations
 
 import functools
@@ -64,71 +65,140 @@ TITLE_MUST_CONTAIN: dict[str, tuple[str, ...]] = {
 
 # key -> (doi or None, arxiv id or None, what it is cited for)
 CANDIDATES: dict[str, tuple[str | None, str | None, str]] = {
-    "vjepa": (None, "2404.08471",
-              "V-JEPA, the architecture TiJepa follows. PLAN_v1.md 10.4 records that "
-              "v0 wrongly listed Assran as first author; the first author is Bardes A."),
+    "vjepa": (
+        None,
+        "2404.08471",
+        "V-JEPA, the architecture TiJepa follows. PLAN_v1.md 10.4 records that "
+        "v0 wrongly listed Assran as first author; the first author is Bardes A.",
+    ),
     "dinov2": (None, "2304.07193", "DINOv2, baseline encoder E3"),
-    "complexeye": ("10.1038/s41467-023-43765-3", None,
-                   "ComplexEye: the pretraining corpus, and the source of the verified "
-                   "ComplexEye and Leica pixel sizes"),
-    "phagostat": ("10.1038/s41598-024-56081-7", None,
-                  "PhagoStat microglia video (considered for the corpus)"),
-    "bbbc": ("10.1038/nmeth.2083", None,
-             "the Broad Bioimage Benchmark Collection, which hosts BBBC054"),
-    "saeed2014": ("10.1126/science.1251086", None,
-                  "Saeed et al. 2014, the source of GSE58310 (Part B4, Part C 8.2)"),
-    "novakovic2016": ("10.1016/j.cell.2016.09.034", None,
-                      "Novakovic et al. 2016, beta-glucan reverses LPS tolerance"),
-    "xue2014": ("10.1016/j.immuni.2014.01.006", None,
-                "Xue et al. 2014, the source of GSE46903 (Part C anchors)"),
-    "netea2016": ("10.1126/science.aaf1098", None,
-                  "Netea et al. 2016, the trained-immunity review"),
-    "wang2025": ("10.1016/j.cels.2025.101171", None,
-                 "Wang AG, Son M, et al., Cell Systems 2025: the Tay-lab NF-kB traces, "
-                 "GSE260996 and GSE261647 used throughout Part B. The DOI was obtained "
-                 "from PMC12147866 via the NCBI ID converter (which also gives PMID "
-                 "39938520), not guessed and not matched by title."),
-    "limma": ("10.1093/nar/gkv007", None,
-              "limma, the method reimplemented in src/tijepa/omics/moderated.py"),
-    "deseq2": ("10.1186/s13059-014-0550-8", None,
-               "DESeq2, used via pydeseq2 for the mouse RNA contrasts"),
-    "cellpose": ("10.1038/s41592-020-01018-x", None,
-                 "Cellpose: considered for E1 segmentation; not used, see the run report"),
+    "complexeye": (
+        "10.1038/s41467-023-43765-3",
+        None,
+        "ComplexEye: the pretraining corpus, and the source of the verified "
+        "ComplexEye and Leica pixel sizes",
+    ),
+    "phagostat": (
+        "10.1038/s41598-024-56081-7",
+        None,
+        "PhagoStat microglia video (considered for the corpus)",
+    ),
+    "bbbc": (
+        "10.1038/nmeth.2083",
+        None,
+        "the Broad Bioimage Benchmark Collection, which hosts BBBC054",
+    ),
+    "saeed2014": (
+        "10.1126/science.1251086",
+        None,
+        "Saeed et al. 2014, the source of GSE58310 (Part B4, Part C 8.2)",
+    ),
+    "novakovic2016": (
+        "10.1016/j.cell.2016.09.034",
+        None,
+        "Novakovic et al. 2016, beta-glucan reverses LPS tolerance",
+    ),
+    "xue2014": (
+        "10.1016/j.immuni.2014.01.006",
+        None,
+        "Xue et al. 2014, the source of GSE46903 (Part C anchors)",
+    ),
+    "netea2016": (
+        "10.1126/science.aaf1098",
+        None,
+        "Netea et al. 2016, the trained-immunity review",
+    ),
+    "wang2025": (
+        "10.1016/j.cels.2025.101171",
+        None,
+        "Wang AG, Son M, et al., Cell Systems 2025: the Tay-lab NF-kB traces, "
+        "GSE260996 and GSE261647 used throughout Part B. The DOI was obtained "
+        "from PMC12147866 via the NCBI ID converter (which also gives PMID "
+        "39938520), not guessed and not matched by title.",
+    ),
+    "limma": (
+        "10.1093/nar/gkv007",
+        None,
+        "limma, the method reimplemented in src/tijepa/omics/moderated.py",
+    ),
+    "deseq2": (
+        "10.1186/s13059-014-0550-8",
+        None,
+        "DESeq2, used via pydeseq2 for the mouse RNA contrasts",
+    ),
+    "cellpose": (
+        "10.1038/s41592-020-01018-x",
+        None,
+        "Cellpose: considered for E1 segmentation; not used, see the run report",
+    ),
     "cotracker": (None, "2307.07635", "CoTracker: not run, host unreachable"),
-    "smyth2004": ("10.2202/1544-6115.1027", None,
-                  "Smyth 2004, the empirical-Bayes moderated t-statistic implemented "
-                  "in src/tijepa/omics/moderated.py"),
-    "mgi": ("10.1093/genetics/iyae031", None,
-            "Mouse Genome Informatics, source of the HOM_MouseHumanSequence ortholog "
-            "table used in B4. PLAN_v1.md 10.4 asked to remove the spurious author "
-            "'Blumberg B' that v0 carried, and suggested 10.1093/nar/gkae733; that DOI "
-            "resolves to an unrelated correction notice, so it was NOT used. The "
-            "citation here is the MGI system paper (Baldarelli et al., Genetics 2024), "
-            "checked against the expected title keywords below."),
-    "trackpy": ("10.5281/zenodo.1226458", None,
-                "trackpy, used for detection linking in preprocessing"),
-    "scikit_image": ("10.7717/peerj.453", None,
-                     "scikit-image, used for segmentation and texture features"),
-    "ferreira2023": ("10.1016/j.celrep.2023.112658", None,
-                     "Ferreira et al. 2023, the source of GSE212282 (GEO Series_pubmed_id "
-                     "37330914) and of the sourced Part C expectations"),
-    "schrijver2023": ("10.1038/s41551-023-01050-0", None,
-                      "Schrijver, Roring et al. 2023, the source of GSE185433 (GEO "
-                      "Series_pubmed_id 37291433) and of the sourced IL-4 expectation"),
-    "pydeseq2": ("10.1093/bioinformatics/btad547", None,
-                 "PyDESeq2, used for the B4 interaction model"),
+    "smyth2004": (
+        "10.2202/1544-6115.1027",
+        None,
+        "Smyth 2004, the empirical-Bayes moderated t-statistic implemented "
+        "in src/tijepa/omics/moderated.py",
+    ),
+    "mgi": (
+        "10.1093/genetics/iyae031",
+        None,
+        "Mouse Genome Informatics, source of the HOM_MouseHumanSequence ortholog "
+        "table used in B4. PLAN_v1.md 10.4 asked to remove the spurious author "
+        "'Blumberg B' that v0 carried, and suggested 10.1093/nar/gkae733; that DOI "
+        "resolves to an unrelated correction notice, so it was NOT used. The "
+        "citation here is the MGI system paper (Baldarelli et al., Genetics 2024), "
+        "checked against the expected title keywords below.",
+    ),
+    "trackpy": (
+        "10.5281/zenodo.1226458",
+        None,
+        "trackpy, used for detection linking in preprocessing",
+    ),
+    "scikit_image": (
+        "10.7717/peerj.453",
+        None,
+        "scikit-image, used for segmentation and texture features",
+    ),
+    "ferreira2023": (
+        "10.1016/j.celrep.2023.112658",
+        None,
+        "Ferreira et al. 2023, the source of GSE212282 (GEO Series_pubmed_id "
+        "37330914) and of the sourced Part C expectations",
+    ),
+    "schrijver2023": (
+        "10.1038/s41551-023-01050-0",
+        None,
+        "Schrijver, Roring et al. 2023, the source of GSE185433 (GEO "
+        "Series_pubmed_id 37291433) and of the sourced IL-4 expectation",
+    ),
+    "pydeseq2": (
+        "10.1093/bioinformatics/btad547",
+        None,
+        "PyDESeq2, used for the B4 interaction model",
+    ),
     "vjepa2": (None, "2506.09985", "V-JEPA 2, the frozen pretrained video baseline E7"),
     "vicreg": (None, "2105.04906", "VICReg, the variance-covariance term of recipe S2"),
     "augreg": (None, "2106.10270", "the AugReg ImageNet ViT-S/16 weights of baseline E2"),
-    "kreiss2026cellmics": ("10.1002/jbio.70260", None,
-                           "the paper named by Zenodo 15657646 (autofluorescence patches)"),
-    "musimbi2025flim": ("10.1038/s41598-025-85780-y", None,
-                        "Musimbi et al., the paper of the Zenodo 14330511 FLIM raw data"),
-    "moorlag2020": ("10.1016/j.celrep.2020.107634", None,
-                    "Moorlag et al. 2020, the source of GSE141656 (Series_pubmed_id "
-                    "32433977) and of the quoted beta-glucan/Mtb TNF-a protein result"),
-    "cheng2024dectin": ("10.1038/s41598-024-51620-8", None,
-                        "the source of GSE242947 (Series_pubmed_id 38228717)"),
+    "kreiss2026cellmics": (
+        "10.1002/jbio.70260",
+        None,
+        "the paper named by Zenodo 15657646 (autofluorescence patches)",
+    ),
+    "musimbi2025flim": (
+        "10.1038/s41598-025-85780-y",
+        None,
+        "Musimbi et al., the paper of the Zenodo 14330511 FLIM raw data",
+    ),
+    "moorlag2020": (
+        "10.1016/j.celrep.2020.107634",
+        None,
+        "Moorlag et al. 2020, the source of GSE141656 (Series_pubmed_id "
+        "32433977) and of the quoted beta-glucan/Mtb TNF-a protein result",
+    ),
+    "cheng2024dectin": (
+        "10.1038/s41598-024-51620-8",
+        None,
+        "the source of GSE242947 (Series_pubmed_id 38228717)",
+    ),
 }
 
 # A bibliographic title query was tried for the one reference that had no DOI and
@@ -153,8 +223,8 @@ def summarise(msg: dict) -> dict:
     return {
         "doi": msg.get("DOI"),
         "title": (msg.get("title") or [None])[0],
-        "first_author": " ".join(
-            x for x in (first.get("given"), first.get("family")) if x) or None,
+        "first_author": " ".join(x for x in (first.get("given"), first.get("family")) if x)
+        or None,
         "n_authors": len(authors),
         "container": (msg.get("container-title") or [None])[0],
         "year": ((msg.get("issued") or {}).get("date-parts") or [[None]])[0][0],
@@ -166,9 +236,11 @@ def summarise(msg: dict) -> dict:
 def arxiv_meta(aid: str) -> dict:
     """Title, authors and date from the arXiv abstract page's citation meta tags."""
     import re
+
     try:
-        req = urllib.request.Request(f"https://arxiv.org/abs/{aid}",
-                                     headers={"User-Agent": "Mozilla/5.0"})
+        req = urllib.request.Request(
+            f"https://arxiv.org/abs/{aid}", headers={"User-Agent": "Mozilla/5.0"}
+        )
         with urllib.request.urlopen(req, timeout=30) as r:
             html = r.read().decode("utf-8", "replace")
     except Exception as exc:
@@ -176,9 +248,14 @@ def arxiv_meta(aid: str) -> dict:
     meta = re.findall(r'<meta name="citation_([a-z_]+)" content="([^"]*)"', html)
     authors = [v for k, v in meta if k == "author"]
     get = {k: v for k, v in meta}
-    return {"title": get.get("title"), "first_author": authors[0] if authors else None,
-            "authors": authors, "year": (get.get("date") or "")[:4] or None,
-            "container": f"arXiv:{aid}", "resolved_via": "arxiv.org abstract page"}
+    return {
+        "title": get.get("title"),
+        "first_author": authors[0] if authors else None,
+        "authors": authors,
+        "year": (get.get("date") or "")[:4] or None,
+        "container": f"arXiv:{aid}",
+        "resolved_via": "arxiv.org abstract page",
+    }
 
 
 def main() -> int:
@@ -201,16 +278,17 @@ def main() -> int:
                 attrs = ((dd or {}).get("data") or {}).get("attributes")
                 if attrs:
                     creators = attrs.get("creators") or []
-                    rec.update({
-                        "doi": doi,
-                        "title": (attrs.get("titles") or [{}])[0].get("title"),
-                        "first_author": (creators[0].get("name")
-                                         if creators else None),
-                        "n_authors": len(creators),
-                        "container": attrs.get("publisher"),
-                        "year": attrs.get("publicationYear"),
-                        "type": (attrs.get("types") or {}).get("resourceTypeGeneral"),
-                    })
+                    rec.update(
+                        {
+                            "doi": doi,
+                            "title": (attrs.get("titles") or [{}])[0].get("title"),
+                            "first_author": (creators[0].get("name") if creators else None),
+                            "n_authors": len(creators),
+                            "container": attrs.get("publisher"),
+                            "year": attrs.get("publicationYear"),
+                            "type": (attrs.get("types") or {}).get("resourceTypeGeneral"),
+                        }
+                    )
                     rec["status"] = "resolved"
                     rec["resolved_via"] = "datacite DOI lookup (repository DOI)"
                 else:
@@ -219,8 +297,7 @@ def main() -> int:
                     rec["error"] = (d or {}).get("__error__")
             time.sleep(0.3)
         elif key in TITLE_QUERIES:
-            q = urllib.parse.urlencode({"query.bibliographic": TITLE_QUERIES[key],
-                                        "rows": 3})
+            q = urllib.parse.urlencode({"query.bibliographic": TITLE_QUERIES[key], "rows": 3})
             d = fetch("https://api.crossref.org/works?" + q)
             items = ((d or {}).get("message") or {}).get("items") or []
             if items:
@@ -228,8 +305,10 @@ def main() -> int:
                 rec.update(summarise(best))
                 rec["status"] = "resolved_by_title_query"
                 rec["crossref_match_score"] = best.get("score")
-                rec["caveat"] = ("matched by bibliographic query, not by a known DOI; "
-                                 "check the title and year before citing")
+                rec["caveat"] = (
+                    "matched by bibliographic query, not by a known DOI; "
+                    "check the title and year before citing"
+                )
                 rec["other_candidates"] = [summarise(i) for i in items[1:3]]
             else:
                 rec["status"] = "TODO(verify)"
@@ -254,7 +333,8 @@ def main() -> int:
                 rec["title_check"] = "FAILED"
                 rec["title_check_detail"] = (
                     f"the resolved title does not contain {missing_words}; the DOI "
-                    "resolves but may be the wrong work, so it is not accepted")
+                    "resolves but may be the wrong work, so it is not accepted"
+                )
             else:
                 rec["title_check"] = "passed"
 
@@ -264,22 +344,27 @@ def main() -> int:
         else:
             n_todo += 1
         label = rec.get("first_author") or rec.get("arxiv_id") or "-"
-        print(f"  {key:14s} {rec['status']:26s} {label} "
-              f"{(rec.get('container') or '')[:44]} {rec.get('year') or ''}")
+        print(
+            f"  {key:14s} {rec['status']:26s} {label} "
+            f"{(rec.get('container') or '')[:44]} {rec.get('year') or ''}"
+        )
 
     out = {
         "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "resolver": "api.crossref.org/works",
-        "n_resolved": n_ok, "n_todo_verify": n_todo,
-        "policy": ("A DOI that does not resolve stays TODO(verify) and is never "
-                   "presented as verified. No identifier here was invented: each is "
-                   "stated in PLAN_v1.md 10.4, printed on a dataset record used in the "
-                   "run, or returned by Crossref for a reported title query."),
+        "n_resolved": n_ok,
+        "n_todo_verify": n_todo,
+        "policy": (
+            "A DOI that does not resolve stays TODO(verify) and is never "
+            "presented as verified. No identifier here was invented: each is "
+            "stated in PLAN_v1.md 10.4, printed on a dataset record used in the "
+            "run, or returned by Crossref for a reported title query."
+        ),
         "references": results,
     }
     (OUT / "references.json").write_text(json.dumps(out, indent=2) + "\n")
     print(f"\n{n_ok} resolved, {n_todo} left as TODO(verify)")
-    print(f"wrote {OUT/'references.json'}")
+    print(f"wrote {OUT / 'references.json'}")
     return 0
 
 

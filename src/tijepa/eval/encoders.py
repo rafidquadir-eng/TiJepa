@@ -6,6 +6,7 @@ replicated to 3 channels, resized to their native input and normalised with thei
 mean/std; video models get it repeated over 16 frames; TiJepa models see a 96 x 96 input,
 z-scored per clip. Every learned encoder carries its checkpoint record (provenance).
 """
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -19,11 +20,15 @@ from tijepa.models.video_jepa import VideoJEPA
 REPO = Path(__file__).resolve().parents[3]
 NF, CROP = 16, 96
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
-TIMM = {"E2_imagenet_vit_s": "vit_small_patch16_224.augreg_in21k_ft_in1k",
-        "E3_dinov2_vit_s": "vit_small_patch14_dinov2.lvd142m"}
-JEPA_RUNS = (("tijepa1", "tijepa1_T1_seed0.pt"),
-             ("tijepa1_spatial", "tijepa1_spatial_T1_seed0.pt"),
-             ("tijepa0", "tijepa0_T1_seed0.pt"))
+TIMM = {
+    "E2_imagenet_vit_s": "vit_small_patch16_224.augreg_in21k_ft_in1k",
+    "E3_dinov2_vit_s": "vit_small_patch14_dinov2.lvd142m",
+}
+JEPA_RUNS = (
+    ("tijepa1", "tijepa1_T1_seed0.pt"),
+    ("tijepa1_spatial", "tijepa1_spatial_T1_seed0.pt"),
+    ("tijepa0", "tijepa0_T1_seed0.pt"),
+)
 RANDOM_SEEDS = (5000, 5001, 5002)
 
 
@@ -36,13 +41,15 @@ def minmax(X: np.ndarray) -> np.ndarray:
 
 def resize(X: np.ndarray, size: int) -> np.ndarray:
     t = torch.from_numpy(X.astype(np.float32))[:, None]
-    return torch.nn.functional.interpolate(t, size=(size, size), mode="bilinear",
-                                           align_corners=False)[:, 0].numpy()
+    return torch.nn.functional.interpolate(
+        t, size=(size, size), mode="bilinear", align_corners=False
+    )[:, 0].numpy()
 
 
 @torch.no_grad()
 def embed_timm(name: str, X: np.ndarray, batch: int = 256) -> np.ndarray:
     import timm
+
     model = timm.create_model(name, pretrained=True, num_classes=0).eval().to(DEV)
     cfg = model.pretrained_cfg
     size = cfg.get("input_size", (3, 224, 224))[1]
@@ -50,9 +57,10 @@ def embed_timm(name: str, X: np.ndarray, batch: int = 256) -> np.ndarray:
     std = torch.tensor(cfg.get("std", (0.229, 0.224, 0.225))).view(1, 3, 1, 1)
     outs = []
     for i in range(0, len(X), batch):
-        x = torch.from_numpy(X[i:i + batch])[:, None].repeat(1, 3, 1, 1)
-        x = torch.nn.functional.interpolate(x, size=(size, size), mode="bilinear",
-                                            align_corners=False)
+        x = torch.from_numpy(X[i : i + batch])[:, None].repeat(1, 3, 1, 1)
+        x = torch.nn.functional.interpolate(
+            x, size=(size, size), mode="bilinear", align_corners=False
+        )
         outs.append(model(((x - mean) / std).to(DEV)).float().cpu().numpy())
     return np.concatenate(outs)
 
@@ -73,7 +81,7 @@ def embed_jepa(model: VideoJEPA, X: np.ndarray, batch: int = 128) -> np.ndarray:
     X = resize(X, CROP) if X.shape[-1] != CROP else X
     outs = []
     for i in range(0, len(X), batch):
-        t = torch.from_numpy(X[i:i + batch])[:, None, None].repeat(1, 1, NF, 1, 1)
+        t = torch.from_numpy(X[i : i + batch])[:, None, None].repeat(1, 1, NF, 1, 1)
         m = t.mean(dim=(1, 2, 3, 4), keepdim=True)
         s = t.std(dim=(1, 2, 3, 4), keepdim=True)
         c = ((t - m) / (s + 1e-6)).to(DEV)
@@ -94,6 +102,7 @@ def all_encoders(include=("E2", "E3", "E7", "E4", "E4s", "E0", "E6")):
         yield "E3_dinov2_vit_s", None, lambda X: embed_timm(TIMM["E3_dinov2_vit_s"], X)
     if "E7" in include:
         from tijepa.eval import vjepa2 as VJ2
+
         yield VJ2.KEY, None, lambda X: VJ2.embed_frames(X, DEV)
     tags = {"tijepa1": "E4", "tijepa1_spatial": "E4s", "tijepa0": "E0"}
     for run, fn in JEPA_RUNS:
@@ -107,5 +116,8 @@ def all_encoders(include=("E2", "E3", "E7", "E4", "E4s", "E0", "E6")):
         for s in RANDOM_SEEDS:
             torch.manual_seed(s)
             m = VideoJEPA(clip=(NF, CROP, CROP)).eval().to(DEV)
-            yield (f"E6_random_init_draw{s - RANDOM_SEEDS[0]}", PV.random_init_record(s),
-                   (lambda X, m=m: embed_jepa(m, X)))
+            yield (
+                f"E6_random_init_draw{s - RANDOM_SEEDS[0]}",
+                PV.random_init_record(s),
+                (lambda X, m=m: embed_jepa(m, X)),
+            )

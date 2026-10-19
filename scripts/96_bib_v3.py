@@ -5,6 +5,7 @@ arXiv (title and authors read from the arXiv abstract page) are written; a key c
 manuscript but missing here makes the LaTeX build report an undefined citation, which the
 build script treats as a failure.
 """
+
 from __future__ import annotations
 
 import json
@@ -15,8 +16,31 @@ REFS = REPO / "results" / "v3" / "references.json"
 OUT = REPO / "paper" / "v3" / "refs.bib"
 
 
+UNICODE = {
+    "β": r"$\beta$",
+    "κ": r"$\kappa$",
+    "α": r"$\alpha$",
+    "γ": r"$\gamma$",
+    "\u2010": "-",
+    "\u2011": "-",
+    "\u2013": "--",
+    "\u2014": "---",
+    "é": r"\'{e}",
+    "í": r"\'{i}",
+    "ü": r"\"{u}",
+    "ö": r"\"{o}",
+    "ä": r"\"{a}",
+}
+
+
 def esc(s: str) -> str:
-    return (s or "").replace("&", r"\&").replace("%", r"\%").replace("_", r"\_")
+    s = (s or "").replace("&", r"\&").replace("%", r"\%").replace("_", r"\_")
+    for k, v in UNICODE.items():
+        s = s.replace(k, v)
+    bad = sorted({c for c in s if ord(c) > 127})
+    if bad:
+        raise SystemExit(f"unmapped non-ASCII characters in a reference: {bad}")
+    return s
 
 
 def main() -> int:
@@ -32,8 +56,11 @@ def main() -> int:
             auth = " and ".join(authors[:1]) + " and others"
         else:
             auth = " and ".join(authors)
-        fields = {"title": "{" + esc(r.get("title", "")) + "}", "author": esc(auth),
-                  "year": str(r.get("year") or "")}
+        fields = {
+            "title": "{" + esc(r.get("title", "")) + "}",
+            "author": esc(auth),
+            "year": str(r.get("year") or ""),
+        }
         if st.startswith("arxiv"):
             kind = "misc"
             fields["howpublished"] = f"arXiv:{r['arxiv_id']}"

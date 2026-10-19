@@ -1,5 +1,6 @@
 """v3 evaluation logic: forecasting controls, re-identification, association IDF1,
 sample-identity QC and power (PLAN_v3 H8.4)."""
+
 from __future__ import annotations
 
 import importlib.util
@@ -19,8 +20,9 @@ from tijepa.eval import reid as R  # noqa: E402
 
 
 def _load(name: str):
-    spec = importlib.util.spec_from_file_location(name.replace(".py", ""),
-                                                  REPO / "scripts" / name)
+    spec = importlib.util.spec_from_file_location(
+        name.replace(".py", ""), REPO / "scripts" / name
+    )
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
@@ -47,16 +49,24 @@ def _synthetic(kind: str, n_movies: int = 6, n: int = 40, seed: int = 0):
         if kind == "dynamics":
             pred = tgt + rng.normal(0, 0.2, tgt.shape)
         else:
-            pred = np.broadcast_to(slot[None] + content, tgt.shape) + rng.normal(0, 0.2, tgt.shape)
+            pred = np.broadcast_to(slot[None] + content, tgt.shape) + rng.normal(
+                0, 0.2, tgt.shape
+            )
         perm = np.roll(np.arange(n), 1)
-        swap = pred[perm] if kind == "dynamics" else (slot[None] + content[perm]
-                                                      + rng.normal(0, .2, tgt.shape))
+        swap = (
+            pred[perm]
+            if kind == "dynamics"
+            else (slot[None] + content[perm] + rng.normal(0, 0.2, tgt.shape))
+        )
         stores[f"m{m}"] = (pred, tgt, copy, swap)
         # static clip: nothing moves, the target is slot + content
         st_t = slot[None] + content
         st_copy = np.repeat(content[:, 0][:, None], S, axis=1)
-        st_pred = (st_t + rng.normal(0, 0.2, st_t.shape)) if kind == "position" else \
-            (st_copy + rng.normal(0, 0.2, st_t.shape))
+        st_pred = (
+            (st_t + rng.normal(0, 0.2, st_t.shape))
+            if kind == "position"
+            else (st_copy + rng.normal(0, 0.2, st_t.shape))
+        )
         static[f"m{m}"] = FC.l1(st_pred, st_t) / FC.l1(st_copy, st_t)
     folds = FC.two_fold(list(stores))
     for name, (pred, tgt, copy, swap) in stores.items():
@@ -132,10 +142,13 @@ def test_hungarian_recovers_identity():
 # ------------------------------------------------------------------- sample identity
 def test_genotype_check_flags_a_swapped_donor():
     Q = _load("46_partC_sample_qc_v3.py")
-    meta = pd.DataFrame({"donor": ["A"] * 3 + ["B"] * 3, "time": "d6", "arm": "x"},
-                        index=[f"s{i}" for i in range(6)])
-    good = pd.DataFrame({f"s{i}": {"HLA-DRB5": 8.0 if i < 3 else -20.0,
-                                   "GSTM1": 4.0} for i in range(6)})
+    meta = pd.DataFrame(
+        {"donor": ["A"] * 3 + ["B"] * 3, "time": "d6", "arm": "x"},
+        index=[f"s{i}" for i in range(6)],
+    )
+    good = pd.DataFrame(
+        {f"s{i}": {"HLA-DRB5": 8.0 if i < 3 else -20.0, "GSTM1": 4.0} for i in range(6)}
+    )
     assert Q.genotype_check(good, meta)["consistent"]
     bad = good.copy()
     bad.loc["HLA-DRB5", "s4"] = 8.0
@@ -153,7 +166,8 @@ def test_power_matches_known_value():
             nc = d * np.sqrt(n / 2)
             if 1 - stats.nct.cdf(tc, df, nc) + stats.nct.cdf(-tc, df, nc) >= 0.8:
                 return n
-    assert n_for(1.0) == 17   # standard two-sample result for d = 1
+
+    assert n_for(1.0) == 17  # standard two-sample result for d = 1
     assert n_for(0.5) == 64
 
 

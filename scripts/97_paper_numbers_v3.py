@@ -9,6 +9,7 @@ typed into the prose by hand or survive a change in the results.
 A result file that does not exist yet contributes no keys; the manuscripts are built only
 after every analysis has run.
 """
+
 from __future__ import annotations
 
 import json
@@ -50,13 +51,18 @@ def ci(key: str, lohi, fmt: str = "{:.3f}") -> None:
 
 
 def lab(key: str, rec) -> None:
-    LABELS[PV.label_for_key(key, rec)] = {"key": key, "checkpoint": rec,
-                                          "label": PV.label_for_key(key, rec)}
+    LABELS[PV.label_for_key(key, rec)] = {
+        "key": key,
+        "checkpoint": rec,
+        "label": PV.label_for_key(key, rec),
+    }
 
 
 def pretraining() -> None:
-    for run, f in (("t1", "pretrain_summary_tijepa1_seed0.json"),
-                   ("ts", "pretrain_summary_tijepa1_spatial_seed0.json")):
+    for run, f in (
+        ("t1", "pretrain_summary_tijepa1_seed0.json"),
+        ("ts", "pretrain_summary_tijepa1_spatial_seed0.json"),
+    ):
         p = REPO / "checkpoints" / f
         if not p.exists():
             continue
@@ -68,6 +74,7 @@ def pretraining() -> None:
     mon = REPO / "results" / "v2" / "pretrain_monitor.csv"
     if mon.exists():
         import csv
+
         rows = list(csv.DictReader(mon.open()))
         t1 = [r for r in rows if r["run"] == "tijepa1"]
         ts = [r for r in rows if r["run"] == "tijepa1_spatial"]
@@ -85,8 +92,11 @@ def bbbc054() -> None:
     for k, e in bb["encoders"].items():
         if not isinstance(e, dict) or "three_class_mean" not in e:
             continue
-        cp = e.get("checkpoint") or (next(iter(e["checkpoint_per_seed"].values()))
-                                     if e.get("checkpoint_per_seed") else None)
+        cp = e.get("checkpoint") or (
+            next(iter(e["checkpoint_per_seed"].values()))
+            if e.get("checkpoint_per_seed")
+            else None
+        )
         if not k.startswith("E1"):
             lab(k, cp)
         put(f"bb.{k}.3c", e["three_class_mean"])
@@ -94,14 +104,24 @@ def bbbc054() -> None:
         put(f"bb.{k}.ra", e["round_vs_amoeboid_mean"])
         put(f"bb.{k}.3c.wb", e.get("three_class_within_bin_mean"))
     put("bb.time.3c", bb["time_only_baseline"]["three_class"]["mean"])
-    put("bb.ncells", int(bb["n_cells_per_seed"][0] if isinstance(bb["n_cells_per_seed"], list)
-                         else list(bb["n_cells_per_seed"].values())[0]))
+    put(
+        "bb.ncells",
+        int(
+            bb["n_cells_per_seed"][0]
+            if isinstance(bb["n_cells_per_seed"], list)
+            else list(bb["n_cells_per_seed"].values())[0]
+        ),
+    )
     for key, rec in bb["pairwise_comparisons"].items():
         task, pair = key.split(":", 1)
         a, b = rec["encoder_a"], rec["encoder_b"]
         t = "3c" if task == "three_class" else "ra"
         put(f"bb.d.{a}.{b}.{t}", rec["difference_mean_over_seeds"], "{:+.3f}")
         ci(f"bb.ci.{a}.{b}.{t}", rec["ci95_widest_over_seeds"], "{:+.3f}")
+        d, c = rec["difference_mean_over_seeds"], rec["ci95_widest_over_seeds"]
+        put(f"bb.d.{a}.{b}.{t}.abs", abs(d))
+        if c[0] * c[1] > 0:
+            ci(f"bb.ci.{a}.{b}.{t}.abs", sorted((abs(c[0]), abs(c[1]))))
     sc = bb.get("scale_sensitivity", {})
     for s, v in (sc.get("three_class_balanced_accuracy") or {}).items():
         put(f"bb.scale.{s}", v)
@@ -114,8 +134,11 @@ def autofluorescence() -> None:
     for t, short in (("A_all_fovs", "A"), ("A_mixed_fovs_only", "Am"), ("B_six_types", "B")):
         put(f"af.{short}.n", int(af["tasks"][t]["n_cells"]))
         put(f"af.{short}.fovs", int(af["tasks"][t]["n_fovs"]))
-        frozen = [r["balanced_accuracy_mean"] for k, r in af["results"][t].items()
-                  if k.endswith("|all") and k.startswith(("E2", "E3", "E4", "E7", "E0", "E6"))]
+        frozen = [
+            r["balanced_accuracy_mean"]
+            for k, r in af["results"][t].items()
+            if k.endswith("|all") and k.startswith(("E2", "E3", "E4", "E7", "E0", "E6"))
+        ]
         put(f"af.{short}.frozen.min", min(frozen))
         put(f"af.{short}.frozen.max", max(frozen))
         for k, r in af["results"][t].items():
@@ -136,9 +159,14 @@ def forecasting() -> None:
             if "summary" not in e:
                 continue
             sm = e["summary"]
-            for m in ("ratio_vs_copy_last", "ratio_vs_slot_mean", "swap_ratio_vs_copy_last",
-                      "swap_degradation", "static_ratio_vs_copy_last",
-                      "pixel_ratio_decoded_pred_vs_pixel_copy_last"):
+            for m in (
+                "ratio_vs_copy_last",
+                "ratio_vs_slot_mean",
+                "swap_ratio_vs_copy_last",
+                "swap_degradation",
+                "static_ratio_vs_copy_last",
+                "pixel_ratio_decoded_pred_vs_pixel_copy_last",
+            ):
                 put(f"fc.{k}.{s}.{m}", sm[m], "{:.2f}")
             g = e["gate"]
             put(f"fc.{k}.{s}.adv", g["advantage_real"], "{:.2f}")
@@ -190,6 +218,7 @@ def association() -> None:
                 put(f"as.{k}.{c}.{m.replace('idf1_k9_chain', 'idf1')}", x)
     for k, t in a.get("tijepa1_vs", {}).items():
         put(f"as.t1vs.{k}", t["mean"], "{:+.3f}")
+        put(f"as.t1vs.{k}.abs", abs(t["mean"]), "{:.3f}")
         put(f"as.t1vs.{k}.p", t["p_two_sided"], "{:.3f}")
     for k, t in a["tests_vs_position_only"].items():
         put(f"as.p.{k}.idf1", t["idf1_k9_chain"]["p_two_sided"], "{:.3f}")
@@ -300,10 +329,21 @@ def partC() -> None:
             put(f"pc.141.{g}.mean", sum(v) / len(v), "{:+.2f}")
         u = a["trained_minus_untrained_unstimulated"]["TNF"]["per_donor_log2_difference"]
         put("pc.141.TNF.unstim.mean", sum(u) / len(u), "{:+.2f}")
-        put("pc.141.pc.tnf.min", min(a["positive_control_restim_vs_unstim_untrained"]["TNF"]
-                                     ["per_donor_log2_difference"]), "{:.1f}")
-        put("pc.gate", "passes" if rep["G_BetaGlucan"]["decision"].startswith("pass")
-            else "does not pass")
+        put(
+            "pc.141.pc.tnf.min",
+            min(
+                a["positive_control_restim_vs_unstim_untrained"]["TNF"][
+                    "per_donor_log2_difference"
+                ]
+            ),
+            "{:.1f}",
+        )
+        put(
+            "pc.gate",
+            "passes"
+            if rep["G_BetaGlucan"]["decision"].startswith("pass")
+            else "does not pass",
+        )
     v2 = load("v2/partC/c3_restimulation.json")
     if v2:
         n_src = n_match = 0
@@ -337,13 +377,15 @@ def design_power() -> None:
             if 1 - stats.nct.cdf(tc, df, nc) + stats.nct.cdf(-tc, df, nc) >= 0.8:
                 return n
         return -1
+
     for d in (0.8, 1.0, 1.5):
         put(f"ds.n.d{d}", n_paired(d), "{}")
     rep = load("v3/partC/beta_glucan_replication.json")
     qc = load("v3/partC/sample_qc.json")
     if rep and qc:
         a = rep["GSE141656"]["trained_minus_untrained_after_restim"]["TNF"][
-            "per_donor_log2_difference"]
+            "per_donor_log2_difference"
+        ]
         tr = qc["datasets"]["GSE212282"]["cytokine_trajectories"]["TNF"]["d7"]
         b = [tr[x]["BG_minus_RPMI"] for x in "ABC"]
         put("ds.tnf.sd141", float(np.std(a, ddof=1)), "{:.2f}")
@@ -351,14 +393,27 @@ def design_power() -> None:
 
 
 def main() -> int:
-    for f in (design_power, pretraining, bbbc054, autofluorescence, forecasting, reid, association,
-              recipe, flim, partB, partC):
+    for f in (
+        design_power,
+        pretraining,
+        bbbc054,
+        autofluorescence,
+        forecasting,
+        reid,
+        association,
+        recipe,
+        flim,
+        partB,
+        partC,
+    ):
         f()
     OUT.mkdir(parents=True, exist_ok=True)
-    lines = ["% generated by scripts/97_paper_numbers_v3.py from results/; do not edit",
-             r"\makeatletter",
-             r"\newcommand{\val}[1]{\@ifundefined{val@#1}{\textbf{??#1??}}"
-             r"{\csname val@#1\endcsname}}"]
+    lines = [
+        "% generated by scripts/97_paper_numbers_v3.py from results/; do not edit",
+        r"\makeatletter",
+        r"\newcommand{\val}[1]{\@ifundefined{val@#1}{\textbf{??#1??}}"
+        r"{\csname val@#1\endcsname}}",
+    ]
     for k in sorted(V):
         if not re.fullmatch(r"[A-Za-z0-9_.+\-]+", k):
             raise SystemExit(f"bad key {k!r}")
@@ -367,22 +422,33 @@ def main() -> int:
     (OUT / "numbers.tex").write_text("\n".join(lines) + "\n")
     cov = load("v3/coverage/coverage_map.json")
     if cov:
+
         def tex(x: str) -> str:
             x = x.replace("&", r"\&").replace("%", r"\%").replace("_", r"\_")
             x = x.replace("κ", r"$\kappa$").replace("β", r"$\beta$").replace("μ", r"$\mu$")
-            return x.replace(" -> ", r" $\to$ ").replace("R2", r"$R^2$").replace("Q2", r"$Q^2$")
-        rows = [r"\begin{table}[t]", r"\centering", r"\scriptsize",
-                r"\caption{Modality coverage map: the best public pairing of each modality "
-                r"family with images, video or image-derived dynamics of innate immune cells, "
-                r"what was tested and the result. BA: balanced accuracy.}",
-                r"\label{tab:coverage}",
-                r"\begin{tabular}{p{2.6cm}p{1.5cm}p{3.6cm}p{4.9cm}p{1.1cm}}", r"\toprule",
-                r"Modality family & Pairing & Public data & Test and result & Outcome \\",
-                r"\midrule"]
+            return (
+                x.replace(" -> ", r" $\to$ ").replace("R2", r"$R^2$").replace("Q2", r"$Q^2$")
+            )
+
+        rows = [
+            r"\begin{table}[t]",
+            r"\centering",
+            r"\scriptsize",
+            r"\caption{Modality coverage map: the best public pairing of each modality "
+            r"family with images, video or image-derived dynamics of innate immune cells, "
+            r"what was tested and the result. BA: balanced accuracy.}",
+            r"\label{tab:coverage}",
+            r"\begin{tabular}{p{2.6cm}p{1.5cm}p{3.6cm}p{4.9cm}p{1.1cm}}",
+            r"\toprule",
+            r"Modality family & Pairing & Public data & Test and result & Outcome \\",
+            r"\midrule",
+        ]
         for r in cov["rows"]:
             res = r["result"] if r["test"] in ("-", "") else f"{r['test']}: {r['result']}"
-            rows.append(f"{tex(r['family'])} & {tex(r['pairing'])} & {tex(r['dataset'])} & "
-                        f"{tex(res)} & {tex(r['outcome'])} \\\\")
+            rows.append(
+                f"{tex(r['family'])} & {tex(r['pairing'])} & {tex(r['dataset'])} & "
+                f"{tex(res)} & {tex(r['outcome'])} \\\\"
+            )
         rows += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]
         (OUT / "coverage_table.tex").write_text("\n".join(rows) + "\n")
     (OUT / "numbers.json").write_text(json.dumps(V, indent=1, sort_keys=True))

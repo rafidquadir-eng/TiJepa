@@ -19,6 +19,7 @@
    rests on 4 wells, the same calculation is repeated with the SD at the upper limit of
    its one-sided 80% chi-square interval.
 """
+
 from __future__ import annotations
 
 import functools
@@ -72,8 +73,9 @@ def b32_cells(ts: tay.TraceSet):
     def name(c: float) -> str:
         return "naive" if c == 0.0 else named.get(c, f"code{int(c)}")
 
-    labels = np.array([f"{name(f)}->{name(s)}" for f, s in zip(sub.first, sub.second,
-                                                                 strict=False)])
+    labels = np.array(
+        [f"{name(f)}->{name(s)}" for f, s in zip(sub.first, sub.second, strict=False)]
+    )
     keep = np.array(["code" not in lb for lb in labels])
     return sub.subset(keep), labels[keep]
 
@@ -101,24 +103,38 @@ def pretrain(pool: np.ndarray) -> tuple[TraceJEPA, dict]:
         opt.zero_grad(set_to_none=True)
         m.update_target((step + 1) / PRE_STEPS)
         losses.append(float(loss))
-    info = {"steps": PRE_STEPS, "batch": PRE_BATCH, "n_pool_cells": int(len(pool)),
-            "final_loss_last200": float(np.mean(losses[-200:])),
-            "seconds": round(time.time() - t0, 1), "mask_ratio": 0.5}
+    info = {
+        "steps": PRE_STEPS,
+        "batch": PRE_BATCH,
+        "n_pool_cells": int(len(pool)),
+        "final_loss_last200": float(np.mean(losses[-200:])),
+        "seconds": round(time.time() - t0, 1),
+        "mask_ratio": 0.5,
+    }
     torch.save({"model": m.state_dict(), "info": info}, CKPT)
     return m.eval(), info
 
 
 @torch.no_grad()
 def embed(m: TraceJEPA, x: np.ndarray) -> np.ndarray:
-    return np.concatenate([m.embed(torch.from_numpy(x[i:i + 4096]).to(DEV)).cpu().numpy()
-                           for i in range(0, len(x), 4096)])
+    return np.concatenate(
+        [
+            m.embed(torch.from_numpy(x[i : i + 4096]).to(DEV)).cpu().numpy()
+            for i in range(0, len(x), 4096)
+        ]
+    )
 
 
 def b32(ts, feats: dict[str, np.ndarray], labels, groups) -> dict:
     classes, y = np.unique(labels, return_inverse=True)
-    out = {"n_classes": int(len(classes)), "classes": classes.tolist(),
-           "n_cells": int(len(y)), "n_wells": int(len(np.unique(groups))),
-           "chance_balanced_accuracy": 1.0 / len(classes), "results": {}}
+    out = {
+        "n_classes": int(len(classes)),
+        "classes": classes.tolist(),
+        "n_cells": int(len(y)),
+        "n_wells": int(len(np.unique(groups))),
+        "chance_balanced_accuracy": 1.0 / len(classes),
+        "results": {},
+    }
     preds0 = {}
     for key, x in feats.items():
         per = []
@@ -130,24 +146,31 @@ def b32(ts, feats: dict[str, np.ndarray], labels, groups) -> dict:
             pred = np.zeros(len(ys), dtype=int)
             for tr, te in cv.split(xs, ys, gs):
                 sc = StandardScaler().fit(xs[tr])
-                clf = LogisticRegression(max_iter=1500, C=1.0, class_weight="balanced",
-                                         random_state=seed)
+                clf = LogisticRegression(
+                    max_iter=1500, C=1.0, class_weight="balanced", random_state=seed
+                )
                 clf.fit(sc.transform(xs[tr]), ys[tr])
                 pred[te] = clf.predict(sc.transform(xs[te]))
             per.append(float(balanced_accuracy_score(ys, pred)))
             if seed == 0:
                 preds0[key] = (ys, pred, gs)
         ys, pred, gs = preds0[key]
-        out["results"][key] = {"balanced_accuracy_mean": float(np.mean(per)),
-                               "balanced_accuracy_sd": float(np.std(per, ddof=1)),
-                               "per_seed": per,
-                               "ci95_seed0_well_bootstrap":
-                                   P.cluster_bootstrap(ys, pred, gs)["ci95"]}
-        print(f"  B3.2 {key:22s} BA {np.mean(per):.3f} +/- {np.std(per, ddof=1):.3f} "
-              f"CI {out['results'][key]['ci95_seed0_well_bootstrap']}")
+        out["results"][key] = {
+            "balanced_accuracy_mean": float(np.mean(per)),
+            "balanced_accuracy_sd": float(np.std(per, ddof=1)),
+            "per_seed": per,
+            "ci95_seed0_well_bootstrap": P.cluster_bootstrap(ys, pred, gs)["ci95"],
+        }
+        print(
+            f"  B3.2 {key:22s} BA {np.mean(per):.3f} +/- {np.std(per, ddof=1):.3f} "
+            f"CI {out['results'][key]['ci95_seed0_well_bootstrap']}"
+        )
     ref = "trace_jepa"
-    cmp = {k: P.paired_bootstrap(preds0[ref][0], preds0[ref][1], preds0[k][1],
-                                 preds0[ref][2]) for k in feats if k != ref}
+    cmp = {
+        k: P.paired_bootstrap(preds0[ref][0], preds0[ref][1], preds0[k][1], preds0[ref][2])
+        for k in feats
+        if k != ref
+    }
     q = P.bh([c["p_two_sided"] for c in cmp.values()])
     for c, qq in zip(cmp.values(), q, strict=False):
         c["q_bh"] = qq
@@ -157,6 +180,7 @@ def b32(ts, feats: dict[str, np.ndarray], labels, groups) -> dict:
 
 def power(ts: tay.TraceSet) -> dict:
     from scipy import stats
+
     v = ts.layout_verified
     sel = v & (ts.second == B1.LPS) & np.isin(ts.first, [B1.LPS, B1.NAIVE]) & (ts.gap == 8.0)
     sub = ts.subset(sel)
@@ -171,8 +195,12 @@ def power(ts: tay.TraceSet) -> dict:
         wt = {w: bool(tol[g == w][0]) for w in wm}
         a = np.array([wm[w] for w in wm if wt[w]])
         b = np.array([wm[w] for w in wm if not wt[w]])
-        sd = float(np.sqrt(((len(a) - 1) * a.var(ddof=1) + (len(b) - 1) * b.var(ddof=1))
-                           / (len(a) + len(b) - 2)))
+        sd = float(
+            np.sqrt(
+                ((len(a) - 1) * a.var(ddof=1) + (len(b) - 1) * b.var(ddof=1))
+                / (len(a) + len(b) - 2)
+            )
+        )
         df = len(a) + len(b) - 2
         sd_hi = float(sd * np.sqrt(df / stats.chi2.ppf(0.2, df)))
         diff = float(a.mean() - b.mean())
@@ -188,19 +216,30 @@ def power(ts: tay.TraceSet) -> dict:
                 if pw >= 0.8:
                     return n
             return None
+
         out["metrics"][name] = {
-            "per_well_mean": wm, "tolerant_wells": [w for w in wm if wt[w]],
-            "tolerant_minus_naive": diff, "pooled_between_well_sd": sd, "df": df,
+            "per_well_mean": wm,
+            "tolerant_wells": [w for w in wm if wt[w]],
+            "tolerant_minus_naive": diff,
+            "pooled_between_well_sd": sd,
+            "df": df,
             "effect_size_d": diff / sd if sd > 0 else None,
             "wells_per_arm_80pct_power": n_for(diff / sd) if sd > 0 else None,
             "sd_upper_80pct": sd_hi,
-            "wells_per_arm_80pct_power_at_sd_upper": n_for(diff / sd_hi) if sd_hi > 0 else None}
-        print(f"  power {name}: diff {diff:.3f} sd {sd:.3f} d {diff / sd:.2f} -> n/arm "
-              f"{out['metrics'][name]['wells_per_arm_80pct_power']} "
-              f"(sd upper: {out['metrics'][name]['wells_per_arm_80pct_power_at_sd_upper']})")
+            "wells_per_arm_80pct_power_at_sd_upper": n_for(diff / sd_hi)
+            if sd_hi > 0
+            else None,
+        }
+        print(
+            f"  power {name}: diff {diff:.3f} sd {sd:.3f} d {diff / sd:.2f} -> n/arm "
+            f"{out['metrics'][name]['wells_per_arm_80pct_power']} "
+            f"(sd upper: {out['metrics'][name]['wells_per_arm_80pct_power_at_sd_upper']})"
+        )
     out["test"] = "two-sided two-sample t-test on well means, alpha 0.05, power 0.8"
-    out["caveat"] = ("the between-well SD rests on 2 wells per arm (df 2); the sd-upper row "
-                     "shows how sensitive the answer is to that")
+    out["caveat"] = (
+        "the between-well SD rests on 2 wells per arm (df 2); the sd-upper row "
+        "shows how sensitive the answer is to that"
+    )
     return out
 
 
@@ -210,27 +249,38 @@ def main() -> int:
     sub, labels = b32_cells(ts)
     groups = sub.group
     eval_wells = set(groups)
-    tol = ts.layout_verified & (ts.second == B1.LPS) & np.isin(ts.first, [B1.LPS, B1.NAIVE]) \
+    tol = (
+        ts.layout_verified
+        & (ts.second == B1.LPS)
+        & np.isin(ts.first, [B1.LPS, B1.NAIVE])
         & (ts.gap == 8.0)
+    )
     excl = eval_wells | set(ts.group[tol])
     pool_mask = ~np.isin(ts.group, list(excl))
     pool = pad(ts.traces[pool_mask])
-    print(f"B3.2: {len(sub)} cells, {len(eval_wells)} wells; pretraining pool "
-          f"{len(pool)} cells from {len(set(ts.group[pool_mask]))} other wells")
+    print(
+        f"B3.2: {len(sub)} cells, {len(eval_wells)} wells; pretraining pool "
+        f"{len(pool)} cells from {len(set(ts.group[pool_mask]))} other wells"
+    )
     m, info = pretrain(pool)
     info["pool_wells"] = int(len(set(ts.group[pool_mask])))
     info["excluded_wells"] = int(len(excl))
     x = pad(sub.traces)
     torch.manual_seed(1)
     rnd = TraceJEPA(length=L).to(DEV).eval()
-    feats = {"raw_trace": np.nan_to_num(sub.traces, nan=0.0),
-             "handcrafted": trace_features(sub.traces)[0],
-             "trace_jepa": embed(m, x), "trace_jepa_random_init": embed(rnd, x)}
-    res = {"phase": "PLAN_v3 H5.2 (findings R14, R15)",
-           "trace_jepa_pretraining": info,
-           "b32_ligand_identity": b32(ts, feats, labels, groups),
-           "b31_power_analysis": power(ts),
-           "seconds": round(time.time() - t0, 1)}
+    feats = {
+        "raw_trace": np.nan_to_num(sub.traces, nan=0.0),
+        "handcrafted": trace_features(sub.traces)[0],
+        "trace_jepa": embed(m, x),
+        "trace_jepa_random_init": embed(rnd, x),
+    }
+    res = {
+        "phase": "PLAN_v3 H5.2 (findings R14, R15)",
+        "trace_jepa_pretraining": info,
+        "b32_ligand_identity": b32(ts, feats, labels, groups),
+        "b31_power_analysis": power(ts),
+        "seconds": round(time.time() - t0, 1),
+    }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(res, indent=1, default=float))
     print(f"wrote {OUT}")
