@@ -16,6 +16,12 @@
 - **Collapse.** TiJepa-1's pooled embedding has effective rank 7.7 of 384 on held-out clips
   (context and target encoders alike; tokens 59.4); rank correlates with downstream scores
   across six networks (rho 0.88 BBBC054, 0.77 validation).
+- **Recipe sweep (G-Recipe fails).** Five 20,000-step variants (S0 baseline, S1 EMA cap,
+  S2 VICReg, S3 batch 256, S4 long-horizon futures; 13.4 GPU-h) scored only on the
+  validation set: score changes -0.011 to +0.018 and rank ratios 0.98 to 1.31 vs S0, so no
+  variant meets +0.02 and 2x rank. No run had collapsed by 20,000 steps (rank 44.5 to 59.4),
+  so the sweep cannot test the late collapse; it is reported as a limitation. Evidence:
+  `results/v3/partA/recipe_sweep.json`.
 - **Coverage map.** Same-cell positives only for morphology classes (BBBC054) and stimulus
   identity from NF-kB dynamics; autofluorescence identity and NAD(P)H lifetime are null
   against intensity references; no public pairing for any memory readout.

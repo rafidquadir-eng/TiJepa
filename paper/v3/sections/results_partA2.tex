@@ -52,4 +52,23 @@ the re-identification score ($\rho=\val{dg.rho.val}$), which is descriptive with
 models. In the training logs the rank of the training-batch embedding peaks within the first
 20{,}000 steps and declines while the EMA momentum rises towards 1 and the learning rate
 decays, so the cause cannot be separated from the schedule without changing the recipe;
-Section~\ref{sec:recipe} reports a short recipe study that does so.
+Section~\ref{sec:recipe} reports a short recipe study that changes it.
+
+\subsection{A short recipe study}
+\label{sec:recipe}
+To ask whether a change of recipe prevents the collapse, we trained five variants from
+scratch for 20{,}000 steps each (schedules ending at 20{,}000 steps, snapshots every 5{,}000)
+and scored every snapshot only on the validation set: the TiJepa-1 recipe (S0), EMA
+momentum capped at 0.9995 (S1), a variance--covariance penalty on the predictor outputs
+\citep{vicreg} (S2), an effective batch of 256 with a linearly scaled learning rate (S3),
+and future targets drawn from long-stride clips with a deeper predictor (S4). Before
+training we fixed the criterion for adopting a variant: a validation score at least 0.02
+above S0 and at least twice its effective rank, both at 20{,}000 steps. No variant met it.
+S0 reached \val{sw.S0.score} with effective rank \val{sw.S0.rank}; the variants changed the
+score by \val{sw.S4.gain} to \val{sw.S2.gain} and the rank by a factor of \val{sw.S1.rr} to
+\val{sw.S4.rr} (Figure~\ref{fig:training}). At 20{,}000 steps none of the runs had yet
+collapsed (rank \val{sw.S1.rank}--\val{sw.S4.rank}, against \val{dg.E4_tijepa1.target.rank}
+for TiJepa-1 after \val{pre.t1.steps} steps), so this budget cannot test the late-training
+collapse; it shows only that none of these changes improves the early representation enough
+to justify a full retraining.
+

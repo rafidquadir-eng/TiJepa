@@ -175,8 +175,8 @@ def fig2_training(repo: Path) -> list[str]:
     }
     reid = _r(repo, "v3/partA/validation_reid.json")
     sweep = _r(repo, "v3/partA/recipe_sweep.json")
-    ncol = 3 if reid else 2
-    fig, axes = plt.subplots(1, ncol, figsize=(7.4, 2.5))
+    ncol = 2 + bool(reid) + bool(sweep)
+    fig, axes = plt.subplots(1, ncol, figsize=(9.6 if ncol == 4 else 7.4, 2.5))
     ax = axes[0]
     for k, L in logs.items():
         if not L:
@@ -195,19 +195,6 @@ def fig2_training(repo: Path) -> list[str]:
             continue
         c = colour(k) if k != "E0_tijepa0" else INK
         ax.plot(*_smooth(L["step"], L["effective_rank"]), color=c, lw=1.3, label=names[k])
-    if sweep:
-        for vid, e in sweep["variants"].items():
-            st = sorted((int(s), v["effective_rank"]) for s, v in e["snapshots"].items())
-            if st:
-                ax.plot(*zip(*st, strict=False), marker="o", ms=2.5, lw=0.8, color=GREY)
-                ax.annotate(
-                    vid,
-                    st[-1],
-                    fontsize=6,
-                    color=MUTED,
-                    xytext=(2, 0),
-                    textcoords="offset points",
-                )
     ax.set_xlabel("step")
     ax.set_ylabel("effective rank")
     ax.set_ylim(bottom=0)
@@ -233,6 +220,32 @@ def fig2_training(repo: Path) -> list[str]:
         ax.set_ylim(0, 1.02)
         ax.set_title("Spectrum on held-out clips", fontsize=8)
         ax.legend(frameon=False, fontsize=6.3, loc="lower right")
+    if sweep:
+        ax = axes[-1]
+        shades = {
+            "S0": INK,
+            "S1": "#5b5a56",
+            "S2": "#8a8985",
+            "S3": "#b0afab",
+            "S4": "#cfcdc8",
+        }
+        for vid, e in sweep["variants"].items():
+            st = sorted((int(s), v["validation_score"]) for s, v in e["snapshots"].items())
+            if st:
+                xs, ys = zip(*st, strict=False)
+                ax.plot(
+                    xs,
+                    ys,
+                    marker="o",
+                    ms=3,
+                    lw=1.2 if vid == "S0" else 0.9,
+                    color=shades.get(vid, GREY),
+                    label=vid,
+                )
+        ax.set_xlabel("step")
+        ax.set_ylabel("validation re-ID top-1")
+        ax.set_title("Recipe variants (20k steps)", fontsize=8)
+        ax.legend(frameon=False, fontsize=6.3, ncol=2)
     fig.tight_layout()
     return save(fig, repo, "fig2_training_collapse")
 

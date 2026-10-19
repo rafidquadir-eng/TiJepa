@@ -8,8 +8,8 @@
    "detection_claims": [],
    "anonymity": [],
    "directional_violations": [],
-   "n_numbers_used": 110,
-   "n_sentences": 192,
+   "n_numbers_used": 119,
+   "n_sentences": 198,
    "status": "ok"
   },
   "biorxiv": {
@@ -20,8 +20,8 @@
    "detection_claims": [],
    "anonymity": [],
    "directional_violations": [],
-   "n_numbers_used": 160,
-   "n_sentences": 221,
+   "n_numbers_used": 169,
+   "n_sentences": 227,
    "status": "ok"
   }
  },

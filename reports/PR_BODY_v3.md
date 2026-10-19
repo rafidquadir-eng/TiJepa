@@ -1,4 +1,4 @@
-TiJepa v3: a public-data audit with a video JEPA — two manuscripts (TMLR, anonymised; bioRxiv, named), figures, and every analysis behind them. Full report: `reports/RUN_REPORT_v3.md`.
+TiJepa v3: a public-data audit with a video JEPA — two manuscripts (`paper/v3/tmlr/main.pdf`, anonymised for double-blind review; `paper/v3/biorxiv/main.pdf`, named), figures (`figures/v3/`), and every analysis behind them. Full report: `reports/RUN_REPORT_v3.md` (compute, gates, modality coverage map, Section 14 table, deviations).
 
 ## Results summary
 
@@ -18,6 +18,12 @@ TiJepa v3: a public-data audit with a video JEPA — two manuscripts (TMLR, anon
 - **Collapse.** TiJepa-1's pooled embedding has effective rank 7.7 of 384 on held-out clips
   (context and target encoders alike; tokens 59.4); rank correlates with downstream scores
   across six networks (rho 0.88 BBBC054, 0.77 validation).
+- **Recipe sweep (G-Recipe fails).** Five 20,000-step variants (S0 baseline, S1 EMA cap,
+  S2 VICReg, S3 batch 256, S4 long-horizon futures; 13.4 GPU-h) scored only on the
+  validation set: score changes -0.011 to +0.018 and rank ratios 0.98 to 1.31 vs S0, so no
+  variant meets +0.02 and 2x rank. No run had collapsed by 20,000 steps (rank 44.5 to 59.4),
+  so the sweep cannot test the late collapse; it is reported as a limitation. Evidence:
+  `results/v3/partA/recipe_sweep.json`.
 - **Coverage map.** Same-cell positives only for morphology classes (BBBC054) and stimulus
   identity from NF-kB dynamics; autofluorescence identity and NAD(P)H lifetime are null
   against intensity references; no public pairing for any memory readout.
@@ -33,7 +39,7 @@ TiJepa v3: a public-data audit with a video JEPA — two manuscripts (TMLR, anon
 |---|---|---|---|
 | G-Dryad | Dryad files present and verified | **no** | Part A headline stays BBBC054; the gap is stated in one sentence |
 | G-Forecast | beats copy-last and slot mean; swap/static remove most of the advantage | **fail** | fail: forecasting is reported as explained by temporal-position structure and the forecasting claim is dropped |
-| G-Recipe | validation score +0.02 and 2x effective rank vs S0 at 20k | **pending** | sweep not finished when this report was generated |
+| G-Recipe | validation score +0.02 and 2x effective rank vs S0 at 20k | **fail** | fail: stop recipe work; the collapse diagnosis is reported as a limitation |
 | G-BetaGlucan | identity QC passes and replicated in an independent dataset or the source RNA | **pass** | pass: report as a replicated transcript-level observation (GSE141656, Mtb restimulation) |
 
 ## Section 14: findings → status
@@ -44,7 +50,7 @@ TiJepa v3: a public-data audit with a video JEPA — two manuscripts (TMLR, anon
 | R2 | done (persistent filesystem); Drive pending | `reports/BACKUP.md` | Lambda persistent filesystem verified by SHA-256; rclone has no OAuth token |
 | R3 | done | `results/v2/pretrain_monitor.csv` | monitor and backup loops stopped; duplicates removed |
 | R4 | done | `results/v3/partA/validation_reid.json (diagnosis); results/v3/partA/recipe_sweep.json` | collapse diagnosis; G-Recipe in the gate table |
-| R5 | done (7 snapshots) | `checkpoints/sweep/sweep_*/step_*.pt` | every 5,000 steps, immutable |
+| R5 | done (20 snapshots) | `checkpoints/sweep/sweep_*/step_*.pt` | every 5,000 steps, immutable |
 | R6 | done | `results/v3/partA/forecast_controls.json` | G-Forecast in the gate table |
 | R7 | done (5 benchmarks) | `results/v3/partA/bbbc054.json; results/v3/coverage/autofluorescence.json; results/v3/coverage/flim.json; results/v3/partA/validation_reid.json; results/v3/partA/association.json; manifests/models.yaml` | MIT licence recorded; forecasting is N/A for E7 |
 | R8 | reported | `results/v3/partA/bbbc054.json` | TiJepa-1 vs DINOv2, V-JEPA 2, TiJepa-0 stated plainly in the paper |
@@ -59,8 +65,8 @@ TiJepa v3: a public-data audit with a video JEPA — two manuscripts (TMLR, anon
 | R17 | done | `paper/v3/tmlr/main.tex; paper/v3/biorxiv/main.tex` | coverage map as the organising frame; C3 stated once as not performed |
 | R18 | done (reduced to a Future-work subsection, author scope decision) | `paper/v3/sections/future.tex` |  |
 | R19 | done | `scripts/run_all_v3.sh; legacy/README.md` |  |
-| R20 | done | `grep -rl /home/ubuntu results/` |  |
-| R21 | open | `reports/PR_BODY_v3.md` | author squash-merges PR #1 |
+| R20 | open (1 files) | `grep -rl /home/ubuntu results/` |  |
+| R21 | PR #2 opened from tijepa-v3 | `reports/PR_BODY_v3.md` | author squash-merges PR #1 |
 | R22 | done | `scripts/74_recipe_sweep_v3.py; legacy/scripts/53_pretrain_monitor_v2.py` | new runs scored on the validation set only |
 | R23 | stated | `paper/v3/sections/limitations.tex` |  |
 | R24 | stated (one seed per recipe; one GPU) | `paper/v3/sections/limitations.tex` |  |
@@ -84,12 +90,13 @@ TiJepa v3: a public-data audit with a video JEPA — two manuscripts (TMLR, anon
 
 ## GPU status
 
-The 5 x 20,000-step recipe sweep is still training in the background (expected to finish around 17:30 UTC on 2026-10-19); this PR will be updated with the G-Recipe outcome. **After the sweep finishes, the GPU is idle**: nothing else is scheduled, so the instance can be stopped once the final commit lands.
+**The GPU is idle.** All training (TiJepa-1, the ablation, the 5-run recipe sweep) and all evaluations have finished and nothing is scheduled; the instance can be stopped. Every checkpoint and snapshot has a SHA-256-verified copy on the Lambda persistent filesystem (`reports/BACKUP.md`); the Drive copy is pending rclone re-authorisation.
 
 ## Checks
 
-- `pytest`: all tests pass (CPU); `ruff check`: clean.
-- `scripts/98_check_claims_v3.py`: both manuscripts pass (numbers generated from results, directional claims, banned strings, anonymity of the TMLR version, provenance labels).
+- `pytest`: all tests pass; `ruff check`: clean.
+- `scripts/98_check_claims_v3.py`: both manuscripts pass (every number generated from results, directional claims against stored comparisons, banned strings, no detection-of-trained-immunity claims, TMLR anonymity, provenance labels).
+- Both manuscripts build with latexmk without undefined references.
 - Nothing was submitted, posted or released; no weights are published.
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)

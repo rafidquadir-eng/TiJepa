@@ -86,3 +86,11 @@ Drive (`gdrive:TiJepa/checkpoints_v0/`, md5 `fb09904e…`). The checkpoint and l
 | `trace_jepa_v3_seed0.pt` (trace JEPA, 6,000 steps) | persistent filesystem `tijepa_backups/` | `a77a9078606b3abe8fcc24e555aa9291140466cf5578682780b25900b3d7d1c0` | yes |
 
 Sweep snapshots are added when the sweep finishes.
+
+### Recipe sweep (H3.3)
+
+All 20 sweep snapshots (S0–S4 at 5,000/10,000/15,000/20,000 steps), their summaries and
+logs (30 files, 3.5 GB) are on the persistent filesystem under
+`LambdaFilesystem/transfer/proj2/tijepa_backups/sweep/`; each copy's SHA-256 was compared
+with the original and recorded in `sweep/SHA256SUMS` (30/30 equal). Drive copy pending the
+rclone re-authorisation.
