@@ -12,3 +12,5 @@ for d in tmlr biorxiv; do
     fi
     echo "$d: $(pdfinfo main.pdf | awk '/Pages/ {print $2}') pages" )
 done
+cp biorxiv/main.pdf biorxiv/tijepa_preprint.pdf
+cp tmlr/main.pdf tmlr/tijepa_tmlr.pdf
