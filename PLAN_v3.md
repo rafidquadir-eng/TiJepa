@@ -128,7 +128,7 @@ audit, an open, rigorously evaluated video SSL model of innate-cell behaviour, a
 ## 1. Rules (in addition to PLAN_v2 §1, PLAN_v1 §1, PLAN.md §1)
 
 1. **Selection is never done on reported test sets.** Recipe choices (H3) are made on
-   validation data that never appears in a reported result (§6.2). Every reported number
+   validation data that never appears in a reported result (H3.1). Every reported number
    comes from a model frozen before its test set was touched.
 2. **Decision gates are binding** (§2). If a gate fails, take the branch the gate names;
    do not run the more expensive step "to see".
@@ -149,7 +149,7 @@ audit, an open, rigorously evaluated video SSL model of innate-cell behaviour, a
 |---|---|---|---|
 | **G-Dryad** | Dryad files present and checksum-verified (H1) | Dryad becomes the Part A headline (H1.2) | Part A headline stays BBBC054; the paper states the gap in one sentence; nothing else changes |
 | **G-Forecast** | TiJepa-1 beats copy-last **and** the slot-conditional baseline **and** loses most of its advantage when its context is swapped/static (H2) | Forecasting is reported as a finding, with the controls | Forecasting is reported as "explained by temporal-position structure"; the paper drops the forecasting claim |
-| **G-Recipe** | A recipe variant in the H3 sweep improves the validation score (§6.2) by ≥ 0.02 **and** at least doubles feature effective rank vs the baseline recipe at the same step | Report the variant and its 20k-step model as an extra row (§0A.2: no full TiJepa-2 retrain) | Stop recipe work; report the collapse diagnosis as a limitation; evaluate existing models only |
+| **G-Recipe** | A recipe variant in the H3 sweep improves the validation score (H3.1) by ≥ 0.02 **and** at least doubles feature effective rank vs the baseline recipe at the same step | Report the variant and its 20k-step model as an extra row (§0A.2: no full TiJepa-2 retrain) | Stop recipe work; report the collapse diagnosis as a limitation; evaluate existing models only |
 | **G-BetaGlucan** | The β-glucan TNF result survives sample-identity QC and is consistent in at least one independent dataset or in the source paper's own RNA data (H5) | Report it as a replicated transcript-level kinetics observation | Report it as a single-dataset observation (if QC passes) or withdraw it (if QC fails) |
 
 ---
